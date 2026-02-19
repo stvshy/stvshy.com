@@ -1,4 +1,5 @@
 import { Logo } from "@/components/logo"
+import { HiLocationMarker } from "react-icons/hi"
 
 export function ProfileHeader() {
   return (
@@ -20,11 +21,11 @@ export function ProfileHeader() {
         <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white mb-1">
           Mateusz Staszk&oacute;w
         </h1>
-        <p className="text-sm font-medium tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-fuchsia-500 uppercase">
+        <p className="text-[13px] font-medium tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-fuchsia-500 uppercase">
           Developer <span className="text-slate-400 dark:text-slate-400 mx-2">x</span> Producer
         </p>
-        <div className="flex items-center justify-center mt-1 text-xs text-slate-500 dark:text-slate-400 font-mono">
-          <span className="material-icons text-[10px] mr-1">location_on</span>
+        <div className="flex items-center justify-center mt-1 text-[11px] text-slate-500 dark:text-slate-400 font-mono">
+          <HiLocationMarker className="mr-2 text-[13px] shrink-0" aria-hidden="true" />
           Wrocław, PL
         </div>
       </div>
