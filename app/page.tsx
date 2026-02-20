@@ -18,7 +18,7 @@ export default function Page() {
         <ProfileHeader />
 
         {/* Navigation Tabs */}
-        <Tabs defaultValue="music" className="w-full">
+        <Tabs defaultValue="music" className="w-full -mt-[10px]">
           <TabsList className="grid w-full grid-cols-3 bg-muted/50 backdrop-blur-xl border border-border">
             <TabsTrigger
               value="music"
@@ -43,13 +43,13 @@ export default function Page() {
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="music" className="mt-4">
+          <TabsContent value="music" className="mt-1">
             <TabMusic />
           </TabsContent>
-          <TabsContent value="dev" className="mt-4">
+          <TabsContent value="dev" className="mt-1">
             <TabDev />
           </TabsContent>
-          <TabsContent value="about" className="mt-4">
+          <TabsContent value="about" className="mt-1">
             <TabAbout />
           </TabsContent>
         </Tabs>
@@ -57,7 +57,7 @@ export default function Page() {
         {/* Contact Button */}
         <Button
           asChild
-          className="w-full rounded-xl border border-border bg-card text-foreground backdrop-blur-xl transition-all duration-300 hover:border-neon-cyan/30 hover:bg-neon-cyan/10 hover:text-neon-cyan hover:shadow-[0_0_20px_rgba(0,242,234,0.1)]"
+          className="w-full rounded-xl border border-border bg-card text-sm text-foreground backdrop-blur-xl transition-all duration-300 hover:border-neon-cyan/30 hover:bg-neon-cyan/10 hover:text-neon-cyan hover:shadow-[0_0_20px_rgba(0,242,234,0.1)]"
           size="lg"
         >
           <a href="mailto:hello@stvshy.com">
@@ -67,8 +67,8 @@ export default function Page() {
         </Button>
 
         {/* Footer */}
-        <footer className="text-center">
-          <p className="text-xs text-muted-foreground/50">
+        <footer className="text-center -mt-1 -mb-1">
+          <p className="text-[11px] text-muted-foreground/50">
             {"© 2026 stvshy. All rights reserved."}
           </p>
         </footer>

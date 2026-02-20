@@ -36,16 +36,16 @@ export function TabDev() {
           href={link.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-4 backdrop-blur-xl transition-all duration-300 hover:border-neon-magenta/30 hover:bg-neon-magenta/5 hover:shadow-[0_0_20px_rgba(255,0,80,0.08)]"
+          className="group flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-3 backdrop-blur-xl transition-all duration-300 hover:border-neon-magenta/30 hover:bg-neon-magenta/5 hover:shadow-[0_0_20px_rgba(255,0,80,0.08)]"
         >
           <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-neon-magenta/10 text-neon-magenta transition-colors group-hover:bg-neon-magenta/20">
             <link.icon className="size-5" />
           </div>
           <div className="flex flex-col gap-0.5">
-            <span className="text-sm font-semibold text-foreground">
+            <span className="text-[13px] font-semibold text-foreground">
               {link.label}
             </span>
-            <span className="text-xs text-muted-foreground">
+            <span className="text-[11px] text-muted-foreground">
               {link.description}
             </span>
           </div>
