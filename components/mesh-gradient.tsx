@@ -68,9 +68,9 @@ export function MeshGradient() {
       const driftY = Math.cos(time * 0.15) * height * 0.035
 
       // Pink blob
-      const cx1 = width * 0.66 + Math.cos(time * 0.7) * width * 0.18 + driftX * 0.9
+        const cx1 = width * 0.92 + Math.cos(time * 0.7) * width * 0.1 + driftX * 0.65
       const cy1 = height * 0.62 + Math.sin(time * 0.98) * height * 0.16 + driftY * 0.9
-      const gradient1 = ctx.createRadialGradient(cx1, cy1, 0, cx1, cy1, width * 0.42)
+      const gradient1 = ctx.createRadialGradient(cx1, cy1, 0, cx1, cy1, width * 0.5)
       gradient1.addColorStop(0, "rgba(211, 60, 225, 0.15)")
       gradient1.addColorStop(0.5, "rgba(211, 60, 225, 0.06)")
       gradient1.addColorStop(1, "rgba(211, 60, 225, 0)")
@@ -78,20 +78,23 @@ export function MeshGradient() {
       ctx.fillRect(0, 0, width, height)
 
       // Blue blob (more prominent)
-      const cx2 = width * 0.18 + Math.sin(time * 0.85) * width * 0.16 + driftX
-      const cy2 = height * 0.32 + Math.cos(time * 0.62) * height * 0.18 + driftY
-      const gradient2 = ctx.createRadialGradient(cx2, cy2, 0, cx2, cy2, width * 0.48)
-      gradient2.addColorStop(0, "rgba(54, 132, 233, 0.14)")
+      const cyanOrbitX = Math.sin(time * 0.85) * width * 0.06
+      const cyanOrbitY = (Math.cos(time * 0.62) - 1) * height * 0.07 + height * 0.18
+      const cyanCounterDrift = Math.sin(time * 0.37) * height * 0.02
+      const cx2 = width * 0.2 + cyanOrbitX + driftX * 0.5
+      const cy2 = height * 0.32 + cyanOrbitY + driftY + cyanCounterDrift
+      const gradient2 = ctx.createRadialGradient(cx2, cy2, 0, cx2, cy2, width * 0.6)
+      gradient2.addColorStop(0, "rgba(40, 128, 243, 0.43)")
       gradient2.addColorStop(0.5, "rgba(54, 132, 233, 0.055)")
       gradient2.addColorStop(1, "rgba(54, 132, 233, 0)")
       ctx.fillStyle = gradient2
       ctx.fillRect(0, 0, width, height)
 
       // Third subtle blob for depth
-      const cx3 = width * 0.48 + Math.sin(time * 0.45) * width * 0.2 + driftX * 0.6
+        const cx3 = width * 0.7 + Math.sin(time * 0.45) * width * 0.12 + driftX * 0.4
       const cy3 = height * 0.28 + Math.cos(time * 0.33) * height * 0.18 + driftY * 0.6
-      const gradient3 = ctx.createRadialGradient(cx3, cy3, 0, cx3, cy3, width * 0.32)
-      gradient3.addColorStop(0, "rgba(211, 60, 225, 0.06)")
+      const gradient3 = ctx.createRadialGradient(cx3, cy3, 0, cx3, cy3, width * 0.4)
+      gradient3.addColorStop(0, "rgba(218, 32, 235, 0.21)")
       gradient3.addColorStop(1, "rgba(211, 60, 225, 0)")
       ctx.fillStyle = gradient3
       ctx.fillRect(0, 0, width, height)
@@ -118,8 +121,8 @@ export function MeshGradient() {
       ctx.fillRect(0, 0, width, height)
 
       // Extra darkness at the top-center (without heavy corners)
-      const topShadeY = Math.min(height * 0.12, 140)
-      const topShadeRadius = Math.min(Math.max(width, height) * 0.28, 320)
+      const topShadeY = Math.min(height * 0.14, 160)
+      const topShadeRadius = Math.min(Math.max(width, height) * 0.42, 560)
       const topShade = ctx.createRadialGradient(
         width * 0.5,
         topShadeY,
@@ -128,8 +131,8 @@ export function MeshGradient() {
         topShadeY,
         topShadeRadius
       )
-      topShade.addColorStop(0, "rgba(0, 0, 0, 0.32)")
-      topShade.addColorStop(0.55, "rgba(0, 0, 0, 0.14)")
+      topShade.addColorStop(0, "rgba(0, 0, 0, 0.38)")
+      topShade.addColorStop(0.55, "rgba(0, 0, 0, 0.17)")
       topShade.addColorStop(1, "rgba(0, 0, 0, 0)")
       ctx.fillStyle = topShade
       ctx.fillRect(0, 0, width, height)
