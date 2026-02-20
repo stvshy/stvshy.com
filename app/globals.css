@@ -92,7 +92,7 @@
   /* 1. Kursor domyślny na całej stronie */
   body {
     @apply bg-background text-foreground;
-    cursor: url('/cursors/cursor11.png') 0 0, auto !important;
+    cursor: url('/cursors/cursor10.png') 0 0, auto !important;
   }
 
   /* 2. Kursor dla linków, przycisków i WSZYSTKIEGO, co jest w ich środku */
@@ -106,6 +106,6 @@
   [role="button"] *, 
   label *, 
   select * {
-    cursor: url('/cursors/cursor11.png') 0 0, pointer !important;
+    cursor: url('/cursors/cursor10.png') 0 0, pointer !important;
   }
 }

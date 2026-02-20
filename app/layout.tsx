@@ -14,8 +14,8 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'stvshy | Developer x Producer',
-  description: 'Link in bio for stvshy - Mateusz Staszków. Developer and music producer based in Wrocław, PL.',
+  title: 'stvshy',
+  description: 'Mateusz Staszków - Developer & Producer. Discover my music, projects, and more.',
   generator: 'v0.app',
   icons: {
     icon: [
@@ -54,13 +54,13 @@ export default function RootLayout({
         <style dangerouslySetInnerHTML={{ __html: `
           /* Główny kursor na stronie */
           body {
-    cursor: url('/cursors/cursor11.png') 0 0, auto !important;
+    cursor: url('/cursors/cursor10.png') 0 0, auto !important;
           }
           
           /* Kursor w kształcie łapki/pointera dla klikalnych elementów */
           a, button, [role="button"], label, select,
           a *, button *, [role="button"] *, label *, select * {
-cursor: url('/cursors/cursor11.png') 0 0, pointer !important;  }
+cursor: url('/cursors/cursor10.png') 0 0, pointer !important;  }
         `}} />
 
       </head>
