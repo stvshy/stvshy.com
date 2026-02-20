@@ -22,21 +22,21 @@ export default function Page() {
           <TabsList className="grid w-full grid-cols-3 bg-muted/50 backdrop-blur-xl border border-border">
             <TabsTrigger
               value="music"
-              className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-neon-cyan/10 data-[state=active]:text-neon-cyan data-[state=active]:shadow-none data-[state=inactive]:hover:bg-foreground/5 data-[state=inactive]:hover:border-border data-[state=inactive]:hover:text-foreground/70"
+              className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-neon-cyan/10 data-[state=active]:text-neon-cyan data-[state=active]:shadow-none data-[state=inactive]:hover:bg-background/10 data-[state=inactive]:hover:border-border data-[state=inactive]:hover:text-muted-foreground"
             >
               <span aria-hidden="true" className="mr-1.5">{"🎵"}</span>
               Music
             </TabsTrigger>
             <TabsTrigger
               value="dev"
-              className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-neon-magenta/10 data-[state=active]:text-neon-magenta data-[state=active]:shadow-none data-[state=inactive]:hover:bg-foreground/5 data-[state=inactive]:hover:border-border data-[state=inactive]:hover:text-foreground/70"
+              className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-neon-magenta/10 data-[state=active]:text-neon-magenta data-[state=active]:shadow-none data-[state=inactive]:hover:bg-background/10 data-[state=inactive]:hover:border-border data-[state=inactive]:hover:text-muted-foreground"
             >
               <span aria-hidden="true" className="mr-1.5">{"💻"}</span>
               Dev
             </TabsTrigger>
             <TabsTrigger
               value="about"
-              className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-foreground/10 data-[state=active]:text-foreground data-[state=active]:shadow-none data-[state=inactive]:hover:bg-foreground/5 data-[state=inactive]:hover:border-border data-[state=inactive]:hover:text-foreground/70"
+              className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-foreground/10 data-[state=active]:text-foreground data-[state=active]:shadow-none data-[state=inactive]:hover:bg-background/10 data-[state=inactive]:hover:border-border data-[state=inactive]:hover:text-muted-foreground"
             >
               <span aria-hidden="true" className="mr-1.5">{"👤"}</span>
               About
