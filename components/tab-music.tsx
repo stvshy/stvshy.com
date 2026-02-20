@@ -1,29 +1,50 @@
-import { Music, Headphones, Radio, Disc3 } from "lucide-react"
+import { BsSpotify } from "react-icons/bs"
+import { FaDeezer } from "react-icons/fa"
+import { PiSoundcloudLogoFill } from "react-icons/pi"
+import { SiAmazonmusic, SiApplemusic, SiTidal, SiYoutubemusic } from "react-icons/si"
 
 const links = [
   {
     label: "Spotify",
     description: "Listen to my latest releases",
-    href: "#",
-    icon: Headphones,
+    href: "https://open.spotify.com/artist/20jL6FuQUNHnlP3ApdjBbI?si=fvGq0tvJRXmhMa5_KKnAXg",
+    icon: BsSpotify,
   },
   {
     label: "SoundCloud",
     description: "Unreleased beats & demos",
-    href: "#",
-    icon: Radio,
-  },
-  {
-    label: "BeatStars",
-    description: "License my instrumentals",
-    href: "#",
-    icon: Music,
+    href: "https://soundcloud.com/stvshy",
+    icon: PiSoundcloudLogoFill,
   },
   {
     label: "Apple Music",
     description: "Stream on Apple Music",
-    href: "#",
-    icon: Disc3,
+    href: "https://music.apple.com/pl/artist/stvshy/1863822260",
+    icon: SiApplemusic,
+  },
+  {
+    label: "YouTube Music",
+    description: "Listen on YouTube Music",
+    href: "https://music.youtube.com/search?q=stvshy",
+    icon: SiYoutubemusic,
+  },
+  {
+    label: "Deezer",
+    description: "Stream on Deezer",
+    href: "https://www.deezer.com/pl/artist/363730262",
+    icon: FaDeezer,
+  },
+  {
+    label: "Amazon Music",
+    description: "Listen on Amazon Music",
+    href: "https://music.amazon.com/artists/B0GCCG5GH3/stvshy",
+    icon: SiAmazonmusic,
+  },
+  {
+    label: "TIDAL",
+    description: "Stream on TIDAL",
+    href: "https://tidal.com/artist/72120078",
+    icon: SiTidal,
   },
 ]
 
