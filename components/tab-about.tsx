@@ -29,21 +29,6 @@ export function TabAbout() {
         </div>
       </div>
 
-      <div className="rounded-xl border border-border bg-card px-5 py-4 backdrop-blur-xl">
-        <h3 className="text-[11px] font-semibold tracking-wider text-muted-foreground uppercase mb-3">
-          Genres
-        </h3>
-        <div className="flex flex-wrap gap-2">
-          {["Trap", "Lo-fi", "Ambient", "Phonk", "Electronic"].map((genre) => (
-            <span
-              key={genre}
-              className="rounded-full border border-border bg-muted/50 px-3 py-1 text-[11px] text-foreground"
-            >
-              {genre}
-            </span>
-          ))}
-        </div>
-      </div>
     </div>
   )
 }

@@ -6,19 +6,13 @@ import { SiAmazonmusic, SiApplemusic, SiTidal, SiYoutubemusic } from "react-icon
 const links = [
   {
     label: "Spotify",
-    description: "Listen to my latest releases",
+    description: "Listen on Spotify",
     href: "https://open.spotify.com/artist/20jL6FuQUNHnlP3ApdjBbI?si=fvGq0tvJRXmhMa5_KKnAXg",
     icon: BsSpotify,
   },
   {
-    label: "SoundCloud",
-    description: "Unreleased beats & demos",
-    href: "https://soundcloud.com/stvshy",
-    icon: PiSoundcloudLogoFill,
-  },
-  {
     label: "Apple Music",
-    description: "Stream on Apple Music",
+    description: "Listen on Apple Music",
     href: "https://music.apple.com/pl/artist/stvshy/1863822260",
     icon: SiApplemusic,
   },
@@ -30,7 +24,7 @@ const links = [
   },
   {
     label: "Deezer",
-    description: "Stream on Deezer",
+    description: "Listen on Deezer",
     href: "https://www.deezer.com/pl/artist/363730262",
     icon: FaDeezer,
   },
@@ -42,9 +36,15 @@ const links = [
   },
   {
     label: "TIDAL",
-    description: "Stream on TIDAL",
+    description: "Listen on TIDAL",
     href: "https://tidal.com/artist/72120078",
     icon: SiTidal,
+  },
+  {
+    label: "SoundCloud",
+    description: "Unreleased beats",
+    href: "https://soundcloud.com/stvshy",
+    icon: PiSoundcloudLogoFill,
   },
 ]
 
@@ -82,6 +82,33 @@ export function TabMusic() {
           </svg>
         </a>
       ))}
+
+      <div className="grid grid-cols-2 gap-3 pt-1">
+        <div className="rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl">
+          <span className="text-xl font-bold text-neon-magenta font-mono">1</span>
+          <p className="mt-1 text-[11px] text-muted-foreground">Tracks released</p>
+        </div>
+        <div className="rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl">
+          <span className="text-xl font-bold text-neon-cyan font-mono">3+</span>
+          <p className="mt-1 text-[11px] text-muted-foreground">Years producing</p>
+        </div>
+      </div>
+
+      <div className="rounded-xl border border-border bg-card px-5 py-4 backdrop-blur-xl">
+        <h3 className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+          Genres
+        </h3>
+        <div className="flex flex-wrap gap-2">
+          {["Wave", "Electronic", "Trap", "Hardwave", "Hip-hop", "Witch House", "Trapwave"].map((genre) => (
+            <span
+              key={genre}
+              className="rounded-full border border-border bg-muted/50 px-3 py-1 text-[11px] text-foreground"
+            >
+              {genre}
+            </span>
+          ))}
+        </div>
+      </div>
     </div>
   )
 }
