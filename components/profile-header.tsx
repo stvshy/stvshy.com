@@ -17,7 +17,7 @@ export function ProfileHeader() {
         </div>
       </div>
 
-      <div className="text-center mb-2 flex flex-col items-center gap-1">
+      <div className="text-center flex flex-col items-center gap-1">
         <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white mb-1">
           Mateusz Staszk&oacute;w
         </h1>

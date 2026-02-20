@@ -87,8 +87,25 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
-  }
+  } 
+  
+  /* 1. Kursor domyślny na całej stronie */
   body {
     @apply bg-background text-foreground;
+    cursor: url('/cursors/cursor11.png') 0 0, auto !important;
+  }
+
+  /* 2. Kursor dla linków, przycisków i WSZYSTKIEGO, co jest w ich środku */
+  a, 
+  button, 
+  [role="button"], 
+  label, 
+  select,
+  a *, 
+  button *, 
+  [role="button"] *, 
+  label *, 
+  select * {
+    cursor: url('/cursors/cursor11.png') 0 0, pointer !important;
   }
 }

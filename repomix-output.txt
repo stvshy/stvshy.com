@@ -121,14 +121,26 @@ components/ui/use-toast.ts
 hooks/use-mobile.ts
 hooks/use-toast.ts
 lib/utils.ts
+next-env.d.ts
 next.config.mjs
 package.json
 postcss.config.mjs
 public/apple-icon.png
+public/cursors/cursor1.png
+public/cursors/cursor2.png
+public/cursors/cursor3.png
+public/cursors/cursor4.png
+public/cursors/cursor5.png
+public/cursors/cursor6.cur
+public/cursors/default.png
+public/cursors/pointer.cur
+public/cursors/pointer.png
 public/icon-dark-32x32.png
 public/icon-light-32x32.png
 public/icon.svg
 public/images/avatar.jpg
+public/images/stvshy-przezroczyste1.png
+public/images/stvshy-przezroczyste2.png
 public/placeholder-logo.png
 public/placeholder-logo.svg
 public/placeholder-user.jpg
@@ -155,6 +167,8 @@ node_modules/
 .env*.local
 .DS_Store
 .vercel
+
+repomix-output.txt
 
 ================
 File: app/globals.css
@@ -247,6 +261,10 @@ File: app/globals.css
   }
   body {
     @apply bg-background text-foreground;
+    cursor: url('/cursors/cursor6.png') 0 0, auto;
+  }
+  a, button, [role="button"] {
+    cursor: url('/cursors/pointer.png'), pointer;
   }
 }
 
@@ -298,6 +316,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
+      <head>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+      </head>
       <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
         {children}
         <Analytics />
@@ -640,30 +661,11 @@ File: components/logo.tsx
 ================
 export function Logo() {
   return (
-    <svg
-      viewBox="0 0 200 40"
-      className="mx-auto h-8 w-auto"
-      aria-label="stvshy logo"
-      role="img"
-    >
-      <text
-        x="100"
-        y="30"
-        textAnchor="middle"
-        fill="white"
-        fontFamily="monospace"
-        fontSize="32"
-        fontWeight="bold"
-        letterSpacing="4"
-        style={{
-          paintOrder: "stroke",
-          stroke: "rgba(255,255,255,0.1)",
-          strokeWidth: 1,
-        }}
-      >
-        stvshy
-      </text>
-    </svg>
+    <img
+      src="/images/stvshy-przezroczyste1.png"
+      alt="stvshy logo"
+      className="mx-auto h-9 w-auto -mt-8"
+    />
   )
 }
 
@@ -727,41 +729,6 @@ export function MeshGradient() {
       className="pointer-events-none fixed inset-0 z-0"
       aria-hidden="true"
     />
-  )
-}
-
-================
-File: components/profile-header.tsx
-================
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Logo } from "@/components/logo"
-export function ProfileHeader() {
-  return (
-    <header className="flex flex-col items-center gap-5">
-      <Logo />
-      <div className="relative">
-        {}
-        <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-neon-cyan via-neon-magenta/60 to-neon-cyan opacity-70 blur-sm" />
-        <div className="absolute -inset-0.5 rounded-full bg-gradient-to-br from-neon-cyan to-neon-magenta opacity-50" />
-        <Avatar className="relative size-28 border-2 border-background">
-          <AvatarImage
-            src="/images/avatar.jpg"
-            alt="Mateusz Staszków profile photo"
-          />
-          <AvatarFallback className="bg-muted text-2xl font-bold text-foreground">
-            MS
-          </AvatarFallback>
-        </Avatar>
-      </div>
-      <div className="flex flex-col items-center gap-1.5">
-        <h1 className="text-xl font-bold tracking-wider text-foreground uppercase">
-          Mateusz Staszk&oacute;w
-        </h1>
-        <p className="text-sm tracking-wide text-muted-foreground font-mono">
-          {"Developer x Producer. Wroc\u0142aw, PL."}
-        </p>
-      </div>
-    </header>
   )
 }
 
@@ -7216,6 +7183,11 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 ================
+File: next-env.d.ts
+================
+import "./.next/dev/types/routes.d.ts";
+
+================
 File: next.config.mjs
 ================
 /** @type {import('next').NextConfig} */
@@ -7462,7 +7434,11 @@ File: tsconfig.json
 ================
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "target": "ES6",
     "skipLibCheck": true,
@@ -7473,7 +7449,7 @@ File: tsconfig.json
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "plugins": [
       {
@@ -7481,11 +7457,56 @@ File: tsconfig.json
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": [
+        "./*"
+      ]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
+
+================
+File: components/profile-header.tsx
+================
+import { Logo } from "@/components/logo"
+import { HiLocationMarker } from "react-icons/hi"
+export function ProfileHeader() {
+  return (
+    <header className="flex flex-col items-center gap-3">
+      <Logo />
+      <div className="relative mb-2 group">
+        <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-cyan-500 to-fuchsia-500 blur-md opacity-75 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div className="relative w-36 h-36 rounded-full p-1 bg-gradient-to-tr from-cyan-500 via-purple-500 to-fuchsia-500" style={{ boxShadow: '0 0 40px -10px rgba(6, 182, 212, 0.5), 0 0 40px -10px rgba(217, 70, 239, 0.5)' }}>
+          <img
+            src="/images/avatar.jpg"
+            alt="Mateusz Staszków profile photo"
+            className="w-full h-full object-cover rounded-full border-4 border-white dark:border-slate-950"
+          />
+        </div>
+      </div>
+      <div className="text-center flex flex-col items-center gap-1">
+        <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white mb-1">
+          Mateusz Staszk&oacute;w
+        </h1>
+        <p className="text-[13px] font-medium tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-fuchsia-500 uppercase">
+          Developer <span className="text-slate-400 dark:text-slate-400 mx-2">x</span> Producer
+        </p>
+        <div className="flex items-center justify-center mt-1 text-[11px] text-slate-500 dark:text-slate-400 font-mono">
+          <HiLocationMarker className="mr-2 text-[13px] shrink-0" aria-hidden="true" />
+          Wrocław, PL
+        </div>
+      </div>
+    </header>
+  )
 }
 
 

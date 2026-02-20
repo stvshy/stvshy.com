@@ -48,8 +48,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <head>
+       <head>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        
+        <style dangerouslySetInnerHTML={{ __html: `
+          /* Główny kursor na stronie */
+          body {
+    cursor: url('/cursors/cursor11.png') 0 0, auto !important;
+          }
+          
+          /* Kursor w kształcie łapki/pointera dla klikalnych elementów */
+          a, button, [role="button"], label, select,
+          a *, button *, [role="button"] *, label *, select * {
+cursor: url('/cursors/cursor11.png') 0 0, pointer !important;  }
+        `}} />
+
       </head>
       <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
         {children}
