@@ -5,6 +5,12 @@ import { SiAmazonmusic, SiApplemusic, SiTidal, SiYoutubemusic } from "react-icon
 
 const links = [
   {
+    label: "Fantasia",
+    description: "Listen latest song",
+    href: "https://artists.landr.com/057914392592",
+    icon: BsSpotify,
+  },
+  {
     label: "Spotify",
     description: "Listen on Spotify",
     href: "https://open.spotify.com/artist/20jL6FuQUNHnlP3ApdjBbI?si=fvGq0tvJRXmhMa5_KKnAXg",
@@ -49,6 +55,15 @@ const links = [
 ]
 
 export function TabMusic() {
+  const defaultLinkClassName =
+    "group flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-3 backdrop-blur-xl transition-all duration-300 hover:border-neon-cyan/30 hover:bg-neon-cyan/5 hover:shadow-[0_0_20px_rgba(0,242,234,0.08)]"
+
+  const fantasiaCardClassName =
+    "group flex items-center gap-4 rounded-xl border border-neon-cyan/35 bg-neon-cyan/10 px-5 py-3 backdrop-blur-xl transition-all duration-300 hover:border-neon-cyan/45 hover:bg-neon-cyan/15 hover:shadow-[0_0_24px_rgba(0,242,234,0.14)]"
+
+  // const fantasiaCardClassName =
+  //   "group flex items-center gap-4 rounded-xl border border-neon-magenta/35 bg-neon-magenta/10 px-5 py-3 backdrop-blur-xl transition-all duration-300 hover:border-neon-magenta/45 hover:bg-neon-magenta/15 hover:shadow-[0_0_24px_rgba(217,70,239,0.14)]"
+
   return (
     <div className="flex flex-col gap-3">
       {links.map((link) => (
@@ -57,10 +72,24 @@ export function TabMusic() {
           href={link.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-3 backdrop-blur-xl transition-all duration-300 hover:border-neon-cyan/30 hover:bg-neon-cyan/5 hover:shadow-[0_0_20px_rgba(0,242,234,0.08)]"
+          className={link.label === "Fantasia" ? fantasiaCardClassName : defaultLinkClassName}
         >
-          <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-neon-cyan/10 text-neon-cyan transition-colors group-hover:bg-neon-cyan/20">
-            <link.icon className="size-5" />
+          <div
+            className={
+              link.label === "Fantasia"
+                ? "flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-lg"
+                : "flex size-10 shrink-0 items-center justify-center rounded-lg bg-neon-cyan/10 text-neon-cyan transition-colors group-hover:bg-neon-cyan/20"
+            }
+          >
+            {link.label === "Fantasia" ? (
+              <img
+                src="/images/fantasia.png"
+                alt="Fantasia cover"
+                className="size-full rounded-lg object-cover"
+              />
+            ) : (
+              <link.icon className="size-5" />
+            )}
           </div>
           <div className="flex flex-col gap-0.5">
             <span className="text-[13px] font-semibold text-foreground">
