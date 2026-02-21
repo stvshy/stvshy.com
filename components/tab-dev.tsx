@@ -2,25 +2,59 @@
 
 import Image from "next/image"
 import { useState } from "react"
-import {
-  ChevronDown,
-  ExternalLink,
-  Globe,
-  Server,
-  Code2,
-  Database,
-  Braces,
-  Cpu,
-  Layers,
-  X,
-} from "lucide-react"
-import { MdLocalAirport, MdLock } from "react-icons/md"
+import { ChevronDown, ExternalLink, Layers, X } from "lucide-react"
+import { MdLocalAirport, MdLock, MdOutlineLayers } from "react-icons/md"
 import { ImLinkedin2 } from "react-icons/im"
 import { IoLogoGithub } from "react-icons/io"
 import { IoConstruct, IoGameController } from "react-icons/io5"
 import { RiChatVoiceAiFill } from "react-icons/ri"
 import { FaMeta } from "react-icons/fa6"
 import { SiCisco } from "react-icons/si"
+import {
+  SiAdobelightroom,
+  SiAdobephotoshop,
+  SiAmazonwebservices,
+  SiAssemblyscript,
+  SiC,
+  SiClion,
+  SiCss3,
+  SiSharp,
+  SiDocker,
+  SiExpo,
+  SiFigma,
+  SiFirebase,
+  SiFlask,
+  SiGit,
+  SiGodotengine,
+  SiGnubash,
+  SiHtml5,
+  SiIntellijidea,
+  SiJavascript,
+  SiJunit5,
+  SiJupyter,
+  SiLinux,
+  SiMicrostation,
+  SiNodedotjs,
+  SiOpengl,
+  SiPostgresql,
+  SiPycharm,
+  SiPython,
+  SiReact,
+  SiSelenium,
+  SiSpringboot,
+  SiSqlite,
+  SiSupabase,
+  SiTerraform,
+  SiTypescript,
+  SiVite,
+  SiVirtualbox,
+} from "react-icons/si"
+import { TbBrandCpp, TbBrandCSharp, TbBrandReactNative, TbSql } from "react-icons/tb"
+import { VscVscode } from "react-icons/vsc"
+import { DiVisualstudio } from "react-icons/di"
+import { GiKiwiBird } from "react-icons/gi"
+import { FaCode, FaJava, FaMicrochip } from "react-icons/fa6"
+import { FaCompass } from "react-icons/fa"
 
 const links = [
   {
@@ -74,27 +108,82 @@ export function TabDev() {
 
   const stackSections = [
     {
-      title: "Frontend",
+      title: "Languages & Core Technologies",
       items: [
-        { label: "Next.js", icon: Globe },
-        { label: "React", icon: Layers },
-        { label: "Tailwind CSS", icon: Braces },
+        { label: "C++", icon: TbBrandCpp },
+        { label: "C", icon: SiC },
+        { label: "C#", icon: TbBrandCSharp },
+        { label: "Java", icon: FaJava },
+        { label: "Python", icon: SiPython },
+        { label: "JavaScript", icon: SiJavascript },
+        { label: "TypeScript", icon: SiTypescript },
+        { label: "HTML5", icon: SiHtml5 },
+        { label: "CSS3", icon: SiCss3 },
+        { label: "Bash", icon: SiGnubash },
+        { label: "Assembly Language", icon: SiAssemblyscript },
+        { label: "VHDL", icon: FaCode },
       ],
     },
     {
-      title: "Backend",
+      title: "Frameworks & Libraries",
       items: [
-        { label: "Node.js", icon: Server },
-        { label: "REST APIs", icon: Code2 },
-        { label: "PostgreSQL", icon: Database },
+        { label: "React Native", icon: TbBrandReactNative },
+        { label: "React", icon: SiReact },
+        { label: "Spring Boot", icon: SiSpringboot },
+        { label: "Vite", icon: SiVite },
+        { label: "Expo", icon: SiExpo },
+        { label: "Godot Engine", icon: SiGodotengine },
+        { label: "JavaFX", icon: FaJava },
+        { label: "Node.js", icon: SiNodedotjs },
+        { label: "OpenGL", icon: SiOpengl },
+        { label: "Flask", icon: SiFlask },
+        { label: "Jupyter Notebook", icon: SiJupyter },
       ],
     },
     {
-      title: "Programming languages",
+      title: "Databases, Cloud & DevOps",
       items: [
-        { label: "TypeScript", icon: Braces },
-        { label: "Python", icon: Cpu },
-        { label: "C#", icon: Code2 },
+        { label: "PostgreSQL", icon: SiPostgresql },
+        { label: "SQL", icon: TbSql },
+        { label: "Firebase", icon: SiFirebase },
+        { label: "AWS", icon: SiAmazonwebservices },
+        { label: "Docker", icon: SiDocker },
+        { label: "Terraform", icon: SiTerraform },
+        { label: "Linux", icon: SiLinux },
+        { label: "Git", icon: SiGit },
+        { label: "Supabase", icon: SiSupabase },
+      ],
+    },
+    {
+      title: "IDEs & Development Tools",
+      items: [
+        { label: "IntelliJ IDEA", icon: SiIntellijidea },
+        { label: "PyCharm", icon: SiPycharm },
+        { label: "CLion", icon: SiClion },
+        { label: "Visual Studio Code", icon: VscVscode },
+        { label: "Visual Studio", icon: DiVisualstudio },
+        { label: "Keil µVision 5", icon: SiMicrostation },
+        { label: "Xilinx", icon: FaMicrochip },
+      ],
+    },
+    {
+      title: "Testing, Analysis & Modeling Tools",
+      items: [
+        { label: "Selenium", icon: SiSelenium },
+        { label: "Weka", icon: GiKiwiBird },
+        { label: "FitNesse", icon: FaCompass },
+        { label: "Visual Paradigm", icon: MdOutlineLayers },
+        { label: "JUnit", icon: SiJunit5 },
+      ],
+    },
+    {
+      title: "Design & Other Software",
+      items: [
+        { label: "Figma", icon: SiFigma },
+        { label: "Photoshop", icon: SiAdobephotoshop },
+        { label: "Lightroom", icon: SiAdobelightroom },
+        { label: "MATLAB", icon: SiSqlite },
+        { label: "VirtualBox", icon: SiVirtualbox },
       ],
     },
   ]
@@ -189,7 +278,7 @@ export function TabDev() {
           className="group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl"
         >
           <ChevronDown
-            className={`absolute right-3 top-1/2 size-3.5 -translate-y-1/2 text-muted-foreground transition-transform ${
+            className={`absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground transition-transform ${
               isYearsOpen ? "rotate-180" : ""
             }`}
           />
@@ -204,11 +293,11 @@ export function TabDev() {
           className="group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl"
         >
           <ChevronDown
-            className={`absolute right-3 top-1/2 size-3.5 -translate-y-1/2 text-muted-foreground transition-transform ${
+            className={`absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground transition-transform ${
               isCertificatesOpen ? "rotate-180" : ""
             }`}
           />
-          <span className="text-xl font-bold text-neon-magenta font-mono">5</span>
+          <span className="text-xl font-bold text-neon-magenta font-mono">3</span>
           <p className="mt-1 text-[11px] text-muted-foreground">Certificates</p>
         </button>
       </div>
@@ -223,7 +312,7 @@ export function TabDev() {
         <div className="overflow-hidden">
           <div
             className={`relative rounded-xl border border-border bg-card/90 px-5 py-4 backdrop-blur-xl transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-              isYearsOpen ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
+              isYearsOpen ? "translate-y-0 opacity-100" : "-translate-y-2 opacity-0"
             }`}
           >
           <button
@@ -286,7 +375,7 @@ export function TabDev() {
         <div className="overflow-hidden">
           <div
             className={`relative rounded-xl border border-border bg-card/90 px-4 py-4 backdrop-blur-xl transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-              isCertificatesOpen ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
+              isCertificatesOpen ? "translate-y-0 opacity-100" : "-translate-y-2 opacity-0"
             }`}
           >
           <button
@@ -357,7 +446,7 @@ export function TabDev() {
           className="group flex w-full items-center gap-4 px-5 py-3 text-left"
         >
           <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-neon-magenta/10 text-neon-magenta transition-colors group-hover:bg-neon-magenta/20">
-            <Layers className="size-5" />
+            <Layers className="size-6" />
           </div>
           <div className="flex flex-col gap-0.5">
             <span className="text-[13px] font-semibold text-foreground">Stack</span>
@@ -366,7 +455,7 @@ export function TabDev() {
             </span>
           </div>
           <ChevronDown
-            className={`ml-auto size-4 text-muted-foreground transition-transform ${
+            className={`ml-auto size-[18px] text-muted-foreground transition-transform ${
               isStackOpen ? "rotate-180" : ""
             }`}
           />
@@ -386,7 +475,13 @@ export function TabDev() {
                         key={item.label}
                         className="inline-flex items-center gap-1.5 rounded-md border border-border px-2.5 py-1 text-[11px] text-foreground"
                       >
-                        <item.icon className="size-3.5 text-muted-foreground" />
+                        <item.icon
+                          className={`text-muted-foreground ${
+                            item.label === "C++" || item.label === "C#"
+                              ? "size-4.5"
+                              : "size-3.5"
+                          }`}
+                        />
                         {item.label}
                       </span>
                     ))}
