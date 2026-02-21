@@ -18,21 +18,9 @@ export const metadata: Metadata = {
   description: 'Mateusz Staszków - Developer & Producer. Discover my music, projects, and more.',
   generator: 'v0.app',
   icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
+    icon: '/images/stvshy-s2.png',
+    shortcut: '/images/stvshy-s2.png',
+    apple: '/images/stvshy-s2.png',
   },
 }
 
