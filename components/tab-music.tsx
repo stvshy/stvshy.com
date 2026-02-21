@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { BsSpotify } from "react-icons/bs"
 import { FaDeezer } from "react-icons/fa"
 import { PiSoundcloudLogoFill } from "react-icons/pi"
@@ -55,6 +56,8 @@ const links = [
 ]
 
 export function TabMusic() {
+  const [isMoreOpen, setIsMoreOpen] = useState(false)
+
   const defaultLinkClassName =
     "group flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-3 backdrop-blur-xl transition-all duration-300 hover:border-neon-cyan/30 hover:bg-neon-cyan/5 hover:shadow-[0_0_20px_rgba(0,242,234,0.08)]"
 
@@ -64,9 +67,12 @@ export function TabMusic() {
   // const fantasiaCardClassName =
   //   "group flex items-center gap-4 rounded-xl border border-neon-magenta/35 bg-neon-magenta/10 px-5 py-3 backdrop-blur-xl transition-all duration-300 hover:border-neon-magenta/45 hover:bg-neon-magenta/15 hover:shadow-[0_0_24px_rgba(217,70,239,0.14)]"
 
+  const visibleLinks = links.slice(0, 4)
+  const hiddenLinks = links.slice(4)
+
   return (
     <div className="flex flex-col gap-3">
-      {links.map((link) => (
+      {visibleLinks.map((link) => (
         <a
           key={link.label}
           href={link.href}
@@ -112,7 +118,66 @@ export function TabMusic() {
         </a>
       ))}
 
-      <div className="grid grid-cols-2 gap-3 pt-1">
+      <button
+        type="button"
+        onClick={() => setIsMoreOpen((prev) => !prev)}
+        className="flex h-8 w-full items-center justify-center gap-2 rounded-lg border border-border/70 bg-card/70 text-[11px] font-medium uppercase tracking-wide text-muted-foreground transition-all duration-300 hover:border-neon-cyan/30 hover:text-neon-cyan"
+        aria-expanded={isMoreOpen}
+        aria-controls="more-music-links"
+      >
+        More
+        <svg
+          className={isMoreOpen ? "size-3 transition-transform duration-300 rotate-180" : "size-3 transition-transform duration-300"}
+          viewBox="0 0 16 16"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          aria-hidden="true"
+        >
+          <path d="M3.5 6l4.5 4 4.5-4" />
+        </svg>
+      </button>
+
+      {isMoreOpen && (
+        <div
+          id="more-music-links"
+          className="flex flex-col gap-3 animate-in fade-in-0 slide-in-from-top-1 duration-300"
+        >
+          {hiddenLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={defaultLinkClassName}
+            >
+              <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-neon-cyan/10 text-neon-cyan transition-colors group-hover:bg-neon-cyan/20">
+                <link.icon className="size-5" />
+              </div>
+              <div className="flex flex-col gap-0.5">
+                <span className="text-[13px] font-semibold text-foreground">
+                  {link.label}
+                </span>
+                <span className="text-[11px] text-muted-foreground">
+                  {link.description}
+                </span>
+              </div>
+              <svg
+                className="ml-auto size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-neon-cyan"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                aria-hidden="true"
+              >
+                <path d="M6 3l5 5-5 5" />
+              </svg>
+            </a>
+          ))}
+        </div>
+      )}
+
+      <div className="grid grid-cols-2 gap-3">
         <div className="rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl">
           <span className="text-xl font-bold text-neon-magenta font-mono">1</span>
           <p className="mt-1 text-[11px] text-muted-foreground">Tracks released</p>
