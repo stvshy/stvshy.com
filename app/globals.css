@@ -39,6 +39,8 @@
   --sidebar-ring: #00f2ea;
   --neon-cyan: #00f2ea;
   --neon-magenta: #ff0050;
+  --dev-accent: #009bd4;
+  --dev-accent-rgb: 49 222 255;
 }
 
 @theme inline {

@@ -17,6 +17,7 @@ import {
   SiAssemblyscript,
   SiC,
   SiClion,
+  SiCplusplusbuilder,
   SiCss3,
   SiSharp,
   SiDocker,
@@ -49,7 +50,7 @@ import {
   SiVite,
   SiVirtualbox,
 } from "react-icons/si"
-import { TbBrandCpp, TbBrandCSharp, TbBrandReactNative, TbSql } from "react-icons/tb"
+import { TbBrandReactNative, TbSql } from "react-icons/tb"
 import { VscVscode } from "react-icons/vsc"
 import { DiVisualstudio } from "react-icons/di"
 import { GiKiwiBird } from "react-icons/gi"
@@ -109,10 +110,11 @@ export function TabDev() {
   const stackSections = [
     {
       title: "Languages & Core Technologies",
+      gradientClass: "from-cyan-600 via-blue-600 to-purple-500",
       items: [
-        { label: "C++", icon: TbBrandCpp },
+        { label: "C++", icon: SiCplusplusbuilder },
         { label: "C", icon: SiC },
-        { label: "C#", icon: TbBrandCSharp },
+        { label: "C#", icon: SiSharp },
         { label: "Java", icon: FaJava },
         { label: "Python", icon: SiPython },
         { label: "JavaScript", icon: SiJavascript },
@@ -126,6 +128,7 @@ export function TabDev() {
     },
     {
       title: "Frameworks & Libraries",
+      gradientClass: "from-blue-500 via-indigo-500 to-purple-500",
       items: [
         { label: "React Native", icon: TbBrandReactNative },
         { label: "React", icon: SiReact },
@@ -142,6 +145,7 @@ export function TabDev() {
     },
     {
       title: "Databases, Cloud & DevOps",
+      gradientClass: "from-blue-600 via-indigo-500 to-violet-500",
       items: [
         { label: "PostgreSQL", icon: SiPostgresql },
         { label: "SQL", icon: TbSql },
@@ -156,6 +160,7 @@ export function TabDev() {
     },
     {
       title: "IDEs & Development Tools",
+      gradientClass: "from-indigo-500 via-purple-500 to-violet-600",
       items: [
         { label: "IntelliJ IDEA", icon: SiIntellijidea },
         { label: "PyCharm", icon: SiPycharm },
@@ -168,6 +173,7 @@ export function TabDev() {
     },
     {
       title: "Testing, Analysis & Modeling Tools",
+      gradientClass: "from-indigo-500 via-purple-500 to-violet-600",
       items: [
         { label: "Selenium", icon: SiSelenium },
         { label: "Weka", icon: GiKiwiBird },
@@ -178,6 +184,7 @@ export function TabDev() {
     },
     {
       title: "Design & Other Software",
+      gradientClass: "from-violet-500 via-fuchsia-500 to-fuchsia-500",
       items: [
         { label: "Figma", icon: SiFigma },
         { label: "Photoshop", icon: SiAdobephotoshop },
@@ -225,14 +232,14 @@ export function TabDev() {
           className={`group flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-3 backdrop-blur-xl transition-all duration-300 ${
             link.blocked
               ? "cursor-not-allowed border-border/70 bg-card/35 opacity-100"
-              : "hover:border-neon-magenta/30 hover:bg-neon-magenta/5 hover:shadow-[0_0_20px_rgba(255,0,80,0.08)]"
+              : "hover:border-[var(--dev-accent)]/45 hover:bg-[var(--dev-accent)]/10 hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
           }`}
         >
           <div
             className={`flex size-10 shrink-0 items-center justify-center rounded-lg transition-colors ${
               link.blocked
-                ? "bg-neon-magenta/5 text-neon-magenta/60"
-                : "bg-neon-magenta/10 text-neon-magenta group-hover:bg-neon-magenta/20"
+                ? "bg-[var(--dev-accent)]/10 text-[var(--dev-accent)]/60"
+                : "bg-[var(--dev-accent)]/15 text-[var(--dev-accent)] group-hover:bg-[var(--dev-accent)]/25"
             }`}
           >
             <link.icon className={link.label === "GitHub" ? "size-6" : "size-5"} />
@@ -257,7 +264,7 @@ export function TabDev() {
             <MdLock className="ml-auto size-4 text-muted-foreground/70" />
           ) : (
             <svg
-              className="ml-auto size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-neon-magenta"
+              className="ml-auto size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-[var(--dev-accent)]"
               viewBox="0 0 16 16"
               fill="none"
               stroke="currentColor"
@@ -282,7 +289,7 @@ export function TabDev() {
               isYearsOpen ? "rotate-180" : ""
             }`}
           />
-          <span className="text-xl font-bold text-neon-cyan font-mono">9+</span>
+          <span className="text-xl font-bold text-[var(--dev-accent)] font-mono">9+</span>
           <p className="mt-1 text-[11px] text-muted-foreground">Years programming</p>
         </button>
 
@@ -297,7 +304,7 @@ export function TabDev() {
               isCertificatesOpen ? "rotate-180" : ""
             }`}
           />
-          <span className="text-xl font-bold text-neon-magenta font-mono">3</span>
+          <span className="text-xl font-bold text-[var(--dev-accent)] font-mono">3</span>
           <p className="mt-1 text-[11px] text-muted-foreground">Certificates</p>
         </button>
       </div>
@@ -328,7 +335,7 @@ export function TabDev() {
           </p>
           <div className="space-y-3">
             <div className="rounded-lg border border-border/70 bg-card/42 px-3 py-3">
-              <p className="text-[11px] font-semibold uppercase tracking-wide text-neon-cyan">
+              <p className="text-[11px] font-semibold uppercase tracking-wide text-[var(--dev-accent)]">
                 2018-2021
               </p>
               <p className="mt-1 text-[12px] font-medium text-foreground">
@@ -340,7 +347,7 @@ export function TabDev() {
             </div>
 
             <div className="rounded-lg border border-border/70 bg-card/42 px-3 py-3">
-              <p className="text-[11px] font-semibold uppercase tracking-wide text-neon-magenta">
+              <p className="text-[11px] font-semibold uppercase tracking-wide text-[var(--dev-accent)]">
                 Wrocław University of Science and Technology
               </p>
               <div className="mt-2 space-y-2">
@@ -411,7 +418,7 @@ export function TabDev() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Verify ${certificate.title}`}
-                    className="inline-flex size-8 items-center justify-center rounded-md border border-border/70 bg-card text-muted-foreground transition-colors hover:text-neon-magenta"
+                    className="inline-flex size-8 items-center justify-center rounded-md border border-border/70 bg-card text-muted-foreground transition-colors hover:text-[var(--dev-accent)]"
                   >
                     <ExternalLink className="size-3.5" />
                   </a>
@@ -445,7 +452,7 @@ export function TabDev() {
           onClick={() => setIsStackOpen((prev) => !prev)}
           className="group flex w-full items-center gap-4 px-5 py-3 text-left"
         >
-          <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-neon-magenta/10 text-neon-magenta transition-colors group-hover:bg-neon-magenta/20">
+          <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-[var(--dev-accent)]/15 text-[var(--dev-accent)] transition-colors group-hover:bg-[var(--dev-accent)]/25">
             <Layers className="size-6" />
           </div>
           <div className="flex flex-col gap-0.5">
@@ -466,7 +473,9 @@ export function TabDev() {
             <div className="flex flex-col gap-3">
               {stackSections.map((section) => (
                 <div key={section.title}>
-                  <p className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+                  <p
+                    className={`mb-2 bg-gradient-to-r ${section.gradientClass} bg-clip-text text-[11px] font-semibold uppercase tracking-wide text-transparent opacity-91`}
+                  >
                     {section.title}
                   </p>
                   <div className="flex flex-wrap gap-2">
@@ -478,7 +487,7 @@ export function TabDev() {
                         <item.icon
                           className={`text-muted-foreground ${
                             item.label === "C++" || item.label === "C#"
-                              ? "size-4.5"
+                              ? "size-[15px]"
                               : "size-3.5"
                           }`}
                         />
