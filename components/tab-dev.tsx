@@ -304,7 +304,7 @@ export function TabDev() {
               isCertificatesOpen ? "rotate-180" : ""
             }`}
           />
-          <span className="text-xl font-bold text-[var(--dev-accent)] font-mono">3</span>
+          <span className="text-xl font-bold text-[#bc25e9] font-mono">3</span>
           <p className="mt-1 text-[11px] text-muted-foreground">Certificates</p>
         </button>
       </div>
@@ -353,7 +353,7 @@ export function TabDev() {
               <div className="mt-2 space-y-2">
                 <div className="rounded-md border border-border/60 bg-card px-2.5 py-2">
                   <p className="text-[11px] font-medium text-foreground">
-                    Computer Engineering <span className="text-[10px] text-muted-foreground">(2021-2025)</span>
+                    Computer Engineering <span className="text-[10px] text-[#bc25e9]">(2021-2025)</span>
                   </p>
                   <p className="text-[11px] text-muted-foreground">
                     Bachelor&apos;s degree
@@ -361,7 +361,7 @@ export function TabDev() {
                 </div>
                 <div className="rounded-md border border-border/60 bg-card px-2.5 py-2">
                   <p className="text-[11px] font-medium text-foreground">
-                    Applied Computer Science <span className="text-[10px] text-muted-foreground">(2025-2026)</span>
+                    Applied Computer Science <span className="text-[10px] text-[#bc25e9]">(2025-2026)</span>
                   </p>
                   <p className="text-[11px] text-muted-foreground">Master&apos;s degree</p>
                 </div>

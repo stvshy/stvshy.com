@@ -4,7 +4,7 @@ import { FaDeezer } from "react-icons/fa"
 import { PiSoundcloudLogoFill } from "react-icons/pi"
 import { SiAmazonmusic, SiApplemusic, SiTidal, SiYoutubemusic } from "react-icons/si"
 
-const MUSIC_ACCENT = "#a146e7"
+const MUSIC_ACCENT = "#b817e4"
 
 function hexToRgbChannels(hex: string) {
   const normalizedHex = hex.replace("#", "")
