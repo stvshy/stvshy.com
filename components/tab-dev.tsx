@@ -347,7 +347,7 @@ export function TabDev() {
             </div>
 
             <div className="rounded-lg border border-border/70 bg-card/42 px-3 py-3">
-              <p className="text-[11px] font-semibold uppercase tracking-wide text-[#bc25e9]">
+              <p className="bg-[linear-gradient(to_right,var(--dev-accent)_0%,var(--dev-accent)_39%,#bc25e9_100%)] bg-clip-text text-[11px] font-semibold uppercase tracking-wide text-transparent">
                 Wrocław University of Science and Technology
               </p>
               <div className="mt-2 space-y-2">
