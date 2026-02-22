@@ -1,8 +1,27 @@
-import { useState } from "react"
+import { type CSSProperties, useState } from "react"
 import { BsSpotify } from "react-icons/bs"
 import { FaDeezer } from "react-icons/fa"
 import { PiSoundcloudLogoFill } from "react-icons/pi"
 import { SiAmazonmusic, SiApplemusic, SiTidal, SiYoutubemusic } from "react-icons/si"
+
+const MUSIC_ACCENT = "#a146e7"
+
+function hexToRgbChannels(hex: string) {
+  const normalizedHex = hex.replace("#", "")
+  const fullHex =
+    normalizedHex.length === 3
+      ? normalizedHex
+          .split("")
+          .map((char) => `${char}${char}`)
+          .join("")
+      : normalizedHex
+
+  const red = Number.parseInt(fullHex.slice(0, 2), 16)
+  const green = Number.parseInt(fullHex.slice(2, 4), 16)
+  const blue = Number.parseInt(fullHex.slice(4, 6), 16)
+
+  return `${red} ${green} ${blue}`
+}
 
 const links = [
   {
@@ -58,11 +77,16 @@ const links = [
 export function TabMusic() {
   const [isMoreOpen, setIsMoreOpen] = useState(false)
 
+  const musicThemeStyle = {
+    "--music-accent": MUSIC_ACCENT,
+    "--music-accent-rgb": hexToRgbChannels(MUSIC_ACCENT),
+  } as CSSProperties
+
   const defaultLinkClassName =
-    "group flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-3 backdrop-blur-xl transition-all duration-300 hover:border-neon-cyan/30 hover:bg-neon-cyan/5 hover:shadow-[0_0_20px_rgba(0,242,234,0.08)]"
+    "group flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-3 backdrop-blur-xl transition-all duration-300 hover:border-[rgb(var(--music-accent-rgb)/0.3)] hover:bg-[rgb(var(--music-accent-rgb)/0.05)]"
 
   const fantasiaCardClassName =
-    "group flex items-center gap-4 rounded-xl border border-neon-cyan/35 bg-neon-cyan/10 px-5 py-3 backdrop-blur-xl transition-all duration-300 hover:border-neon-cyan/45 hover:bg-neon-cyan/15 hover:shadow-[0_0_24px_rgba(0,242,234,0.14)]"
+    "group flex items-center gap-4 rounded-xl border border-[rgb(var(--music-accent-rgb)/0.35)] bg-[rgb(var(--music-accent-rgb)/0.1)] px-5 py-3 backdrop-blur-xl transition-all duration-300 hover:border-[rgb(var(--music-accent-rgb)/0.45)] hover:bg-[rgb(var(--music-accent-rgb)/0.15)]"
 
   // const fantasiaCardClassName =
   //   "group flex items-center gap-4 rounded-xl border border-neon-magenta/35 bg-neon-magenta/10 px-5 py-3 backdrop-blur-xl transition-all duration-300 hover:border-neon-magenta/45 hover:bg-neon-magenta/15 hover:shadow-[0_0_24px_rgba(217,70,239,0.14)]"
@@ -71,7 +95,7 @@ export function TabMusic() {
   const hiddenLinks = links.slice(4)
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3" style={musicThemeStyle}>
       {visibleLinks.map((link) => (
         <a
           key={link.label}
@@ -84,7 +108,7 @@ export function TabMusic() {
             className={
               link.label === "Fantasia"
                 ? "flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-lg"
-                : "flex size-10 shrink-0 items-center justify-center rounded-lg bg-neon-cyan/10 text-neon-cyan transition-colors group-hover:bg-neon-cyan/20"
+                : "flex size-10 shrink-0 items-center justify-center rounded-lg bg-[rgb(var(--music-accent-rgb)/0.1)] text-[rgb(var(--music-accent-rgb))] transition-colors group-hover:bg-[rgb(var(--music-accent-rgb)/0.2)]"
             }
           >
             {link.label === "Fantasia" ? (
@@ -106,7 +130,7 @@ export function TabMusic() {
             </span>
           </div>
           <svg
-            className="ml-auto size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-neon-cyan"
+            className="ml-auto size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-[rgb(var(--music-accent-rgb))]"
             viewBox="0 0 16 16"
             fill="none"
             stroke="currentColor"
@@ -121,7 +145,7 @@ export function TabMusic() {
       <button
         type="button"
         onClick={() => setIsMoreOpen((prev) => !prev)}
-        className="flex h-8 w-full items-center justify-center gap-2 rounded-lg border border-border/70 bg-card/70 text-[11px] font-medium uppercase tracking-wide text-muted-foreground transition-all duration-300 hover:border-neon-cyan/30 hover:text-neon-cyan"
+        className="flex h-8 w-full items-center justify-center gap-2 rounded-lg border border-border/70 bg-card/70 text-[11px] font-medium uppercase tracking-wide text-muted-foreground transition-all duration-300 hover:border-[rgb(var(--music-accent-rgb)/0.3)] hover:text-[rgb(var(--music-accent-rgb))]"
         aria-expanded={isMoreOpen}
         aria-controls="more-music-links"
       >
@@ -151,7 +175,7 @@ export function TabMusic() {
               rel="noopener noreferrer"
               className={defaultLinkClassName}
             >
-              <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-neon-cyan/10 text-neon-cyan transition-colors group-hover:bg-neon-cyan/20">
+              <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-[rgb(var(--music-accent-rgb)/0.1)] text-[rgb(var(--music-accent-rgb))] transition-colors group-hover:bg-[rgb(var(--music-accent-rgb)/0.2)]">
                 <link.icon className="size-5" />
               </div>
               <div className="flex flex-col gap-0.5">
@@ -163,7 +187,7 @@ export function TabMusic() {
                 </span>
               </div>
               <svg
-                className="ml-auto size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-neon-cyan"
+                className="ml-auto size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-[rgb(var(--music-accent-rgb))]"
                 viewBox="0 0 16 16"
                 fill="none"
                 stroke="currentColor"
@@ -179,11 +203,11 @@ export function TabMusic() {
 
       <div className="grid grid-cols-2 gap-3">
         <div className="rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl">
-          <span className="text-xl font-bold text-neon-magenta font-mono">1</span>
+          <span className="text-xl font-bold text-[rgb(var(--music-accent-rgb))] font-mono">1</span>
           <p className="mt-1 text-[11px] text-muted-foreground">Tracks released</p>
         </div>
         <div className="rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl">
-          <span className="text-xl font-bold text-neon-cyan font-mono">3+</span>
+          <span className="text-xl font-bold text-[rgb(var(--music-accent-rgb))] font-mono">3+</span>
           <p className="mt-1 text-[11px] text-muted-foreground">Years producing</p>
         </div>
       </div>

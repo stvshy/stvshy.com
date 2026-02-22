@@ -110,7 +110,7 @@ export function TabDev() {
   const stackSections = [
     {
       title: "Languages & Core Technologies",
-      gradientClass: "from-cyan-600 via-blue-600 to-purple-500",
+      gradientClass: "from-[#05dafff8] via-blue-500 to-[#879ffc]",
       items: [
         { label: "C++", icon: SiCplusplusbuilder },
         { label: "C", icon: SiC },
@@ -128,7 +128,7 @@ export function TabDev() {
     },
     {
       title: "Frameworks & Libraries",
-      gradientClass: "from-blue-500 via-indigo-500 to-purple-500",
+      gradientClass: "from-[#05dafff8] via-indigo-500 to-purple-500",
       items: [
         { label: "React Native", icon: TbBrandReactNative },
         { label: "React", icon: SiReact },
@@ -145,7 +145,7 @@ export function TabDev() {
     },
     {
       title: "Databases, Cloud & DevOps",
-      gradientClass: "from-blue-600 via-indigo-500 to-violet-500",
+      gradientClass: "from-[#05dafff8] via-indigo-500 to-violet-500",
       items: [
         { label: "PostgreSQL", icon: SiPostgresql },
         { label: "SQL", icon: TbSql },
@@ -160,7 +160,7 @@ export function TabDev() {
     },
     {
       title: "IDEs & Development Tools",
-      gradientClass: "from-indigo-500 via-purple-500 to-violet-600",
+      gradientClass: "from-[#05dafff8] via-purple-500 to-violet-600",
       items: [
         { label: "IntelliJ IDEA", icon: SiIntellijidea },
         { label: "PyCharm", icon: SiPycharm },
@@ -173,7 +173,7 @@ export function TabDev() {
     },
     {
       title: "Testing, Analysis & Modeling Tools",
-      gradientClass: "from-indigo-500 via-purple-500 to-violet-600",
+      gradientClass: "from-[#05dafff8] via-purple-500 to-violet-600",
       items: [
         { label: "Selenium", icon: SiSelenium },
         { label: "Weka", icon: GiKiwiBird },
@@ -184,7 +184,7 @@ export function TabDev() {
     },
     {
       title: "Design & Other Software",
-      gradientClass: "from-violet-500 via-fuchsia-500 to-fuchsia-500",
+      gradientClass: "from-[#05dafff8] via-fuchsia-500 to-fuchsia-500",
       items: [
         { label: "Figma", icon: SiFigma },
         { label: "Photoshop", icon: SiAdobephotoshop },
@@ -474,7 +474,7 @@ export function TabDev() {
               {stackSections.map((section) => (
                 <div key={section.title}>
                   <p
-                    className={`mb-2 bg-gradient-to-r ${section.gradientClass} bg-clip-text text-[11px] font-semibold uppercase tracking-wide text-transparent opacity-91`}
+                    className={`mb-2 bg-gradient-to-r ${section.gradientClass} bg-clip-text text-[11px] font-semibold uppercase tracking-wide text-transparent opacity-90 drop-shadow-sm`}
                   >
                     {section.title}
                   </p>
