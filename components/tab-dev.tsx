@@ -67,7 +67,7 @@ const links = [
   },
   {
     label: "LinkedIn",
-    description: "Professional profile, projects & experience",
+    description: "Profile & networking",
     href: "https://www.linkedin.com/in/mateusz-staszk%C3%B3w/",
     icon: ImLinkedin2,
     blocked: false,
@@ -282,7 +282,7 @@ export function TabDev() {
           type="button"
           onClick={() => setIsYearsOpen((prev) => !prev)}
           aria-expanded={isYearsOpen}
-          className="group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl"
+          className="group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 hover:border-[var(--dev-accent)]/45 hover:bg-[var(--dev-accent)]/10 hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
         >
           <ChevronDown
             className={`absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground transition-transform ${
@@ -297,7 +297,7 @@ export function TabDev() {
           type="button"
           onClick={() => setIsCertificatesOpen((prev) => !prev)}
           aria-expanded={isCertificatesOpen}
-          className="group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl"
+          className="group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 hover:border-[var(--dev-accent)]/45 hover:bg-[var(--dev-accent)]/10 hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
         >
           <ChevronDown
             className={`absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground transition-transform ${
@@ -335,7 +335,7 @@ export function TabDev() {
           </p>
           <div className="space-y-3">
             <div className="rounded-lg border border-border/70 bg-card/42 px-3 py-3">
-              <p className="text-[11px] font-semibold uppercase tracking-wide text-[var(--dev-accent)]">
+              <p className="text-[10px] font-semibold uppercase tracking-wide text-[var(--dev-accent)]">
                 2018-2021
               </p>
               <p className="mt-1 text-[12px] font-medium text-foreground">
@@ -347,13 +347,13 @@ export function TabDev() {
             </div>
 
             <div className="rounded-lg border border-border/70 bg-card/42 px-3 py-3">
-              <p className="text-[11px] font-semibold uppercase tracking-wide text-[var(--dev-accent)]">
+              <p className="text-[11px] font-semibold uppercase tracking-wide text-[#bc25e9]">
                 Wrocław University of Science and Technology
               </p>
               <div className="mt-2 space-y-2">
                 <div className="rounded-md border border-border/60 bg-card px-2.5 py-2">
                   <p className="text-[11px] font-medium text-foreground">
-                    Computer Engineering <span className="text-[10px] text-[#bc25e9]">(2021-2025)</span>
+                    Computer Engineering <span className="text-[10px] text-[var(--dev-accent)]">(2021-2025)</span>
                   </p>
                   <p className="text-[11px] text-muted-foreground">
                     Bachelor&apos;s degree
@@ -361,7 +361,7 @@ export function TabDev() {
                 </div>
                 <div className="rounded-md border border-border/60 bg-card px-2.5 py-2">
                   <p className="text-[11px] font-medium text-foreground">
-                    Applied Computer Science <span className="text-[10px] text-[#bc25e9]">(2025-2026)</span>
+                    Applied Computer Science <span className="text-[10px] text-[var(--dev-accent)]">(2025-2026)</span>
                   </p>
                   <p className="text-[11px] text-muted-foreground">Master&apos;s degree</p>
                 </div>
@@ -450,7 +450,7 @@ export function TabDev() {
         <button
           type="button"
           onClick={() => setIsStackOpen((prev) => !prev)}
-          className="group flex w-full items-center gap-4 px-5 py-3 text-left"
+          className="group flex w-full items-center gap-4 px-5 py-3 text-left transition-all duration-300 hover:bg-[var(--dev-accent)]/10"
         >
           <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-[var(--dev-accent)]/15 text-[var(--dev-accent)] transition-colors group-hover:bg-[var(--dev-accent)]/25">
             <Layers className="size-6" />
