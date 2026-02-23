@@ -35,6 +35,7 @@ import {
   SiJupyter,
   SiLinux,
   SiMicrostation,
+  SiNextdotjs,
   SiNodedotjs,
   SiOpengl,
   SiPostgresql,
@@ -113,16 +114,17 @@ export function TabDev() {
       gradientClass: "from-[#05dafff8] via-blue-500 to-[#879ffc]",
       items: [
         { label: "C++", icon: SiCplusplusbuilder },
-        { label: "C", icon: SiC },
-        { label: "C#", icon: SiSharp },
         { label: "Java", icon: FaJava },
-        { label: "Python", icon: SiPython },
         { label: "JavaScript", icon: SiJavascript },
         { label: "TypeScript", icon: SiTypescript },
+        { label: "Node.js", icon: SiNodedotjs },
+        { label: "Python", icon: SiPython },
+        { label: "C", icon: SiC },
+        { label: "C#", icon: SiSharp },
         { label: "HTML5", icon: SiHtml5 },
         { label: "CSS3", icon: SiCss3 },
         { label: "Bash", icon: SiGnubash },
-        { label: "Assembly Language", icon: SiAssemblyscript },
+        { label: "Assembly", icon: SiAssemblyscript },
         { label: "VHDL", icon: FaCode },
       ],
     },
@@ -135,12 +137,10 @@ export function TabDev() {
         { label: "Spring Boot", icon: SiSpringboot },
         { label: "Vite", icon: SiVite },
         { label: "Expo", icon: SiExpo },
-        { label: "Godot Engine", icon: SiGodotengine },
+        { label: "Next.js", icon: SiNextdotjs },
         { label: "JavaFX", icon: FaJava },
-        { label: "Node.js", icon: SiNodedotjs },
         { label: "OpenGL", icon: SiOpengl },
         { label: "Flask", icon: SiFlask },
-        { label: "Jupyter Notebook", icon: SiJupyter },
       ],
     },
     {
@@ -168,6 +168,8 @@ export function TabDev() {
         { label: "Visual Studio Code", icon: VscVscode },
         { label: "Visual Studio", icon: DiVisualstudio },
         { label: "Keil µVision 5", icon: SiMicrostation },
+        { label: "Jupyter Notebook", icon: SiJupyter },
+        { label: "Godot Engine", icon: SiGodotengine },
         { label: "Xilinx", icon: FaMicrochip },
       ],
     },
@@ -464,7 +466,7 @@ export function TabDev() {
           <div className="flex flex-col gap-0.5">
             <span className="text-[13px] font-semibold text-foreground">Stack</span>
             <span className="text-[11px] text-muted-foreground">
-              Frontend, backend, programming languages
+              Technologies and tools I’ve worked with
             </span>
           </div>
           <ChevronDown
