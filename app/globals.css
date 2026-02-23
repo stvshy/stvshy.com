@@ -111,3 +111,10 @@
     cursor: url('/cursors/cursor10.png') 0 0, pointer !important;
   }
 }
+
+@media (min-width: 1024px) {
+  .page-scale-desktop {
+    transform: scale(1.1);
+    transform-origin: top center;
+  }
+}

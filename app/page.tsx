@@ -14,7 +14,7 @@ export default function Page() {
     <main className="relative flex min-h-svh flex-col items-center bg-background">
       <MeshGradient />
 
-      <div className="relative z-10 flex w-full max-w-md flex-col gap-8 px-5 py-12 pb-8">
+      <div className="page-scale-desktop relative z-10 flex w-full max-w-md flex-col gap-8 px-5 py-12 pb-8">
         <ProfileHeader />
 
         {/* Navigation Tabs */}
