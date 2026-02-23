@@ -306,7 +306,7 @@ export function TabDev() {
               isCertificatesOpen ? "rotate-180" : ""
             }`}
           />
-          <span className="text-xl font-bold text-[#bc25e9] font-mono">3</span>
+          <span className="text-xl font-bold text-[#a81ad3] font-mono">3</span>
           <p className="mt-1 text-[11px] text-muted-foreground">Certificates</p>
         </button>
       </div>

@@ -18,15 +18,8 @@ export default function Page() {
         <ProfileHeader />
 
         {/* Navigation Tabs */}
-        <Tabs defaultValue="music" className="w-full -mt-[10px]">
+        <Tabs defaultValue="about" className="w-full -mt-[10px]">
           <TabsList className="grid w-full grid-cols-3 bg-muted/50 backdrop-blur-xl border border-border">
-            <TabsTrigger
-              value="music"
-              className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-neon-cyan/10 data-[state=active]:text-neon-cyan data-[state=active]:shadow-none data-[state=inactive]:hover:bg-background/10 data-[state=inactive]:hover:border-border data-[state=inactive]:hover:text-muted-foreground/70"
-            >
-              <span aria-hidden="true" className="mr-1.5">{"🎵"}</span>
-              Music
-            </TabsTrigger>
             <TabsTrigger
               value="dev"
               className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-neon-magenta/10 data-[state=active]:text-neon-magenta data-[state=active]:shadow-none data-[state=inactive]:hover:bg-background/10 data-[state=inactive]:hover:border-border data-[state=inactive]:hover:text-muted-foreground/70"
@@ -41,16 +34,23 @@ export default function Page() {
               <span aria-hidden="true" className="mr-1.5">{"👤"}</span>
               About
             </TabsTrigger>
+            <TabsTrigger
+              value="music"
+              className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-neon-cyan/10 data-[state=active]:text-neon-cyan data-[state=active]:shadow-none data-[state=inactive]:hover:bg-background/10 data-[state=inactive]:hover:border-border data-[state=inactive]:hover:text-muted-foreground/70"
+            >
+              <span aria-hidden="true" className="mr-1.5">{"🎵"}</span>
+              Music
+            </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="music" className="mt-1">
-            <TabMusic />
-          </TabsContent>
           <TabsContent value="dev" className="mt-1">
             <TabDev />
           </TabsContent>
           <TabsContent value="about" className="mt-1">
             <TabAbout />
+          </TabsContent>
+          <TabsContent value="music" className="mt-1">
+            <TabMusic />
           </TabsContent>
         </Tabs>
 

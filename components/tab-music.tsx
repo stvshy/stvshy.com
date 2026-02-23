@@ -207,7 +207,7 @@ export function TabMusic() {
           <p className="mt-1 text-[11px] text-muted-foreground">Tracks released</p>
         </div>
         <div className="rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl">
-          <span className="text-xl font-bold text-[rgb(var(--music-accent-rgb))] font-mono">3+</span>
+          <span className="text-xl font-bold text-[#0ab8d6f8] font-mono">3+</span>
           <p className="mt-1 text-[11px] text-muted-foreground">Years producing</p>
         </div>
       </div>
