@@ -334,9 +334,9 @@ export function TabDev() {
             Education
           </p>
           <div className="space-y-3">
-            <div className="rounded-lg border border-border/70 bg-card/42 px-3 py-3">
-              <p className="text-[10px] font-semibold uppercase tracking-wide text-[var(--dev-accent)]">
-                2018-2021
+            <div className="relative rounded-lg border border-border/70 bg-card/42 px-3 py-3 pr-24">
+              <p className="absolute right-6 top-1/2 inline-flex -translate-y-1/2 items-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 px-2 py-0.5 text-[9px] font-semibold tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)]">
+                2018 - 2021
               </p>
               <p className="mt-1 text-[12px] font-medium text-foreground">
                 I High School in Legnica
@@ -351,17 +351,23 @@ export function TabDev() {
                 Wrocław University of Science and Technology
               </p>
               <div className="mt-2 space-y-2">
-                <div className="rounded-md border border-border/60 bg-card px-2.5 py-2">
+                <div className="relative rounded-md border border-border/60 bg-card px-2.5 py-2 pr-24">
+                  <p className="absolute right-3 top-1/2 inline-flex -translate-y-1/2 items-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 px-2 py-0.5 text-[9px] font-semibold tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)]">
+                    2021 - 2025
+                  </p>
                   <p className="text-[11px] font-medium text-foreground">
-                    Computer Engineering <span className="text-[10px] text-[var(--dev-accent)]">(2021-2025)</span>
+                    Computer Engineering
                   </p>
                   <p className="text-[11px] text-muted-foreground">
                     Bachelor&apos;s degree
                   </p>
                 </div>
-                <div className="rounded-md border border-border/60 bg-card px-2.5 py-2">
+                <div className="relative rounded-md border border-border/60 bg-card px-2.5 py-2 pr-24">
+                  <p className="absolute right-3 top-1/2 inline-flex -translate-y-1/2 items-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 px-2 py-0.5 text-[9px] font-semibold tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)]">
+                    2025 - 2026
+                  </p>
                   <p className="text-[11px] font-medium text-foreground">
-                    Applied Computer Science <span className="text-[10px] text-[var(--dev-accent)]">(2025-2026)</span>
+                    Applied Computer Science
                   </p>
                   <p className="text-[11px] text-muted-foreground">Master&apos;s degree</p>
                 </div>
