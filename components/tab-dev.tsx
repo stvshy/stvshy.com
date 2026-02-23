@@ -347,7 +347,7 @@ export function TabDev() {
             </div>
 
             <div className="rounded-lg border border-border/70 bg-card/42 px-3 py-3">
-              <p className="bg-[linear-gradient(to_right,var(--dev-accent)_0%,var(--dev-accent)_39%,#bc25e9_100%)] bg-clip-text text-[11px] font-semibold uppercase tracking-wide text-transparent">
+              <p className="bg-[linear-gradient(to_right,var(--dev-accent)_0%,var(--dev-accent)_39%,#bc25e9_100%)] bg-clip-text text-[11px] font-semibold uppercase tracking-wide text-transparent opacity-98 drop-shadow-[0_0.5px_0.5px_rgba(var(--dev-accent-rgb),0.22)]">
                 Wrocław University of Science and Technology
               </p>
               <div className="mt-2 space-y-2">
@@ -480,7 +480,7 @@ export function TabDev() {
               {stackSections.map((section) => (
                 <div key={section.title}>
                   <p
-                    className={`mb-2 bg-gradient-to-r ${section.gradientClass} bg-clip-text text-[11px] font-semibold uppercase tracking-wide text-transparent opacity-90 drop-shadow-sm`}
+                    className={`mb-2 bg-gradient-to-r ${section.gradientClass} bg-clip-text text-[11px] font-semibold uppercase tracking-wide text-transparent opacity-92 drop-shadow-[0_0.5px_0.5px_rgba(var(--dev-accent-rgb),0.22)]`}
                   >
                     {section.title}
                   </p>
