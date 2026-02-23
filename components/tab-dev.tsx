@@ -61,7 +61,7 @@ import { FaCompass } from "react-icons/fa"
 const links = [
   {
     label: "GitHub",
-    description: "Open source projects & contributions",
+    description: "Projects & contributions",
     href: "https://github.com/stvshy",
     icon: IoLogoGithub,
     blocked: false,
@@ -75,7 +75,7 @@ const links = [
   },
   {
     label: "Travel Assistant",
-    description: "AI helper for trip planning",
+    description: "AI trip planning assistant",
     href: "https://empathetic-ai-travel-assistant.vercel.app",
     icon: RiChatVoiceAiFill,
     blocked: false,
@@ -89,7 +89,7 @@ const links = [
   },
   {
     label: "Renovation System",
-    description: "Management platform for renovation workflows",
+    description: "Workflow management platform",
     href: "https://stvshy.github.io/renovation-system/#/register",
     icon: IoConstruct,
     blocked: false,
@@ -466,7 +466,7 @@ export function TabDev() {
           <div className="flex flex-col gap-0.5">
             <span className="text-[13px] font-semibold text-foreground">Stack</span>
             <span className="text-[11px] text-muted-foreground">
-              Technologies and tools I’ve worked with
+              Technologies & tools
             </span>
           </div>
           <ChevronDown
