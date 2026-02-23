@@ -24,21 +24,33 @@ export default function Page() {
               value="dev"
               className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-neon-magenta/10 data-[state=active]:text-neon-magenta data-[state=active]:shadow-none data-[state=inactive]:hover:bg-background/10 data-[state=inactive]:hover:border-border data-[state=inactive]:hover:text-muted-foreground/70"
             >
-              <span aria-hidden="true" className="mr-1.5">{"💻"}</span>
+              <img
+                src="/images/dev-icon3-4.png"
+                alt="Dev icon"
+                className="mr-1.5 size-4"
+              />
               Dev
             </TabsTrigger>
             <TabsTrigger
               value="about"
               className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-foreground/10 data-[state=active]:text-foreground data-[state=active]:shadow-none data-[state=inactive]:hover:bg-background/10 data-[state=inactive]:hover:border-border data-[state=inactive]:hover:text-muted-foreground/70"
             >
-              <span aria-hidden="true" className="mr-1.5">{"👤"}</span>
+              <img
+                src="/images/about-icon5.png"
+                alt="About icon"
+                className="mr-1.5 size-4"
+              />
               About
             </TabsTrigger>
             <TabsTrigger
               value="music"
-              className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-neon-cyan/10 data-[state=active]:text-neon-cyan data-[state=active]:shadow-none data-[state=inactive]:hover:bg-background/10 data-[state=inactive]:hover:border-border data-[state=inactive]:hover:text-muted-foreground/70"
+              className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-[#b817e4]/10 data-[state=active]:text-[#b817e4] data-[state=active]:shadow-none data-[state=inactive]:hover:bg-background/10 data-[state=inactive]:hover:border-border data-[state=inactive]:hover:text-muted-foreground/70"
             >
-              <span aria-hidden="true" className="mr-1.5">{"🎵"}</span>
+              <img
+                src="/images/music-icon2.png"
+                alt="Music note"
+                className="mr-1.5 size-4"
+              />
               Music
             </TabsTrigger>
           </TabsList>
