@@ -458,7 +458,9 @@ export function TabDev() {
         <button
           type="button"
           onClick={() => setIsStackOpen((prev) => !prev)}
-          className="group flex w-full items-center gap-4 px-5 py-3 text-left transition-all duration-300 hover:bg-[var(--dev-accent)]/10"
+          className={`group flex w-full items-center gap-4 px-5 py-3 text-left transition-all duration-300 hover:bg-[var(--dev-accent)]/10 ${
+            isStackOpen ? "rounded-t-xl" : "rounded-xl"
+          }`}
         >
           <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-[var(--dev-accent)]/15 text-[var(--dev-accent)] transition-colors group-hover:bg-[var(--dev-accent)]/25">
             <Layers className="size-6" />
