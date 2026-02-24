@@ -2,9 +2,14 @@
 
 import { useState } from "react"
 import { BsChevronCompactDown, BsChevronCompactUp } from "react-icons/bs"
+import { ChevronRight } from "lucide-react"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 
-export function TabAbout() {
+type TabAboutProps = {
+  onOpenImagePreview: (imageSrc: string, imageAlt: string) => void
+}
+
+export function TabAbout({ onOpenImagePreview }: TabAboutProps) {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -44,22 +49,32 @@ export function TabAbout() {
       </div>
 
       <div className="grid grid-cols-2 gap-3">
-        <div className="rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl">
-          <span className="text-xl font-bold text-neon-cyan font-mono">5+</span>
-          <p className="mt-1 text-[11px] text-muted-foreground">Years producing</p>
-        </div>
-        <div className="rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl">
-          <span className="text-xl font-bold text-neon-magenta font-mono">50+</span>
-          <p className="mt-1 text-[11px] text-muted-foreground">Tracks released</p>
-        </div>
-        <div className="rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl">
-          <span className="text-xl font-bold text-neon-cyan font-mono">3+</span>
-          <p className="mt-1 text-[11px] text-muted-foreground">Years in dev</p>
-        </div>
-        <div className="rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl">
-          <span className="text-xl font-bold text-neon-magenta font-mono">10+</span>
-          <p className="mt-1 text-[11px] text-muted-foreground">Projects shipped</p>
-        </div>
+        <button
+          type="button"
+          onClick={() => onOpenImagePreview("/images/tripify-map.jpg", "Tripify map")}
+          className="group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 hover:border-foreground/30 hover:bg-foreground/10 hover:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
+          aria-label="Open countries map preview"
+        >
+          <ChevronRight className="absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-foreground" />
+          <span className="bg-[linear-gradient(to_right,var(--dev-accent)_0%,#b817e4_100%)] bg-clip-text text-xl font-bold text-transparent font-mono">
+            28
+          </span>
+          <p className="mt-1 text-[11px] text-muted-foreground">Countries visited</p>
+        </button>
+
+        <a
+          href="https://www.fragrantica.pl/uzytkownicy/34655"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl transition-all duration-300 hover:border-foreground/30 hover:bg-foreground/10 hover:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
+          aria-label="Open Fragrantica profile"
+        >
+          <ChevronRight className="absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-foreground" />
+          <span className="bg-[linear-gradient(to_right,var(--dev-accent)_0%,#b817e4_100%)] bg-clip-text text-xl font-bold text-transparent font-mono">
+            30
+          </span>
+          <p className="mt-1 text-[11px] text-muted-foreground">Perfumes owned</p>
+        </a>
       </div>
 
     </div>

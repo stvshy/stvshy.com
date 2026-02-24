@@ -103,7 +103,11 @@ const links = [
   },
 ]
 
-export function TabDev() {
+type TabDevProps = {
+  onOpenImagePreview: (imageSrc: string, imageAlt: string) => void
+}
+
+export function TabDev({ onOpenImagePreview }: TabDevProps) {
   const [isStackOpen, setIsStackOpen] = useState(false)
   const [isYearsOpen, setIsYearsOpen] = useState(false)
   const [isCertificatesOpen, setIsCertificatesOpen] = useState(false)
@@ -431,10 +435,11 @@ export function TabDev() {
                     <ExternalLink className="size-3.5" />
                   </a>
 
-                  <a
-                    href={certificate.image}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    type="button"
+                    onClick={() =>
+                      onOpenImagePreview(certificate.image, `${certificate.title} preview`)
+                    }
                     aria-label={`Open preview ${certificate.title}`}
                     className="inline-flex h-8 w-12 overflow-hidden rounded-md border border-border/70"
                   >
@@ -445,7 +450,7 @@ export function TabDev() {
                       height={32}
                       className="h-8 w-12 object-cover"
                     />
-                  </a>
+                  </button>
                 </div>
               </div>
             ))}

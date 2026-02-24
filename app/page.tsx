@@ -1,6 +1,8 @@
 "use client"
 
-import { Mail } from "lucide-react"
+import { useEffect, useState } from "react"
+import { Mail, X } from "lucide-react"
+import { BsInstagram } from "react-icons/bs"
 import { MeshGradient } from "@/components/mesh-gradient"
 import { ProfileHeader } from "@/components/profile-header"
 import { TabMusic } from "@/components/tab-music"
@@ -10,6 +12,29 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 
 export default function Page() {
+  const [activeTab, setActiveTab] = useState("about")
+  const [previewImage, setPreviewImage] = useState<{ src: string; alt: string } | null>(null)
+
+  useEffect(() => {
+    if (!previewImage) {
+      return
+    }
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+    }
+  }, [previewImage])
+
+  const contactHoverClassName =
+    activeTab === "dev"
+      ? "hover:border-[var(--dev-accent)]/45 hover:bg-[var(--dev-accent)]/10 hover:text-[var(--dev-accent)] hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+      : activeTab === "music"
+        ? "hover:border-[#b817e4]/45 hover:bg-[#b817e4]/10 hover:text-[#b817e4] hover:shadow-[0_0_20px_rgba(184,23,228,0.18)]"
+        : "hover:border-foreground/30 hover:bg-foreground/10 hover:text-foreground hover:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
+
   return (
     <main className="relative flex min-h-svh flex-col items-center bg-background">
       <MeshGradient />
@@ -18,7 +43,7 @@ export default function Page() {
         <ProfileHeader />
 
         {/* Navigation Tabs */}
-        <Tabs defaultValue="about" className="w-full -mt-[10px]">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full -mt-[10px]">
           <TabsList className="grid w-full grid-cols-3 bg-muted/50 backdrop-blur-xl border border-border">
             <TabsTrigger
               value="dev"
@@ -56,10 +81,18 @@ export default function Page() {
           </TabsList>
 
           <TabsContent value="dev" className="mt-1">
-            <TabDev />
+            <TabDev
+              onOpenImagePreview={(imageSrc, imageAlt) =>
+                setPreviewImage({ src: imageSrc, alt: imageAlt })
+              }
+            />
           </TabsContent>
           <TabsContent value="about" className="mt-1">
-            <TabAbout />
+            <TabAbout
+              onOpenImagePreview={(imageSrc, imageAlt) =>
+                setPreviewImage({ src: imageSrc, alt: imageAlt })
+              }
+            />
           </TabsContent>
           <TabsContent value="music" className="mt-1">
             <TabMusic />
@@ -69,14 +102,29 @@ export default function Page() {
         {/* Contact Button */}
         <Button
           asChild
-          className="w-full rounded-xl border border-border bg-card text-sm text-foreground backdrop-blur-xl transition-all duration-300 hover:border-neon-cyan/30 hover:bg-neon-cyan/10 hover:text-neon-cyan hover:shadow-[0_0_20px_rgba(0,242,234,0.1)]"
+          className={`w-full rounded-xl border border-border bg-card text-sm text-foreground backdrop-blur-xl transition-all duration-300 ${contactHoverClassName}`}
           size="lg"
         >
-          <a href="mailto:hello@stvshy.com">
+          <a href="mailto:matisp637@gmail.com">
             <Mail className="size-4" />
             Contact Me
           </a>
         </Button>
+
+        {activeTab === "about" && (
+          <div className="-mt-4">
+            <a
+              href="https://instagram.com/stvshy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-transparent px-4 py-3 text-[12px] font-medium text-foreground backdrop-blur-xl transition-all duration-300 hover:border-foreground/35 hover:bg-foreground/5"
+              aria-label="Open Instagram profile"
+            >
+              <BsInstagram className="size-4" />
+              Instagram
+            </a>
+          </div>
+        )}
 
         {/* Footer */}
         <footer className="text-center -mt-1 -mb-1">
@@ -85,6 +133,36 @@ export default function Page() {
           </p>
         </footer>
       </div>
+
+      {previewImage && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Image preview"
+          onClick={() => setPreviewImage(null)}
+        >
+          <div
+            className="relative flex max-h-[90vh] items-center justify-center"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setPreviewImage(null)}
+              aria-label="Close image preview"
+              className="absolute right-2 top-2 z-10 inline-flex size-8 items-center justify-center rounded-full border border-border/70 bg-background/80 text-foreground transition-colors hover:bg-background"
+            >
+              <X className="size-4" />
+            </button>
+
+            <img
+              src={previewImage.src}
+              alt={previewImage.alt}
+              className="max-h-[90vh] w-auto max-w-[95vw] rounded-xl object-contain"
+            />
+          </div>
+        </div>
+      )}
     </main>
   )
 }
