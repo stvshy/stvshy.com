@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button"
 export default function Page() {
   const [activeTab, setActiveTab] = useState("about")
   const [previewImage, setPreviewImage] = useState<{ src: string; alt: string } | null>(null)
+  const isTripifyMapPreview = previewImage?.src.includes("tripify-map")
 
   useEffect(() => {
     if (!previewImage) {
@@ -34,6 +35,13 @@ export default function Page() {
       : activeTab === "music"
         ? "hover:border-[#b817e4]/45 hover:bg-[#b817e4]/10 hover:text-[#b817e4] hover:shadow-[0_0_20px_rgba(184,23,228,0.18)]"
         : "hover:border-foreground/30 hover:bg-foreground/10 hover:text-foreground hover:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
+
+  const instagramHoverClassName =
+    activeTab === "dev"
+      ? "hover:border-[var(--dev-accent)]/55 hover:text-[var(--dev-accent)] hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+      : activeTab === "music"
+        ? "hover:border-[#b817e4]/55 hover:text-[#b817e4] hover:shadow-[0_0_20px_rgba(184,23,228,0.18)]"
+        : "hover:border-foreground/45 hover:text-foreground hover:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
 
   return (
     <main className="relative flex min-h-svh flex-col items-center bg-background">
@@ -112,17 +120,22 @@ export default function Page() {
         </Button>
 
         {activeTab === "about" && (
-          <div className="-mt-4">
-            <a
-              href="https://instagram.com/stvshy"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-transparent px-4 py-3 text-[12px] font-medium text-foreground backdrop-blur-xl transition-all duration-300 hover:border-foreground/35 hover:bg-foreground/5"
-              aria-label="Open Instagram profile"
+          <div className="-mt-4.5">
+            <Button
+              asChild
+              size="lg"
+              className={`w-full rounded-xl border border-foreground/12 bg-transparent text-sm text-foreground shadow-none transition-all duration-300 hover:bg-transparent ${instagramHoverClassName}`}
             >
-              <BsInstagram className="size-4" />
-              Instagram
-            </a>
+              <a
+                href="https://instagram.com/stvshy"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Open Instagram profile"
+              >
+                <BsInstagram className="size-4" />
+                Instagram
+              </a>
+            </Button>
           </div>
         )}
 
@@ -136,15 +149,17 @@ export default function Page() {
 
       {previewImage && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 md:bg-black/70 p-4"
           role="dialog"
           aria-modal="true"
           aria-label="Image preview"
           onClick={() => setPreviewImage(null)}
+          style={{ touchAction: "pinch-zoom" }}
         >
           <div
-            className="relative flex max-h-[90vh] items-center justify-center"
+            className="relative flex items-center justify-center"
             onClick={(event) => event.stopPropagation()}
+            style={{ touchAction: "pinch-zoom" }}
           >
             <button
               type="button"
@@ -158,7 +173,12 @@ export default function Page() {
             <img
               src={previewImage.src}
               alt={previewImage.alt}
-              className="max-h-[90vh] w-auto max-w-[95vw] rounded-xl object-contain"
+              className={`w-auto max-w-[95vw] rounded-xl object-contain ${
+                isTripifyMapPreview
+                  ? "max-h-[90vh] md:max-h-[96vh]"
+                  : "max-h-[90vh]"
+              }`}
+              style={{ touchAction: "pinch-zoom" }}
             />
           </div>
         </div>

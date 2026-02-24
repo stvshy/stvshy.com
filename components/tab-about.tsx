@@ -56,7 +56,7 @@ export function TabAbout({ onOpenImagePreview }: TabAboutProps) {
           aria-label="Open countries map preview"
         >
           <ChevronRight className="absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-foreground" />
-          <span className="bg-[linear-gradient(to_right,var(--dev-accent)_0%,#b817e4_100%)] bg-clip-text text-xl font-bold text-transparent font-mono">
+          <span className="bg-[linear-gradient(to_right,var(--dev-accent)_0%,#8b60e8_40%,#8b60e8_60%,#b817e4_100%)] bg-clip-text text-xl font-bold text-transparent font-mono">
             28
           </span>
           <p className="mt-1 text-[11px] text-muted-foreground">Countries visited</p>
@@ -70,7 +70,7 @@ export function TabAbout({ onOpenImagePreview }: TabAboutProps) {
           aria-label="Open Fragrantica profile"
         >
           <ChevronRight className="absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-foreground" />
-          <span className="bg-[linear-gradient(to_right,var(--dev-accent)_0%,#b817e4_100%)] bg-clip-text text-xl font-bold text-transparent font-mono">
+          <span className="bg-[linear-gradient(to_right,var(--dev-accent)_0%,#8b60e8_40%,#8b60e8_60%,#b817e4_100%)] bg-clip-text text-xl font-bold text-transparent font-mono">
             30
           </span>
           <p className="mt-1 text-[11px] text-muted-foreground">Perfumes owned</p>
