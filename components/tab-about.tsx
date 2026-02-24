@@ -9,27 +9,27 @@ export function TabAbout() {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="rounded-xl border border-border bg-card px-5 py-5 backdrop-blur-xl" lang="en">
-        <p className="text-[13px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]">
+      <div className="rounded-xl border border-border bg-card px-5 pt-3.5 pb-5 backdrop-blur-xl" lang="en">
+        <p className="text-[12px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]">
           Based in <span className="text-foreground font-medium">Wroc&#322;aw, Poland</span>. I navigate between code and sound, creating projects that feel personal. I focus on designing intuitive experiences that truly resonate. I believe that great software and great tracks share the same foundation — attention to detail and creativity.
         </p>
 
         <Collapsible open={isOpen} onOpenChange={setIsOpen}>
           <CollapsibleContent>
             <div className="mt-3 space-y-3">
-              <p className="text-[13px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]">
+              <p className="text-[12px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]">
                 I am committed to continuous self-improvement, broadening my horizons by learning and traveling to understand diverse perspectives and cultures. My goal is to visit every country in the world, driven by a restless desire to constantly explore the unknown.
               </p>
-              <p className="text-[13px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]">
+              <p className="text-[12px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]">
                 When I’m not traveling or creating, you can find me cheering for FC Barcelona, watching Polish fighters in the UFC, or expanding my perfume collection.
               </p>
-              <p className="text-[13px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]">
-                Over the last few years, I’ve gravitated towards the atmospheric sounds of Wave and Phonk, drawing major inspiration from them for my own work. However, my playlist knows no boundaries. I also listen to plenty of Hip-Hop and constantly discover new sounds, refusing to limit myself to just one style.
+              <p className="text-[12px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]">
+                Over the last few years, I’ve gravitated towards the atmospheric sounds of Wave and Phonk, drawing major inspiration from them for my own work. However, my playlist knows no boundaries. I also listen to plenty of Hip-Hop and other electronic music, constantly discovering new sounds and refusing to limit myself to just one style.
               </p>
             </div>
           </CollapsibleContent>
 
-          <div className="mt-1 mb-[-14px] flex justify-center">
+          <div className="mt-0.5 mb-[-14px] flex justify-center">
             <CollapsibleTrigger asChild>
               <button
                 className="-m-4 inline-flex cursor-pointer items-center justify-center rounded-full p-4 text-foreground/70 transition-colors hover:text-foreground"
