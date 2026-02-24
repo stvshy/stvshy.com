@@ -74,8 +74,66 @@ const links = [
   },
 ]
 
-export function TabMusic() {
+type TabMusicProps = {
+  language: "en" | "pl"
+}
+
+const musicText = {
+  en: {
+    links: {
+      fantasia: "Listen latest song",
+      spotify: "Listen on Spotify",
+      appleMusic: "Listen on Apple Music",
+      youtubeMusic: "Listen on YouTube Music",
+      deezer: "Listen on Deezer",
+      amazonMusic: "Listen on Amazon Music",
+      tidal: "Listen on TIDAL",
+      soundcloud: "Unreleased beats",
+    },
+    more: "More",
+    tracksReleased: "Tracks released",
+    yearsProducing: "Years producing",
+    genres: "Genres",
+  },
+  pl: {
+    links: {
+      fantasia: "Posłuchaj najnowszego utworu",
+      spotify: "Posłuchaj na Spotify",
+      appleMusic: "Posłuchaj w Apple Music",
+      youtubeMusic: "Posłuchaj w YouTube Music",
+      deezer: "Posłuchaj na Deezer",
+      amazonMusic: "Posłuchaj w Amazon Music",
+      tidal: "Posłuchaj na TIDAL",
+      soundcloud: "Niewydane beaty",
+    },
+    more: "Więcej",
+    tracksReleased: "Wydane utwory",
+    yearsProducing: "Lata produkcji",
+    genres: "Gatunki",
+  },
+} as const
+
+export function TabMusic({ language }: TabMusicProps) {
   const [isMoreOpen, setIsMoreOpen] = useState(false)
+  const text = musicText[language]
+
+  const localizedLinks = links.map((link) => {
+    const descriptionMap = {
+      Fantasia: text.links.fantasia,
+      Spotify: text.links.spotify,
+      "Apple Music": text.links.appleMusic,
+      "YouTube Music": text.links.youtubeMusic,
+      Deezer: text.links.deezer,
+      "Amazon Music": text.links.amazonMusic,
+      TIDAL: text.links.tidal,
+      SoundCloud: text.links.soundcloud,
+    } as const
+
+    return {
+      ...link,
+      description: descriptionMap[link.label as keyof typeof descriptionMap] ?? link.description,
+    }
+  })
 
   const musicThemeStyle = {
     "--music-accent": MUSIC_ACCENT,
@@ -91,8 +149,8 @@ export function TabMusic() {
   // const fantasiaCardClassName =
   //   "group flex items-center gap-4 rounded-xl border border-neon-magenta/35 bg-neon-magenta/10 px-5 py-3 backdrop-blur-xl transition-all duration-300 hover:border-neon-magenta/45 hover:bg-neon-magenta/15 hover:shadow-[0_0_24px_rgba(217,70,239,0.14)]"
 
-  const visibleLinks = links.slice(0, 4)
-  const hiddenLinks = links.slice(4)
+  const visibleLinks = localizedLinks.slice(0, 4)
+  const hiddenLinks = localizedLinks.slice(4)
 
   return (
     <div className="flex flex-col gap-3" style={musicThemeStyle}>
@@ -149,7 +207,7 @@ export function TabMusic() {
         aria-expanded={isMoreOpen}
         aria-controls="more-music-links"
       >
-        More
+        {text.more}
         <svg
           className={isMoreOpen ? "size-3 transition-transform duration-300 rotate-180" : "size-3 transition-transform duration-300"}
           viewBox="0 0 16 16"
@@ -204,17 +262,17 @@ export function TabMusic() {
       <div className="grid grid-cols-2 gap-3">
         <div className="rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl">
           <span className="text-xl font-bold text-[rgb(var(--music-accent-rgb))] font-mono">1</span>
-          <p className="mt-1 text-[11px] text-muted-foreground">Tracks released</p>
+          <p className="mt-1 text-[11px] text-muted-foreground">{text.tracksReleased}</p>
         </div>
         <div className="rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl">
           <span className="text-xl font-bold text-[#0ab8d6f8] font-mono">3+</span>
-          <p className="mt-1 text-[11px] text-muted-foreground">Years producing</p>
+          <p className="mt-1 text-[11px] text-muted-foreground">{text.yearsProducing}</p>
         </div>
       </div>
 
       <div className="rounded-xl border border-border bg-card px-5 py-4 backdrop-blur-xl">
         <h3 className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-          Genres
+          {text.genres}
         </h3>
         <div className="flex flex-wrap gap-2">
           {["Wave", "Electronic", "Trap", "Hardwave", "Hip-hop", "Witch House", "Trapwave"].map((genre) => (

@@ -1,7 +1,14 @@
 import { Logo } from "@/components/logo"
 import { HiLocationMarker } from "react-icons/hi"
 
-export function ProfileHeader() {
+type ProfileHeaderProps = {
+  language: "en" | "pl"
+}
+
+export function ProfileHeader({ language }: ProfileHeaderProps) {
+  const roleText = language === "pl" ? "Deweloper" : "Developer"
+  const producerText = language === "pl" ? "Producent" : "Producer"
+
   return (
     <header className="flex flex-col items-center gap-2">
       <Logo />
@@ -22,7 +29,7 @@ export function ProfileHeader() {
           Mateusz Staszk&oacute;w
         </h1>
         <p className="text-xs font-medium tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-fuchsia-500 uppercase">
-          Developer <span className="text-slate-400 dark:text-slate-400 mx-2">x</span> Producer
+          {roleText} <span className="text-slate-400 dark:text-slate-400 mx-2">x</span> {producerText}
         </p>
         <div className="flex items-center justify-center mt-1 text-[10px] text-slate-500 dark:text-slate-400 font-mono">
             <HiLocationMarker className="mr-2 mb-[1px] text-[11.5px] shrink-0" aria-hidden="true" />

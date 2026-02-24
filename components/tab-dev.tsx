@@ -104,17 +104,84 @@ const links = [
 ]
 
 type TabDevProps = {
+  language: "en" | "pl"
   onOpenImagePreview: (imageSrc: string, imageAlt: string) => void
 }
 
-export function TabDev({ onOpenImagePreview }: TabDevProps) {
+const devText = {
+  en: {
+    linkDescriptions: {
+      github: "Projects & contributions",
+      linkedin: "Profile & networking",
+      travelAssistant: "AI trip planning assistant",
+      hollowDepths: "Godot game project",
+      renovationSystem: "Workflow management platform",
+      tripify: "Mobile app. Work in progress",
+    },
+    yearsProgramming: "Years programming",
+    certificatesCount: "Certificates",
+    education: "Education",
+    closeEducation: "Close Education",
+    schoolFocus: "Focus: Mathematics & Computer Science",
+    bachelor: "Bachelor's degree",
+    master: "Master's degree",
+    certificates: "Certificates",
+    closeCertificates: "Close Certificates",
+    verifyPrefix: "Verify",
+    previewPrefix: "Open preview",
+    stackTitle: "Stack",
+    stackSubtitle: "Technologies & tools",
+    sectionTitles: {
+      languages: "Languages & Core Technologies",
+      frameworks: "Frameworks & Libraries",
+      databases: "Databases, Cloud & DevOps",
+      ides: "IDEs & Development Tools",
+      testing: "Testing, Analysis & Modeling Tools",
+      design: "Design & Other Software",
+    },
+  },
+  pl: {
+    linkDescriptions: {
+      github: "Projekty i wkład",
+      linkedin: "Profil i networking",
+      travelAssistant: "AI asystent do planowania podróży",
+      hollowDepths: "Projekt gry w Godot",
+      renovationSystem: "Platforma do zarządzania procesem",
+      tripify: "Aplikacja mobilna. Wkrótce dostępna",
+    },
+    yearsProgramming: "Lata programowania",
+    certificatesCount: "Certyfikaty",
+    education: "Edukacja",
+    closeEducation: "Zamknij edukację",
+    schoolFocus: "Profil: Matematyka & Informatyka",
+    bachelor: "Studia inżynierskie",
+    master: "Studia magisterskie",
+    certificates: "Certyfikaty",
+    closeCertificates: "Zamknij certyfikaty",
+    verifyPrefix: "Zweryfikuj",
+    previewPrefix: "Otwórz podgląd",
+    stackTitle: "Stack",
+    stackSubtitle: "Technologie i narzędzia",
+    sectionTitles: {
+      languages: "Języki i technologie bazowe",
+      frameworks: "Frameworki i biblioteki",
+      databases: "Bazy danych, chmura i DevOps",
+      ides: "IDE i narzędzia developerskie",
+      testing: "Testowanie, analiza i modelowanie",
+      design: "Design i inne oprogramowanie",
+    },
+  },
+} as const
+
+export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
   const [isStackOpen, setIsStackOpen] = useState(false)
   const [isYearsOpen, setIsYearsOpen] = useState(false)
   const [isCertificatesOpen, setIsCertificatesOpen] = useState(false)
+  const text = devText[language]
 
   const stackSections = [
     {
-      title: "Languages & Core Technologies",
+      title: text.sectionTitles.languages,
       gradientClass: "from-[#05dafff8] via-blue-500 to-[#879ffc]",
       items: [
         { label: "C++", icon: SiCplusplusbuilder },
@@ -133,7 +200,7 @@ export function TabDev({ onOpenImagePreview }: TabDevProps) {
       ],
     },
     {
-      title: "Frameworks & Libraries",
+      title: text.sectionTitles.frameworks,
       gradientClass: "from-[#05dafff8] via-indigo-500 to-purple-500",
       items: [
         { label: "React Native", icon: TbBrandReactNative },
@@ -148,7 +215,7 @@ export function TabDev({ onOpenImagePreview }: TabDevProps) {
       ],
     },
     {
-      title: "Databases, Cloud & DevOps",
+      title: text.sectionTitles.databases,
       gradientClass: "from-[#05dafff8] via-indigo-500 to-violet-500",
       items: [
         { label: "PostgreSQL", icon: SiPostgresql },
@@ -163,7 +230,7 @@ export function TabDev({ onOpenImagePreview }: TabDevProps) {
       ],
     },
     {
-      title: "IDEs & Development Tools",
+      title: text.sectionTitles.ides,
       gradientClass: "from-[#05dafff8] via-purple-500 to-violet-600",
       items: [
         { label: "IntelliJ IDEA", icon: SiIntellijidea },
@@ -178,7 +245,7 @@ export function TabDev({ onOpenImagePreview }: TabDevProps) {
       ],
     },
     {
-      title: "Testing, Analysis & Modeling Tools",
+      title: text.sectionTitles.testing,
       gradientClass: "from-[#05dafff8] via-purple-500 to-violet-600",
       items: [
         { label: "Selenium", icon: SiSelenium },
@@ -189,7 +256,7 @@ export function TabDev({ onOpenImagePreview }: TabDevProps) {
       ],
     },
     {
-      title: "Design & Other Software",
+      title: text.sectionTitles.design,
       gradientClass: "from-[#05dafff8] via-fuchsia-500 to-fuchsia-500",
       items: [
         { label: "Figma", icon: SiFigma },
@@ -226,9 +293,25 @@ export function TabDev({ onOpenImagePreview }: TabDevProps) {
     },
   ]
 
+  const localizedLinks = links.map((link) => {
+    const descriptionMap = {
+      GitHub: text.linkDescriptions.github,
+      LinkedIn: text.linkDescriptions.linkedin,
+      "Travel Assistant": text.linkDescriptions.travelAssistant,
+      "Hollow Depths": text.linkDescriptions.hollowDepths,
+      "Renovation System": text.linkDescriptions.renovationSystem,
+      Tripify: text.linkDescriptions.tripify,
+    } as const
+
+    return {
+      ...link,
+      description: descriptionMap[link.label as keyof typeof descriptionMap] ?? link.description,
+    }
+  })
+
   return (
     <div className="flex flex-col gap-3">
-      {links.map((link) => (
+      {localizedLinks.map((link) => (
         <a
           key={link.label}
           href={link.blocked ? undefined : link.href}
@@ -237,7 +320,7 @@ export function TabDev({ onOpenImagePreview }: TabDevProps) {
           aria-disabled={link.blocked}
           className={`group flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-3 backdrop-blur-xl transition-all duration-300 ${
             link.blocked
-              ? "cursor-not-allowed border-border/70 bg-card/35 opacity-100"
+              ? "cursor-not-allowed border-border/70 bg-muted/15 opacity-100"
               : "hover:border-[var(--dev-accent)]/45 hover:bg-[var(--dev-accent)]/10 hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
           }`}
         >
@@ -296,7 +379,7 @@ export function TabDev({ onOpenImagePreview }: TabDevProps) {
             }`}
           />
           <span className="text-xl font-bold text-[var(--dev-accent)] font-mono">9+</span>
-          <p className="mt-1 text-[11px] text-muted-foreground">Years programming</p>
+          <p className="mt-1 text-[11px] text-muted-foreground">{text.yearsProgramming}</p>
         </button>
 
         <button
@@ -311,7 +394,7 @@ export function TabDev({ onOpenImagePreview }: TabDevProps) {
             }`}
           />
           <span className="text-xl font-bold text-[#a81ad3] font-mono">3</span>
-          <p className="mt-1 text-[11px] text-muted-foreground">Certificates</p>
+          <p className="mt-1 text-[11px] text-muted-foreground">{text.certificatesCount}</p>
         </button>
       </div>
 
@@ -331,13 +414,13 @@ export function TabDev({ onOpenImagePreview }: TabDevProps) {
           <button
             type="button"
             onClick={() => setIsYearsOpen(false)}
-            aria-label="Close Education"
+            aria-label={text.closeEducation}
             className="absolute right-3 top-3 inline-flex size-6 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-card hover:text-foreground"
           >
             <X className="size-3.5" />
           </button>
           <p className="mb-3 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
-            Education
+            {text.education}
           </p>
           <div className="space-y-3">
             <div className="relative rounded-lg border border-border/70 bg-card/42 px-3 py-3 pr-24">
@@ -348,7 +431,7 @@ export function TabDev({ onOpenImagePreview }: TabDevProps) {
                 I High School in Legnica
               </p>
               <p className="mt-1 text-[11px] text-muted-foreground">
-                Focus: Mathematics &amp; Computer Science
+                {text.schoolFocus}
               </p>
             </div>
 
@@ -365,7 +448,7 @@ export function TabDev({ onOpenImagePreview }: TabDevProps) {
                     Computer Engineering
                   </p>
                   <p className="text-[11px] text-muted-foreground">
-                    Bachelor&apos;s degree
+                    {text.bachelor}
                   </p>
                 </div>
                 <div className="relative rounded-md border border-border/60 bg-card px-2.5 py-2 pr-24">
@@ -375,7 +458,7 @@ export function TabDev({ onOpenImagePreview }: TabDevProps) {
                   <p className="text-[11px] font-medium text-foreground">
                     Applied Computer Science
                   </p>
-                  <p className="text-[11px] text-muted-foreground">Master&apos;s degree</p>
+                  <p className="text-[11px] text-muted-foreground">{text.master}</p>
                 </div>
               </div>
             </div>
@@ -400,13 +483,13 @@ export function TabDev({ onOpenImagePreview }: TabDevProps) {
           <button
             type="button"
             onClick={() => setIsCertificatesOpen(false)}
-            aria-label="Close Certificates"
+            aria-label={text.closeCertificates}
             className="absolute right-3 top-3 inline-flex size-6 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-card hover:text-foreground"
           >
             <X className="size-3.5" />
           </button>
           <p className="mb-3 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
-            Certificates
+            {text.certificates}
           </p>
           <div className="flex flex-col gap-3">
             {certificates.map((certificate) => (
@@ -429,7 +512,7 @@ export function TabDev({ onOpenImagePreview }: TabDevProps) {
                     href={certificate.verifyUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`Verify ${certificate.title}`}
+                    aria-label={`${text.verifyPrefix} ${certificate.title}`}
                     className="inline-flex size-8 items-center justify-center rounded-md border border-border/70 bg-card text-muted-foreground transition-colors hover:text-[var(--dev-accent)]"
                   >
                     <ExternalLink className="size-3.5" />
@@ -440,7 +523,7 @@ export function TabDev({ onOpenImagePreview }: TabDevProps) {
                     onClick={() =>
                       onOpenImagePreview(certificate.image, `${certificate.title} preview`)
                     }
-                    aria-label={`Open preview ${certificate.title}`}
+                    aria-label={`${text.previewPrefix} ${certificate.title}`}
                     className="inline-flex h-8 w-12 overflow-hidden rounded-md border border-border/70"
                   >
                     <Image
@@ -459,11 +542,17 @@ export function TabDev({ onOpenImagePreview }: TabDevProps) {
         </div>
       </div>
 
-      <div className="rounded-xl border border-border bg-card backdrop-blur-xl">
+      <div
+        className={`rounded-xl border bg-card backdrop-blur-xl transition-all duration-300 ${
+          isStackOpen
+            ? "border-border"
+            : "border-border hover:border-[var(--dev-accent)]/45 hover:bg-[var(--dev-accent)]/10 hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+        }`}
+      >
         <button
           type="button"
           onClick={() => setIsStackOpen((prev) => !prev)}
-          className={`group flex w-full items-center gap-4 px-5 py-3 text-left transition-all duration-300 hover:bg-[var(--dev-accent)]/10 ${
+          className={`group flex w-full items-center gap-4 px-5 py-3 text-left transition-all duration-300 ${
             isStackOpen ? "rounded-t-xl" : "rounded-xl"
           }`}
         >
@@ -471,9 +560,9 @@ export function TabDev({ onOpenImagePreview }: TabDevProps) {
             <Layers className="size-6" />
           </div>
           <div className="flex flex-col gap-0.5">
-            <span className="text-[13px] font-semibold text-foreground">Stack</span>
+            <span className="text-[13px] font-semibold text-foreground">{text.stackTitle}</span>
             <span className="text-[11px] text-muted-foreground">
-              Technologies & tools
+              {text.stackSubtitle}
             </span>
           </div>
           <ChevronDown

@@ -11,10 +11,46 @@ import { TabAbout } from "@/components/tab-about"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 
+type Language = "en" | "pl"
+
+const pageText = {
+  en: {
+    tabs: {
+      dev: "Dev",
+      about: "About",
+      music: "Music",
+    },
+    contact: "Contact Me",
+    instagram: "Instagram",
+    instagramAria: "Open Instagram profile",
+    footer: "© 2026 stvshy. All rights reserved.",
+    previewDialogLabel: "Image preview",
+    previewCloseLabel: "Close image preview",
+    switchLanguageLabel: "Switch language to Polish",
+  },
+  pl: {
+    tabs: {
+      dev: "Dev",
+      about: "O mnie",
+      music: "Muzyka",
+    },
+    contact: "Skontaktuj się",
+    instagram: "Instagram",
+    instagramAria: "Otwórz profil na Instagramie",
+    footer: "© 2026 stvshy. Wszelkie prawa zastrzeżone.",
+    previewDialogLabel: "Podgląd obrazu",
+    previewCloseLabel: "Zamknij podgląd obrazu",
+    switchLanguageLabel: "Przełącz język na angielski",
+  },
+} as const
+
 export default function Page() {
   const [activeTab, setActiveTab] = useState("about")
+  const [language, setLanguage] = useState<Language>("en")
   const [previewImage, setPreviewImage] = useState<{ src: string; alt: string } | null>(null)
   const isTripifyMapPreview = previewImage?.src.includes("tripify-map")
+  const text = pageText[language]
+  const nextLanguage: Language = language === "en" ? "pl" : "en"
 
   useEffect(() => {
     if (!previewImage) {
@@ -28,6 +64,18 @@ export default function Page() {
       document.body.style.overflow = previousOverflow
     }
   }, [previewImage])
+
+  useEffect(() => {
+    const storedLanguage = window.localStorage.getItem("language")
+    if (storedLanguage === "en" || storedLanguage === "pl") {
+      setLanguage(storedLanguage)
+    }
+  }, [])
+
+  useEffect(() => {
+    document.documentElement.lang = language
+    window.localStorage.setItem("language", language)
+  }, [language])
 
   const contactHoverClassName =
     activeTab === "dev"
@@ -48,7 +96,7 @@ export default function Page() {
       <MeshGradient />
 
       <div className="page-scale-desktop relative z-10 flex w-full max-w-md flex-col gap-8 px-5 py-12 pb-8">
-        <ProfileHeader />
+        <ProfileHeader language={language} />
 
         {/* Navigation Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full -mt-[10px]">
@@ -62,7 +110,7 @@ export default function Page() {
                 alt="Dev icon"
                 className="mr-1.5 size-4"
               />
-              Dev
+              {text.tabs.dev}
             </TabsTrigger>
             <TabsTrigger
               value="about"
@@ -73,7 +121,7 @@ export default function Page() {
                 alt="About icon"
                 className="mr-1.5 size-4"
               />
-              About
+              {text.tabs.about}
             </TabsTrigger>
             <TabsTrigger
               value="music"
@@ -84,12 +132,13 @@ export default function Page() {
                 alt="Music note"
                 className="mr-1.5 size-4"
               />
-              Music
+              {text.tabs.music}
             </TabsTrigger>
           </TabsList>
 
           <TabsContent value="dev" className="mt-1">
             <TabDev
+              language={language}
               onOpenImagePreview={(imageSrc, imageAlt) =>
                 setPreviewImage({ src: imageSrc, alt: imageAlt })
               }
@@ -97,13 +146,14 @@ export default function Page() {
           </TabsContent>
           <TabsContent value="about" className="mt-1">
             <TabAbout
+              language={language}
               onOpenImagePreview={(imageSrc, imageAlt) =>
                 setPreviewImage({ src: imageSrc, alt: imageAlt })
               }
             />
           </TabsContent>
           <TabsContent value="music" className="mt-1">
-            <TabMusic />
+            <TabMusic language={language} />
           </TabsContent>
         </Tabs>
 
@@ -115,7 +165,7 @@ export default function Page() {
         >
           <a href="mailto:matisp637@gmail.com">
             <Mail className="size-4" />
-            Contact Me
+            {text.contact}
           </a>
         </Button>
 
@@ -130,10 +180,10 @@ export default function Page() {
                 href="https://instagram.com/stvshy"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Open Instagram profile"
+                aria-label={text.instagramAria}
               >
                 <BsInstagram className="size-4" />
-                Instagram
+                {text.instagram}
               </a>
             </Button>
           </div>
@@ -142,17 +192,41 @@ export default function Page() {
         {/* Footer */}
         <footer className="text-center -mt-1 -mb-1">
           <p className="text-[11px] text-muted-foreground/50">
-            {"© 2026 stvshy. All rights reserved."}
+            {text.footer}
           </p>
         </footer>
+
+        <div className="-mt-3 flex justify-center md:hidden">
+          <button
+            type="button"
+            onClick={() => setLanguage(nextLanguage)}
+            aria-label={text.switchLanguageLabel}
+            className="inline-flex size-8 items-center justify-center overflow-hidden rounded-full border border-border/70 bg-card/90 text-sm shadow-[0_0_14px_rgba(0,0,0,0.28)] backdrop-blur-xl transition-all duration-300 hover:border-foreground/35"
+          >
+            <span aria-hidden="true" className="leading-none">
+              {language === "en" ? "🇵🇱" : "🇬🇧"}
+            </span>
+          </button>
+        </div>
       </div>
+
+      <button
+        type="button"
+        onClick={() => setLanguage(nextLanguage)}
+        aria-label={text.switchLanguageLabel}
+        className="fixed bottom-6 right-6 z-40 hidden size-12 items-center justify-center overflow-hidden rounded-full border border-border/70 bg-card/90 text-2xl shadow-[0_0_24px_rgba(0,0,0,0.35)] backdrop-blur-xl transition-all duration-300 hover:border-foreground/35 hover:shadow-[0_0_24px_rgba(240,240,240,0.1)] md:inline-flex"
+      >
+        <span aria-hidden="true" className="leading-none">
+          {language === "en" ? "🇵🇱" : "🇬🇧"}
+        </span>
+      </button>
 
       {previewImage && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 md:bg-black/70 p-4"
           role="dialog"
           aria-modal="true"
-          aria-label="Image preview"
+          aria-label={text.previewDialogLabel}
           onClick={() => setPreviewImage(null)}
           style={{ touchAction: "pinch-zoom" }}
         >
@@ -164,7 +238,7 @@ export default function Page() {
             <button
               type="button"
               onClick={() => setPreviewImage(null)}
-              aria-label="Close image preview"
+              aria-label={text.previewCloseLabel}
               className="absolute right-2 top-2 z-10 inline-flex size-8 items-center justify-center rounded-full border border-border/70 bg-background/80 text-foreground transition-colors hover:bg-background"
             >
               <X className="size-4" />
