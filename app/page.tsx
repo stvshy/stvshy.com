@@ -214,7 +214,7 @@ export default function Page() {
         type="button"
         onClick={() => setLanguage(nextLanguage)}
         aria-label={text.switchLanguageLabel}
-        className="fixed bottom-6 right-6 z-40 hidden size-12 items-center justify-center overflow-hidden rounded-full border border-border/70 bg-card/90 text-2xl shadow-[0_0_24px_rgba(0,0,0,0.35)] backdrop-blur-xl transition-all duration-300 hover:border-foreground/35 hover:shadow-[0_0_24px_rgba(240,240,240,0.1)] md:inline-flex"
+        className="fixed bottom-6 right-6 z-40 hidden size-10 items-center justify-center overflow-hidden rounded-full border border-border/70 bg-card/90 text-xl shadow-[0_0_24px_rgba(0,0,0,0.35)] backdrop-blur-xl transition-all duration-300 hover:border-foreground/35 hover:shadow-[0_0_24px_rgba(240,240,240,0.1)] md:inline-flex"
       >
         <span aria-hidden="true" className="leading-none">
           {language === "en" ? "🇵🇱" : "🇬🇧"}

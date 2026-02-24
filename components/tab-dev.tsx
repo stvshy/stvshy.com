@@ -543,17 +543,17 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
       </div>
 
       <div
-        className={`rounded-xl border bg-card backdrop-blur-xl transition-all duration-300 ${
+        className={`border bg-card backdrop-blur-xl transition-all duration-300 ${
           isStackOpen
-            ? "border-border"
-            : "border-border hover:border-[var(--dev-accent)]/45 hover:bg-[var(--dev-accent)]/10 hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+            ? "rounded-t-xl border-border"
+            : "rounded-xl border-border hover:border-[var(--dev-accent)]/45 hover:bg-[var(--dev-accent)]/10 hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
         }`}
       >
         <button
           type="button"
           onClick={() => setIsStackOpen((prev) => !prev)}
           className={`group flex w-full items-center gap-4 px-5 py-3 text-left transition-all duration-300 ${
-            isStackOpen ? "rounded-t-xl" : "rounded-xl"
+            isStackOpen ? "rounded-t-xl bg-[var(--dev-accent)]/10" : "rounded-xl"
           }`}
         >
           <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-[var(--dev-accent)]/15 text-[var(--dev-accent)] transition-colors group-hover:bg-[var(--dev-accent)]/25">

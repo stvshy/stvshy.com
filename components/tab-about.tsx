@@ -1,8 +1,10 @@
 "use client"
 
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import { BsChevronCompactDown, BsChevronCompactUp } from "react-icons/bs"
 import { ChevronRight } from "lucide-react"
+import { hyphenateSync as hyphenateEn } from "hyphen/en"
+import { hyphenateSync as hyphenatePl } from "hyphen/pl"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 
 type TabAboutProps = {
@@ -49,24 +51,35 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
   const [isOpen, setIsOpen] = useState(false)
   const text = aboutText[language]
 
+  const hyphenateText = useMemo(() => {
+    const hyphenate = language === "pl" ? hyphenatePl : hyphenateEn
+
+    return {
+      paragraph1: hyphenate(text.paragraph1),
+      paragraph2: hyphenate(text.paragraph2),
+      paragraph3: hyphenate(text.paragraph3),
+      paragraph4: hyphenate(text.paragraph4),
+    }
+  }, [language, text.paragraph1, text.paragraph2, text.paragraph3, text.paragraph4])
+
   return (
     <div className="flex flex-col gap-4">
       <div className="rounded-xl border border-border bg-card px-5 pt-3.5 pb-5 backdrop-blur-xl" lang={language}>
         <p className="text-[12px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]">
-          {text.paragraph1}
+          {hyphenateText.paragraph1}
         </p>
 
         <Collapsible open={isOpen} onOpenChange={setIsOpen}>
           <CollapsibleContent>
             <div className="mt-3 space-y-3">
               <p className="text-[12px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]">
-                {text.paragraph2}
+                {hyphenateText.paragraph2}
               </p>
               <p className="text-[12px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]">
-                {text.paragraph3}
+                {hyphenateText.paragraph3}
               </p>
               <p className="text-[12px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]">
-                {text.paragraph4}
+                {hyphenateText.paragraph4}
               </p>
             </div>
           </CollapsibleContent>
