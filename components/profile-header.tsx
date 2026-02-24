@@ -10,7 +10,7 @@ export function ProfileHeader() {
         <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-cyan-500 to-fuchsia-500 blur-md opacity-75 group-hover:opacity-100 transition-opacity duration-500"></div>
         <div className="relative w-36 h-36 rounded-full p-1 bg-gradient-to-tr from-cyan-500 via-purple-500 to-fuchsia-500" style={{ boxShadow: '0 0 40px -10px rgba(6, 182, 212, 0.5), 0 0 40px -10px rgba(217, 70, 239, 0.5)' }}>
           <img
-            src="/images/avatar3.jpg"
+            src="/images/avatar4.jpg"
             alt="Mateusz Staszków profile photo"
             className="w-full h-full object-cover rounded-full border-4 border-white dark:border-slate-950"
           />
