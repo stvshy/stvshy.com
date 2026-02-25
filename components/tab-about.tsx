@@ -15,7 +15,7 @@ type TabAboutProps = {
 const aboutText = {
   en: {
     paragraph1:
-      "Based in Wrocław, Poland. I navigate between code and sound, creating projects that feel personal. I focus on designing intuitive experiences that truly resonate. I believe that great software and great tracks share the same foundation — attention to detail and creativity.",
+      "I navigate between code and sound, creating projects that feel personal. I focus on designing intuitive experiences that truly resonate. I believe that great software and great tracks share the same foundation — attention to detail and creativity.",
     paragraph2:
       "I am committed to continuous self-improvement, broadening my horizons by learning and traveling to understand diverse perspectives and cultures. My goal is to visit every country in the world, driven by a restless desire to constantly explore the unknown.",
     paragraph3:
@@ -31,13 +31,13 @@ const aboutText = {
   },
   pl: {
     paragraph1:
-      "Na co dzień mieszkam we Wrocławiu. Poruszam się między kodem a dźwiękiem, tworząc projekty, które mają osobisty charakter. Skupiam się na projektowaniu intuicyjnych doświadczeń, które naprawdę trafiają do ludzi. Wierzę, że świetne oprogramowanie i dobre utwory mają ten sam fundament — dbałość o detale i kreatywność.",
+      "Jestem programistą i producentem muzycznym, działającym we Wrocławiu. Balansuję między kodem a muzyką, tworząc projekty o unikalnym charakterze. Celuję w intuicyjne rozwiązania, które trafiają do ludzi. Wierzę, że świetne oprogramowanie i dobre utwory mają wspólny mianownik — dbałość o detale i kreatywność.",
     paragraph2:
-      "Stale pracuję nad sobą, poszerzając horyzonty przez naukę i podróże, aby lepiej rozumieć różne perspektywy i kultury. Moim celem jest odwiedzenie każdego kraju na świecie, napędzane nieustanną chęcią odkrywania nieznanego.",
+      "Stawiam na ciągły progres, nieustannie podnosząc poprzeczkę, a podróże i nauka są narzędziami, pozwalającymi mi zrozumieć świat z różnych perspektyw.",
     paragraph3:
-      "Gdy nie podróżuję ani nie tworzę, kibicuję FC Barcelonie, oglądam polskich zawodników w UFC albo rozwijam swoją kolekcję perfum.",
+      "Po godzinach kibicuję FC Barcelonie oraz śledzę zmagania Polaków w oktagonie UFC. Stale rozbudowuję również kolekcję perfum i odkrywam niszowe zapachy, wykraczające poza schematy.",
     paragraph4:
-      "W ostatnich latach szczególnie zbliżyłem się do klimatycznych brzmień Wave i Phonk, które mocno inspirują mnie w mojej twórczości. Mimo to moja playlista nie ma granic. Słucham też dużo Hip-Hopu i innych odmian elektroniki, stale odkrywając nowe dźwięki i nie zamykając się w jednym stylu.",
+      "Muzycznie moje serce bije obecnie w rytmie Wave i Phonk — to te gatunki stanowią największą inspirację dla moich produkcji. Nie zamykam się jednak w bańce, a moja playlista obejmuje szerokie spektrum różnych brzmień",
     collapse: "Zwiń opis",
     expand: "Rozwiń opis",
     mapPreviewLabel: "Otwórz podgląd mapy odwiedzonych krajów",
@@ -66,7 +66,17 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
     <div className="flex flex-col gap-4">
       <div className="rounded-xl border border-border bg-card px-5 pt-3.5 pb-5 backdrop-blur-xl" lang={language}>
         <p className="text-[12px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]">
-          {hyphenateText.paragraph1}
+          {language === "en" ? (
+            <>
+              {hyphenateEn("Based in ")}
+              <span className=" text-white">Wrocław, Poland</span>
+              {hyphenateEn(
+                " — I navigate between code and sound, creating projects that feel personal. I focus on designing intuitive experiences that truly resonate. I believe that great software and great tracks share the same foundation — attention to detail and creativity."
+              )}
+            </>
+          ) : (
+            hyphenateText.paragraph1
+          )}
         </p>
 
         <Collapsible open={isOpen} onOpenChange={setIsOpen}>

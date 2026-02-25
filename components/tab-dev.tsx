@@ -149,7 +149,7 @@ const devText = {
       renovationSystem: "Platforma do zarządzania procesem",
       tripify: "Aplikacja mobilna. Wkrótce dostępna",
     },
-    yearsProgramming: "Lata programowania",
+    yearsProgramming: "Lat programowania",
     certificatesCount: "Certyfikaty",
     education: "Edukacja",
     closeEducation: "Zamknij edukację",
