@@ -19,9 +19,9 @@ const aboutText = {
     paragraph2:
       "I am committed to continuous self-improvement, broadening my horizons by learning and traveling to understand diverse perspectives and cultures. My goal is to visit every country in the world, driven by a restless desire to constantly explore the unknown.",
     paragraph3:
-      "When I’m not traveling or creating, you can find me cheering for FC Barcelona, watching Polish fighters in the UFC, or expanding my perfume collection.",
-    paragraph4:
       "Over the last few years, I’ve gravitated towards the atmospheric sounds of Wave and Phonk, drawing major inspiration from them for my own work. However, my playlist knows no boundaries. I also listen to plenty of Hip-Hop and other electronic music, constantly discovering new sounds and refusing to limit myself to just one style.",
+    paragraph4:
+      "When I’m not traveling or creating, you can find me cheering for FC Barcelona, watching Polish fighters in the UFC, or expanding my perfume collection.",
     collapse: "Collapse bio",
     expand: "Expand bio",
     mapPreviewLabel: "Open countries map preview",
@@ -35,9 +35,9 @@ const aboutText = {
     paragraph2:
       "Stawiam na ciągły progres, nieustannie podnosząc poprzeczkę, a podróże i nauka są narzędziami, pozwalającymi mi zrozumieć świat z różnych perspektyw.",
     paragraph3:
-      "Po godzinach kibicuję FC Barcelonie oraz śledzę zmagania Polaków w oktagonie UFC. Stale rozbudowuję również kolekcję perfum i odkrywam niszowe zapachy, wykraczające poza schematy.",
-    paragraph4:
       "Muzycznie moje serce bije obecnie w rytmie Wave i Phonk — to te gatunki stanowią największą inspirację dla moich produkcji. Nie zamykam się jednak w bańce, a moja playlista obejmuje szerokie spektrum różnych brzmień",
+    paragraph4:
+      "Po godzinach kibicuję FC Barcelonie oraz śledzę zmagania Polaków w oktagonie UFC. Stale rozbudowuję również kolekcję perfum i odkrywam niszowe zapachy, wykraczające poza schematy.",
     collapse: "Zwiń opis",
     expand: "Rozwiń opis",
     mapPreviewLabel: "Otwórz podgląd mapy odwiedzonych krajów",
@@ -69,8 +69,8 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
       "Wave",
       "Phonk"
     ]
-    const enWords = [
-      "Wrocław, Poland",
+    // common English words to highlight (avoid Wrocław, Poland and travelling here)
+    const enCommon = [
       "intuitive experiences",
       "in­tu­itive ex­pe­ri­ences",
       "attention to detail",
@@ -78,13 +78,13 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
       "creativity",
       "self-improvement",
       "learning",
-      "travelling",
-      "trav­el­ing",
       "Wave",
       "Phonk",
       "Hip-Hop",
       "electronic music"
     ]
+    // paragraph-specific English words
+    const enPara2Extra = ["travelling", "trav­el­ing"]
 
     // Use lighter gray for highlight
     // Use much lighter gray for highlight
@@ -144,10 +144,10 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
     }
 
     return {
-      paragraph1: highlightHyphenated(hyphenate(text.paragraph1), language === 'pl' ? plWords : enWords),
-      paragraph2: highlightHyphenated(hyphenate(text.paragraph2), language === 'pl' ? plWords : enWords),
-      paragraph3: highlightHyphenated(hyphenate(text.paragraph3), language === 'pl' ? plWords : enWords),
-      paragraph4: highlightHyphenated(hyphenate(text.paragraph4), language === 'pl' ? plWords : enWords),
+      paragraph1: highlightHyphenated(hyphenate(text.paragraph1), language === 'pl' ? plWords : enCommon),
+      paragraph2: highlightHyphenated(hyphenate(text.paragraph2), language === 'pl' ? plWords : enCommon.concat(enPara2Extra)),
+      paragraph3: highlightHyphenated(hyphenate(text.paragraph3), language === 'pl' ? plWords : enCommon),
+      paragraph4: highlightHyphenated(hyphenate(text.paragraph4), language === 'pl' ? plWords : enCommon),
     }
   }, [language, text.paragraph1, text.paragraph2, text.paragraph3, text.paragraph4])
 
@@ -155,8 +155,16 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
     <div className="flex flex-col gap-4">
       <div className="rounded-xl border border-border bg-card px-5 pt-3.5 pb-5 backdrop-blur-xl" lang={language}>
         <p className="text-[12px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]">
-          {/* Render hyphenated + highlighted HTML for both languages */}
-          <span dangerouslySetInnerHTML={{ __html: hyphenateText.paragraph1 }} />
+          {language === "en" ? (
+            <>
+              {hyphenateEn("Based in ")}
+              <span className="text-white">Wrocław, Poland</span>
+              {hyphenateEn(" — " + text.paragraph1)}
+            </>
+          ) : (
+            // Render hyphenated + highlighted HTML for Polish
+            <span dangerouslySetInnerHTML={{ __html: hyphenateText.paragraph1 }} />
+          )}
         </p>
 
         <Collapsible open={isOpen} onOpenChange={setIsOpen}>
