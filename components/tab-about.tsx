@@ -54,11 +54,100 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
   const hyphenateText = useMemo(() => {
     const hyphenate = language === "pl" ? hyphenatePl : hyphenateEn
 
+    // ...existing code...
+
+    const plWords = [
+      "programistą",
+      "producentem muzycznym",
+      "Wrocławiu",
+      "intuicyjne rozwiązania",
+      "dbałość o detale",
+      "kreatywność",
+      "ciągły progres",
+      "podróże",
+      "nauka",
+      "Wave",
+      "Phonk"
+    ]
+    const enWords = [
+      "Wrocław, Poland",
+      "intuitive experiences",
+      "in­tu­itive ex­pe­ri­ences",
+      "attention to detail",
+      "at­ten­tion to de­tail",
+      "creativity",
+      "self-improvement",
+      "learning",
+      "travelling",
+      "trav­el­ing",
+      "Wave",
+      "Phonk",
+      "Hip-Hop",
+      "electronic music"
+    ]
+
+    // Use lighter gray for highlight
+    // Use much lighter gray for highlight
+    const highlightClass = "text-neutral-300"
+    // Hyphenation inserts soft-hyphen chars (\u00AD) which break simple regex matches.
+    // Approach: hyphenate plain text, build mapping from de-hyphenated indices to hyphenated indices,
+    // find matches in de-hyphenated text, and then wrap corresponding ranges in the hyphenated string.
+    const highlightHyphenated = (hyphText: string, words: string[]) => {
+      const SOFT = '\u00AD'
+      const dehyph = hyphText.split(SOFT).join('')
+
+      // build mapping: posMap[i] = index in hyphText corresponding to dehyph char i
+      const posMap: number[] = new Array(dehyph.length + 1)
+      let deIdx = 0
+      for (let i = 0; i < hyphText.length; i++) {
+        if (hyphText[i] === SOFT) continue
+        if (posMap[deIdx] === undefined) posMap[deIdx] = i
+        deIdx++
+      }
+      posMap[deIdx] = hyphText.length
+
+      const lower = dehyph.toLowerCase()
+      const ranges: Array<[number, number]> = []
+
+      words.forEach(word => {
+        const w = word.split(SOFT).join('').toLowerCase()
+        let idx = 0
+        while (true) {
+          idx = lower.indexOf(w, idx)
+          if (idx === -1) break
+          ranges.push([idx, idx + w.length])
+          idx += w.length
+        }
+      })
+
+      if (ranges.length === 0) return hyphText
+
+      // sort and remove overlaps (keep first occurrence)
+      ranges.sort((a, b) => a[0] - b[0] || a[1] - b[1])
+      const merged: Array<[number, number]> = []
+      for (const r of ranges) {
+        if (merged.length === 0 || r[0] >= merged[merged.length - 1][1]) merged.push(r)
+      }
+
+      // build output using posMap to slice hyphText
+      let out = ''
+      let cursor = 0 // dehyph index
+      for (const [sDe, eDe] of merged) {
+        const sHy = posMap[sDe]
+        const eHy = posMap[eDe]
+        out += hyphText.slice(posMap[cursor], sHy)
+        out += `<span class="${highlightClass}">` + hyphText.slice(sHy, eHy) + '</span>'
+        cursor = eDe
+      }
+      out += hyphText.slice(posMap[cursor])
+      return out
+    }
+
     return {
-      paragraph1: hyphenate(text.paragraph1),
-      paragraph2: hyphenate(text.paragraph2),
-      paragraph3: hyphenate(text.paragraph3),
-      paragraph4: hyphenate(text.paragraph4),
+      paragraph1: highlightHyphenated(hyphenate(text.paragraph1), language === 'pl' ? plWords : enWords),
+      paragraph2: highlightHyphenated(hyphenate(text.paragraph2), language === 'pl' ? plWords : enWords),
+      paragraph3: highlightHyphenated(hyphenate(text.paragraph3), language === 'pl' ? plWords : enWords),
+      paragraph4: highlightHyphenated(hyphenate(text.paragraph4), language === 'pl' ? plWords : enWords),
     }
   }, [language, text.paragraph1, text.paragraph2, text.paragraph3, text.paragraph4])
 
@@ -66,30 +155,21 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
     <div className="flex flex-col gap-4">
       <div className="rounded-xl border border-border bg-card px-5 pt-3.5 pb-5 backdrop-blur-xl" lang={language}>
         <p className="text-[12px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]">
-          {language === "en" ? (
-            <>
-              {hyphenateEn("Based in ")}
-              <span className=" text-white">Wrocław, Poland</span>
-              {hyphenateEn(
-                " — I navigate between code and sound, creating projects that feel personal. I focus on designing intuitive experiences that truly resonate. I believe that great software and great tracks share the same foundation — attention to detail and creativity."
-              )}
-            </>
-          ) : (
-            hyphenateText.paragraph1
-          )}
+          {/* Render hyphenated + highlighted HTML for both languages */}
+          <span dangerouslySetInnerHTML={{ __html: hyphenateText.paragraph1 }} />
         </p>
 
         <Collapsible open={isOpen} onOpenChange={setIsOpen}>
           <CollapsibleContent>
             <div className="mt-3 space-y-3">
               <p className="text-[12px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]">
-                {hyphenateText.paragraph2}
+                <span dangerouslySetInnerHTML={{ __html: hyphenateText.paragraph2 }} />
               </p>
               <p className="text-[12px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]">
-                {hyphenateText.paragraph3}
+                <span dangerouslySetInnerHTML={{ __html: hyphenateText.paragraph3 }} />
               </p>
               <p className="text-[12px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]">
-                {hyphenateText.paragraph4}
+                <span dangerouslySetInnerHTML={{ __html: hyphenateText.paragraph4 }} />
               </p>
             </div>
           </CollapsibleContent>
