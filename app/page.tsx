@@ -182,7 +182,7 @@ export default function Page() {
                 rel="noopener noreferrer"
                 aria-label={text.instagramAria}
               >
-                <BsInstagram className="size-4" />
+                <BsInstagram className="size-3.7" />
                 {text.instagram}
               </a>
             </Button>
