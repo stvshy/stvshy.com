@@ -31,8 +31,8 @@ export function ProfileHeader({ language }: ProfileHeaderProps) {
         <p className="text-xs role-smaller font-medium tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-fuchsia-500 uppercase">
           {roleText} <span className="text-slate-400 dark:text-slate-400 mx-2">x</span> {producerText}
         </p>
-        <div className="flex items-center justify-center mt-[5.5px] text-[10px] text-slate-500 dark:text-slate-400 location-sans">
-            <HiLocationMarker className="mr-2 mb-[1px] text-[7.8px] shrink-0" aria-hidden="true" />
+        <div className="flex items-center justify-center mt-[5.5px] text-[14.4px] text-slate-500 dark:text-slate-400 location-sans">
+          <HiLocationMarker className="mr-2 mb-[1px] text-[7.9px] shrink-0 translate-y-[0.3px]" aria-hidden="true" />
           WROCŁAW, PL
         </div>
       </div>
