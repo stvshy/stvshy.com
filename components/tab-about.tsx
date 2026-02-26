@@ -15,13 +15,13 @@ type TabAboutProps = {
 const aboutText = {
   en: {
     paragraph1:
-      "I navigate between code and sound, creating projects that feel personal. I focus on designing intuitive experiences that truly resonate. I believe that great software and great tracks share the same foundation — attention to detail and creativity.",
+      "I navigate between code and sound, crafting projects with a unique character. I focus on designing intuitive solutions that leave a mark. I believe that great software and great tracks share the same foundation — attention to detail and creativity.",
     paragraph2:
       "I am committed to continuous self-improvement, broadening my horizons by learning and traveling to understand diverse perspectives and cultures. My goal is to visit every country in the world, driven by a restless desire to constantly explore the unknown.",
     paragraph3:
       "Over the last few years, I’ve gravitated towards the atmospheric sounds of Wave and Phonk, drawing major inspiration from them for my own work. However, my playlist knows no boundaries. I also listen to plenty of Hip-Hop and other electronic music, constantly discovering new sounds and refusing to limit myself to just one style.",
     paragraph4:
-      "When I’m not traveling or creating, you can find me cheering for FC Barcelona, watching Polish fighters in the UFC, or expanding my perfume collection.",
+      "After hours, you can find me cheering for FC Barcelona, watching Polish fighters in the UFC, or expanding my perfume collection.",
     collapse: "Collapse bio",
     expand: "Expand bio",
     mapPreviewLabel: "Open countries map preview",
@@ -71,8 +71,8 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
     ]
     // common English words to highlight (avoid Wrocław, Poland and travelling here)
     const enCommon = [
-      "intuitive experiences",
-      "in­tu­itive ex­pe­ri­ences",
+      "intuitive solutions",
+      "in­tu­itive so­lu­ti­ons",
       "attention to detail",
       "at­ten­tion to de­tail",
       "creativity",
@@ -156,11 +156,16 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
       <div className="rounded-xl border border-border bg-card px-5 pt-3.5 pb-5 backdrop-blur-xl" lang={language}>
         <p className="text-[12px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]">
           {language === "en" ? (
-            <>
-              {hyphenateEn("Based in ")}
-              <span className="text-white">Wrocław, Poland</span>
-              {hyphenateEn(" — " + text.paragraph1)}
-            </>
+            // Use hyphenated+highlighted HTML so keywords are highlighted
+            <span
+              dangerouslySetInnerHTML={{
+                __html:
+                  hyphenateEn("Based in ") +
+                  '<span class="text-white">Wrocław, Poland</span>' +
+                  hyphenateEn(" — ") +
+                  hyphenateText.paragraph1,
+              }}
+            />
           ) : (
             // Render hyphenated + highlighted HTML for Polish
             <span dangerouslySetInnerHTML={{ __html: hyphenateText.paragraph1 }} />
