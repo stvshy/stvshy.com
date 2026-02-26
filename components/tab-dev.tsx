@@ -335,7 +335,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
           </div>
           <div className="flex flex-col gap-0.5">
             <span
-              className={`text-[13px] font-semibold ${
+              className={`text-[12px] font-medium ${
                 link.blocked ? "text-foreground/70" : "text-foreground"
               }`}
             >

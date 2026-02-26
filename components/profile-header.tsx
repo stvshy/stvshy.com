@@ -25,7 +25,7 @@ export function ProfileHeader({ language }: ProfileHeaderProps) {
       </div>
 
       <div className="text-center flex flex-col items-center gap-1">
-        <h1 className="text-[22px] font-bold tracking-tight text-slate-900 dark:text-white mb-1">
+        <h1 className="text-[24px] font-medium tracking-tight text-slate-900 dark:text-white mb-1 font-montserrat">
           Mateusz Staszk&oacute;w
         </h1>
         <p className="text-xs font-medium tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-fuchsia-500 uppercase">

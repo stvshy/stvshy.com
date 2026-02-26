@@ -51,8 +51,8 @@ Directory Structure
 .gitignore
 app/globals.css
 app/layout.tsx
+app/manifest.ts
 app/page.tsx
-app/v2/kod do screen.txt
 components.json
 components/logo.tsx
 components/mesh-gradient.tsx
@@ -127,20 +127,237 @@ package.json
 postcss.config.mjs
 public/apple-icon.png
 public/cursors/cursor1.png
+public/cursors/cursor10.png
+public/cursors/cursor11.png
 public/cursors/cursor2.png
 public/cursors/cursor3.png
 public/cursors/cursor4.png
 public/cursors/cursor5.png
 public/cursors/cursor6.cur
+public/cursors/cursor8.png
+public/cursors/cursor9.png
 public/cursors/default.png
 public/cursors/pointer.cur
 public/cursors/pointer.png
+public/fonts/Figtree/Figtree-Italic-VariableFont_wght.ttf
+public/fonts/Figtree/Figtree-VariableFont_wght.ttf
+public/fonts/Figtree/OFL.txt
+public/fonts/Figtree/README.txt
+public/fonts/Figtree/static/Figtree-Black.ttf
+public/fonts/Figtree/static/Figtree-BlackItalic.ttf
+public/fonts/Figtree/static/Figtree-Bold.ttf
+public/fonts/Figtree/static/Figtree-BoldItalic.ttf
+public/fonts/Figtree/static/Figtree-ExtraBold.ttf
+public/fonts/Figtree/static/Figtree-ExtraBoldItalic.ttf
+public/fonts/Figtree/static/Figtree-Italic.ttf
+public/fonts/Figtree/static/Figtree-Light.ttf
+public/fonts/Figtree/static/Figtree-LightItalic.ttf
+public/fonts/Figtree/static/Figtree-Medium.ttf
+public/fonts/Figtree/static/Figtree-MediumItalic.ttf
+public/fonts/Figtree/static/Figtree-Regular.ttf
+public/fonts/Figtree/static/Figtree-SemiBold.ttf
+public/fonts/Figtree/static/Figtree-SemiBoldItalic.ttf
+public/fonts/Google_Sans/GoogleSans-Italic-VariableFont_GRAD,opsz,wght.ttf
+public/fonts/Google_Sans/GoogleSans-VariableFont_GRAD,opsz,wght.ttf
+public/fonts/Google_Sans/OFL.txt
+public/fonts/Google_Sans/README.txt
+public/fonts/Google_Sans/static/GoogleSans_17pt-Bold.ttf
+public/fonts/Google_Sans/static/GoogleSans_17pt-BoldItalic.ttf
+public/fonts/Google_Sans/static/GoogleSans_17pt-Italic.ttf
+public/fonts/Google_Sans/static/GoogleSans_17pt-Medium.ttf
+public/fonts/Google_Sans/static/GoogleSans_17pt-MediumItalic.ttf
+public/fonts/Google_Sans/static/GoogleSans_17pt-Regular.ttf
+public/fonts/Google_Sans/static/GoogleSans_17pt-SemiBold.ttf
+public/fonts/Google_Sans/static/GoogleSans_17pt-SemiBoldItalic.ttf
+public/fonts/Google_Sans/static/GoogleSans-Bold.ttf
+public/fonts/Google_Sans/static/GoogleSans-BoldItalic.ttf
+public/fonts/Google_Sans/static/GoogleSans-Italic.ttf
+public/fonts/Google_Sans/static/GoogleSans-Medium.ttf
+public/fonts/Google_Sans/static/GoogleSans-MediumItalic.ttf
+public/fonts/Google_Sans/static/GoogleSans-Regular.ttf
+public/fonts/Google_Sans/static/GoogleSans-SemiBold.ttf
+public/fonts/Google_Sans/static/GoogleSans-SemiBoldItalic.ttf
+public/fonts/Inter/Inter-Italic-VariableFont_opsz,wght.ttf
+public/fonts/Inter/Inter-VariableFont_opsz,wght.ttf
+public/fonts/Inter/OFL.txt
+public/fonts/Inter/README.txt
+public/fonts/Inter/static/Inter_18pt-Black.ttf
+public/fonts/Inter/static/Inter_18pt-BlackItalic.ttf
+public/fonts/Inter/static/Inter_18pt-Bold.ttf
+public/fonts/Inter/static/Inter_18pt-BoldItalic.ttf
+public/fonts/Inter/static/Inter_18pt-ExtraBold.ttf
+public/fonts/Inter/static/Inter_18pt-ExtraBoldItalic.ttf
+public/fonts/Inter/static/Inter_18pt-ExtraLight.ttf
+public/fonts/Inter/static/Inter_18pt-ExtraLightItalic.ttf
+public/fonts/Inter/static/Inter_18pt-Italic.ttf
+public/fonts/Inter/static/Inter_18pt-Light.ttf
+public/fonts/Inter/static/Inter_18pt-LightItalic.ttf
+public/fonts/Inter/static/Inter_18pt-Medium.ttf
+public/fonts/Inter/static/Inter_18pt-MediumItalic.ttf
+public/fonts/Inter/static/Inter_18pt-Regular.ttf
+public/fonts/Inter/static/Inter_18pt-SemiBold.ttf
+public/fonts/Inter/static/Inter_18pt-SemiBoldItalic.ttf
+public/fonts/Inter/static/Inter_18pt-Thin.ttf
+public/fonts/Inter/static/Inter_18pt-ThinItalic.ttf
+public/fonts/Inter/static/Inter_24pt-Black.ttf
+public/fonts/Inter/static/Inter_24pt-BlackItalic.ttf
+public/fonts/Inter/static/Inter_24pt-Bold.ttf
+public/fonts/Inter/static/Inter_24pt-BoldItalic.ttf
+public/fonts/Inter/static/Inter_24pt-ExtraBold.ttf
+public/fonts/Inter/static/Inter_24pt-ExtraBoldItalic.ttf
+public/fonts/Inter/static/Inter_24pt-ExtraLight.ttf
+public/fonts/Inter/static/Inter_24pt-ExtraLightItalic.ttf
+public/fonts/Inter/static/Inter_24pt-Italic.ttf
+public/fonts/Inter/static/Inter_24pt-Light.ttf
+public/fonts/Inter/static/Inter_24pt-LightItalic.ttf
+public/fonts/Inter/static/Inter_24pt-Medium.ttf
+public/fonts/Inter/static/Inter_24pt-MediumItalic.ttf
+public/fonts/Inter/static/Inter_24pt-Regular.ttf
+public/fonts/Inter/static/Inter_24pt-SemiBold.ttf
+public/fonts/Inter/static/Inter_24pt-SemiBoldItalic.ttf
+public/fonts/Inter/static/Inter_24pt-Thin.ttf
+public/fonts/Inter/static/Inter_24pt-ThinItalic.ttf
+public/fonts/Inter/static/Inter_28pt-Black.ttf
+public/fonts/Inter/static/Inter_28pt-BlackItalic.ttf
+public/fonts/Inter/static/Inter_28pt-Bold.ttf
+public/fonts/Inter/static/Inter_28pt-BoldItalic.ttf
+public/fonts/Inter/static/Inter_28pt-ExtraBold.ttf
+public/fonts/Inter/static/Inter_28pt-ExtraBoldItalic.ttf
+public/fonts/Inter/static/Inter_28pt-ExtraLight.ttf
+public/fonts/Inter/static/Inter_28pt-ExtraLightItalic.ttf
+public/fonts/Inter/static/Inter_28pt-Italic.ttf
+public/fonts/Inter/static/Inter_28pt-Light.ttf
+public/fonts/Inter/static/Inter_28pt-LightItalic.ttf
+public/fonts/Inter/static/Inter_28pt-Medium.ttf
+public/fonts/Inter/static/Inter_28pt-MediumItalic.ttf
+public/fonts/Inter/static/Inter_28pt-Regular.ttf
+public/fonts/Inter/static/Inter_28pt-SemiBold.ttf
+public/fonts/Inter/static/Inter_28pt-SemiBoldItalic.ttf
+public/fonts/Inter/static/Inter_28pt-Thin.ttf
+public/fonts/Inter/static/Inter_28pt-ThinItalic.ttf
+public/fonts/Lato/Lato-Black.ttf
+public/fonts/Lato/Lato-BlackItalic.ttf
+public/fonts/Lato/Lato-Bold.ttf
+public/fonts/Lato/Lato-BoldItalic.ttf
+public/fonts/Lato/Lato-Italic.ttf
+public/fonts/Lato/Lato-Light.ttf
+public/fonts/Lato/Lato-LightItalic.ttf
+public/fonts/Lato/Lato-Regular.ttf
+public/fonts/Lato/Lato-Thin.ttf
+public/fonts/Lato/Lato-ThinItalic.ttf
+public/fonts/Lato/OFL.txt
+public/fonts/Montserrat/Montserrat-Italic-VariableFont_wght.ttf
+public/fonts/Montserrat/Montserrat-VariableFont_wght.ttf
+public/fonts/Montserrat/OFL.txt
+public/fonts/Montserrat/README.txt
+public/fonts/Montserrat/static/Montserrat-Black.ttf
+public/fonts/Montserrat/static/Montserrat-BlackItalic.ttf
+public/fonts/Montserrat/static/Montserrat-Bold.ttf
+public/fonts/Montserrat/static/Montserrat-BoldItalic.ttf
+public/fonts/Montserrat/static/Montserrat-ExtraBold.ttf
+public/fonts/Montserrat/static/Montserrat-ExtraBoldItalic.ttf
+public/fonts/Montserrat/static/Montserrat-ExtraLight.ttf
+public/fonts/Montserrat/static/Montserrat-ExtraLightItalic.ttf
+public/fonts/Montserrat/static/Montserrat-Italic.ttf
+public/fonts/Montserrat/static/Montserrat-Light.ttf
+public/fonts/Montserrat/static/Montserrat-LightItalic.ttf
+public/fonts/Montserrat/static/Montserrat-Medium.ttf
+public/fonts/Montserrat/static/Montserrat-MediumItalic.ttf
+public/fonts/Montserrat/static/Montserrat-Regular.ttf
+public/fonts/Montserrat/static/Montserrat-SemiBold.ttf
+public/fonts/Montserrat/static/Montserrat-SemiBoldItalic.ttf
+public/fonts/Montserrat/static/Montserrat-Thin.ttf
+public/fonts/Montserrat/static/Montserrat-ThinItalic.ttf
+public/fonts/Open_Sans/OFL.txt
+public/fonts/Open_Sans/OpenSans-Italic-VariableFont_wdth,wght.ttf
+public/fonts/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf
+public/fonts/Open_Sans/README.txt
+public/fonts/Open_Sans/static/OpenSans_Condensed-Bold.ttf
+public/fonts/Open_Sans/static/OpenSans_Condensed-BoldItalic.ttf
+public/fonts/Open_Sans/static/OpenSans_Condensed-ExtraBold.ttf
+public/fonts/Open_Sans/static/OpenSans_Condensed-ExtraBoldItalic.ttf
+public/fonts/Open_Sans/static/OpenSans_Condensed-Italic.ttf
+public/fonts/Open_Sans/static/OpenSans_Condensed-Light.ttf
+public/fonts/Open_Sans/static/OpenSans_Condensed-LightItalic.ttf
+public/fonts/Open_Sans/static/OpenSans_Condensed-Medium.ttf
+public/fonts/Open_Sans/static/OpenSans_Condensed-MediumItalic.ttf
+public/fonts/Open_Sans/static/OpenSans_Condensed-Regular.ttf
+public/fonts/Open_Sans/static/OpenSans_Condensed-SemiBold.ttf
+public/fonts/Open_Sans/static/OpenSans_Condensed-SemiBoldItalic.ttf
+public/fonts/Open_Sans/static/OpenSans_SemiCondensed-Bold.ttf
+public/fonts/Open_Sans/static/OpenSans_SemiCondensed-BoldItalic.ttf
+public/fonts/Open_Sans/static/OpenSans_SemiCondensed-ExtraBold.ttf
+public/fonts/Open_Sans/static/OpenSans_SemiCondensed-ExtraBoldItalic.ttf
+public/fonts/Open_Sans/static/OpenSans_SemiCondensed-Italic.ttf
+public/fonts/Open_Sans/static/OpenSans_SemiCondensed-Light.ttf
+public/fonts/Open_Sans/static/OpenSans_SemiCondensed-LightItalic.ttf
+public/fonts/Open_Sans/static/OpenSans_SemiCondensed-Medium.ttf
+public/fonts/Open_Sans/static/OpenSans_SemiCondensed-MediumItalic.ttf
+public/fonts/Open_Sans/static/OpenSans_SemiCondensed-Regular.ttf
+public/fonts/Open_Sans/static/OpenSans_SemiCondensed-SemiBold.ttf
+public/fonts/Open_Sans/static/OpenSans_SemiCondensed-SemiBoldItalic.ttf
+public/fonts/Open_Sans/static/OpenSans-Bold.ttf
+public/fonts/Open_Sans/static/OpenSans-BoldItalic.ttf
+public/fonts/Open_Sans/static/OpenSans-ExtraBold.ttf
+public/fonts/Open_Sans/static/OpenSans-ExtraBoldItalic.ttf
+public/fonts/Open_Sans/static/OpenSans-Italic.ttf
+public/fonts/Open_Sans/static/OpenSans-Light.ttf
+public/fonts/Open_Sans/static/OpenSans-LightItalic.ttf
+public/fonts/Open_Sans/static/OpenSans-Medium.ttf
+public/fonts/Open_Sans/static/OpenSans-MediumItalic.ttf
+public/fonts/Open_Sans/static/OpenSans-Regular.ttf
+public/fonts/Open_Sans/static/OpenSans-SemiBold.ttf
+public/fonts/Open_Sans/static/OpenSans-SemiBoldItalic.ttf
+public/fonts/Poppins/OFL.txt
+public/fonts/Poppins/Poppins-Black.ttf
+public/fonts/Poppins/Poppins-BlackItalic.ttf
+public/fonts/Poppins/Poppins-Bold.ttf
+public/fonts/Poppins/Poppins-BoldItalic.ttf
+public/fonts/Poppins/Poppins-ExtraBold.ttf
+public/fonts/Poppins/Poppins-ExtraBoldItalic.ttf
+public/fonts/Poppins/Poppins-ExtraLight.ttf
+public/fonts/Poppins/Poppins-ExtraLightItalic.ttf
+public/fonts/Poppins/Poppins-Italic.ttf
+public/fonts/Poppins/Poppins-Light.ttf
+public/fonts/Poppins/Poppins-LightItalic.ttf
+public/fonts/Poppins/Poppins-Medium.ttf
+public/fonts/Poppins/Poppins-MediumItalic.ttf
+public/fonts/Poppins/Poppins-Regular.ttf
+public/fonts/Poppins/Poppins-SemiBold.ttf
+public/fonts/Poppins/Poppins-SemiBoldItalic.ttf
+public/fonts/Poppins/Poppins-Thin.ttf
+public/fonts/Poppins/Poppins-ThinItalic.ttf
 public/icon-dark-32x32.png
 public/icon-light-32x32.png
 public/icon.svg
+public/images/about-icon5.png
 public/images/avatar.jpg
+public/images/avatar2.jpg
+public/images/avatar3.jpg
+public/images/avatar4.jpg
+public/images/ccna.png
+public/images/ccna2.jpg
+public/images/cisco.png
+public/images/dev-icon1.png
+public/images/dev-icon2.png
+public/images/dev-icon3-1.png
+public/images/dev-icon3-2.png
+public/images/dev-icon3-3.png
+public/images/dev-icon3-4.png
+public/images/dev-icon3.png
+public/images/english1.png
+public/images/english2.png
+public/images/fantasia.png
+public/images/meta1.png
+public/images/meta2.png
+public/images/music-icon.png
+public/images/music-icon2.png
+public/images/polish1.png
+public/images/polish2.png
 public/images/stvshy-przezroczyste1.png
 public/images/stvshy-przezroczyste2.png
+public/images/stvshy-s2.png
+public/images/tripify-map.jpg
 public/placeholder-logo.png
 public/placeholder-logo.svg
 public/placeholder-user.jpg
@@ -154,482 +371,1186 @@ Files
 ================================================================
 
 ================
-File: .gitignore
+File: public/fonts/Figtree/OFL.txt
 ================
-# v0 runtime files (should only exist in preview, not in git)
-__v0_runtime_loader.js
-__v0_devtools.tsx
-__v0_jsx-dev-runtime.ts
+Copyright 2022 The Figtree Project Authors (https://github.com/erikdkennedy/figtree)
 
-# Common ignores
-node_modules/
-.next/
-.env*.local
-.DS_Store
-.vercel
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+https://openfontlicense.org
 
-repomix-output.txt
 
-================
-File: app/globals.css
-================
-@import 'tailwindcss';
-@import 'tw-animate-css';
-@custom-variant dark (&:is(.dark *));
-:root {
-  --background: #0a0a0a;
-  --foreground: #f0f0f0;
-  --card: rgba(255, 255, 255, 0.04);
-  --card-foreground: #f0f0f0;
-  --popover: #111111;
-  --popover-foreground: #f0f0f0;
-  --primary: #00f2ea;
-  --primary-foreground: #0a0a0a;
-  --secondary: #ff0050;
-  --secondary-foreground: #ffffff;
-  --muted: #1a1a1a;
-  --muted-foreground: #888888;
-  --accent: #ff0050;
-  --accent-foreground: #ffffff;
-  --destructive: #ff0050;
-  --destructive-foreground: #ffffff;
-  --border: rgba(255, 255, 255, 0.08);
-  --input: rgba(255, 255, 255, 0.08);
-  --ring: #00f2ea;
-  --chart-1: #00f2ea;
-  --chart-2: #ff0050;
-  --chart-3: #1a1a1a;
-  --chart-4: #00f2ea;
-  --chart-5: #ff0050;
-  --radius: 0.75rem;
-  --sidebar: #0f0f0f;
-  --sidebar-foreground: #f0f0f0;
-  --sidebar-primary: #00f2ea;
-  --sidebar-primary-foreground: #0a0a0a;
-  --sidebar-accent: #1a1a1a;
-  --sidebar-accent-foreground: #f0f0f0;
-  --sidebar-border: rgba(255, 255, 255, 0.08);
-  --sidebar-ring: #00f2ea;
-  --neon-cyan: #00f2ea;
-  --neon-magenta: #ff0050;
-}
-@theme inline {
-  --font-sans: 'Inter', 'Inter Fallback';
-  --font-mono: 'JetBrains Mono', 'JetBrains Mono Fallback';
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-neon-cyan: var(--neon-cyan);
-  --color-neon-magenta: var(--neon-magenta);
-}
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-    cursor: url('/cursors/cursor6.png') 0 0, auto;
-  }
-  a, button, [role="button"] {
-    cursor: url('/cursors/pointer.png'), pointer;
-  }
-}
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded, 
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
 
 ================
-File: app/layout.tsx
+File: public/fonts/Figtree/README.txt
 ================
-import type { Metadata, Viewport } from 'next'
-import { Inter, JetBrains_Mono } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
-import './globals.css'
-const inter = Inter({
-  subsets: ['latin', 'latin-ext'],
-  variable: '--font-inter',
-})
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-jetbrains-mono',
-})
-export const metadata: Metadata = {
-  title: 'stvshy | Developer x Producer',
-  description: 'Link in bio for stvshy - Mateusz Staszków. Developer and music producer based in Wrocław, PL.',
-  generator: 'v0.app',
-  icons: {
-    icon: [
+Figtree Variable Font
+=====================
+
+This download contains Figtree as both variable fonts and static fonts.
+
+Figtree is a variable font with this axis:
+  wght
+
+This means all the styles are contained in these files:
+  Figtree/Figtree-VariableFont_wght.ttf
+  Figtree/Figtree-Italic-VariableFont_wght.ttf
+
+If your app fully supports variable fonts, you can now pick intermediate styles
+that aren’t available as static fonts. Not all apps support variable fonts, and
+in those cases you can use the static font files for Figtree:
+  Figtree/static/Figtree-Light.ttf
+  Figtree/static/Figtree-Regular.ttf
+  Figtree/static/Figtree-Medium.ttf
+  Figtree/static/Figtree-SemiBold.ttf
+  Figtree/static/Figtree-Bold.ttf
+  Figtree/static/Figtree-ExtraBold.ttf
+  Figtree/static/Figtree-Black.ttf
+  Figtree/static/Figtree-LightItalic.ttf
+  Figtree/static/Figtree-Italic.ttf
+  Figtree/static/Figtree-MediumItalic.ttf
+  Figtree/static/Figtree-SemiBoldItalic.ttf
+  Figtree/static/Figtree-BoldItalic.ttf
+  Figtree/static/Figtree-ExtraBoldItalic.ttf
+  Figtree/static/Figtree-BlackItalic.ttf
+
+Get started
+-----------
+
+1. Install the font files you want to use
+
+2. Use your app's font picker to view the font family and all the
+available styles
+
+Learn more about variable fonts
+-------------------------------
+
+  https://developers.google.com/web/fundamentals/design-and-ux/typography/variable-fonts
+  https://variablefonts.typenetwork.com
+  https://medium.com/variable-fonts
+
+In desktop apps
+
+  https://theblog.adobe.com/can-variable-fonts-illustrator-cc
+  https://helpx.adobe.com/nz/photoshop/using/fonts.html#variable_fonts
+
+Online
+
+  https://developers.google.com/fonts/docs/getting_started
+  https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide
+  https://developer.microsoft.com/en-us/microsoft-edge/testdrive/demos/variable-fonts
+
+Installing fonts
+
+  MacOS: https://support.apple.com/en-us/HT201749
+  Linux: https://www.google.com/search?q=how+to+install+a+font+on+gnu%2Blinux
+  Windows: https://support.microsoft.com/en-us/help/314960/how-to-install-or-remove-a-font-in-windows
+
+Android Apps
+
+  https://developers.google.com/fonts/docs/android
+  https://developer.android.com/guide/topics/ui/look-and-feel/downloadable-fonts
+
+License
+-------
+Please read the full license text (OFL.txt) to understand the permissions,
+restrictions and requirements for usage, redistribution, and modification.
+
+You can use them in your products & projects – print or digital,
+commercial or otherwise.
+
+This isn't legal advice, please consider consulting a lawyer and see the full
+license for all details.
+
+================
+File: public/fonts/Google_Sans/OFL.txt
+================
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+https://openfontlicense.org
+
+
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded, 
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+
+================
+File: public/fonts/Google_Sans/README.txt
+================
+Google Sans Variable Font
+=========================
+
+This download contains Google Sans as both variable fonts and static fonts.
+
+Google Sans is a variable font with these axes:
+  GRAD
+  opsz
+  wght
+
+This means all the styles are contained in these files:
+  Google_Sans/GoogleSans-VariableFont_GRAD,opsz,wght.ttf
+  Google_Sans/GoogleSans-Italic-VariableFont_GRAD,opsz,wght.ttf
+
+If your app fully supports variable fonts, you can now pick intermediate styles
+that aren’t available as static fonts. Not all apps support variable fonts, and
+in those cases you can use the static font files for Google Sans:
+  Google_Sans/static/GoogleSans_17pt-Regular.ttf
+  Google_Sans/static/GoogleSans_17pt-Medium.ttf
+  Google_Sans/static/GoogleSans_17pt-SemiBold.ttf
+  Google_Sans/static/GoogleSans_17pt-Bold.ttf
+  Google_Sans/static/GoogleSans-Regular.ttf
+  Google_Sans/static/GoogleSans-Medium.ttf
+  Google_Sans/static/GoogleSans-SemiBold.ttf
+  Google_Sans/static/GoogleSans-Bold.ttf
+  Google_Sans/static/GoogleSans_17pt-Italic.ttf
+  Google_Sans/static/GoogleSans_17pt-MediumItalic.ttf
+  Google_Sans/static/GoogleSans_17pt-SemiBoldItalic.ttf
+  Google_Sans/static/GoogleSans_17pt-BoldItalic.ttf
+  Google_Sans/static/GoogleSans-Italic.ttf
+  Google_Sans/static/GoogleSans-MediumItalic.ttf
+  Google_Sans/static/GoogleSans-SemiBoldItalic.ttf
+  Google_Sans/static/GoogleSans-BoldItalic.ttf
+
+Get started
+-----------
+
+1. Install the font files you want to use
+
+2. Use your app's font picker to view the font family and all the
+available styles
+
+Learn more about variable fonts
+-------------------------------
+
+  https://developers.google.com/web/fundamentals/design-and-ux/typography/variable-fonts
+  https://variablefonts.typenetwork.com
+  https://medium.com/variable-fonts
+
+In desktop apps
+
+  https://theblog.adobe.com/can-variable-fonts-illustrator-cc
+  https://helpx.adobe.com/nz/photoshop/using/fonts.html#variable_fonts
+
+Online
+
+  https://developers.google.com/fonts/docs/getting_started
+  https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide
+  https://developer.microsoft.com/en-us/microsoft-edge/testdrive/demos/variable-fonts
+
+Installing fonts
+
+  MacOS: https://support.apple.com/en-us/HT201749
+  Linux: https://www.google.com/search?q=how+to+install+a+font+on+gnu%2Blinux
+  Windows: https://support.microsoft.com/en-us/help/314960/how-to-install-or-remove-a-font-in-windows
+
+Android Apps
+
+  https://developers.google.com/fonts/docs/android
+  https://developer.android.com/guide/topics/ui/look-and-feel/downloadable-fonts
+
+License
+-------
+Please read the full license text (OFL.txt) to understand the permissions,
+restrictions and requirements for usage, redistribution, and modification.
+
+You can use them in your products & projects – print or digital,
+commercial or otherwise.
+
+This isn't legal advice, please consider consulting a lawyer and see the full
+license for all details.
+
+================
+File: public/fonts/Inter/OFL.txt
+================
+Copyright 2020 The Inter Project Authors (https://github.com/rsms/inter)
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+https://openfontlicense.org
+
+
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded, 
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+
+================
+File: public/fonts/Inter/README.txt
+================
+Inter Variable Font
+===================
+
+This download contains Inter as both variable fonts and static fonts.
+
+Inter is a variable font with these axes:
+  opsz
+  wght
+
+This means all the styles are contained in these files:
+  Inter/Inter-VariableFont_opsz,wght.ttf
+  Inter/Inter-Italic-VariableFont_opsz,wght.ttf
+
+If your app fully supports variable fonts, you can now pick intermediate styles
+that aren’t available as static fonts. Not all apps support variable fonts, and
+in those cases you can use the static font files for Inter:
+  Inter/static/Inter_18pt-Thin.ttf
+  Inter/static/Inter_18pt-ExtraLight.ttf
+  Inter/static/Inter_18pt-Light.ttf
+  Inter/static/Inter_18pt-Regular.ttf
+  Inter/static/Inter_18pt-Medium.ttf
+  Inter/static/Inter_18pt-SemiBold.ttf
+  Inter/static/Inter_18pt-Bold.ttf
+  Inter/static/Inter_18pt-ExtraBold.ttf
+  Inter/static/Inter_18pt-Black.ttf
+  Inter/static/Inter_24pt-Thin.ttf
+  Inter/static/Inter_24pt-ExtraLight.ttf
+  Inter/static/Inter_24pt-Light.ttf
+  Inter/static/Inter_24pt-Regular.ttf
+  Inter/static/Inter_24pt-Medium.ttf
+  Inter/static/Inter_24pt-SemiBold.ttf
+  Inter/static/Inter_24pt-Bold.ttf
+  Inter/static/Inter_24pt-ExtraBold.ttf
+  Inter/static/Inter_24pt-Black.ttf
+  Inter/static/Inter_28pt-Thin.ttf
+  Inter/static/Inter_28pt-ExtraLight.ttf
+  Inter/static/Inter_28pt-Light.ttf
+  Inter/static/Inter_28pt-Regular.ttf
+  Inter/static/Inter_28pt-Medium.ttf
+  Inter/static/Inter_28pt-SemiBold.ttf
+  Inter/static/Inter_28pt-Bold.ttf
+  Inter/static/Inter_28pt-ExtraBold.ttf
+  Inter/static/Inter_28pt-Black.ttf
+  Inter/static/Inter_18pt-ThinItalic.ttf
+  Inter/static/Inter_18pt-ExtraLightItalic.ttf
+  Inter/static/Inter_18pt-LightItalic.ttf
+  Inter/static/Inter_18pt-Italic.ttf
+  Inter/static/Inter_18pt-MediumItalic.ttf
+  Inter/static/Inter_18pt-SemiBoldItalic.ttf
+  Inter/static/Inter_18pt-BoldItalic.ttf
+  Inter/static/Inter_18pt-ExtraBoldItalic.ttf
+  Inter/static/Inter_18pt-BlackItalic.ttf
+  Inter/static/Inter_24pt-ThinItalic.ttf
+  Inter/static/Inter_24pt-ExtraLightItalic.ttf
+  Inter/static/Inter_24pt-LightItalic.ttf
+  Inter/static/Inter_24pt-Italic.ttf
+  Inter/static/Inter_24pt-MediumItalic.ttf
+  Inter/static/Inter_24pt-SemiBoldItalic.ttf
+  Inter/static/Inter_24pt-BoldItalic.ttf
+  Inter/static/Inter_24pt-ExtraBoldItalic.ttf
+  Inter/static/Inter_24pt-BlackItalic.ttf
+  Inter/static/Inter_28pt-ThinItalic.ttf
+  Inter/static/Inter_28pt-ExtraLightItalic.ttf
+  Inter/static/Inter_28pt-LightItalic.ttf
+  Inter/static/Inter_28pt-Italic.ttf
+  Inter/static/Inter_28pt-MediumItalic.ttf
+  Inter/static/Inter_28pt-SemiBoldItalic.ttf
+  Inter/static/Inter_28pt-BoldItalic.ttf
+  Inter/static/Inter_28pt-ExtraBoldItalic.ttf
+  Inter/static/Inter_28pt-BlackItalic.ttf
+
+Get started
+-----------
+
+1. Install the font files you want to use
+
+2. Use your app's font picker to view the font family and all the
+available styles
+
+Learn more about variable fonts
+-------------------------------
+
+  https://developers.google.com/web/fundamentals/design-and-ux/typography/variable-fonts
+  https://variablefonts.typenetwork.com
+  https://medium.com/variable-fonts
+
+In desktop apps
+
+  https://theblog.adobe.com/can-variable-fonts-illustrator-cc
+  https://helpx.adobe.com/nz/photoshop/using/fonts.html#variable_fonts
+
+Online
+
+  https://developers.google.com/fonts/docs/getting_started
+  https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide
+  https://developer.microsoft.com/en-us/microsoft-edge/testdrive/demos/variable-fonts
+
+Installing fonts
+
+  MacOS: https://support.apple.com/en-us/HT201749
+  Linux: https://www.google.com/search?q=how+to+install+a+font+on+gnu%2Blinux
+  Windows: https://support.microsoft.com/en-us/help/314960/how-to-install-or-remove-a-font-in-windows
+
+Android Apps
+
+  https://developers.google.com/fonts/docs/android
+  https://developer.android.com/guide/topics/ui/look-and-feel/downloadable-fonts
+
+License
+-------
+Please read the full license text (OFL.txt) to understand the permissions,
+restrictions and requirements for usage, redistribution, and modification.
+
+You can use them in your products & projects – print or digital,
+commercial or otherwise.
+
+This isn't legal advice, please consider consulting a lawyer and see the full
+license for all details.
+
+================
+File: public/fonts/Lato/OFL.txt
+================
+Copyright (c) 2010-2014 by tyPoland Lukasz Dziedzic (team@latofonts.com) with Reserved Font Name "Lato"
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+https://openfontlicense.org
+
+
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded, 
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+
+================
+File: public/fonts/Montserrat/OFL.txt
+================
+Copyright 2024 The Montserrat.Git Project Authors (https://github.com/JulietaUla/Montserrat.git)
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+https://openfontlicense.org
+
+
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded, 
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+
+================
+File: public/fonts/Montserrat/README.txt
+================
+Montserrat Variable Font
+========================
+
+This download contains Montserrat as both variable fonts and static fonts.
+
+Montserrat is a variable font with this axis:
+  wght
+
+This means all the styles are contained in these files:
+  Montserrat/Montserrat-VariableFont_wght.ttf
+  Montserrat/Montserrat-Italic-VariableFont_wght.ttf
+
+If your app fully supports variable fonts, you can now pick intermediate styles
+that aren’t available as static fonts. Not all apps support variable fonts, and
+in those cases you can use the static font files for Montserrat:
+  Montserrat/static/Montserrat-Thin.ttf
+  Montserrat/static/Montserrat-ExtraLight.ttf
+  Montserrat/static/Montserrat-Light.ttf
+  Montserrat/static/Montserrat-Regular.ttf
+  Montserrat/static/Montserrat-Medium.ttf
+  Montserrat/static/Montserrat-SemiBold.ttf
+  Montserrat/static/Montserrat-Bold.ttf
+  Montserrat/static/Montserrat-ExtraBold.ttf
+  Montserrat/static/Montserrat-Black.ttf
+  Montserrat/static/Montserrat-ThinItalic.ttf
+  Montserrat/static/Montserrat-ExtraLightItalic.ttf
+  Montserrat/static/Montserrat-LightItalic.ttf
+  Montserrat/static/Montserrat-Italic.ttf
+  Montserrat/static/Montserrat-MediumItalic.ttf
+  Montserrat/static/Montserrat-SemiBoldItalic.ttf
+  Montserrat/static/Montserrat-BoldItalic.ttf
+  Montserrat/static/Montserrat-ExtraBoldItalic.ttf
+  Montserrat/static/Montserrat-BlackItalic.ttf
+
+Get started
+-----------
+
+1. Install the font files you want to use
+
+2. Use your app's font picker to view the font family and all the
+available styles
+
+Learn more about variable fonts
+-------------------------------
+
+  https://developers.google.com/web/fundamentals/design-and-ux/typography/variable-fonts
+  https://variablefonts.typenetwork.com
+  https://medium.com/variable-fonts
+
+In desktop apps
+
+  https://theblog.adobe.com/can-variable-fonts-illustrator-cc
+  https://helpx.adobe.com/nz/photoshop/using/fonts.html#variable_fonts
+
+Online
+
+  https://developers.google.com/fonts/docs/getting_started
+  https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide
+  https://developer.microsoft.com/en-us/microsoft-edge/testdrive/demos/variable-fonts
+
+Installing fonts
+
+  MacOS: https://support.apple.com/en-us/HT201749
+  Linux: https://www.google.com/search?q=how+to+install+a+font+on+gnu%2Blinux
+  Windows: https://support.microsoft.com/en-us/help/314960/how-to-install-or-remove-a-font-in-windows
+
+Android Apps
+
+  https://developers.google.com/fonts/docs/android
+  https://developer.android.com/guide/topics/ui/look-and-feel/downloadable-fonts
+
+License
+-------
+Please read the full license text (OFL.txt) to understand the permissions,
+restrictions and requirements for usage, redistribution, and modification.
+
+You can use them in your products & projects – print or digital,
+commercial or otherwise.
+
+This isn't legal advice, please consider consulting a lawyer and see the full
+license for all details.
+
+================
+File: public/fonts/Open_Sans/OFL.txt
+================
+Copyright 2020 The Open Sans Project Authors (https://github.com/googlefonts/opensans)
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+https://openfontlicense.org
+
+
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded, 
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+
+================
+File: public/fonts/Open_Sans/README.txt
+================
+Open Sans Variable Font
+=======================
+
+This download contains Open Sans as both variable fonts and static fonts.
+
+Open Sans is a variable font with these axes:
+  wdth
+  wght
+
+This means all the styles are contained in these files:
+  OpenSans-VariableFont_wdth,wght.ttf
+  OpenSans-Italic-VariableFont_wdth,wght.ttf
+
+If your app fully supports variable fonts, you can now pick intermediate styles
+that aren’t available as static fonts. Not all apps support variable fonts, and
+in those cases you can use the static font files for Open Sans:
+  static/OpenSans_Condensed-Light.ttf
+  static/OpenSans_Condensed-Regular.ttf
+  static/OpenSans_Condensed-Medium.ttf
+  static/OpenSans_Condensed-SemiBold.ttf
+  static/OpenSans_Condensed-Bold.ttf
+  static/OpenSans_Condensed-ExtraBold.ttf
+  static/OpenSans_SemiCondensed-Light.ttf
+  static/OpenSans_SemiCondensed-Regular.ttf
+  static/OpenSans_SemiCondensed-Medium.ttf
+  static/OpenSans_SemiCondensed-SemiBold.ttf
+  static/OpenSans_SemiCondensed-Bold.ttf
+  static/OpenSans_SemiCondensed-ExtraBold.ttf
+  static/OpenSans-Light.ttf
+  static/OpenSans-Regular.ttf
+  static/OpenSans-Medium.ttf
+  static/OpenSans-SemiBold.ttf
+  static/OpenSans-Bold.ttf
+  static/OpenSans-ExtraBold.ttf
+  static/OpenSans_Condensed-LightItalic.ttf
+  static/OpenSans_Condensed-Italic.ttf
+  static/OpenSans_Condensed-MediumItalic.ttf
+  static/OpenSans_Condensed-SemiBoldItalic.ttf
+  static/OpenSans_Condensed-BoldItalic.ttf
+  static/OpenSans_Condensed-ExtraBoldItalic.ttf
+  static/OpenSans_SemiCondensed-LightItalic.ttf
+  static/OpenSans_SemiCondensed-Italic.ttf
+  static/OpenSans_SemiCondensed-MediumItalic.ttf
+  static/OpenSans_SemiCondensed-SemiBoldItalic.ttf
+  static/OpenSans_SemiCondensed-BoldItalic.ttf
+  static/OpenSans_SemiCondensed-ExtraBoldItalic.ttf
+  static/OpenSans-LightItalic.ttf
+  static/OpenSans-Italic.ttf
+  static/OpenSans-MediumItalic.ttf
+  static/OpenSans-SemiBoldItalic.ttf
+  static/OpenSans-BoldItalic.ttf
+  static/OpenSans-ExtraBoldItalic.ttf
+
+Get started
+-----------
+
+1. Install the font files you want to use
+
+2. Use your app's font picker to view the font family and all the
+available styles
+
+Learn more about variable fonts
+-------------------------------
+
+  https://developers.google.com/web/fundamentals/design-and-ux/typography/variable-fonts
+  https://variablefonts.typenetwork.com
+  https://medium.com/variable-fonts
+
+In desktop apps
+
+  https://theblog.adobe.com/can-variable-fonts-illustrator-cc
+  https://helpx.adobe.com/nz/photoshop/using/fonts.html#variable_fonts
+
+Online
+
+  https://developers.google.com/fonts/docs/getting_started
+  https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide
+  https://developer.microsoft.com/en-us/microsoft-edge/testdrive/demos/variable-fonts
+
+Installing fonts
+
+  MacOS: https://support.apple.com/en-us/HT201749
+  Linux: https://www.google.com/search?q=how+to+install+a+font+on+gnu%2Blinux
+  Windows: https://support.microsoft.com/en-us/help/314960/how-to-install-or-remove-a-font-in-windows
+
+Android Apps
+
+  https://developers.google.com/fonts/docs/android
+  https://developer.android.com/guide/topics/ui/look-and-feel/downloadable-fonts
+
+License
+-------
+Please read the full license text (OFL.txt) to understand the permissions,
+restrictions and requirements for usage, redistribution, and modification.
+
+You can use them in your products & projects – print or digital,
+commercial or otherwise.
+
+This isn't legal advice, please consider consulting a lawyer and see the full
+license for all details.
+
+================
+File: public/fonts/Poppins/OFL.txt
+================
+Copyright 2020 The Poppins Project Authors (https://github.com/itfoundry/Poppins)
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+https://openfontlicense.org
+
+
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded, 
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+
+================
+File: app/manifest.ts
+================
+import type { MetadataRoute } from 'next'
+export default function manifest(): MetadataRoute.Manifest {
+  return {
+    name: 'stvshy',
+    short_name: 'stvshy',
+    description: 'Mateusz Staszków - Developer & Producer. Discover my music, projects, and more.',
+    start_url: '/',
+    display: 'standalone',
+    background_color: '#0a0a0a',
+    theme_color: '#0a0a0a',
+    icons: [
       {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
+        src: '/images/stvshy-s2.png',
+        sizes: '192x192',
+        type: 'image/png',
       },
       {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
+        src: '/images/stvshy-s2.png',
+        sizes: '512x512',
+        type: 'image/png',
       },
     ],
-    apple: '/apple-icon.png',
-  },
+  }
 }
-export const viewport: Viewport = {
-  themeColor: '#0a0a0a',
-  userScalable: false,
-}
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
-  return (
-    <html lang="en" className="dark">
-      <head>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-      </head>
-      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
-        {children}
-        <Analytics />
-      </body>
-    </html>
-  )
-}
-
-================
-File: app/page.tsx
-================
-"use client"
-import { Mail } from "lucide-react"
-import { MeshGradient } from "@/components/mesh-gradient"
-import { ProfileHeader } from "@/components/profile-header"
-import { TabMusic } from "@/components/tab-music"
-import { TabDev } from "@/components/tab-dev"
-import { TabAbout } from "@/components/tab-about"
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
-import { Button } from "@/components/ui/button"
-export default function Page() {
-  return (
-    <main className="relative flex min-h-svh flex-col items-center bg-background">
-      <MeshGradient />
-      <div className="relative z-10 flex w-full max-w-md flex-col gap-8 px-5 py-12 pb-8">
-        <ProfileHeader />
-        {}
-        <Tabs defaultValue="music" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 bg-muted/50 backdrop-blur-xl border border-border">
-            <TabsTrigger
-              value="music"
-              className="text-xs font-medium data-[state=active]:bg-neon-cyan/10 data-[state=active]:text-neon-cyan data-[state=active]:shadow-none"
-            >
-              <span aria-hidden="true" className="mr-1.5">{"🎵"}</span>
-              Music
-            </TabsTrigger>
-            <TabsTrigger
-              value="dev"
-              className="text-xs font-medium data-[state=active]:bg-neon-magenta/10 data-[state=active]:text-neon-magenta data-[state=active]:shadow-none"
-            >
-              <span aria-hidden="true" className="mr-1.5">{"💻"}</span>
-              Dev
-            </TabsTrigger>
-            <TabsTrigger
-              value="about"
-              className="text-xs font-medium data-[state=active]:bg-foreground/10 data-[state=active]:text-foreground data-[state=active]:shadow-none"
-            >
-              <span aria-hidden="true" className="mr-1.5">{"👤"}</span>
-              About
-            </TabsTrigger>
-          </TabsList>
-          <TabsContent value="music" className="mt-4">
-            <TabMusic />
-          </TabsContent>
-          <TabsContent value="dev" className="mt-4">
-            <TabDev />
-          </TabsContent>
-          <TabsContent value="about" className="mt-4">
-            <TabAbout />
-          </TabsContent>
-        </Tabs>
-        {}
-        <Button
-          asChild
-          className="w-full rounded-xl border border-border bg-card text-foreground backdrop-blur-xl transition-all duration-300 hover:border-neon-cyan/30 hover:bg-neon-cyan/10 hover:text-neon-cyan hover:shadow-[0_0_20px_rgba(0,242,234,0.1)]"
-          size="lg"
-        >
-          <a href="mailto:hello@stvshy.com">
-            <Mail className="size-4" />
-            Contact Me
-          </a>
-        </Button>
-        {}
-        <footer className="text-center">
-          <p className="text-xs text-muted-foreground/50">
-            {"© 2026 stvshy. All rights reserved."}
-          </p>
-        </footer>
-      </div>
-    </main>
-  )
-}
-
-================
-File: app/v2/kod do screen.txt
-================
-<!DOCTYPE html>
-<html lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>stvshy | Mateusz Staszków</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-<script>
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              primary: "#06b6d4", // Cyan-500
-              secondary: "#d946ef", // Fuchsia-500
-              "background-light": "#f8fafc",
-              "background-dark": "#0a0a0a",
-              "surface-light": "#ffffff",
-              "surface-dark": "#171717",
-            },
-            fontFamily: {
-              display: ["Space Grotesk", "sans-serif"],
-              sans: ["Inter", "sans-serif"],
-            },
-            borderRadius: {
-              DEFAULT: "0.75rem",
-              'xl': "1rem",
-              '2xl': "1.5rem",
-            },
-            animation: {
-              'blob': 'blob 10s infinite',
-              'fade-in': 'fadeIn 0.8s ease-out forwards',
-              'slide-up': 'slideUp 0.6s ease-out forwards',
-            },
-            keyframes: {
-              blob: {
-                '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-                '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-                '100%': { transform: 'translate(0px, 0px) scale(1)' },
-              },
-              fadeIn: {
-                '0%': { opacity: '0' },
-                '100%': { opacity: '1' },
-              },
-              slideUp: {
-                '0%': { opacity: '0', transform: 'translateY(20px)' },
-                '100%': { opacity: '1', transform: 'translateY(0)' },
-              }
-            }
-          },
-        },
-      };
-    </script>
-<style>
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-        }
-        .dark .glass-panel {
-            background: rgba(23, 23, 23, 0.4); 
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .glow-avatar {
-            box-shadow: 0 0 40px -10px rgba(6, 182, 212, 0.5), 0 0 40px -10px rgba(217, 70, 239, 0.5);
-        }
-        .scratchy-logo {
-            mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg"><path d="M10 30 Q 50 10 90 30 T 170 30" stroke="black" stroke-width="5" fill="none"/></svg>');
-        }
-    </style>
-</head>
-<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200 font-sans antialiased min-h-screen relative overflow-hidden transition-colors duration-300">
-<div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
-<div class="absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full mix-blend-multiply filter blur-[128px] opacity-70 animate-blob"></div>
-<div class="absolute top-0 right-1/4 w-96 h-96 bg-secondary/20 rounded-full mix-blend-multiply filter blur-[128px] opacity-70 animate-blob animation-delay-2000"></div>
-<div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-indigo-500/20 rounded-full mix-blend-multiply filter blur-[128px] opacity-70 animate-blob animation-delay-4000"></div>
-</div>
-<div class="absolute top-6 right-6 z-50">
-<button class="p-2 rounded-full glass-panel hover:bg-white/50 dark:hover:bg-white/10 transition-colors shadow-lg group" id="theme-toggle">
-<span class="material-icons text-slate-600 dark:text-slate-300 group-hover:text-primary transition-colors">light_mode</span>
-</button>
-</div>
-<main class="relative z-10 flex flex-col items-center justify-center min-h-screen w-full px-4 py-12 sm:px-6 lg:px-8">
-<div class="w-full max-w-md glass-panel rounded-2xl shadow-2xl overflow-hidden animate-fade-in flex flex-col items-center p-8 sm:p-10 border-t border-white/20 dark:border-white/5">
-<div class="mb-8 w-full flex justify-center opacity-80 hover:opacity-100 transition-opacity">
-<svg class="text-slate-900 dark:text-white" fill="none" height="40" viewBox="0 0 120 40" width="120" xmlns="http://www.w3.org/2000/svg">
-<path d="M10 25 C 10 25, 15 10, 25 15 C 35 20, 25 35, 35 30 C 45 25, 40 10, 50 15" stroke="currentColor" stroke-linecap="round" stroke-width="2.5"></path>
-<text fill="currentColor" font-family="Space Grotesk" font-size="24" font-weight="bold" letter-spacing="-1" x="60" y="28">stvshy</text>
-</svg>
-</div>
-<div class="relative mb-6 group animate-slide-up" style="animation-delay: 0.1s;">
-<div class="absolute inset-0 rounded-full bg-gradient-to-tr from-primary to-secondary blur-md opacity-75 group-hover:opacity-100 transition-opacity duration-500"></div>
-<div class="relative w-[120px] h-[120px] rounded-full p-[2px] bg-gradient-to-tr from-primary via-purple-500 to-secondary glow-avatar">
-<img alt="Mateusz Staszków Portrait" class="w-full h-full object-cover rounded-full border-4 border-white dark:border-[#171717]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCirIx190mJaFjfF_YrYRbE-3sBeeskZ55HGZZfq_y1uU4OXJ84K1XJTHRSLDYv_2c45D6Ot71kN6WpqTK5_t1bGEWLjIQ2s7xA0y_VL_F39kb0IjKwz6x1sSIxpDtBRjpRLtsQ-HDdyQJgs-EiBo5OQpFziWRxnyV3G3jOMVX4GeDZAOjQCTn3naqJpDEbH0ZgvA7jS1G2FrEPCtna2PeBI2pQxwqQ2Iy4StsQQd4daWesQMNekUqJf94IqXeodvbxkbjRamPGW9o"/>
-</div>
-</div>
-<div class="text-center mb-8 animate-slide-up" style="animation-delay: 0.2s;">
-<h1 class="font-display text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-2">
-                    Mateusz Staszków
-                </h1>
-<p class="font-sans text-sm font-medium tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary uppercase">
-                    Developer <span class="text-slate-400 mx-2">x</span> Producer
-                </p>
-<div class="flex items-center justify-center mt-2 text-xs text-slate-500 dark:text-slate-400 font-mono">
-<span class="material-icons text-[14px] mr-1">location_on</span>
-                    Wrocław, PL
-                </div>
-</div>
-<div class="w-full mb-8 animate-slide-up" style="animation-delay: 0.3s;">
-<div class="grid grid-cols-3 p-1 bg-slate-200/50 dark:bg-black/40 rounded-xl backdrop-blur-sm">
-<button class="py-2 text-sm font-medium rounded-lg bg-white dark:bg-white/10 text-slate-900 dark:text-white shadow-sm transition-all duration-200">
-                        Music
-                    </button>
-<button class="py-2 text-sm font-medium rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/50 dark:hover:bg-white/5 transition-all duration-200">
-                        Dev
-                    </button>
-<button class="py-2 text-sm font-medium rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/50 dark:hover:bg-white/5 transition-all duration-200">
-                        About
-                    </button>
-</div>
-</div>
-<div class="w-full space-y-3 mb-8 animate-slide-up" style="animation-delay: 0.4s;">
-<a class="group flex items-center justify-between p-4 rounded-xl bg-white/40 dark:bg-white/5 border border-white/40 dark:border-white/5 hover:border-primary/50 hover:bg-white/60 dark:hover:bg-white/10 transition-all duration-300" href="#">
-<div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-lg bg-slate-900/5 dark:bg-white/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
-<span class="material-icons text-xl">library_music</span>
-</div>
-<div class="flex flex-col">
-<span class="text-sm font-semibold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Latest Release</span>
-<span class="text-xs text-slate-500 dark:text-slate-400">Spotify • Apple Music</span>
-</div>
-</div>
-<span class="material-icons text-slate-400 dark:text-slate-600 group-hover:text-primary group-hover:translate-x-1 transition-all">arrow_forward</span>
-</a>
-<a class="group flex items-center justify-between p-4 rounded-xl bg-white/40 dark:bg-white/5 border border-white/40 dark:border-white/5 hover:border-secondary/50 hover:bg-white/60 dark:hover:bg-white/10 transition-all duration-300" href="#">
-<div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-lg bg-slate-900/5 dark:bg-white/10 flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
-<span class="material-icons text-xl">code</span>
-</div>
-<div class="flex flex-col">
-<span class="text-sm font-semibold text-slate-900 dark:text-white group-hover:text-secondary transition-colors">GitHub Portfolio</span>
-<span class="text-xs text-slate-500 dark:text-slate-400">Open Source Projects</span>
-</div>
-</div>
-<span class="material-icons text-slate-400 dark:text-slate-600 group-hover:text-secondary group-hover:translate-x-1 transition-all">arrow_forward</span>
-</a>
-<a class="group flex items-center justify-between p-4 rounded-xl bg-white/40 dark:bg-white/5 border border-white/40 dark:border-white/5 hover:border-purple-500/50 hover:bg-white/60 dark:hover:bg-white/10 transition-all duration-300" href="#">
-<div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-lg bg-slate-900/5 dark:bg-white/10 flex items-center justify-center text-purple-500 group-hover:scale-110 transition-transform">
-<span class="material-icons text-xl">smart_display</span>
-</div>
-<div class="flex flex-col">
-<span class="text-sm font-semibold text-slate-900 dark:text-white group-hover:text-purple-500 transition-colors">Twitch Stream</span>
-<span class="text-xs text-slate-500 dark:text-slate-400">Live Coding &amp; Beats</span>
-</div>
-</div>
-<span class="material-icons text-slate-400 dark:text-slate-600 group-hover:text-purple-500 group-hover:translate-x-1 transition-all">arrow_forward</span>
-</a>
-</div>
-<button class="w-full group relative inline-flex items-center justify-center px-8 py-3.5 text-base font-semibold text-white transition-all duration-200 bg-slate-900 dark:bg-white dark:text-black rounded-xl hover:bg-slate-700 dark:hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-900 dark:focus:ring-white animate-slide-up shadow-lg shadow-primary/10" style="animation-delay: 0.5s;">
-<span class="material-icons mr-2 text-xl">email</span>
-                Contact Me
-                <div class="absolute inset-0 rounded-xl ring-1 ring-inset ring-white/20 pointer-events-none"></div>
-</button>
-<div class="mt-8 flex justify-center gap-6 animate-slide-up" style="animation-delay: 0.6s;">
-<a class="text-slate-400 hover:text-primary transition-colors hover:scale-110 transform duration-200" href="#">
-<svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg>
-</a>
-<a class="text-slate-400 hover:text-secondary transition-colors hover:scale-110 transform duration-200" href="#">
-<svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path clip-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 014.153 4.153c.636-.247 1.363-.416 2.427-.465C7.673 2.012 8.026 2 12.315 2zM5.824 22c-2.11 0-3.824-1.714-3.824-3.824V5.824C2 3.714 3.714 2 5.824 2h12.352C20.286 2 22 3.714 22 5.824v12.352C22 20.286 20.286 22 18.176 22H5.824z" fill-rule="evenodd"></path><path clip-rule="evenodd" d="M12 17a5 5 0 100-10 5 5 0 000 10zm0-8a3 3 0 100 6 3 3 0 000-6z" fill-rule="evenodd"></path></svg>
-</a>
-<a class="text-slate-400 hover:text-white transition-colors hover:scale-110 transform duration-200" href="#">
-<svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path clip-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" fill-rule="evenodd"></path></svg>
-</a>
-</div>
-</div>
-<footer class="mt-8 text-center text-xs text-slate-500 dark:text-slate-600 font-mono animate-fade-in" style="animation-delay: 1s;">
-            © 2026 stvshy. All rights reserved.
-        </footer>
-</main>
-<script>
-        // Simple Dark Mode Toggle Logic
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const themeIcon = themeToggleBtn.querySelector('span');
-        // Check for saved user preference, if any, on load of the website
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-            themeIcon.textContent = 'light_mode';
-        } else {
-            document.documentElement.classList.remove('dark');
-            themeIcon.textContent = 'dark_mode';
-        }
-        themeToggleBtn.addEventListener('click', function() {
-            // if set via local storage previously
-            if (localStorage.getItem('color-theme')) {
-                if (localStorage.getItem('color-theme') === 'light') {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
-                    themeIcon.textContent = 'light_mode';
-                } else {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
-                    themeIcon.textContent = 'dark_mode';
-                }
-            } else {
-                // if NOT set via local storage previously
-                if (document.documentElement.classList.contains('dark')) {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
-                    themeIcon.textContent = 'dark_mode';
-                } else {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
-                    themeIcon.textContent = 'light_mode';
-                }
-            }
-        });
-    </script>
-
-</body></html>
 
 ================
 File: components.json
@@ -666,256 +1587,6 @@ export function Logo() {
       alt="stvshy logo"
       className="mx-auto h-9 w-auto -mt-8"
     />
-  )
-}
-
-================
-File: components/mesh-gradient.tsx
-================
-"use client"
-import { useEffect, useRef } from "react"
-export function MeshGradient() {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const ctx = canvas.getContext("2d")
-    if (!ctx) return
-    let animationId: number
-    let time = 0
-    const resize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
-    }
-    resize()
-    window.addEventListener("resize", resize)
-    const animate = () => {
-      time += 0.003
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-      const cx1 = canvas.width * 0.3 + Math.sin(time * 0.7) * canvas.width * 0.15
-      const cy1 = canvas.height * 0.4 + Math.cos(time * 0.5) * canvas.height * 0.15
-      const gradient1 = ctx.createRadialGradient(cx1, cy1, 0, cx1, cy1, canvas.width * 0.4)
-      gradient1.addColorStop(0, "rgba(0, 242, 234, 0.08)")
-      gradient1.addColorStop(0.5, "rgba(0, 242, 234, 0.03)")
-      gradient1.addColorStop(1, "rgba(0, 242, 234, 0)")
-      ctx.fillStyle = gradient1
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
-      const cx2 = canvas.width * 0.7 + Math.cos(time * 0.6) * canvas.width * 0.15
-      const cy2 = canvas.height * 0.6 + Math.sin(time * 0.8) * canvas.height * 0.1
-      const gradient2 = ctx.createRadialGradient(cx2, cy2, 0, cx2, cy2, canvas.width * 0.35)
-      gradient2.addColorStop(0, "rgba(255, 0, 80, 0.06)")
-      gradient2.addColorStop(0.5, "rgba(255, 0, 80, 0.02)")
-      gradient2.addColorStop(1, "rgba(255, 0, 80, 0)")
-      ctx.fillStyle = gradient2
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
-      const cx3 = canvas.width * 0.5 + Math.sin(time * 0.4) * canvas.width * 0.2
-      const cy3 = canvas.height * 0.3 + Math.cos(time * 0.3) * canvas.height * 0.2
-      const gradient3 = ctx.createRadialGradient(cx3, cy3, 0, cx3, cy3, canvas.width * 0.3)
-      gradient3.addColorStop(0, "rgba(0, 242, 234, 0.04)")
-      gradient3.addColorStop(1, "rgba(0, 242, 234, 0)")
-      ctx.fillStyle = gradient3
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
-      animationId = requestAnimationFrame(animate)
-    }
-    animate()
-    return () => {
-      window.removeEventListener("resize", resize)
-      cancelAnimationFrame(animationId)
-    }
-  }, [])
-  return (
-    <canvas
-      ref={canvasRef}
-      className="pointer-events-none fixed inset-0 z-0"
-      aria-hidden="true"
-    />
-  )
-}
-
-================
-File: components/tab-about.tsx
-================
-export function TabAbout() {
-  return (
-    <div className="flex flex-col gap-4">
-      <div className="rounded-xl border border-border bg-card px-5 py-5 backdrop-blur-xl">
-        <p className="text-sm leading-relaxed text-muted-foreground">
-          Based in <span className="text-foreground font-medium">Wroc&#322;aw, Poland</span>.
-          I blend code and sound to build immersive digital experiences.
-          By day I ship products as a developer, by night I craft beats and melodies
-          that push creative boundaries.
-        </p>
-      </div>
-      <div className="grid grid-cols-2 gap-3">
-        <div className="rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl">
-          <span className="text-2xl font-bold text-neon-cyan font-mono">5+</span>
-          <p className="mt-1 text-xs text-muted-foreground">Years producing</p>
-        </div>
-        <div className="rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl">
-          <span className="text-2xl font-bold text-neon-magenta font-mono">50+</span>
-          <p className="mt-1 text-xs text-muted-foreground">Tracks released</p>
-        </div>
-        <div className="rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl">
-          <span className="text-2xl font-bold text-neon-cyan font-mono">3+</span>
-          <p className="mt-1 text-xs text-muted-foreground">Years in dev</p>
-        </div>
-        <div className="rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl">
-          <span className="text-2xl font-bold text-neon-magenta font-mono">10+</span>
-          <p className="mt-1 text-xs text-muted-foreground">Projects shipped</p>
-        </div>
-      </div>
-      <div className="rounded-xl border border-border bg-card px-5 py-4 backdrop-blur-xl">
-        <h3 className="text-xs font-semibold tracking-wider text-muted-foreground uppercase mb-3">
-          Genres
-        </h3>
-        <div className="flex flex-wrap gap-2">
-          {["Trap", "Lo-fi", "Ambient", "Phonk", "Electronic"].map((genre) => (
-            <span
-              key={genre}
-              className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs text-foreground"
-            >
-              {genre}
-            </span>
-          ))}
-        </div>
-      </div>
-    </div>
-  )
-}
-
-================
-File: components/tab-dev.tsx
-================
-import { Github, Globe, Code2, Terminal } from "lucide-react"
-const links = [
-  {
-    label: "GitHub",
-    description: "Open source projects & contributions",
-    href: "#",
-    icon: Github,
-  },
-  {
-    label: "Portfolio",
-    description: "Web development work & case studies",
-    href: "#",
-    icon: Globe,
-  },
-  {
-    label: "Stack",
-    description: "Tools & technologies I use daily",
-    href: "#",
-    icon: Terminal,
-  },
-  {
-    label: "Blog",
-    description: "Thoughts on code, music & creativity",
-    href: "#",
-    icon: Code2,
-  },
-]
-export function TabDev() {
-  return (
-    <div className="flex flex-col gap-3">
-      {links.map((link) => (
-        <a
-          key={link.label}
-          href={link.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-4 backdrop-blur-xl transition-all duration-300 hover:border-neon-magenta/30 hover:bg-neon-magenta/5 hover:shadow-[0_0_20px_rgba(255,0,80,0.08)]"
-        >
-          <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-neon-magenta/10 text-neon-magenta transition-colors group-hover:bg-neon-magenta/20">
-            <link.icon className="size-5" />
-          </div>
-          <div className="flex flex-col gap-0.5">
-            <span className="text-sm font-semibold text-foreground">
-              {link.label}
-            </span>
-            <span className="text-xs text-muted-foreground">
-              {link.description}
-            </span>
-          </div>
-          <svg
-            className="ml-auto size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-neon-magenta"
-            viewBox="0 0 16 16"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            aria-hidden="true"
-          >
-            <path d="M6 3l5 5-5 5" />
-          </svg>
-        </a>
-      ))}
-    </div>
-  )
-}
-
-================
-File: components/tab-music.tsx
-================
-import { Music, Headphones, Radio, Disc3 } from "lucide-react"
-const links = [
-  {
-    label: "Spotify",
-    description: "Listen to my latest releases",
-    href: "#",
-    icon: Headphones,
-  },
-  {
-    label: "SoundCloud",
-    description: "Unreleased beats & demos",
-    href: "#",
-    icon: Radio,
-  },
-  {
-    label: "BeatStars",
-    description: "License my instrumentals",
-    href: "#",
-    icon: Music,
-  },
-  {
-    label: "Apple Music",
-    description: "Stream on Apple Music",
-    href: "#",
-    icon: Disc3,
-  },
-]
-export function TabMusic() {
-  return (
-    <div className="flex flex-col gap-3">
-      {links.map((link) => (
-        <a
-          key={link.label}
-          href={link.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-4 backdrop-blur-xl transition-all duration-300 hover:border-neon-cyan/30 hover:bg-neon-cyan/5 hover:shadow-[0_0_20px_rgba(0,242,234,0.08)]"
-        >
-          <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-neon-cyan/10 text-neon-cyan transition-colors group-hover:bg-neon-cyan/20">
-            <link.icon className="size-5" />
-          </div>
-          <div className="flex flex-col gap-0.5">
-            <span className="text-sm font-semibold text-foreground">
-              {link.label}
-            </span>
-            <span className="text-xs text-muted-foreground">
-              {link.description}
-            </span>
-          </div>
-          <svg
-            className="ml-auto size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-neon-cyan"
-            viewBox="0 0 16 16"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            aria-hidden="true"
-          >
-            <path d="M6 3l5 5-5 5" />
-          </svg>
-        </a>
-      ))}
-    </div>
   )
 }
 
@@ -7203,82 +7874,6 @@ const nextConfig = {
 export default nextConfig
 
 ================
-File: package.json
-================
-{
-  "name": "my-project",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint ."
-  },
-  "dependencies": {
-    "@hookform/resolvers": "^3.9.1",
-    "@vercel/analytics": "1.6.1",
-    "@radix-ui/react-accordion": "1.2.12",
-    "@radix-ui/react-alert-dialog": "1.1.15",
-    "@radix-ui/react-aspect-ratio": "1.1.8",
-    "@radix-ui/react-avatar": "1.1.11",
-    "@radix-ui/react-checkbox": "1.3.3",
-    "@radix-ui/react-collapsible": "1.1.12",
-    "@radix-ui/react-context-menu": "2.2.16",
-    "@radix-ui/react-dialog": "1.1.15",
-    "@radix-ui/react-dropdown-menu": "2.1.16",
-    "@radix-ui/react-hover-card": "1.1.15",
-    "@radix-ui/react-label": "2.1.8",
-    "@radix-ui/react-menubar": "1.1.16",
-    "@radix-ui/react-navigation-menu": "1.2.14",
-    "@radix-ui/react-popover": "1.1.15",
-    "@radix-ui/react-progress": "1.1.8",
-    "@radix-ui/react-radio-group": "1.3.8",
-    "@radix-ui/react-scroll-area": "1.2.10",
-    "@radix-ui/react-select": "2.2.6",
-    "@radix-ui/react-separator": "1.1.8",
-    "@radix-ui/react-slider": "1.3.6",
-    "@radix-ui/react-slot": "1.2.4",
-    "@radix-ui/react-switch": "1.2.6",
-    "@radix-ui/react-tabs": "1.1.13",
-    "@radix-ui/react-toast": "1.2.15",
-    "@radix-ui/react-toggle": "1.1.10",
-    "@radix-ui/react-toggle-group": "1.1.11",
-    "@radix-ui/react-tooltip": "1.2.8",
-    "autoprefixer": "^10.4.20",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "cmdk": "1.1.1",
-    "date-fns": "4.1.0",
-    "embla-carousel-react": "8.6.0",
-    "input-otp": "1.4.2",
-    "lucide-react": "^0.564.0",
-    "next": "16.1.6",
-    "next-themes": "^0.4.6",
-    "react": "19.2.4",
-    "react-day-picker": "9.13.2",
-    "react-dom": "19.2.4",
-    "react-hook-form": "^7.54.1",
-    "react-resizable-panels": "^2.1.7",
-    "recharts": "2.15.0",
-    "sonner": "^1.7.1",
-    "tailwind-merge": "^3.3.1",
-    "vaul": "^1.1.2",
-    "zod": "^3.24.1"
-  },
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.13",
-    "@types/node": "^22",
-    "@types/react": "19.2.14",
-    "@types/react-dom": "19.2.3",
-    "postcss": "^8.5",
-    "tailwindcss": "^4.1.9",
-    "tw-animate-css": "1.3.3",
-    "typescript": "5.7.3"
-  }
-}
-
-================
 File: postcss.config.mjs
 ================
 /** @type {import('postcss-load-config').Config} */
@@ -7475,37 +8070,1785 @@ File: tsconfig.json
 }
 
 ================
+File: .gitignore
+================
+# v0 runtime files (should only exist in preview, not in git)
+__v0_runtime_loader.js
+__v0_devtools.tsx
+__v0_jsx-dev-runtime.ts
+
+# Common ignores
+node_modules/
+.next/
+.env*.local
+.DS_Store
+.vercel
+
+repomix-output.txt
+
+================
+File: components/mesh-gradient.tsx
+================
+"use client"
+import { useEffect, useRef } from "react"
+export function MeshGradient() {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext("2d")
+    if (!ctx) return
+    let animationId: number
+    let time = 0
+    let width = 0
+    let height = 0
+    const resize = () => {
+      const nextWidth = window.innerWidth
+      const nextHeight = window.innerHeight
+      width = nextWidth
+      height = nextHeight
+      const dpr = Math.min(window.devicePixelRatio || 1, 2)
+      canvas.width = Math.floor(nextWidth * dpr)
+      canvas.height = Math.floor(nextHeight * dpr)
+      canvas.style.width = `${nextWidth}px`
+      canvas.style.height = `${nextHeight}px`
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+    }
+    resize()
+    window.addEventListener("resize", resize)
+    const animate = () => {
+      time += 0.0025
+      ctx.save()
+      ctx.clearRect(0, 0, width, height)
+      ctx.globalCompositeOperation = "source-over"
+      ctx.filter = "blur(120px)"
+      const wash = ctx.createLinearGradient(0, height * 0.4, width, height * 0.6)
+      wash.addColorStop(0, "rgba(211, 60, 225, 0.025)")
+      wash.addColorStop(1, "rgba(54, 132, 233, 0.03)")
+      ctx.fillStyle = wash
+      ctx.fillRect(0, 0, width, height)
+      const rightBias = ctx.createRadialGradient(
+        width * 0.9,
+        height * 0.55,
+        0,
+        width * 0.9,
+        height * 0.55,
+        Math.max(width, height) * 0.65
+      )
+      rightBias.addColorStop(0, "rgba(54, 132, 233, 0.028)")
+      rightBias.addColorStop(1, "rgba(54, 132, 233, 0)")
+      ctx.fillStyle = rightBias
+      ctx.fillRect(0, 0, width, height)
+      ctx.globalCompositeOperation = "lighter"
+      ctx.filter = "blur(80px)"
+      const driftX = Math.sin(time * 0.16) * width * 0.035
+      const driftY = Math.cos(time * 0.15) * height * 0.035
+        const cx1 = width * 0.92 + Math.cos(time * 0.7) * width * 0.1 + driftX * 0.65
+      const cy1 = height * 0.62 + Math.sin(time * 0.98) * height * 0.16 + driftY * 0.9
+      const gradient1 = ctx.createRadialGradient(cx1, cy1, 0, cx1, cy1, width * 0.5)
+      gradient1.addColorStop(0, "rgba(211, 60, 225, 0.15)")
+      gradient1.addColorStop(0.5, "rgba(211, 60, 225, 0.06)")
+      gradient1.addColorStop(1, "rgba(211, 60, 225, 0)")
+      ctx.fillStyle = gradient1
+      ctx.fillRect(0, 0, width, height)
+      const cyanOrbitX = Math.sin(time * 0.85) * width * 0.06
+      const cyanOrbitY = (Math.cos(time * 0.62) - 1) * height * 0.07 + height * 0.18
+      const cyanCounterDrift = Math.sin(time * 0.37) * height * 0.02
+      const cx2 = width * 0.2 + cyanOrbitX + driftX * 0.5
+      const cy2 = height * 0.32 + cyanOrbitY + driftY + cyanCounterDrift
+      const gradient2 = ctx.createRadialGradient(cx2, cy2, 0, cx2, cy2, width * 0.6)
+      gradient2.addColorStop(0, "rgba(40, 128, 243, 0.43)")
+      gradient2.addColorStop(0.5, "rgba(54, 132, 233, 0.055)")
+      gradient2.addColorStop(1, "rgba(54, 132, 233, 0)")
+      ctx.fillStyle = gradient2
+      ctx.fillRect(0, 0, width, height)
+        const cx3 = width * 0.7 + Math.sin(time * 0.45) * width * 0.12 + driftX * 0.4
+      const cy3 = height * 0.28 + Math.cos(time * 0.33) * height * 0.18 + driftY * 0.6
+      const gradient3 = ctx.createRadialGradient(cx3, cy3, 0, cx3, cy3, width * 0.4)
+      gradient3.addColorStop(0, "rgba(218, 32, 235, 0.21)")
+      gradient3.addColorStop(1, "rgba(211, 60, 225, 0)")
+      ctx.fillStyle = gradient3
+      ctx.fillRect(0, 0, width, height)
+      ctx.filter = "none"
+      ctx.globalCompositeOperation = "source-over"
+      ctx.fillStyle = "rgba(0, 0, 0, 0.34)"
+      ctx.fillRect(0, 0, width, height)
+      const vignette = ctx.createRadialGradient(
+        width * 0.5,
+        height * 0.5,
+        Math.min(width, height) * 0.25,
+        width * 0.5,
+        height * 0.5,
+        Math.max(width, height) * 0.75
+      )
+      vignette.addColorStop(0, "rgba(0, 0, 0, 0)")
+      vignette.addColorStop(0.65, "rgba(0, 0, 0, 0.03)")
+      vignette.addColorStop(1, "rgba(0, 0, 0, 0.22)")
+      ctx.fillStyle = vignette
+      ctx.fillRect(0, 0, width, height)
+      const topShadeY = Math.min(height * 0.14, 160)
+      const topShadeRadius = Math.min(Math.max(width, height) * 0.42, 560)
+      const topShade = ctx.createRadialGradient(
+        width * 0.5,
+        topShadeY,
+        0,
+        width * 0.5,
+        topShadeY,
+        topShadeRadius
+      )
+      topShade.addColorStop(0, "rgba(0, 0, 0, 0.38)")
+      topShade.addColorStop(0.55, "rgba(0, 0, 0, 0.17)")
+      topShade.addColorStop(1, "rgba(0, 0, 0, 0)")
+      ctx.fillStyle = topShade
+      ctx.fillRect(0, 0, width, height)
+      ctx.restore()
+      animationId = requestAnimationFrame(animate)
+    }
+    animate()
+    return () => {
+      window.removeEventListener("resize", resize)
+      cancelAnimationFrame(animationId)
+    }
+  }, [])
+  return (
+    <canvas
+      ref={canvasRef}
+      className="pointer-events-none fixed inset-0 z-0"
+      aria-hidden="true"
+    />
+  )
+}
+
+================
+File: package.json
+================
+{
+  "name": "my-project",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.9.1",
+    "@radix-ui/react-accordion": "1.2.12",
+    "@radix-ui/react-alert-dialog": "1.1.15",
+    "@radix-ui/react-aspect-ratio": "1.1.8",
+    "@radix-ui/react-avatar": "1.1.11",
+    "@radix-ui/react-checkbox": "1.3.3",
+    "@radix-ui/react-collapsible": "1.1.12",
+    "@radix-ui/react-context-menu": "2.2.16",
+    "@radix-ui/react-dialog": "1.1.15",
+    "@radix-ui/react-dropdown-menu": "2.1.16",
+    "@radix-ui/react-hover-card": "1.1.15",
+    "@radix-ui/react-label": "2.1.8",
+    "@radix-ui/react-menubar": "1.1.16",
+    "@radix-ui/react-navigation-menu": "1.2.14",
+    "@radix-ui/react-popover": "1.1.15",
+    "@radix-ui/react-progress": "1.1.8",
+    "@radix-ui/react-radio-group": "1.3.8",
+    "@radix-ui/react-scroll-area": "1.2.10",
+    "@radix-ui/react-select": "2.2.6",
+    "@radix-ui/react-separator": "1.1.8",
+    "@radix-ui/react-slider": "1.3.6",
+    "@radix-ui/react-slot": "1.2.4",
+    "@radix-ui/react-switch": "1.2.6",
+    "@radix-ui/react-tabs": "1.1.13",
+    "@radix-ui/react-toast": "1.2.15",
+    "@radix-ui/react-toggle": "1.1.10",
+    "@radix-ui/react-toggle-group": "1.1.11",
+    "@radix-ui/react-tooltip": "1.2.8",
+    "@vercel/analytics": "1.6.1",
+    "autoprefixer": "^10.4.20",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "cmdk": "1.1.1",
+    "date-fns": "4.1.0",
+    "embla-carousel-react": "8.6.0",
+    "hyphen": "^1.14.1",
+    "input-otp": "1.4.2",
+    "lucide-react": "^0.564.0",
+    "next": "16.1.6",
+    "next-themes": "^0.4.6",
+    "react": "19.2.4",
+    "react-day-picker": "9.13.2",
+    "react-dom": "19.2.4",
+    "react-hook-form": "^7.54.1",
+    "react-icons": "^5.5.0",
+    "react-resizable-panels": "^2.1.7",
+    "recharts": "2.15.0",
+    "sonner": "^1.7.1",
+    "tailwind-merge": "^3.3.1",
+    "vaul": "^1.1.2",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.13",
+    "@types/hyphen": "^1.14.0",
+    "@types/node": "^22",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "postcss": "^8.5",
+    "tailwindcss": "^4.1.9",
+    "tw-animate-css": "1.3.3",
+    "typescript": "5.7.3"
+  }
+}
+
+================
+File: app/layout.tsx
+================
+import type { Metadata, Viewport } from 'next'
+import { Inter, JetBrains_Mono } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/next'
+import './globals.css'
+const inter = Inter({
+  subsets: ['latin', 'latin-ext'],
+  variable: '--font-inter',
+})
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jetbrains-mono',
+})
+export const metadata: Metadata = {
+  title: 'stvshy',
+  description: 'Mateusz Staszków - Developer & Producer. Discover my music, projects, and more.',
+  generator: 'v0.app',
+  icons: {
+    icon: '/images/stvshy-s2.png',
+    shortcut: '/images/stvshy-s2.png',
+    apple: '/images/stvshy-s2.png',
+  },
+}
+export const viewport: Viewport = {
+  themeColor: '#0a0a0a',
+  userScalable: false,
+}
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
+  return (
+    <html lang="en" className="dark">
+       <head>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <style dangerouslySetInnerHTML={{ __html: `
+          /* Główny kursor na stronie */
+          body {
+    cursor: url('/cursors/cursor10.png') 0 0, auto !important;
+          }
+          /* Kursor w kształcie łapki/pointera dla klikalnych elementów */
+          a, button, [role="button"], label, select,
+          a *, button *, [role="button"] *, label *, select * {
+cursor: url('/cursors/cursor10.png') 0 0, pointer !important;  }
+        `}} />
+      </head>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
+        {children}
+        <Analytics />
+      </body>
+    </html>
+  )
+}
+
+================
+File: app/globals.css
+================
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@font-face {
+  font-family: 'MontserratCustom';
+  src: url('/fonts/Montserrat/static/Montserrat-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'MontserratCustom';
+  src: url('/fonts/Montserrat/static/Montserrat-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@custom-variant dark (&:is(.dark *));
+:root {
+  --background: #0a0a0a;
+  --foreground: #f0f0f0;
+  --card: rgba(255, 255, 255, 0.04);
+  --card-foreground: #f0f0f0;
+  --popover: #111111;
+  --popover-foreground: #f0f0f0;
+  --primary: #00f2ea;
+  --primary-foreground: #0a0a0a;
+  --secondary: #ff0050;
+  --secondary-foreground: #ffffff;
+  --muted: #1a1a1a;
+  --muted-foreground: #888888;
+  --accent: #ff0050;
+  --accent-foreground: #ffffff;
+  --destructive: #ff0050;
+  --destructive-foreground: #ffffff;
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.08);
+  --ring: #00f2ea;
+  --chart-1: #00f2ea;
+  --chart-2: #ff0050;
+  --chart-3: #1a1a1a;
+  --chart-4: #00f2ea;
+  --chart-5: #ff0050;
+  --radius: 0.75rem;
+  --sidebar: #0f0f0f;
+  --sidebar-foreground: #f0f0f0;
+  --sidebar-primary: #00f2ea;
+  --sidebar-primary-foreground: #0a0a0a;
+  --sidebar-accent: #1a1a1a;
+  --sidebar-accent-foreground: #f0f0f0;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-ring: #00f2ea;
+  --neon-cyan: #00f2ea;
+  --neon-magenta: #ff0050;
+  --dev-accent: #05dafff8;
+  --dev-accent-rgb: 49 222 255;
+}
+@theme inline {
+  --font-sans: 'Inter', 'Inter Fallback';
+  --font-mono: 'JetBrains Mono', 'JetBrains Mono Fallback';
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-neon-cyan: var(--neon-cyan);
+  --color-neon-magenta: var(--neon-magenta);
+}
+.font-montserrat {
+  font-family: 'MontserratCustom', var(--font-sans) !important;
+}
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    cursor: url('/cursors/cursor10.png') 0 0, auto !important;
+  }
+  a,
+  button,
+  [role="button"],
+  label,
+  select,
+  a *,
+  button *,
+  [role="button"] *,
+  label *,
+  select * {
+    cursor: url('/cursors/cursor10.png') 0 0, pointer !important;
+  }
+}
+@media (min-width: 1024px) {
+  .page-scale-desktop {
+    transform: scale(1.1);
+    transform-origin: top center;
+  }
+}
+
+================
 File: components/profile-header.tsx
 ================
 import { Logo } from "@/components/logo"
 import { HiLocationMarker } from "react-icons/hi"
-export function ProfileHeader() {
+type ProfileHeaderProps = {
+  language: "en" | "pl"
+}
+export function ProfileHeader({ language }: ProfileHeaderProps) {
+  const roleText = language === "pl" ? "Deweloper" : "Developer"
+  const producerText = language === "pl" ? "Producent" : "Producer"
   return (
-    <header className="flex flex-col items-center gap-3">
+    <header className="flex flex-col items-center gap-2">
       <Logo />
-      <div className="relative mb-2 group">
+      <div className="relative mb-[1px] group">
         <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-cyan-500 to-fuchsia-500 blur-md opacity-75 group-hover:opacity-100 transition-opacity duration-500"></div>
         <div className="relative w-36 h-36 rounded-full p-1 bg-gradient-to-tr from-cyan-500 via-purple-500 to-fuchsia-500" style={{ boxShadow: '0 0 40px -10px rgba(6, 182, 212, 0.5), 0 0 40px -10px rgba(217, 70, 239, 0.5)' }}>
           <img
-            src="/images/avatar.jpg"
+            src="/images/avatar4.jpg"
             alt="Mateusz Staszków profile photo"
             className="w-full h-full object-cover rounded-full border-4 border-white dark:border-slate-950"
           />
         </div>
       </div>
       <div className="text-center flex flex-col items-center gap-1">
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white mb-1">
+        <h1 className="text-[24px] font-medium tracking-tight text-slate-900 dark:text-white mb-1 font-montserrat">
           Mateusz Staszk&oacute;w
         </h1>
-        <p className="text-[13px] font-medium tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-fuchsia-500 uppercase">
-          Developer <span className="text-slate-400 dark:text-slate-400 mx-2">x</span> Producer
+        <p className="text-xs font-medium tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-fuchsia-500 uppercase">
+          {roleText} <span className="text-slate-400 dark:text-slate-400 mx-2">x</span> {producerText}
         </p>
-        <div className="flex items-center justify-center mt-1 text-[11px] text-slate-500 dark:text-slate-400 font-mono">
-          <HiLocationMarker className="mr-2 text-[13px] shrink-0" aria-hidden="true" />
+        <div className="flex items-center justify-center mt-1 text-[10px] text-slate-500 dark:text-slate-400 font-mono">
+            <HiLocationMarker className="mr-2 mb-[1px] text-[11.5px] shrink-0" aria-hidden="true" />
           Wrocław, PL
         </div>
       </div>
     </header>
+  )
+}
+
+================
+File: components/tab-music.tsx
+================
+import { type CSSProperties, useState } from "react"
+import { BsSpotify } from "react-icons/bs"
+import { FaDeezer } from "react-icons/fa"
+import { PiSoundcloudLogoFill } from "react-icons/pi"
+import { SiAmazonmusic, SiApplemusic, SiTidal, SiYoutubemusic } from "react-icons/si"
+const MUSIC_ACCENT = "#b817e4"
+function hexToRgbChannels(hex: string) {
+  const normalizedHex = hex.replace("#", "")
+  const fullHex =
+    normalizedHex.length === 3
+      ? normalizedHex
+          .split("")
+          .map((char) => `${char}${char}`)
+          .join("")
+      : normalizedHex
+  const red = Number.parseInt(fullHex.slice(0, 2), 16)
+  const green = Number.parseInt(fullHex.slice(2, 4), 16)
+  const blue = Number.parseInt(fullHex.slice(4, 6), 16)
+  return `${red} ${green} ${blue}`
+}
+const links = [
+  {
+    label: "Fantasia",
+    description: "Listen latest song",
+    href: "https://artists.landr.com/057914392592",
+    icon: BsSpotify,
+  },
+  {
+    label: "Spotify",
+    description: "Listen on Spotify",
+    href: "https://open.spotify.com/artist/20jL6FuQUNHnlP3ApdjBbI?si=fvGq0tvJRXmhMa5_KKnAXg",
+    icon: BsSpotify,
+  },
+  {
+    label: "Apple Music",
+    description: "Listen on Apple Music",
+    href: "https://music.apple.com/pl/artist/stvshy/1863822260",
+    icon: SiApplemusic,
+  },
+  {
+    label: "YouTube Music",
+    description: "Listen on YouTube Music",
+    href: "https://music.youtube.com/search?q=stvshy",
+    icon: SiYoutubemusic,
+  },
+  {
+    label: "Deezer",
+    description: "Listen on Deezer",
+    href: "https://www.deezer.com/pl/artist/363730262",
+    icon: FaDeezer,
+  },
+  {
+    label: "Amazon Music",
+    description: "Listen on Amazon Music",
+    href: "https://music.amazon.com/artists/B0GCCG5GH3/stvshy",
+    icon: SiAmazonmusic,
+  },
+  {
+    label: "TIDAL",
+    description: "Listen on TIDAL",
+    href: "https://tidal.com/artist/72120078",
+    icon: SiTidal,
+  },
+  {
+    label: "SoundCloud",
+    description: "Unreleased beats",
+    href: "https://soundcloud.com/stvshy",
+    icon: PiSoundcloudLogoFill,
+  },
+]
+type TabMusicProps = {
+  language: "en" | "pl"
+}
+const musicText = {
+  en: {
+    links: {
+      fantasia: "Listen latest song",
+      spotify: "Listen on Spotify",
+      appleMusic: "Listen on Apple Music",
+      youtubeMusic: "Listen on YouTube Music",
+      deezer: "Listen on Deezer",
+      amazonMusic: "Listen on Amazon Music",
+      tidal: "Listen on TIDAL",
+      soundcloud: "Unreleased beats",
+    },
+    more: "More",
+    tracksReleased: "Tracks released",
+    yearsProducing: "Years producing",
+    genres: "Genres",
+  },
+  pl: {
+    links: {
+      fantasia: "Posłuchaj najnowszego utworu",
+      spotify: "Posłuchaj na Spotify",
+      appleMusic: "Posłuchaj w Apple Music",
+      youtubeMusic: "Posłuchaj w YouTube Music",
+      deezer: "Posłuchaj na Deezer",
+      amazonMusic: "Posłuchaj w Amazon Music",
+      tidal: "Posłuchaj na TIDAL",
+      soundcloud: "Niewydane beaty",
+    },
+    more: "Więcej",
+    tracksReleased: "Wydane utwory",
+    yearsProducing: "Lata produkcji",
+    genres: "Gatunki",
+  },
+} as const
+export function TabMusic({ language }: TabMusicProps) {
+  const [isMoreOpen, setIsMoreOpen] = useState(false)
+  const text = musicText[language]
+  const localizedLinks = links.map((link) => {
+    const descriptionMap = {
+      Fantasia: text.links.fantasia,
+      Spotify: text.links.spotify,
+      "Apple Music": text.links.appleMusic,
+      "YouTube Music": text.links.youtubeMusic,
+      Deezer: text.links.deezer,
+      "Amazon Music": text.links.amazonMusic,
+      TIDAL: text.links.tidal,
+      SoundCloud: text.links.soundcloud,
+    } as const
+    return {
+      ...link,
+      description: descriptionMap[link.label as keyof typeof descriptionMap] ?? link.description,
+    }
+  })
+  const musicThemeStyle = {
+    "--music-accent": MUSIC_ACCENT,
+    "--music-accent-rgb": hexToRgbChannels(MUSIC_ACCENT),
+  } as CSSProperties
+  const defaultLinkClassName =
+    "group flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-3 backdrop-blur-xl transition-all duration-300 hover:border-[rgb(var(--music-accent-rgb)/0.3)] hover:bg-[rgb(var(--music-accent-rgb)/0.05)]"
+  const fantasiaCardClassName =
+    "group flex items-center gap-4 rounded-xl border border-[rgb(var(--music-accent-rgb)/0.35)] bg-[rgb(var(--music-accent-rgb)/0.1)] px-5 py-3 backdrop-blur-xl transition-all duration-300 hover:border-[rgb(var(--music-accent-rgb)/0.45)] hover:bg-[rgb(var(--music-accent-rgb)/0.15)]"
+  const visibleLinks = localizedLinks.slice(0, 4)
+  const hiddenLinks = localizedLinks.slice(4)
+  return (
+    <div className="flex flex-col gap-3" style={musicThemeStyle}>
+      {visibleLinks.map((link) => (
+        <a
+          key={link.label}
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={link.label === "Fantasia" ? fantasiaCardClassName : defaultLinkClassName}
+        >
+          <div
+            className={
+              link.label === "Fantasia"
+                ? "flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-lg"
+                : "flex size-10 shrink-0 items-center justify-center rounded-lg bg-[rgb(var(--music-accent-rgb)/0.1)] text-[rgb(var(--music-accent-rgb))] transition-colors group-hover:bg-[rgb(var(--music-accent-rgb)/0.2)]"
+            }
+          >
+            {link.label === "Fantasia" ? (
+              <img
+                src="/images/fantasia.png"
+                alt="Fantasia cover"
+                className="size-full rounded-lg object-cover"
+              />
+            ) : (
+              <link.icon className="size-5" />
+            )}
+          </div>
+          <div className="flex flex-col gap-0.5">
+            <span className="text-[13px] font-semibold text-foreground">
+              {link.label}
+            </span>
+            <span className="text-[11px] text-muted-foreground">
+              {link.description}
+            </span>
+          </div>
+          <svg
+            className="ml-auto size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-[rgb(var(--music-accent-rgb))]"
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            aria-hidden="true"
+          >
+            <path d="M6 3l5 5-5 5" />
+          </svg>
+        </a>
+      ))}
+      <button
+        type="button"
+        onClick={() => setIsMoreOpen((prev) => !prev)}
+        className="flex h-8 w-full items-center justify-center gap-2 rounded-lg border border-border/70 bg-card/70 text-[11px] font-medium uppercase tracking-wide text-muted-foreground transition-all duration-300 hover:border-[rgb(var(--music-accent-rgb)/0.3)] hover:text-[rgb(var(--music-accent-rgb))]"
+        aria-expanded={isMoreOpen}
+        aria-controls="more-music-links"
+      >
+        {text.more}
+        <svg
+          className={isMoreOpen ? "size-3 transition-transform duration-300 rotate-180" : "size-3 transition-transform duration-300"}
+          viewBox="0 0 16 16"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          aria-hidden="true"
+        >
+          <path d="M3.5 6l4.5 4 4.5-4" />
+        </svg>
+      </button>
+      {isMoreOpen && (
+        <div
+          id="more-music-links"
+          className="flex flex-col gap-3 animate-in fade-in-0 slide-in-from-top-1 duration-300"
+        >
+          {hiddenLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={defaultLinkClassName}
+            >
+              <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-[rgb(var(--music-accent-rgb)/0.1)] text-[rgb(var(--music-accent-rgb))] transition-colors group-hover:bg-[rgb(var(--music-accent-rgb)/0.2)]">
+                <link.icon className="size-5" />
+              </div>
+              <div className="flex flex-col gap-0.5">
+                <span className="text-[13px] font-semibold text-foreground">
+                  {link.label}
+                </span>
+                <span className="text-[11px] text-muted-foreground">
+                  {link.description}
+                </span>
+              </div>
+              <svg
+                className="ml-auto size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-[rgb(var(--music-accent-rgb))]"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                aria-hidden="true"
+              >
+                <path d="M6 3l5 5-5 5" />
+              </svg>
+            </a>
+          ))}
+        </div>
+      )}
+      <div className="grid grid-cols-2 gap-3">
+        <div className="rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl">
+          <span className="text-xl font-bold text-[rgb(var(--music-accent-rgb))] font-mono">1</span>
+          <p className="mt-1 text-[11px] text-muted-foreground">{text.tracksReleased}</p>
+        </div>
+        <div className="rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl">
+          <span className="text-xl font-bold text-[#0ab8d6f8] font-mono">3+</span>
+          <p className="mt-1 text-[11px] text-muted-foreground">{text.yearsProducing}</p>
+        </div>
+      </div>
+      <div className="rounded-xl border border-border bg-card px-5 py-4 backdrop-blur-xl">
+        <h3 className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+          {text.genres}
+        </h3>
+        <div className="flex flex-wrap gap-2">
+          {["Wave", "Electronic", "Trap", "Hardwave", "Hip-hop", "Witch House", "Trapwave"].map((genre) => (
+            <span
+              key={genre}
+              className="rounded-full border border-border bg-muted/50 px-3 py-1 text-[11px] text-foreground"
+            >
+              {genre}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+================
+File: components/tab-about.tsx
+================
+"use client"
+import { useMemo, useState } from "react"
+import { BsChevronCompactDown, BsChevronCompactUp } from "react-icons/bs"
+import { ChevronRight } from "lucide-react"
+import { hyphenateSync as hyphenateEn } from "hyphen/en"
+import { hyphenateSync as hyphenatePl } from "hyphen/pl"
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
+type TabAboutProps = {
+  language: "en" | "pl"
+  onOpenImagePreview: (imageSrc: string, imageAlt: string) => void
+}
+const aboutText = {
+  en: {
+    paragraph1:
+      "I navigate between code and sound, crafting projects with a unique character. I focus on designing intuitive solutions that leave a mark. I believe that great software and great tracks share the same foundation — attention to detail and creativity.",
+    paragraph2:
+      "I am committed to continuous self-improvement, broadening my horizons by learning and traveling to understand diverse perspectives and cultures. My goal is to visit every country in the world, driven by a restless desire to constantly explore the unknown.",
+    paragraph3:
+      "Over the last few years, I’ve gravitated towards the atmospheric sounds of Wave and Phonk, drawing major inspiration from them for my own work. However, my playlist knows no boundaries. I also listen to plenty of Hip-Hop and other electronic music, constantly discovering new sounds and refusing to limit myself to just one style.",
+    paragraph4:
+      "After hours, you can find me cheering for FC Barcelona, watching Polish fighters in the UFC, or expanding my perfume collection.",
+    collapse: "Collapse bio",
+    expand: "Expand bio",
+    mapPreviewLabel: "Open countries map preview",
+    countriesVisited: "Countries visited",
+    fragranticaLabel: "Open Fragrantica profile",
+    perfumesOwned: "Perfumes owned",
+  },
+  pl: {
+    paragraph1:
+      "Jestem programistą i producentem muzycznym, działającym we Wrocławiu. Balansuję między kodem a muzyką, tworząc projekty o unikalnym charakterze. Celuję w intuicyjne rozwiązania, które trafiają do ludzi. Wierzę, że świetne oprogramowanie i dobre utwory mają wspólny mianownik — dbałość o detale i kreatywność.",
+    paragraph2:
+      "Stawiam na ciągły progres, nieustannie podnosząc poprzeczkę, a podróże i nauka są narzędziami, pozwalającymi mi zrozumieć świat z różnych perspektyw.",
+    paragraph3:
+      "Muzycznie moje serce bije obecnie w rytmie Wave i Phonk — to te gatunki stanowią największą inspirację dla moich produkcji. Nie zamykam się jednak w bańce, a moja playlista obejmuje szerokie spektrum różnych brzmień",
+    paragraph4:
+      "Po godzinach kibicuję FC Barcelonie oraz śledzę zmagania Polaków w oktagonie UFC. Stale rozbudowuję również kolekcję perfum i odkrywam niszowe zapachy, wykraczające poza schematy.",
+    collapse: "Zwiń opis",
+    expand: "Rozwiń opis",
+    mapPreviewLabel: "Otwórz podgląd mapy odwiedzonych krajów",
+    countriesVisited: "Odwiedzone kraje",
+    fragranticaLabel: "Otwórz profil Fragrantica",
+    perfumesOwned: "Posiadane perfumy",
+  },
+} as const
+export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
+  const [isOpen, setIsOpen] = useState(false)
+  const text = aboutText[language]
+  const hyphenateText = useMemo(() => {
+    const hyphenate = language === "pl" ? hyphenatePl : hyphenateEn
+    const plWords = [
+      "programistą",
+      "producentem muzycznym",
+      "Wrocławiu",
+      "intuicyjne rozwiązania",
+      "dbałość o detale",
+      "kreatywność",
+      "ciągły progres",
+      "podróże",
+      "nauka",
+      "Wave",
+      "Phonk"
+    ]
+    const enCommon = [
+      "intuitive solutions",
+      "in­tu­itive so­lu­ti­ons",
+      "attention to detail",
+      "at­ten­tion to de­tail",
+      "creativity",
+      "self-improvement",
+      "learning",
+      "Wave",
+      "Phonk",
+      "Hip-Hop",
+      "electronic music"
+    ]
+    const enPara2Extra = ["travelling", "trav­el­ing"]
+    const highlightClass = "text-neutral-300"
+    const highlightHyphenated = (hyphText: string, words: string[]) => {
+      const SOFT = '\u00AD'
+      const dehyph = hyphText.split(SOFT).join('')
+      // build mapping: posMap[i] = index in hyphText corresponding to dehyph char i
+      const posMap: number[] = new Array(dehyph.length + 1)
+      let deIdx = 0
+      for (let i = 0; i < hyphText.length; i++) {
+        if (hyphText[i] === SOFT) continue
+        if (posMap[deIdx] === undefined) posMap[deIdx] = i
+        deIdx++
+      }
+      posMap[deIdx] = hyphText.length
+      const lower = dehyph.toLowerCase()
+      const ranges: Array<[number, number]> = []
+      words.forEach(word => {
+        const w = word.split(SOFT).join('').toLowerCase()
+        let idx = 0
+        while (true) {
+          idx = lower.indexOf(w, idx)
+          if (idx === -1) break
+          ranges.push([idx, idx + w.length])
+          idx += w.length
+        }
+      })
+      if (ranges.length === 0) return hyphText
+      // sort and remove overlaps (keep first occurrence)
+      ranges.sort((a, b) => a[0] - b[0] || a[1] - b[1])
+      const merged: Array<[number, number]> = []
+      for (const r of ranges) {
+        if (merged.length === 0 || r[0] >= merged[merged.length - 1][1]) merged.push(r)
+      }
+      // build output using posMap to slice hyphText
+      let out = ''
+      let cursor = 0 // dehyph index
+      for (const [sDe, eDe] of merged) {
+        const sHy = posMap[sDe]
+        const eHy = posMap[eDe]
+        out += hyphText.slice(posMap[cursor], sHy)
+        out += `<span class="${highlightClass}">` + hyphText.slice(sHy, eHy) + '</span>'
+        cursor = eDe
+      }
+      out += hyphText.slice(posMap[cursor])
+      return out
+    }
+    return {
+      paragraph1: highlightHyphenated(hyphenate(text.paragraph1), language === 'pl' ? plWords : enCommon),
+      paragraph2: highlightHyphenated(hyphenate(text.paragraph2), language === 'pl' ? plWords : enCommon.concat(enPara2Extra)),
+      paragraph3: highlightHyphenated(hyphenate(text.paragraph3), language === 'pl' ? plWords : enCommon),
+      paragraph4: highlightHyphenated(hyphenate(text.paragraph4), language === 'pl' ? plWords : enCommon),
+    }
+  }, [language, text.paragraph1, text.paragraph2, text.paragraph3, text.paragraph4])
+  return (
+    <div className="flex flex-col gap-4">
+      <div className="rounded-xl border border-border bg-card px-5 pt-3.5 pb-5 backdrop-blur-xl" lang={language}>
+        <p className="text-[12px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]">
+          {language === "en" ? (
+            <span
+              dangerouslySetInnerHTML={{
+                __html:
+                  hyphenateEn("Based in ") +
+                  '<span class="text-white">Wrocław, Poland</span>' +
+                  hyphenateEn(" — ") +
+                  hyphenateText.paragraph1,
+              }}
+            />
+          ) : (
+            <span dangerouslySetInnerHTML={{ __html: hyphenateText.paragraph1 }} />
+          )}
+        </p>
+        <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+          <CollapsibleContent>
+            <div className="mt-3 space-y-3">
+              <p className="text-[12px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]">
+                <span dangerouslySetInnerHTML={{ __html: hyphenateText.paragraph2 }} />
+              </p>
+              <p className="text-[12px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]">
+                <span dangerouslySetInnerHTML={{ __html: hyphenateText.paragraph3 }} />
+              </p>
+              <p className="text-[12px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]">
+                <span dangerouslySetInnerHTML={{ __html: hyphenateText.paragraph4 }} />
+              </p>
+            </div>
+          </CollapsibleContent>
+          <div className="mt-0.5 mb-[-14px] flex justify-center">
+            <CollapsibleTrigger asChild>
+              <button
+                className="-m-4 inline-flex cursor-pointer items-center justify-center rounded-full p-4 text-foreground/70 transition-colors hover:text-foreground"
+                type="button"
+                aria-label={isOpen ? text.collapse : text.expand}
+              >
+                {isOpen ? <BsChevronCompactUp className="h-4.5 w-4.5" /> : <BsChevronCompactDown className="h-4.5 w-4.5" />}
+              </button>
+            </CollapsibleTrigger>
+          </div>
+        </Collapsible>
+      </div>
+      <div className="grid grid-cols-2 gap-3">
+        <button
+          type="button"
+          onClick={() => onOpenImagePreview("/images/tripify-map.jpg", "Tripify map")}
+          className="group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 hover:border-foreground/30 hover:bg-foreground/10 hover:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
+          aria-label={text.mapPreviewLabel}
+        >
+          <ChevronRight className="absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-foreground" />
+          <span className="bg-[linear-gradient(to_right,var(--dev-accent)_0%,#8b60e8_40%,#8b60e8_60%,#b817e4_100%)] bg-clip-text text-xl font-bold text-transparent font-mono">
+            28
+          </span>
+          <p className="mt-1 text-[11px] text-muted-foreground">{text.countriesVisited}</p>
+        </button>
+        <a
+          href="https://www.fragrantica.pl/uzytkownicy/34655"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl transition-all duration-300 hover:border-foreground/30 hover:bg-foreground/10 hover:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
+          aria-label={text.fragranticaLabel}
+        >
+          <ChevronRight className="absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-foreground" />
+          <span className="bg-[linear-gradient(to_right,var(--dev-accent)_0%,#8b60e8_40%,#8b60e8_60%,#b817e4_100%)] bg-clip-text text-xl font-bold text-transparent font-mono">
+            30
+          </span>
+          <p className="mt-1 text-[11px] text-muted-foreground">{text.perfumesOwned}</p>
+        </a>
+      </div>
+    </div>
+  )
+}
+
+================
+File: app/page.tsx
+================
+"use client"
+import { useEffect, useState } from "react"
+import { Mail, X } from "lucide-react"
+import { BsInstagram } from "react-icons/bs"
+import { MeshGradient } from "@/components/mesh-gradient"
+import { ProfileHeader } from "@/components/profile-header"
+import { TabMusic } from "@/components/tab-music"
+import { TabDev } from "@/components/tab-dev"
+import { TabAbout } from "@/components/tab-about"
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
+import { Button } from "@/components/ui/button"
+type Language = "en" | "pl"
+const pageText = {
+  en: {
+    tabs: {
+      dev: "Dev",
+      about: "About",
+      music: "Music",
+    },
+    contact: "Contact Me",
+    instagram: "Instagram",
+    instagramAria: "Open Instagram profile",
+    footer: "© 2026 stvshy. All rights reserved.",
+    previewDialogLabel: "Image preview",
+    previewCloseLabel: "Close image preview",
+    switchLanguageLabel: "Switch language to Polish",
+  },
+  pl: {
+    tabs: {
+      dev: "Dev",
+      about: "O mnie",
+      music: "Muzyka",
+    },
+    contact: "Skontaktuj się",
+    instagram: "Instagram",
+    instagramAria: "Otwórz profil na Instagramie",
+    footer: "© 2026 stvshy. Wszelkie prawa zastrzeżone.",
+    previewDialogLabel: "Podgląd obrazu",
+    previewCloseLabel: "Zamknij podgląd obrazu",
+    switchLanguageLabel: "Przełącz język na angielski",
+  },
+} as const
+export default function Page() {
+  const [activeTab, setActiveTab] = useState("about")
+  const [language, setLanguage] = useState<Language>("en")
+  const [previewImage, setPreviewImage] = useState<{ src: string; alt: string } | null>(null)
+  const isTripifyMapPreview = previewImage?.src.includes("tripify-map")
+  const text = pageText[language]
+  const nextLanguage: Language = language === "en" ? "pl" : "en"
+  useEffect(() => {
+    if (!previewImage) {
+      return
+    }
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    return () => {
+      document.body.style.overflow = previousOverflow
+    }
+  }, [previewImage])
+  useEffect(() => {
+    const storedLanguage = window.localStorage.getItem("language")
+    if (storedLanguage === "en" || storedLanguage === "pl") {
+      setLanguage(storedLanguage)
+    }
+  }, [])
+  useEffect(() => {
+    document.documentElement.lang = language
+    window.localStorage.setItem("language", language)
+  }, [language])
+  const contactHoverClassName =
+    activeTab === "dev"
+      ? "hover:border-[var(--dev-accent)]/45 hover:bg-[var(--dev-accent)]/10 hover:text-[var(--dev-accent)] hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+      : activeTab === "music"
+        ? "hover:border-[#b817e4]/45 hover:bg-[#b817e4]/10 hover:text-[#b817e4] hover:shadow-[0_0_20px_rgba(184,23,228,0.18)]"
+        : "hover:border-foreground/30 hover:bg-foreground/10 hover:text-foreground hover:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
+  const instagramHoverClassName =
+    activeTab === "dev"
+      ? "hover:border-[var(--dev-accent)]/55 hover:text-[var(--dev-accent)] hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+      : activeTab === "music"
+        ? "hover:border-[#b817e4]/55 hover:text-[#b817e4] hover:shadow-[0_0_20px_rgba(184,23,228,0.18)]"
+        : "hover:border-foreground/45 hover:text-foreground hover:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
+  return (
+    <main className="relative flex min-h-svh flex-col items-center bg-background">
+      <MeshGradient />
+      <div className="page-scale-desktop relative z-10 flex w-full max-w-md flex-col gap-8 px-5 py-12 pb-8">
+        <ProfileHeader language={language} />
+        {}
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full -mt-[10px]">
+          <TabsList className="grid w-full grid-cols-3 bg-muted/50 backdrop-blur-xl border border-border">
+            <TabsTrigger
+              value="dev"
+              className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-neon-magenta/10 data-[state=active]:text-neon-magenta data-[state=active]:shadow-none data-[state=inactive]:hover:bg-background/10 data-[state=inactive]:hover:border-border data-[state=inactive]:hover:text-muted-foreground/70"
+            >
+              <img
+                src="/images/dev-icon3-4.png"
+                alt="Dev icon"
+                className="mr-1.5 size-4"
+              />
+              {text.tabs.dev}
+            </TabsTrigger>
+            <TabsTrigger
+              value="about"
+              className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-foreground/10 data-[state=active]:text-foreground data-[state=active]:shadow-none data-[state=inactive]:hover:bg-background/10 data-[state=inactive]:hover:border-border data-[state=inactive]:hover:text-muted-foreground/70"
+            >
+              <img
+                src="/images/about-icon5.png"
+                alt="About icon"
+                className="mr-1.5 size-4"
+              />
+              {text.tabs.about}
+            </TabsTrigger>
+            <TabsTrigger
+              value="music"
+              className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-[#b817e4]/10 data-[state=active]:text-[#b817e4] data-[state=active]:shadow-none data-[state=inactive]:hover:bg-background/10 data-[state=inactive]:hover:border-border data-[state=inactive]:hover:text-muted-foreground/70"
+            >
+              <img
+                src="/images/music-icon2.png"
+                alt="Music note"
+                className="mr-1.5 size-4"
+              />
+              {text.tabs.music}
+            </TabsTrigger>
+          </TabsList>
+          <TabsContent value="dev" className="mt-1">
+            <TabDev
+              language={language}
+              onOpenImagePreview={(imageSrc, imageAlt) =>
+                setPreviewImage({ src: imageSrc, alt: imageAlt })
+              }
+            />
+          </TabsContent>
+          <TabsContent value="about" className="mt-1">
+            <TabAbout
+              language={language}
+              onOpenImagePreview={(imageSrc, imageAlt) =>
+                setPreviewImage({ src: imageSrc, alt: imageAlt })
+              }
+            />
+          </TabsContent>
+          <TabsContent value="music" className="mt-1">
+            <TabMusic language={language} />
+          </TabsContent>
+        </Tabs>
+        {}
+        <Button
+          asChild
+          className={`w-full rounded-xl border border-border bg-card text-sm text-foreground backdrop-blur-xl transition-all duration-300 ${contactHoverClassName}`}
+          size="lg"
+        >
+          <a href="mailto:matisp637@gmail.com">
+            <Mail className="size-4" />
+            {text.contact}
+          </a>
+        </Button>
+        {activeTab === "about" && (
+          <div className="-mt-4.5">
+            <Button
+              asChild
+              size="lg"
+              className={`w-full rounded-xl border border-foreground/12 bg-transparent text-sm text-foreground shadow-none transition-all duration-300 hover:bg-transparent ${instagramHoverClassName}`}
+            >
+              <a
+                href="https://instagram.com/stvshy"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={text.instagramAria}
+              >
+                <BsInstagram className="size-3.7" />
+                {text.instagram}
+              </a>
+            </Button>
+          </div>
+        )}
+        {}
+        <footer className="text-center -mt-1 -mb-1">
+          <p className="text-[11px] text-muted-foreground/50">
+            {text.footer}
+          </p>
+        </footer>
+        <div className="-mt-3 flex justify-center md:hidden">
+          <button
+            type="button"
+            onClick={() => setLanguage(nextLanguage)}
+            aria-label={text.switchLanguageLabel}
+            className="inline-flex size-5 items-center justify-center overflow-hidden rounded-full bg-card/90 text-sm shadow-[0_0_14px_rgba(0,0,0,0.28)] backdrop-blur-xl transition-all duration-300 hover:brightness-110 hover:shadow-[0_0_16px_4px_rgba(255,255,255,0.28)]"
+          >
+            <img
+              src={language === "en" ? "/images/polish1.png" : "/images/english2.png"}
+              alt=""
+              aria-hidden="true"
+              className="w-full h-full object-cover brightness-[0.87] transition-all duration-300"
+            />
+          </button>
+        </div>
+      </div>
+      <button
+        type="button"
+        onClick={() => setLanguage(nextLanguage)}
+        aria-label={text.switchLanguageLabel}
+        className="fixed bottom-6 right-6 z-40 hidden size-7 items-center justify-center overflow-hidden rounded-full bg-card/90 text-xl shadow-[0_0_24px_rgba(0,0,0,0.35)] backdrop-blur-xl transition-all duration-300 hover:brightness-110 hover:shadow-[0_0_12px_3px_rgba(255,255,255,0.22)] md:inline-flex"
+      >
+        <img
+          src={language === "en" ? "/images/polish1.png" : "/images/english2.png"}
+          alt=""
+          aria-hidden="true"
+          className="w-full h-full object-cover brightness-[0.85] transition-all duration-300"
+        />
+      </button>
+      {previewImage && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 md:bg-black/70 p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-label={text.previewDialogLabel}
+          onClick={() => setPreviewImage(null)}
+          style={{ touchAction: "pinch-zoom" }}
+        >
+          <div
+            className="relative flex items-center justify-center"
+            onClick={(event) => event.stopPropagation()}
+            style={{ touchAction: "pinch-zoom" }}
+          >
+            <button
+              type="button"
+              onClick={() => setPreviewImage(null)}
+              aria-label={text.previewCloseLabel}
+              className="absolute right-2 top-2 z-10 inline-flex size-8 items-center justify-center rounded-full border border-border/70 bg-background/80 text-foreground transition-colors hover:bg-background"
+            >
+              <X className="size-4" />
+            </button>
+            <img
+              src={previewImage.src}
+              alt={previewImage.alt}
+              className={`w-auto max-w-[95vw] rounded-xl object-contain ${
+                isTripifyMapPreview
+                  ? "max-h-[90vh] md:max-h-[96vh]"
+                  : "max-h-[90vh]"
+              }`}
+              style={{ touchAction: "pinch-zoom" }}
+            />
+          </div>
+        </div>
+      )}
+    </main>
+  )
+}
+
+================
+File: components/tab-dev.tsx
+================
+"use client"
+import Image from "next/image"
+import { useState } from "react"
+import { ChevronDown, ExternalLink, Layers, X } from "lucide-react"
+import { MdLocalAirport, MdLock, MdOutlineLayers } from "react-icons/md"
+import { ImLinkedin2 } from "react-icons/im"
+import { IoLogoGithub } from "react-icons/io"
+import { IoConstruct, IoGameController } from "react-icons/io5"
+import { RiChatVoiceAiFill } from "react-icons/ri"
+import { FaMeta } from "react-icons/fa6"
+import { SiCisco } from "react-icons/si"
+import {
+  SiAdobelightroom,
+  SiAdobephotoshop,
+  SiAmazonwebservices,
+  SiAssemblyscript,
+  SiC,
+  SiClion,
+  SiCplusplusbuilder,
+  SiCss3,
+  SiSharp,
+  SiDocker,
+  SiExpo,
+  SiFigma,
+  SiFirebase,
+  SiFlask,
+  SiGit,
+  SiGodotengine,
+  SiGnubash,
+  SiHtml5,
+  SiIntellijidea,
+  SiJavascript,
+  SiJunit5,
+  SiJupyter,
+  SiLinux,
+  SiMicrostation,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiOpengl,
+  SiPostgresql,
+  SiPycharm,
+  SiPython,
+  SiReact,
+  SiSelenium,
+  SiSpringboot,
+  SiSqlite,
+  SiSupabase,
+  SiTerraform,
+  SiTypescript,
+  SiVite,
+  SiVirtualbox,
+} from "react-icons/si"
+import { TbBrandReactNative, TbSql } from "react-icons/tb"
+import { VscVscode } from "react-icons/vsc"
+import { DiVisualstudio } from "react-icons/di"
+import { GiKiwiBird } from "react-icons/gi"
+import { FaCode, FaJava, FaMicrochip } from "react-icons/fa6"
+import { FaCompass } from "react-icons/fa"
+const links = [
+  {
+    label: "GitHub",
+    description: "Projects & contributions",
+    href: "https://github.com/stvshy",
+    icon: IoLogoGithub,
+    blocked: false,
+  },
+  {
+    label: "LinkedIn",
+    description: "Profile & networking",
+    href: "https://www.linkedin.com/in/mateusz-staszk%C3%B3w/",
+    icon: ImLinkedin2,
+    blocked: false,
+  },
+  {
+    label: "Travel Assistant",
+    description: "AI trip planning assistant",
+    href: "https://empathetic-ai-travel-assistant.vercel.app",
+    icon: RiChatVoiceAiFill,
+    blocked: false,
+  },
+  {
+    label: "Hollow Depths",
+    description: "Godot game project",
+    href: "https://konrad-skowron.itch.io/hollow-depths",
+    icon: IoGameController,
+    blocked: false,
+  },
+  {
+    label: "Renovation System",
+    description: "Workflow management platform",
+    href: "https://stvshy.github.io/renovation-system/#/register",
+    icon: IoConstruct,
+    blocked: false,
+  },
+  {
+    label: "Tripify",
+    description: "Mobile app. Work in progress",
+    href: "#",
+    icon: MdLocalAirport,
+    blocked: true,
+  },
+]
+type TabDevProps = {
+  language: "en" | "pl"
+  onOpenImagePreview: (imageSrc: string, imageAlt: string) => void
+}
+const devText = {
+  en: {
+    linkDescriptions: {
+      github: "Projects & contributions",
+      linkedin: "Profile & networking",
+      travelAssistant: "AI trip planning assistant",
+      hollowDepths: "Godot game project",
+      renovationSystem: "Workflow management platform",
+      tripify: "Mobile app. Work in progress",
+    },
+    yearsProgramming: "Years programming",
+    certificatesCount: "Certificates",
+    education: "Education",
+    closeEducation: "Close Education",
+    schoolFocus: "Focus: Mathematics & Computer Science",
+    bachelor: "Bachelor's degree",
+    master: "Master's degree",
+    certificates: "Certificates",
+    closeCertificates: "Close Certificates",
+    verifyPrefix: "Verify",
+    previewPrefix: "Open preview",
+    stackTitle: "Stack",
+    stackSubtitle: "Technologies & tools",
+    sectionTitles: {
+      languages: "Languages & Core Technologies",
+      frameworks: "Frameworks & Libraries",
+      databases: "Databases, Cloud & DevOps",
+      ides: "IDEs & Development Tools",
+      testing: "Testing, Analysis & Modeling Tools",
+      design: "Design & Other Software",
+    },
+  },
+  pl: {
+    linkDescriptions: {
+      github: "Projekty i wkład",
+      linkedin: "Profil i networking",
+      travelAssistant: "AI asystent do planowania podróży",
+      hollowDepths: "Projekt gry w Godot",
+      renovationSystem: "Platforma do zarządzania procesem",
+      tripify: "Aplikacja mobilna. Wkrótce dostępna",
+    },
+    yearsProgramming: "Lat programowania",
+    certificatesCount: "Certyfikaty",
+    education: "Edukacja",
+    closeEducation: "Zamknij edukację",
+    schoolFocus: "Profil: Matematyka & Informatyka",
+    bachelor: "Studia inżynierskie",
+    master: "Studia magisterskie",
+    certificates: "Certyfikaty",
+    closeCertificates: "Zamknij certyfikaty",
+    verifyPrefix: "Zweryfikuj",
+    previewPrefix: "Otwórz podgląd",
+    stackTitle: "Stack",
+    stackSubtitle: "Technologie i narzędzia",
+    sectionTitles: {
+      languages: "Języki i technologie bazowe",
+      frameworks: "Frameworki i biblioteki",
+      databases: "Bazy danych, chmura i DevOps",
+      ides: "IDE i narzędzia developerskie",
+      testing: "Testowanie, analiza i modelowanie",
+      design: "Design i inne oprogramowanie",
+    },
+  },
+} as const
+export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
+  const [isStackOpen, setIsStackOpen] = useState(false)
+  const [isYearsOpen, setIsYearsOpen] = useState(false)
+  const [isCertificatesOpen, setIsCertificatesOpen] = useState(false)
+  const text = devText[language]
+  const stackSections = [
+    {
+      title: text.sectionTitles.languages,
+      gradientClass: "from-[#05dafff8] via-blue-500 to-[#879ffc]",
+      items: [
+        { label: "C++", icon: SiCplusplusbuilder },
+        { label: "Java", icon: FaJava },
+        { label: "JavaScript", icon: SiJavascript },
+        { label: "TypeScript", icon: SiTypescript },
+        { label: "Node.js", icon: SiNodedotjs },
+        { label: "Python", icon: SiPython },
+        { label: "C", icon: SiC },
+        { label: "C#", icon: SiSharp },
+        { label: "HTML5", icon: SiHtml5 },
+        { label: "CSS3", icon: SiCss3 },
+        { label: "Bash", icon: SiGnubash },
+        { label: "Assembly", icon: SiAssemblyscript },
+        { label: "VHDL", icon: FaCode },
+      ],
+    },
+    {
+      title: text.sectionTitles.frameworks,
+      gradientClass: "from-[#05dafff8] via-indigo-500 to-purple-500",
+      items: [
+        { label: "React Native", icon: TbBrandReactNative },
+        { label: "React", icon: SiReact },
+        { label: "Spring Boot", icon: SiSpringboot },
+        { label: "Vite", icon: SiVite },
+        { label: "Expo", icon: SiExpo },
+        { label: "Next.js", icon: SiNextdotjs },
+        { label: "JavaFX", icon: FaJava },
+        { label: "OpenGL", icon: SiOpengl },
+        { label: "Flask", icon: SiFlask },
+      ],
+    },
+    {
+      title: text.sectionTitles.databases,
+      gradientClass: "from-[#05dafff8] via-indigo-500 to-violet-500",
+      items: [
+        { label: "PostgreSQL", icon: SiPostgresql },
+        { label: "SQL", icon: TbSql },
+        { label: "Firebase", icon: SiFirebase },
+        { label: "AWS", icon: SiAmazonwebservices },
+        { label: "Docker", icon: SiDocker },
+        { label: "Terraform", icon: SiTerraform },
+        { label: "Linux", icon: SiLinux },
+        { label: "Git", icon: SiGit },
+        { label: "Supabase", icon: SiSupabase },
+      ],
+    },
+    {
+      title: text.sectionTitles.ides,
+      gradientClass: "from-[#05dafff8] via-purple-500 to-violet-600",
+      items: [
+        { label: "IntelliJ IDEA", icon: SiIntellijidea },
+        { label: "PyCharm", icon: SiPycharm },
+        { label: "CLion", icon: SiClion },
+        { label: "Visual Studio Code", icon: VscVscode },
+        { label: "Visual Studio", icon: DiVisualstudio },
+        { label: "Keil µVision 5", icon: SiMicrostation },
+        { label: "Jupyter Notebook", icon: SiJupyter },
+        { label: "Godot Engine", icon: SiGodotengine },
+        { label: "Xilinx", icon: FaMicrochip },
+      ],
+    },
+    {
+      title: text.sectionTitles.testing,
+      gradientClass: "from-[#05dafff8] via-purple-500 to-violet-600",
+      items: [
+        { label: "Selenium", icon: SiSelenium },
+        { label: "Weka", icon: GiKiwiBird },
+        { label: "FitNesse", icon: FaCompass },
+        { label: "Visual Paradigm", icon: MdOutlineLayers },
+        { label: "JUnit", icon: SiJunit5 },
+      ],
+    },
+    {
+      title: text.sectionTitles.design,
+      gradientClass: "from-[#05dafff8] via-fuchsia-500 to-fuchsia-500",
+      items: [
+        { label: "Figma", icon: SiFigma },
+        { label: "Photoshop", icon: SiAdobephotoshop },
+        { label: "Lightroom", icon: SiAdobelightroom },
+        { label: "MATLAB", icon: SiSqlite },
+        { label: "VirtualBox", icon: SiVirtualbox },
+      ],
+    },
+  ]
+  const certificates = [
+    {
+      title: "Programming with JavaScript",
+      issuer: "Meta",
+      verifyUrl: "https://www.coursera.org/account/accomplishments/verify/DCEXTU27C4HO",
+      image: "/images/meta2.png",
+      logo: FaMeta,
+    },
+    {
+      title: "Introduction to Mobile Development",
+      issuer: "Meta",
+      verifyUrl: "https://www.coursera.org/account/accomplishments/verify/8OJJV1T21QI5",
+      image: "/images/meta1.png",
+      logo: FaMeta,
+    },
+    {
+      title: "CCNA: Introduction to Networks",
+      issuer: "Cisco",
+      verifyUrl:
+        "https://www.credly.com/badges/9719de3d-0a39-41ad-b203-0c2f3cce6ab7/linked_in_profile",
+      image: "/images/cisco.png",
+      logo: SiCisco,
+    },
+  ]
+  const localizedLinks = links.map((link) => {
+    const descriptionMap = {
+      GitHub: text.linkDescriptions.github,
+      LinkedIn: text.linkDescriptions.linkedin,
+      "Travel Assistant": text.linkDescriptions.travelAssistant,
+      "Hollow Depths": text.linkDescriptions.hollowDepths,
+      "Renovation System": text.linkDescriptions.renovationSystem,
+      Tripify: text.linkDescriptions.tripify,
+    } as const
+    return {
+      ...link,
+      description: descriptionMap[link.label as keyof typeof descriptionMap] ?? link.description,
+    }
+  })
+  return (
+    <div className="flex flex-col gap-3">
+      {localizedLinks.map((link) => (
+        <a
+          key={link.label}
+          href={link.blocked ? undefined : link.href}
+          target={link.blocked ? undefined : "_blank"}
+          rel={link.blocked ? undefined : "noopener noreferrer"}
+          aria-disabled={link.blocked}
+          className={`group flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-3 backdrop-blur-xl transition-all duration-300 ${
+            link.blocked
+              ? "cursor-not-allowed border-border/70 bg-muted/15 opacity-100"
+              : "hover:border-[var(--dev-accent)]/45 hover:bg-[var(--dev-accent)]/10 hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+          }`}
+        >
+          <div
+            className={`flex size-10 shrink-0 items-center justify-center rounded-lg transition-colors ${
+              link.blocked
+                ? "bg-[var(--dev-accent)]/10 text-[var(--dev-accent)]/60"
+                : "bg-[var(--dev-accent)]/15 text-[var(--dev-accent)] group-hover:bg-[var(--dev-accent)]/25"
+            }`}
+          >
+            <link.icon className={link.label === "GitHub" ? "size-6" : "size-5"} />
+          </div>
+          <div className="flex flex-col gap-0.5">
+            <span
+              className={`text-[12px] font-medium ${
+                link.blocked ? "text-foreground/70" : "text-foreground"
+              }`}
+            >
+              {link.label}
+            </span>
+            <span
+              className={`text-[11px] ${
+                link.blocked ? "text-muted-foreground/70" : "text-muted-foreground"
+              }`}
+            >
+              {link.description}
+            </span>
+          </div>
+          {link.blocked ? (
+            <MdLock className="ml-auto size-4 text-muted-foreground/70" />
+          ) : (
+            <svg
+              className="ml-auto size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-[var(--dev-accent)]"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              aria-hidden="true"
+            >
+              <path d="M6 3l5 5-5 5" />
+            </svg>
+          )}
+        </a>
+      ))}
+      <div className="grid grid-cols-2 gap-3">
+        <button
+          type="button"
+          onClick={() => setIsYearsOpen((prev) => !prev)}
+          aria-expanded={isYearsOpen}
+          className="group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 hover:border-[var(--dev-accent)]/45 hover:bg-[var(--dev-accent)]/10 hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+        >
+          <ChevronDown
+            className={`absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground transition-transform ${
+              isYearsOpen ? "rotate-180" : ""
+            }`}
+          />
+          <span className="text-xl font-bold text-[var(--dev-accent)] font-mono">9+</span>
+          <p className="mt-1 text-[11px] text-muted-foreground">{text.yearsProgramming}</p>
+        </button>
+        <button
+          type="button"
+          onClick={() => setIsCertificatesOpen((prev) => !prev)}
+          aria-expanded={isCertificatesOpen}
+          className="group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 hover:border-[var(--dev-accent)]/45 hover:bg-[var(--dev-accent)]/10 hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+        >
+          <ChevronDown
+            className={`absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground transition-transform ${
+              isCertificatesOpen ? "rotate-180" : ""
+            }`}
+          />
+          <span className="text-xl font-bold text-[#a81ad3] font-mono">3</span>
+          <p className="mt-1 text-[11px] text-muted-foreground">{text.certificatesCount}</p>
+        </button>
+      </div>
+      <div
+        className={`grid transition-[grid-template-rows,opacity,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          isYearsOpen
+            ? "mt-0 grid-rows-[1fr] translate-y-0 opacity-100"
+            : "-mt-3 grid-rows-[0fr] -translate-y-2 opacity-0"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <div
+            className={`relative rounded-xl border border-border bg-card/90 px-5 py-4 backdrop-blur-xl transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              isYearsOpen ? "translate-y-0 opacity-100" : "-translate-y-2 opacity-0"
+            }`}
+          >
+          <button
+            type="button"
+            onClick={() => setIsYearsOpen(false)}
+            aria-label={text.closeEducation}
+            className="absolute right-3 top-3 inline-flex size-6 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-card hover:text-foreground"
+          >
+            <X className="size-3.5" />
+          </button>
+          <p className="mb-3 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+            {text.education}
+          </p>
+          <div className="space-y-3">
+            <div className="relative rounded-lg border border-border/70 bg-card/42 px-3 py-3 pr-24">
+              <p className="absolute right-6 top-1/2 inline-flex -translate-y-1/2 items-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 px-2 py-0.5 text-[9px] font-semibold tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)]">
+                2018 - 2021
+              </p>
+              <p className="mt-1 text-[12px] font-medium text-foreground">
+                I High School in Legnica
+              </p>
+              <p className="mt-1 text-[11px] text-muted-foreground">
+                {text.schoolFocus}
+              </p>
+            </div>
+            <div className="rounded-lg border border-border/70 bg-card/42 px-3 py-3">
+              <p className="bg-[linear-gradient(to_right,var(--dev-accent)_0%,var(--dev-accent)_39%,#bc25e9_100%)] bg-clip-text text-[11px] font-semibold uppercase tracking-wide text-transparent opacity-98 drop-shadow-[0_0.5px_0.5px_rgba(var(--dev-accent-rgb),0.22)]">
+                Wrocław University of Science and Technology
+              </p>
+              <div className="mt-2 space-y-2">
+                <div className="relative rounded-md border border-border/60 bg-card px-2.5 py-2 pr-24">
+                  <p className="absolute right-3 top-1/2 inline-flex -translate-y-1/2 items-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 px-2 py-0.5 text-[9px] font-semibold tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)]">
+                    2021 - 2025
+                  </p>
+                  <p className="text-[11px] font-medium text-foreground">
+                    Computer Engineering
+                  </p>
+                  <p className="text-[11px] text-muted-foreground">
+                    {text.bachelor}
+                  </p>
+                </div>
+                <div className="relative rounded-md border border-border/60 bg-card px-2.5 py-2 pr-24">
+                  <p className="absolute right-3 top-1/2 inline-flex -translate-y-1/2 items-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 px-2 py-0.5 text-[9px] font-semibold tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)]">
+                    2025 - 2026
+                  </p>
+                  <p className="text-[11px] font-medium text-foreground">
+                    Applied Computer Science
+                  </p>
+                  <p className="text-[11px] text-muted-foreground">{text.master}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className={`grid transition-[grid-template-rows,opacity,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          isCertificatesOpen
+            ? "mt-0 grid-rows-[1fr] translate-y-0 opacity-100"
+            : "-mt-3 grid-rows-[0fr] -translate-y-2 opacity-0"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <div
+            className={`relative rounded-xl border border-border bg-card/90 px-4 py-4 backdrop-blur-xl transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              isCertificatesOpen ? "translate-y-0 opacity-100" : "-translate-y-2 opacity-0"
+            }`}
+          >
+          <button
+            type="button"
+            onClick={() => setIsCertificatesOpen(false)}
+            aria-label={text.closeCertificates}
+            className="absolute right-3 top-3 inline-flex size-6 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-card hover:text-foreground"
+          >
+            <X className="size-3.5" />
+          </button>
+          <p className="mb-3 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+            {text.certificates}
+          </p>
+          <div className="flex flex-col gap-3">
+            {certificates.map((certificate) => (
+              <div
+                key={certificate.title}
+                className="flex items-center justify-between gap-3 rounded-lg border border-border/70 bg-card/42 px-3 py-3"
+              >
+                <div className="flex min-w-0 items-center gap-2.5">
+                  <certificate.logo className="size-5 shrink-0 text-foreground" />
+                  <div className="min-w-0">
+                    <p className="truncate text-[12px] font-medium text-foreground">
+                      {certificate.title}
+                    </p>
+                    <p className="text-[11px] text-muted-foreground">{certificate.issuer}</p>
+                  </div>
+                </div>
+                <div className="flex shrink-0 items-center gap-2">
+                  <a
+                    href={certificate.verifyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${text.verifyPrefix} ${certificate.title}`}
+                    className="inline-flex size-8 items-center justify-center rounded-md border border-border/70 bg-card text-muted-foreground transition-colors hover:text-[var(--dev-accent)]"
+                  >
+                    <ExternalLink className="size-3.5" />
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      onOpenImagePreview(certificate.image, `${certificate.title} preview`)
+                    }
+                    aria-label={`${text.previewPrefix} ${certificate.title}`}
+                    className="inline-flex h-8 w-12 overflow-hidden rounded-md border border-border/70"
+                  >
+                    <Image
+                      src={certificate.image}
+                      alt={`${certificate.title} preview`}
+                      width={48}
+                      height={32}
+                      className="h-8 w-12 object-cover"
+                    />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        </div>
+      </div>
+      <div
+        className={`border bg-card backdrop-blur-xl transition-all duration-300 ${
+          isStackOpen
+            ? "rounded-t-xl border-border"
+            : "rounded-xl border-border hover:border-[var(--dev-accent)]/45 hover:bg-[var(--dev-accent)]/10 hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+        }`}
+      >
+        <button
+          type="button"
+          onClick={() => setIsStackOpen((prev) => !prev)}
+          className={`group flex w-full items-center gap-4 px-5 py-3 text-left transition-all duration-300 ${
+            isStackOpen ? "rounded-t-xl bg-[var(--dev-accent)]/10" : "rounded-xl"
+          }`}
+        >
+          <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-[var(--dev-accent)]/15 text-[var(--dev-accent)] transition-colors group-hover:bg-[var(--dev-accent)]/25">
+            <Layers className="size-6" />
+          </div>
+          <div className="flex flex-col gap-0.5">
+            <span className="text-[13px] font-semibold text-foreground">{text.stackTitle}</span>
+            <span className="text-[11px] text-muted-foreground">
+              {text.stackSubtitle}
+            </span>
+          </div>
+          <ChevronDown
+            className={`ml-auto size-[18px] text-muted-foreground transition-transform ${
+              isStackOpen ? "rotate-180" : ""
+            }`}
+          />
+        </button>
+        {isStackOpen && (
+          <div className="border-t border-border px-5 py-4">
+            <div className="flex flex-col gap-3">
+              {stackSections.map((section) => (
+                <div key={section.title}>
+                  <p
+                    className={`mb-2 bg-gradient-to-r ${section.gradientClass} bg-clip-text text-[11px] font-semibold uppercase tracking-wide text-transparent opacity-92 drop-shadow-[0_0.5px_0.5px_rgba(var(--dev-accent-rgb),0.22)]`}
+                  >
+                    {section.title}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {section.items.map((item) => (
+                      <span
+                        key={item.label}
+                        className="inline-flex items-center gap-1.5 rounded-md border border-border px-2.5 py-1 text-[11px] text-foreground"
+                      >
+                        <item.icon
+                          className={`text-muted-foreground ${
+                            item.label === "C++" || item.label === "C#"
+                              ? "size-[15px]"
+                              : "size-3.5"
+                          }`}
+                        />
+                        {item.label}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
   )
 }
 
