@@ -3,13 +3,67 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Local Montserrat for the profile name */
+/* Montserrat weights registered so numeric font-weight values work */
 @font-face {
   font-family: 'MontserratCustom';
-  src: url('/fonts/Montserrat/static/Montserrat-Regular.woff2') format('woff2'),
-       url('/fonts/Montserrat/static/Montserrat-Regular.woff') format('woff'),
-       url('/fonts/Montserrat/static/Montserrat-Regular.ttf') format('truetype');
-  font-weight: 100 700;
+  src: url('/fonts/Montserrat/static/Montserrat-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'MontserratCustom';
+  src: url('/fonts/Montserrat/static/Montserrat-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'MontserratCustom';
+  src: url('/fonts/Montserrat/static/Montserrat-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'MontserratCustom';
+  src: url('/fonts/Montserrat/static/Montserrat-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'MontserratCustom';
+  src: url('/fonts/Montserrat/static/Montserrat-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'MontserratCustom';
+  src: url('/fonts/Montserrat/static/Montserrat-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'MontserratCustom';
+  src: url('/fonts/Montserrat/static/Montserrat-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'MontserratCustom';
+  src: url('/fonts/Montserrat/static/Montserrat-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'MontserratCustom';
+  src: url('/fonts/Montserrat/static/Montserrat-Black.ttf') format('truetype');
+  font-weight: 900;
   font-style: normal;
   font-display: swap;
 }
@@ -51,6 +105,8 @@
   --neon-magenta: #ff0050;
   --dev-accent: #05dafff8;
   --dev-accent-rgb: 49 222 255;
+  /* profile name weight variable (default 450) */
+  --profile-name-weight: 435;
 }
 
 @theme inline {
@@ -124,11 +180,12 @@
 
 /* Slightly lighter name style using local Montserrat */
 .custom-name {
-  font-family: 'MontserratCustom', var(--font-sans), system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  font-weight: 800;
+  /* prefer Google's variable Montserrat (exact weights) then fall back to local */
+  font-family: 'Montserrat', 'MontserratCustom', var(--font-sans), system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  /* uses global --profile-name-weight (set in :root) */
+  font-weight: var(--profile-name-weight);
   letter-spacing: -0.0px;
-  /* slightly stronger shadow to make the name a tiny bit bolder */
-  text-shadow: 0.5px 0 0 currentColor, -0.5px 0 0 currentColor;
+  text-shadow: 0.25px 0 0 currentColor, -0.25px 0 0 currentColor;
 }
 
 /* Sans-serif for location */
@@ -136,7 +193,7 @@
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   /* uppercase and increased letter spacing for the location line */
   text-transform: uppercase;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.19em;
   font-size: 8px;
 }
 

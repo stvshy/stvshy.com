@@ -37,8 +37,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
        <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-        
+
         <style dangerouslySetInnerHTML={{ __html: `
           /* Główny kursor na stronie */
           body {
