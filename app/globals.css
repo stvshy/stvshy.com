@@ -184,7 +184,7 @@
   font-family: 'Montserrat', 'MontserratCustom', var(--font-sans), system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
   /* uses global --profile-name-weight (set in :root) */
   font-weight: var(--profile-name-weight);
-  letter-spacing: 0.03px;
+  letter-spacing: 0.08px;
   text-shadow: 0.25px 0 0 currentColor, -0.25px 0 0 currentColor;
 }
 
@@ -194,7 +194,7 @@
   /* uppercase and increased letter spacing for the location line */
   text-transform: uppercase;
   letter-spacing: 0.19em;
-  font-size: 8.2px;
+  font-size: 8.4px;
 }
 
 /* Slightly smaller role text (half pixel reduction -> 11.5px) */
