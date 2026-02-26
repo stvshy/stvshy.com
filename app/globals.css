@@ -184,7 +184,7 @@
   font-family: 'Montserrat', 'MontserratCustom', var(--font-sans), system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
   /* uses global --profile-name-weight (set in :root) */
   font-weight: var(--profile-name-weight);
-  letter-spacing: -0.0px;
+  letter-spacing: 0.03px;
   text-shadow: 0.25px 0 0 currentColor, -0.25px 0 0 currentColor;
 }
 
@@ -194,12 +194,30 @@
   /* uppercase and increased letter spacing for the location line */
   text-transform: uppercase;
   letter-spacing: 0.19em;
-  font-size: 8px;
+  font-size: 8.0px;
 }
 
 /* Slightly smaller role text (half pixel reduction -> 11.5px) */
 .role-smaller {
-  font-size: 11px;
+  font-size: 10.7955px;
+}
+
+/* Tabbar-specific variables and rules — target only this tabs UI */
+[data-slot="tabs-list"] {
+  /* defaults: can be overridden in :root or on the element */
+  --tabbar-font-family: 'Montserrat', 'MontserratCustom', var(--font-sans);
+  --tabbar-font-size: 12.5px; /* 13px */
+  --tabbar-font-weight: 490;
+  --tabbar-letter-spacing: -0.02em;
+  --tabbar-gap: 0.375rem; /* 6px */
+}
+
+[data-slot="tabs-list"] [data-slot="tabs-trigger"] {
+  font-family: var(--tabbar-font-family) !important;
+  font-size: var(--tabbar-font-size) !important;
+  font-weight: var(--tabbar-font-weight) !important;
+  letter-spacing: var(--tabbar-letter-spacing) !important;
+  gap: var(--tabbar-gap) !important;
 }
 @media (min-width: 1024px) {
   .page-scale-desktop {
