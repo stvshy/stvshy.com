@@ -25,15 +25,15 @@ export function ProfileHeader({ language }: ProfileHeaderProps) {
       </div>
 
       <div className="text-center flex flex-col items-center gap-1">
-        <h1 className="text-[22px] font-bold tracking-tight text-slate-900 dark:text-white mb-1">
+        <h1 className="text-[20.5px] custom-name tracking-tight text-slate-900 dark:text-white mb-1">
           Mateusz Staszk&oacute;w
         </h1>
-        <p className="text-xs font-medium tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-fuchsia-500 uppercase">
+        <p className="text-xs role-smaller font-medium tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-fuchsia-500 uppercase">
           {roleText} <span className="text-slate-400 dark:text-slate-400 mx-2">x</span> {producerText}
         </p>
-        <div className="flex items-center justify-center mt-1 text-[10px] text-slate-500 dark:text-slate-400 font-mono">
-            <HiLocationMarker className="mr-2 mb-[1px] text-[11.5px] shrink-0" aria-hidden="true" />
-          Wrocław, PL
+        <div className="flex items-center justify-center mt-1 text-[10px] text-slate-500 dark:text-slate-400 location-sans">
+            <HiLocationMarker className="mr-2 mb-[1px] text-[9px] shrink-0" aria-hidden="true" />
+          WROCŁAW, PL
         </div>
       </div>
     </header>
