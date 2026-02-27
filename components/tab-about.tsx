@@ -156,7 +156,7 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
       <div className="rounded-xl border border-border bg-card px-5 pt-3.5 pb-5 backdrop-blur-xl" lang={language}>
         <p
           className="text-[12px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]"
-          style={{ fontFamily: 'Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
+          style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial', fontFeatureSettings: '"ss01"' }}
         >
           {language === "en" ? (
             // Use hyphenated+highlighted HTML so keywords are highlighted
@@ -180,25 +180,24 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
             <div className="mt-3 space-y-3">
               <p
                 className="text-[12px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]"
-                style={{ fontFamily: 'Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
+                style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
               >
                 <span dangerouslySetInnerHTML={{ __html: hyphenateText.paragraph2 }} />
               </p>
               <p
                 className="text-[12px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]"
-                style={{ fontFamily: 'Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
+                style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
               >
                 <span dangerouslySetInnerHTML={{ __html: hyphenateText.paragraph3 }} />
               </p>
               <p
                 className="text-[12px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]"
-                style={{ fontFamily: 'Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
+                style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
               >
                 <span dangerouslySetInnerHTML={{ __html: hyphenateText.paragraph4 }} />
               </p>
             </div>
           </CollapsibleContent>
-
           <div className="mt-0.5 mb-[-14px] flex justify-center">
             <CollapsibleTrigger asChild>
               <button
@@ -241,7 +240,6 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
           <p className="mt-1 text-[11px] text-muted-foreground">{text.perfumesOwned}</p>
         </a>
       </div>
-
     </div>
   )
 }

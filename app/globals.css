@@ -106,7 +106,7 @@
   --dev-accent: #05dafff8;
   --dev-accent-rgb: 49 222 255;
   /* profile name weight variable (default 450) */
-  --profile-name-weight: 435;
+  --profile-name-weight: 500;
 }
 
 @theme inline {
@@ -178,13 +178,79 @@
   }
 }
 
+/* Local Monorale font (placed in public/fonts/Monorale (Raleway)) - use .woff files present in repo
+   Note: URL-encode spaces in folder name (use %20) to ensure fonts are fetched correctly. */
+@font-face {
+  font-family: 'Monorale';
+  src: url('/fonts/Monorale%20(Raleway)/Monorale-Thin.woff') format('woff');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Monorale';
+  src: url('/fonts/Monorale%20(Raleway)/Monorale-ExtraLight.woff') format('woff');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Monorale';
+  src: url('/fonts/Monorale%20(Raleway)/Monorale-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Monorale';
+  src: url('/fonts/Monorale%20(Raleway)/Monorale-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Monorale';
+  src: url('/fonts/Monorale%20(Raleway)/Monorale-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Monorale';
+  src: url('/fonts/Monorale%20(Raleway)/Monorale-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Monorale';
+  src: url('/fonts/Monorale%20(Raleway)/Monorale-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Monorale';
+  src: url('/fonts/Monorale%20(Raleway)/Monorale-ExtraBold.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Monorale';
+  src: url('/fonts/Monorale%20(Raleway)/Monorale-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Slightly lighter name style using local Montserrat */
 .custom-name {
   /* prefer Google's variable Montserrat (exact weights) then fall back to local */
   font-family: 'Montserrat', 'MontserratCustom', var(--font-sans), system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
   /* uses global --profile-name-weight (set in :root) */
   font-weight: var(--profile-name-weight);
-  letter-spacing: 0.08px;
+  letter-spacing: 1.08px;
   text-shadow: 0.25px 0 0 currentColor, -0.25px 0 0 currentColor;
 }
 
@@ -193,8 +259,8 @@
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   /* uppercase and increased letter spacing for the location line */
   text-transform: uppercase;
-  letter-spacing: 0.19em;
-  font-size: 8.4px;
+  letter-spacing: 0.18em;
+  font-size: 8.0px;
 }
 
 /* Slightly smaller role text (half pixel reduction -> 11.5px) */
@@ -224,12 +290,4 @@
     transform: scale(1.1);
     transform-origin: top center;
   }
-}
-
-/* Description text using Raleway with alternate glyphs to avoid odd 'W' */
-.description {
-  font-family: 'Raleway', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  /* Try stylistic set or character variant that fixes the 'W' glyph in some Raleway files */
-  font-feature-settings: "ss01" 1, "cv01" 1;
-  -webkit-font-feature-settings: "ss01" 1, "cv01" 1;
 }

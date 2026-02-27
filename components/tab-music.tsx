@@ -138,6 +138,7 @@ export function TabMusic({ language }: TabMusicProps) {
   const musicThemeStyle = {
     "--music-accent": MUSIC_ACCENT,
     "--music-accent-rgb": hexToRgbChannels(MUSIC_ACCENT),
+    fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
   } as CSSProperties
 
   const defaultLinkClassName =
@@ -182,17 +183,13 @@ export function TabMusic({ language }: TabMusicProps) {
           <div className="flex flex-col gap-0.5">
             <span
               className="text-[12.9px] font-semibold text-foreground"
-              style={{
-                fontFamily:
-                  'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
-                letterSpacing: '-0.02em',
-              }}
+              style={{ letterSpacing: '-0.02em' }}
             >
               {link.label}
             </span>
             <span
               className="text-[11.7px] text-muted-foreground"
-              style={{ fontFamily: 'Questrial, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial', letterSpacing: '-0.01em' }}
+              style={{ letterSpacing: '-0.01em' }}
             >
               {link.description}
             </span>
@@ -259,7 +256,7 @@ export function TabMusic({ language }: TabMusicProps) {
                 </span>
                 <span
                   className="text-[11px] text-muted-foreground"
-                  style={{ fontFamily: 'Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
+                  style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
                 >
                   {link.description}
                 </span>
@@ -281,17 +278,17 @@ export function TabMusic({ language }: TabMusicProps) {
 
       <div className="grid grid-cols-2 gap-3">
         <div className="rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl">
-          <span className="text-xl font-bold text-[rgb(var(--music-accent-rgb))] font-mono">1</span>
+          <span className="text-xl font-bold text-[rgb(var(--music-accent-rgb))]">1</span>
           <p className="mt-1 text-[11px] text-muted-foreground">{text.tracksReleased}</p>
         </div>
         <div className="rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl">
-          <span className="text-xl font-bold text-[#0ab8d6f8] font-mono">3+</span>
+          <span className="text-xl font-bold text-[#0ab8d6f8]">3+</span>
           <p className="mt-1 text-[11px] text-muted-foreground">{text.yearsProducing}</p>
         </div>
       </div>
 
       <div className="rounded-xl border border-border bg-card px-5 py-4 backdrop-blur-xl">
-        <h3 className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+        <h3 className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground" style={{ fontFamily: 'Montserrat, MontserratCustom, var(--font-sans), system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
           {text.genres}
         </h3>
         <div className="flex flex-wrap gap-2">
