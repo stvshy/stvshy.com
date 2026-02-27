@@ -221,7 +221,7 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
         >
           <ChevronRight className="absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-foreground" />
           <span
-            className="bg-[linear-gradient(to_right,var(--dev-accent)_0%,#8b60e8_40%,#8b60e8_60%,#b817e4_100%)] bg-clip-text text-xl text-transparent"
+            className="bg-[linear-gradient(to_right,var(--dev-accent)_0%,#8b60e8_40%,#8b60e8_60%,#b817e4_100%)] bg-clip-text text-[20px] text-transparent"
             style={{
               fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
               fontWeight: 550,
@@ -230,7 +230,7 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
           >
             28
           </span>
-          <p className="mt-1 text-[11px] text-muted-foreground" style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>{text.countriesVisited}</p>
+          <p className="mt-1 text-[11.43px] text-muted-foreground" style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>{text.countriesVisited}</p>
         </button>
         <a
           href="https://www.fragrantica.pl/uzytkownicy/34655"
@@ -250,7 +250,7 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
           >
             30
           </span>
-          <p className="mt-1 text-[11px] text-muted-foreground" style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>{text.perfumesOwned}</p>
+          <p className="mt-1 text-[11.43px] text-muted-foreground" style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>{text.perfumesOwned}</p>
         </a>
       </div>
     </div>

@@ -141,6 +141,8 @@ export function TabMusic({ language }: TabMusicProps) {
     fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
   } as CSSProperties
 
+  const musicRgb = hexToRgbChannels(MUSIC_ACCENT).split(" ").join(", ")
+
   const defaultLinkClassName =
     "group flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-3 backdrop-blur-xl transition-all duration-300 hover:border-[rgb(var(--music-accent-rgb)/0.3)] hover:bg-[rgb(var(--music-accent-rgb)/0.05)]"
 
@@ -299,14 +301,28 @@ export function TabMusic({ language }: TabMusicProps) {
           {text.genres}
         </h3>
         <div className="flex flex-wrap gap-2" style={{ marginLeft: '-3.4px' }}>
-          {["Wave", "Electronic", "Trap", "Hardwave", "Hip-hop", "Witch House", "Trapwave"].map((genre) => (
-            <span
-              key={genre}
-              className="rounded-full border border-border bg-muted/50 px-3 py-1 text-[11px] text-foreground"
-            >
-              {genre}
-            </span>
-          ))}
+          {["Wave", "Electronic", "Trap", "Hardwave", "Hip-hop", "Witch House", "Trapwave"].map((genre, idx) => {
+            const angle = (idx * 47 + 15) % 360
+            const angleDeg = `${angle}deg`
+
+            return (
+              <span
+                key={genre}
+                className="rounded-full px-3 py-1 text-[11px] text-foreground"
+                style={{
+                  backgroundImage: `linear-gradient(${angleDeg}, rgba(29, 28, 28, 0.87), rgba(27, 26, 26, 0.87)), linear-gradient(${angleDeg}, rgba(${musicRgb},0.25), rgba(5, 218, 255, 0.25))`,
+                  backgroundOrigin: 'padding-box, border-box',
+                  backgroundClip: 'padding-box, border-box',
+                  border: '1px solid transparent',
+                  WebkitBackdropFilter: 'blur(6px)',
+                  backdropFilter: 'blur(6px)',
+                  boxShadow: '0 1px 0 rgba(255,255,255,0.02) inset'
+                }}
+              >
+                {genre}
+              </span>
+            )
+          })}
         </div>
       </div>
     </div>
