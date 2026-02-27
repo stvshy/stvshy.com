@@ -154,7 +154,10 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
   return (
     <div className="flex flex-col gap-4">
       <div className="rounded-xl border border-border bg-card px-5 pt-3.5 pb-5 backdrop-blur-xl" lang={language}>
-        <p className="text-[12px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]">
+        <p
+          className="text-[12px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]"
+          style={{ fontFamily: 'Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
+        >
           {language === "en" ? (
             // Use hyphenated+highlighted HTML so keywords are highlighted
             <span
@@ -175,13 +178,22 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
         <Collapsible open={isOpen} onOpenChange={setIsOpen}>
           <CollapsibleContent>
             <div className="mt-3 space-y-3">
-              <p className="text-[12px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]">
+              <p
+                className="text-[12px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]"
+                style={{ fontFamily: 'Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
+              >
                 <span dangerouslySetInnerHTML={{ __html: hyphenateText.paragraph2 }} />
               </p>
-              <p className="text-[12px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]">
+              <p
+                className="text-[12px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]"
+                style={{ fontFamily: 'Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
+              >
                 <span dangerouslySetInnerHTML={{ __html: hyphenateText.paragraph3 }} />
               </p>
-              <p className="text-[12px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]">
+              <p
+                className="text-[12px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]"
+                style={{ fontFamily: 'Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
+              >
                 <span dangerouslySetInnerHTML={{ __html: hyphenateText.paragraph4 }} />
               </p>
             </div>

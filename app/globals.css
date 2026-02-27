@@ -225,3 +225,11 @@
     transform-origin: top center;
   }
 }
+
+/* Description text using Raleway with alternate glyphs to avoid odd 'W' */
+.description {
+  font-family: 'Raleway', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  /* Try stylistic set or character variant that fixes the 'W' glyph in some Raleway files */
+  font-feature-settings: "ss01" 1, "cv01" 1;
+  -webkit-font-feature-settings: "ss01" 1, "cv01" 1;
+}

@@ -335,9 +335,15 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
           </div>
           <div className="flex flex-col gap-0.5">
             <span
-              className={`text-[12px] font-medium ${
+              className={`text-[12.9px] font-semibold ${
                 link.blocked ? "text-foreground/70" : "text-foreground"
               }`}
+              style={{
+                fontFamily:
+                  'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
+                letterSpacing: '-0.04em',
+                fontWeight: 560,
+              }}
             >
               {link.label}
             </span>

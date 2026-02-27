@@ -180,10 +180,20 @@ export function TabMusic({ language }: TabMusicProps) {
             )}
           </div>
           <div className="flex flex-col gap-0.5">
-            <span className="text-[13px] font-semibold text-foreground">
+            <span
+              className="text-[12.9px] font-semibold text-foreground"
+              style={{
+                fontFamily:
+                  'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
+                letterSpacing: '-0.02em',
+              }}
+            >
               {link.label}
             </span>
-            <span className="text-[11px] text-muted-foreground">
+            <span
+              className="text-[11.7px] text-muted-foreground"
+              style={{ fontFamily: 'Questrial, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial', letterSpacing: '-0.01em' }}
+            >
               {link.description}
             </span>
           </div>
@@ -237,10 +247,20 @@ export function TabMusic({ language }: TabMusicProps) {
                 <link.icon className="size-5" />
               </div>
               <div className="flex flex-col gap-0.5">
-                <span className="text-[13px] font-semibold text-foreground">
+                <span
+                  className="text-[12.9px] font-semibold text-foreground"
+                  style={{
+                    fontFamily:
+                      'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
+                    letterSpacing: '-0.02em',
+                  }}
+                >
                   {link.label}
                 </span>
-                <span className="text-[11px] text-muted-foreground">
+                <span
+                  className="text-[11px] text-muted-foreground"
+                  style={{ fontFamily: 'Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
+                >
                   {link.description}
                 </span>
               </div>
