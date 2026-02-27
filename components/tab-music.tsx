@@ -171,26 +171,19 @@ export function TabMusic({ language }: TabMusicProps) {
             }
           >
             {link.label === "Fantasia" ? (
-              <img
-                src="/images/fantasia.png"
-                alt="Fantasia cover"
-                className="size-full rounded-lg object-cover"
-              />
+              <img src="/images/fantasia.png" alt="Fantasia cover" className="size-full rounded-lg object-cover" />
             ) : (
               <link.icon className="size-5" />
             )}
           </div>
           <div className="flex flex-col gap-0.5">
             <span
-              className="text-[12.9px] font-semibold text-foreground"
-              style={{ letterSpacing: '-0.02em' }}
+              className="text-[12.58px] text-foreground"
+              style={{ letterSpacing: '-0.02em', marginBottom: '0.1px', fontWeight: 550, fontVariationSettings: "'wght' 550" }}
             >
               {link.label}
             </span>
-            <span
-              className="text-[11.7px] text-muted-foreground"
-              style={{ letterSpacing: '-0.01em' }}
-            >
+            <span className="text-[11.43px] text-muted-foreground" style={{ letterSpacing: '-0.01em' }}>
               {link.description}
             </span>
           </div>
@@ -245,18 +238,14 @@ export function TabMusic({ language }: TabMusicProps) {
               </div>
               <div className="flex flex-col gap-0.5">
                 <span
-                  className="text-[12.9px] font-semibold text-foreground"
-                  style={{
-                    fontFamily:
-                      'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
-                    letterSpacing: '-0.02em',
-                  }}
+                  className="text-[12.58px] text-foreground"
+                  style={{ letterSpacing: '-0.02em', marginBottom: '0.1px', fontWeight: 550, fontVariationSettings: "'wght' 550" }}
                 >
                   {link.label}
                 </span>
                 <span
-                  className="text-[11px] text-muted-foreground"
-                  style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
+                  className="text-[11.43px] text-muted-foreground"
+                  style={{ letterSpacing: '-0.01em' }}
                 >
                   {link.description}
                 </span>
@@ -278,11 +267,29 @@ export function TabMusic({ language }: TabMusicProps) {
 
       <div className="grid grid-cols-2 gap-3">
         <div className="rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl">
-          <span className="text-xl font-bold text-[rgb(var(--music-accent-rgb))]">1</span>
+          <span
+            className="text-xl text-[rgb(var(--music-accent-rgb))]"
+            style={{
+              fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
+              fontWeight: 550,
+              fontVariationSettings: "'wght' 550",
+            }}
+          >
+            1
+          </span>
           <p className="mt-1 text-[11px] text-muted-foreground">{text.tracksReleased}</p>
         </div>
         <div className="rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl">
-          <span className="text-xl font-bold text-[#0ab8d6f8]">3+</span>
+          <span
+            className="text-xl text-[#0ab8d6f8]"
+            style={{
+              fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
+              fontWeight: 550,
+              fontVariationSettings: "'wght' 550",
+            }}
+          >
+            3+
+          </span>
           <p className="mt-1 text-[11px] text-muted-foreground">{text.yearsProducing}</p>
         </div>
       </div>
