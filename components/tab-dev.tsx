@@ -310,7 +310,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
   })
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3" style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
       {localizedLinks.map((link) => (
         <a
           key={link.label}
@@ -335,22 +335,25 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
           </div>
           <div className="flex flex-col gap-0.5">
             <span
-              className={`text-[12.9px] font-semibold ${
-                link.blocked ? "text-foreground/70" : "text-foreground"
-              }`}
-              style={{
-                fontFamily:
-                  'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
-                letterSpacing: '-0.04em',
-                fontWeight: 560,
-              }}
+              className={`text-[12.58px] ${
+                  link.blocked ? "text-foreground/70" : "text-foreground"
+                }`}
+                style={{
+                  fontFamily:
+                    'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
+                  letterSpacing: '-0.02em',
+                  marginBottom: '0.1px',
+                  fontWeight: 510,
+                  fontVariationSettings: "'wght' 510",
+                }}
             >
               {link.label}
             </span>
             <span
-              className={`text-[11px] ${
+              className={`text-[11.43px] ${
                 link.blocked ? "text-muted-foreground/70" : "text-muted-foreground"
               }`}
+              style={{ letterSpacing: '-0.01em' }}
             >
               {link.description}
             </span>
@@ -384,8 +387,18 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
               isYearsOpen ? "rotate-180" : ""
             }`}
           />
-          <span className="text-xl font-bold text-[var(--dev-accent)] font-mono">9+</span>
-          <p className="mt-1 text-[11px] text-muted-foreground">{text.yearsProgramming}</p>
+          <span
+            className="text-[20.1px] text-[var(--dev-accent)]"
+            style={{
+              fontFamily:
+                'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
+              fontWeight: 510,
+              fontVariationSettings: "'wght' 510",
+            }}
+          >
+            9+
+          </span>
+          <p className="mt-1 text-[11.43px] text-muted-foreground" style={{ letterSpacing: '-0.01em' }}>{text.yearsProgramming}</p>
         </button>
 
         <button
@@ -399,8 +412,18 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
               isCertificatesOpen ? "rotate-180" : ""
             }`}
           />
-          <span className="text-xl font-bold text-[#a81ad3] font-mono">3</span>
-          <p className="mt-1 text-[11px] text-muted-foreground">{text.certificatesCount}</p>
+          <span
+            className="text-[20.1px] text-[#a81ad3]"
+            style={{
+              fontFamily:
+                'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
+              fontWeight: 510,
+              fontVariationSettings: "'wght' 510",
+            }}
+          >
+            3
+          </span>
+          <p className="mt-1 text-[11.43px] text-muted-foreground" style={{ letterSpacing: '-0.01em' }}>{text.certificatesCount}</p>
         </button>
       </div>
 
@@ -425,7 +448,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
           >
             <X className="size-3.5" />
           </button>
-          <p className="mb-3 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+          <p className="mb-3 text-[11.2px] font-semibold uppercase tracking-wide text-muted-foreground" style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
             {text.education}
           </p>
           <div className="space-y-3">
@@ -433,16 +456,16 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
               <p className="absolute right-6 top-1/2 inline-flex -translate-y-1/2 items-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 px-2 py-0.5 text-[9px] font-semibold tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)]">
                 2018 - 2021
               </p>
-              <p className="mt-1 text-[12px] font-medium text-foreground">
+              <p className="mt-1 text-[12px] text-foreground" style={{ letterSpacing: '-0.02em', marginBottom: '0.1px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
                 I High School in Legnica
               </p>
-              <p className="mt-1 text-[11px] text-muted-foreground">
+              <p className="mt-1 text-[11.43px] text-muted-foreground" style={{ letterSpacing: '-0.01em' }}>
                 {text.schoolFocus}
               </p>
             </div>
 
             <div className="rounded-lg border border-border/70 bg-card/42 px-3 py-3">
-              <p className="bg-[linear-gradient(to_right,var(--dev-accent)_0%,var(--dev-accent)_39%,#bc25e9_100%)] bg-clip-text text-[11px] font-semibold uppercase tracking-wide text-transparent opacity-98 drop-shadow-[0_0.5px_0.5px_rgba(var(--dev-accent-rgb),0.22)]">
+              <p className="bg-[linear-gradient(to_right,var(--dev-accent)_0%,var(--dev-accent)_39%,#bc25e9_100%)] bg-clip-text text-[11.2px] font-semibold uppercase tracking-wide text-transparent opacity-98 drop-shadow-[0_0.5px_0.5px_rgba(var(--dev-accent-rgb),0.22)]" style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial', letterSpacing: '-0.01em' }}>
                 Wrocław University of Science and Technology
               </p>
               <div className="mt-2 space-y-2">
@@ -450,10 +473,10 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                   <p className="absolute right-3 top-1/2 inline-flex -translate-y-1/2 items-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 px-2 py-0.5 text-[9px] font-semibold tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)]">
                     2021 - 2025
                   </p>
-                  <p className="text-[11px] font-medium text-foreground">
+                  <p className="text-[12px] text-foreground" style={{ letterSpacing: '-0.02em', marginBottom: '0.1px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
                     Computer Engineering
                   </p>
-                  <p className="text-[11px] text-muted-foreground">
+                  <p className="text-[11.43px] text-muted-foreground" style={{ letterSpacing: '-0.01em' }}>
                     {text.bachelor}
                   </p>
                 </div>
@@ -461,10 +484,10 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                   <p className="absolute right-3 top-1/2 inline-flex -translate-y-1/2 items-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 px-2 py-0.5 text-[9px] font-semibold tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)]">
                     2025 - 2026
                   </p>
-                  <p className="text-[11px] font-medium text-foreground">
+                  <p className="text-[12px] text-foreground" style={{ letterSpacing: '-0.02em', marginBottom: '0.1px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
                     Applied Computer Science
                   </p>
-                  <p className="text-[11px] text-muted-foreground">{text.master}</p>
+                  <p className="text-[11.43px] text-muted-foreground" style={{ letterSpacing: '-0.01em' }}>{text.master}</p>
                 </div>
               </div>
             </div>
@@ -494,7 +517,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
           >
             <X className="size-3.5" />
           </button>
-          <p className="mb-3 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+          <p className="mb-3 text-[11.2px] font-semibold uppercase tracking-wide text-muted-foreground" style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
             {text.certificates}
           </p>
           <div className="flex flex-col gap-3">
@@ -506,10 +529,10 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                 <div className="flex min-w-0 items-center gap-2.5">
                   <certificate.logo className="size-5 shrink-0 text-foreground" />
                   <div className="min-w-0">
-                    <p className="truncate text-[12px] font-medium text-foreground">
+                    <p className="truncate text-[12px] text-foreground" style={{ letterSpacing: '-0.02em', marginBottom: '0.1px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
                       {certificate.title}
                     </p>
-                    <p className="text-[11px] text-muted-foreground">{certificate.issuer}</p>
+                    <p className="text-[11.43px] text-muted-foreground" style={{ letterSpacing: '-0.01em' }}>{certificate.issuer}</p>
                   </div>
                 </div>
 
@@ -584,7 +607,8 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
               {stackSections.map((section) => (
                 <div key={section.title}>
                   <p
-                    className={`mb-2 bg-gradient-to-r ${section.gradientClass} bg-clip-text text-[11px] font-semibold uppercase tracking-wide text-transparent opacity-92 drop-shadow-[0_0.5px_0.5px_rgba(var(--dev-accent-rgb),0.22)]`}
+                    className={`mb-2 bg-gradient-to-r ${section.gradientClass} bg-clip-text text-[11.2px] font-semibold uppercase tracking-wide text-transparent opacity-92 drop-shadow-[0_0.5px_0.5px_rgba(var(--dev-accent-rgb),0.22)]`}
+                    style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial', letterSpacing: '-0.01em' }}
                   >
                     {section.title}
                   </p>
@@ -592,7 +616,8 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                     {section.items.map((item) => (
                       <span
                         key={item.label}
-                        className="inline-flex items-center gap-1.5 rounded-md border border-border px-2.5 py-1 text-[11px] text-foreground"
+                        className="inline-flex items-center gap-1.5 rounded-md border border-border px-2.5 py-1 text-[11.43px] text-foreground"
+                        style={{ letterSpacing: '-0.01em' }}
                       >
                         <item.icon
                           className={`text-muted-foreground ${
