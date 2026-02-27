@@ -25,13 +25,16 @@ export function ProfileHeader({ language }: ProfileHeaderProps) {
       </div>
 
       <div className="text-center flex flex-col items-center gap-[2px]">
-        <h1 className="text-[19.09525px] custom-name tracking-tight text-slate-900 dark:text-white mb-[3px]" style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
+        <h1 className="text-[19.46025px] custom-name tracking-tight text-slate-900 dark:text-white mb-[3px]">
           Mateusz Staszk&oacute;w
         </h1>
-        <p className="text-xs role-smaller font-medium tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-fuchsia-500 uppercase">
+        <p
+          className="text-xs role-smaller font-medium tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-fuchsia-500 uppercase"
+          style={{ fontFamily: 'Monorale, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
+        >
           {roleText} <span className="text-slate-400 dark:text-slate-400 mx-2">x</span> {producerText}
         </p>
-        <div className="flex items-center justify-center mt-[5.5px] text-[14.4px] text-slate-500 dark:text-slate-400 location-sans" style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
+        <div className="flex items-center justify-center mt-[5.5px] text-[14.4px] text-slate-500 dark:text-slate-400 location-sans">
           <HiLocationMarker className="mr-2 mb-[1px] text-[7.9px] shrink-0 translate-y-[0.4px]" aria-hidden="true" />
           WROCŁAW, PL
         </div>

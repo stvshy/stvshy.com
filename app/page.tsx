@@ -110,7 +110,7 @@ export default function Page() {
                 alt="Dev icon"
                 className="mr-1.5 size-4"
               />
-                <span style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial', fontSize: '12.7px' }}>{text.tabs.dev}</span>
+              {text.tabs.dev}
             </TabsTrigger>
             <TabsTrigger
               value="about"
@@ -121,7 +121,7 @@ export default function Page() {
                 alt="About icon"
                 className="mr-1.5 size-4"
               />
-                <span style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial', fontSize: '12.7px' }}>{text.tabs.about}</span>
+              {text.tabs.about}
             </TabsTrigger>
             <TabsTrigger
               value="music"
@@ -132,7 +132,7 @@ export default function Page() {
                 alt="Music note"
                 className="mr-1.5 size-4"
               />
-                <span style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial', fontSize: '12.7px' }}>{text.tabs.music}</span>
+              {text.tabs.music}
             </TabsTrigger>
           </TabsList>
 

@@ -106,7 +106,7 @@
   --dev-accent: #05dafff8;
   --dev-accent-rgb: 49 222 255;
   /* profile name weight variable (default 450) */
-  --profile-name-weight: 500;
+  --profile-name-weight: 435;
 }
 
 @theme inline {
@@ -250,7 +250,7 @@
   font-family: 'Montserrat', 'MontserratCustom', var(--font-sans), system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
   /* uses global --profile-name-weight (set in :root) */
   font-weight: var(--profile-name-weight);
-  letter-spacing: 1.08px;
+  letter-spacing: 0.08px;
   text-shadow: 0.25px 0 0 currentColor, -0.25px 0 0 currentColor;
 }
 
@@ -259,13 +259,13 @@
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   /* uppercase and increased letter spacing for the location line */
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-size: 8.0px;
+  letter-spacing: 0.19em;
+  font-size: 8.4px;
 }
 
 /* Slightly smaller role text (half pixel reduction -> 11.5px) */
 .role-smaller {
-  font-size: 10.7955px;
+  font-size: 10.7055px;
 }
 
 /* Tabbar-specific variables and rules — target only this tabs UI */
