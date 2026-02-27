@@ -179,7 +179,7 @@ export function TabMusic({ language }: TabMusicProps) {
           <div className="flex flex-col gap-0.5">
             <span
               className="text-[12.58px] text-foreground"
-              style={{ letterSpacing: '-0.02em', marginBottom: '0.1px', fontWeight: 550, fontVariationSettings: "'wght' 550" }}
+              style={{ letterSpacing: '-0.02em', marginBottom: '0.1px', fontWeight: 510, fontVariationSettings: "'wght' 510" }}
             >
               {link.label}
             </span>
@@ -239,7 +239,7 @@ export function TabMusic({ language }: TabMusicProps) {
               <div className="flex flex-col gap-0.5">
                 <span
                   className="text-[12.58px] text-foreground"
-                  style={{ letterSpacing: '-0.02em', marginBottom: '0.1px', fontWeight: 550, fontVariationSettings: "'wght' 550" }}
+                  style={{ letterSpacing: '-0.02em', marginBottom: '0.1px', fontWeight: 510, fontVariationSettings: "'wght' 510" }}
                 >
                   {link.label}
                 </span>
@@ -265,40 +265,40 @@ export function TabMusic({ language }: TabMusicProps) {
         </div>
       )}
 
-      <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-3">
         <div className="rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl">
           <span
-            className="text-xl text-[rgb(var(--music-accent-rgb))]"
+            className="text-[20.1px] text-[rgb(var(--music-accent-rgb))]"
             style={{
               fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
-              fontWeight: 550,
-              fontVariationSettings: "'wght' 550",
+              fontWeight: 510,
+              fontVariationSettings: "'wght' 510",
             }}
           >
             1
           </span>
-          <p className="mt-1 text-[11px] text-muted-foreground">{text.tracksReleased}</p>
+          <p className="mt-1 text-[11.43px] text-muted-foreground">{text.tracksReleased}</p>
         </div>
         <div className="rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl">
           <span
-            className="text-xl text-[#0ab8d6f8]"
+            className="text-[20.1px] text-[#0ab8d6f8]"
             style={{
               fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
-              fontWeight: 550,
-              fontVariationSettings: "'wght' 550",
+              fontWeight: 510,
+              fontVariationSettings: "'wght' 500",
             }}
           >
             3+
           </span>
-          <p className="mt-1 text-[11px] text-muted-foreground">{text.yearsProducing}</p>
+          <p className="mt-1 text-[11.43px] text-muted-foreground">{text.yearsProducing}</p>
         </div>
       </div>
 
       <div className="rounded-xl border border-border bg-card px-5 py-4 backdrop-blur-xl">
-        <h3 className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground" style={{ fontFamily: 'Montserrat, MontserratCustom, var(--font-sans), system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
+        <h3 className="mb-3 text-[11.2px] font-semibold uppercase tracking-wider text-muted-foreground" style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
           {text.genres}
         </h3>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2" style={{ marginLeft: '-3.4px' }}>
           {["Wave", "Electronic", "Trap", "Hardwave", "Hip-hop", "Witch House", "Trapwave"].map((genre) => (
             <span
               key={genre}
