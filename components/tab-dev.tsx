@@ -39,8 +39,10 @@ import {
   SiNodedotjs,
   SiOpengl,
   SiPostgresql,
-  SiMongodb,
   SiPycharm,
+  SiMongodb,
+  SiNintendogamecube,
+  SiGithubactions,
   SiPython,
   SiReact,
   SiSelenium,
@@ -240,7 +242,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
         { label: "Git", icon: SiGit },
         { label: "Supabase", icon: SiSupabase },
         { label: "MongoDB", icon: SiMongodb },
-        { label: "GitHub Actions", icon: SiGit },
+        { label: "GitHub Actions", icon: SiGithubactions },
       ],
     },
     {
@@ -256,7 +258,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
         { label: "Jupyter Notebook", icon: SiJupyter },
         { label: "Godot Engine", icon: SiGodotengine },
         { label: "Xilinx", icon: FaMicrochip },
-        { label: "Cursor", icon: VscVscode },
+        { label: "Cursor", icon: SiNintendogamecube },
         { label: "GitHub Copilot", icon: IoLogoGithub },
       ],
     },
@@ -702,7 +704,8 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                                 "CLion",
                                 "Xilinx",
                                 "JUnit",
-                                "VirtualBox"
+                                "VirtualBox",
+                                "GitHub Copilot"
                               ].includes(item.label)
                                 ? "size-[12.5px]"
                                 : "size-3.5"
