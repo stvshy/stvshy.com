@@ -163,8 +163,11 @@ export default function Page() {
           className={`w-full rounded-xl border border-border bg-card text-sm text-foreground backdrop-blur-xl transition-all duration-300 ${contactHoverClassName}`}
           size="lg"
         >
-          <a href="mailto:matisp637@gmail.com">
-            <Mail className="size-4" />
+          <a
+            href="mailto:matisp637@gmail.com"
+            style={{ fontFamily: 'Montserrat, MontserratCustom, var(--font-sans), system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
+          >
+            <Mail className="size-[16.5px]" />
             {text.contact}
           </a>
         </Button>
@@ -181,6 +184,7 @@ export default function Page() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={text.instagramAria}
+                style={{ fontFamily: 'Montserrat, MontserratCustom, var(--font-sans), system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
               >
                 <BsInstagram className="size-3.7" />
                 {text.instagram}
