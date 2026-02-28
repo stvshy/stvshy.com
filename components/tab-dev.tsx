@@ -309,6 +309,10 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
     }
   })
 
+  const highSchoolName = language === "pl" ? "I Liceum Ogólnokształcące w Legnicy" : "I High School in Legnica"
+  const computerEngineeringLabel = language === "pl" ? "Informatyka Techniczna" : "Computer Engineering"
+  const appliedComputerScienceLabel = language === "pl" ? "Informatyka Stosowana" : "Applied Computer Science"
+
   return (
     <div className="flex flex-col gap-3" style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
       {localizedLinks.map((link) => (
@@ -452,12 +456,15 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
             {text.education}
           </p>
           <div className="space-y-3">
-            <div className="relative rounded-lg border border-border/70 bg-card/42 px-3 py-3 pr-24">
-              <p className="absolute right-6 top-1/2 inline-flex -translate-y-1/2 items-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 px-2 py-0.5 text-[9.5px] font-semibold tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)]">
+            <div className="relative rounded-lg border border-border/70 bg-card/42 px-2.5 py-2 pr-24">
+              <p
+                className="absolute right-[25px] top-1/2 inline-flex -translate-y-1/2 items-center justify-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 py-0.5 text-[9.5px] font-semibold tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)] w-[74px] text-center"
+                style={{ fontFamily: 'Montserrat, MontserratCustom, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
+              >
                 2018 - 2021
               </p>
-              <p className="text-[11.8px] text-foreground" style={{ letterSpacing: '-0.035em', marginBottom: '1.3px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
-                I High School in Legnica
+              <p className="text-[11.8px] text-foreground" style={{ letterSpacing: '-0.035em', marginBottom: '2px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
+                {highSchoolName}
               </p>
               <p className="text-[11.43px] text-muted-foreground" style={{ letterSpacing: '-0.018em' }}>
                 {text.schoolFocus}
@@ -469,23 +476,30 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                 Wrocław University of Science and Technology
               </p>
               <div className="mt-2 space-y-2">
-                <div className="relative rounded-md border border-border/60 bg-card px-2.5 py-2 pr-24">
-                  <p className="absolute right-3 top-1/2 inline-flex -translate-y-1/2 items-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 px-2 py-0.5 text-[9.5px] font-semibold tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)]">
-                    2021 - 2025
-                  </p>
+                  <div className="relative rounded-md border border-border/60 bg-card px-2.5 py-2 pr-24">
+                    <p
+                      className="absolute right-3 top-1/2 inline-flex -translate-y-1/2 items-center justify-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 py-0.5 text-[9.5px] font-semibold tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)] w-[74px] text-center"
+                      style={{ fontFamily: 'Montserrat, MontserratCustom, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
+                    >
+                      2021 - 2025
+                    </p>
+       
                   <p className="text-[11.8px] text-foreground" style={{ letterSpacing: '-0.035em', marginBottom: '1.3px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
-                    Computer Engineering
+                    {computerEngineeringLabel}
                   </p>
                   <p className="text-[11.43px] text-muted-foreground" style={{ letterSpacing: '-0.018em' }}>
                     {text.bachelor}
                   </p>
                 </div>
                 <div className="relative rounded-md border border-border/60 bg-card px-2.5 py-2 pr-24">
-                  <p className="absolute right-3 top-1/2 inline-flex -translate-y-1/2 items-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 px-2 py-0.5 text-[9.5px] font-semibold tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)]">
+                  <p
+                    className="absolute right-3 top-1/2 inline-flex -translate-y-1/2 items-center justify-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 py-0.5 text-[9.5px] font-semibold tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)] w-[74px] text-center"
+                    style={{ fontFamily: 'Montserrat, MontserratCustom, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
+                  >
                     2025 - 2026
                   </p>
                   <p className="text-[11.8px] text-foreground" style={{ letterSpacing: '-0.035em', marginBottom: '1.3px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
-                    Applied Computer Science
+                    {appliedComputerScienceLabel}
                   </p>
                   <p className="text-[11.43px] text-muted-foreground" style={{ letterSpacing: '-0.018em' }}>{text.master}</p>
                 </div>
