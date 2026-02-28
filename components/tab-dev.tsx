@@ -552,12 +552,12 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                 className="flex items-center justify-between gap-3 rounded-lg border border-border/70 bg-card/42 px-3 py-3"
               >
                 <div className="flex min-w-0 items-center gap-2.5">
-                  <certificate.logo className="size-5 shrink-0 text-foreground" />
+                  <certificate.logo className="size-[21px] shrink-0 text-foreground" />
                   <div className="min-w-0">
-                    <p className="truncate text-[12px] text-foreground" style={{ letterSpacing: '-0.02em', marginBottom: '0.1px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
+                    <p className="truncate text-[11.6px] text-foreground" style={{ letterSpacing: '-0.03em', marginBottom: '0.19px', marginLeft: '0.8px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
                       {certificate.title}
                     </p>
-                    <p className="text-[11.43px] text-muted-foreground" style={{ letterSpacing: '-0.01em' }}>{certificate.issuer}</p>
+                    <p className="text-[11.33px] text-muted-foreground" style={{ letterSpacing: '-0.01em', marginLeft: '0.8px' }}>{certificate.issuer}</p>
                   </div>
                 </div>
 
