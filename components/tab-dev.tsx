@@ -603,7 +603,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                       alt={`${certificate.title} preview`}
                       width={48}
                       height={32}
-                      className="h-8 w-12 object-cover transition-[filter,opacity] duration-200 group-hover:brightness-40"
+                      className="h-8 w-12 object-cover transition-[filter,opacity] duration-200 group-hover:brightness-30"
                     />
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 transition-opacity duration-200 group-hover:opacity-100">
                       <Eye className="size-4 text-[var(--dev-accent)] drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]" />
@@ -662,16 +662,38 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                     {section.items.map((item) => (
                       <span
                         key={item.label}
-                        className="inline-flex items-center gap-1.5 rounded-md border border-border px-2.5 py-1 text-[11.43px] text-foreground"
+                        className="inline-flex items-center gap-1.5 rounded-md border border-border px-2.5 py-1 text-[10.6px] text-foreground"
                         style={{ letterSpacing: '-0.01em' }}
                       >
-                        <item.icon
-                          className={`text-muted-foreground ${
-                            item.label === "C++" || item.label === "C#"
-                              ? "size-[15px]"
-                              : "size-3.5"
-                          }`}
-                        />
+                          <item.icon
+                            className={`text-muted-foreground ${
+                              [
+                                "C++",
+                                "C#",
+                                "JavaScript",
+                                "TypeScript",
+                                "Python",
+                                "C",
+                                "HTML5",
+                                "Assembly",
+                                "CSS3",
+                                "Vite",
+                                "Expo",
+                                "Flask",
+                                "Terraform",
+                                "Linux",
+                                "Supabase",
+                                "IntelliJ IDEA",
+                                "PyCharm",
+                                "CLion",
+                                "Xilinx",
+                                "JUnit",
+                                "VirtualBox"
+                              ].includes(item.label)
+                                ? "size-[12.5px]"
+                                : "size-3.5"
+                            }`}
+                          />
                         {item.label}
                       </span>
                     ))}
