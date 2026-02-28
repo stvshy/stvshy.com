@@ -309,7 +309,10 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
     }
   })
 
-  const highSchoolName = language === "pl" ? "I Liceum Ogólnokształcące w Legnicy" : "I High School in Legnica"
+  const highSchoolName =
+    language === "pl"
+      ? "I\u2009\u2009\u2009\u2009Liceum Ogólnokształcące w Legnicy"
+      : "I\u2009\u2009\u2009\u2009High School in Legnica"
   const computerEngineeringLabel = language === "pl" ? "Informatyka Techniczna" : "Computer Engineering"
   const appliedComputerScienceLabel = language === "pl" ? "Informatyka Stosowana" : "Applied Computer Science"
 
@@ -463,17 +466,25 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
               >
                 2018 - 2021
               </p>
-              <p className="text-[11.8px] text-foreground" style={{ letterSpacing: '-0.035em', marginBottom: '2px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
+              <p className="text-[11.45px] text-foreground" style={{ letterSpacing: '-0.054em', marginBottom: '2.6px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
                 {highSchoolName}
               </p>
-              <p className="text-[11.43px] text-muted-foreground" style={{ letterSpacing: '-0.018em' }}>
+              <p className="text-[10.95px] text-muted-foreground" style={{ letterSpacing: '-0.039em' }}>
                 {text.schoolFocus}
               </p>
             </div>
 
             <div className="rounded-lg border border-border/70 bg-card/42 px-3 py-3">
-              <p className="bg-[linear-gradient(to_right,var(--dev-accent)_0%,var(--dev-accent)_39%,#bc25e9_100%)] bg-clip-text text-[11.2px] font-semibold uppercase tracking-wide text-transparent opacity-98 drop-shadow-[0_0.5px_0.5px_rgba(var(--dev-accent-rgb),0.22)]" style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial', letterSpacing: '-0.01em' }}>
-                Wrocław University of Science and Technology
+              <p
+                className={
+                  (language === "pl"
+                    ? "bg-[linear-gradient(to_right,var(--dev-accent)_0%,var(--dev-accent)_14%,#bc25e9_58%)]"
+                    : "bg-[linear-gradient(to_right,var(--dev-accent)_0%,var(--dev-accent)_39%,#bc25e9_100%)]") +
+                  " bg-clip-text text-[11.2px] font-semibold uppercase tracking-wide text-transparent opacity-98 drop-shadow-[0_0.5px_0.5px_rgba(var(--dev-accent-rgb),0.22)]"
+                }
+                style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial', letterSpacing: '-0.01em' }}
+              >
+                {language === "pl" ? "POLITECHNIKA WROCŁAWSKA" : "Wrocław University of Science and Technology"}
               </p>
               <div className="mt-2 space-y-2">
                   <div className="relative rounded-md border border-border/60 bg-card px-2.5 py-2 pr-24">
@@ -484,10 +495,10 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                       2021 - 2025
                     </p>
        
-                  <p className="text-[11.8px] text-foreground" style={{ letterSpacing: '-0.035em', marginBottom: '1.3px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
+                  <p className="text-[11.6px] text-foreground" style={{ letterSpacing: '-0.054em', marginBottom: '1.3px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
                     {computerEngineeringLabel}
                   </p>
-                  <p className="text-[11.43px] text-muted-foreground" style={{ letterSpacing: '-0.018em' }}>
+                  <p className="text-[11.0px] text-muted-foreground" style={{ letterSpacing: '-0.039em' }}>
                     {text.bachelor}
                   </p>
                 </div>
@@ -498,10 +509,10 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                   >
                     2025 - 2026
                   </p>
-                  <p className="text-[11.8px] text-foreground" style={{ letterSpacing: '-0.035em', marginBottom: '1.3px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
+                  <p className="text-[11.6px] text-foreground" style={{ letterSpacing: '-0.054em', marginBottom: '1.3px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
                     {appliedComputerScienceLabel}
                   </p>
-                  <p className="text-[11.43px] text-muted-foreground" style={{ letterSpacing: '-0.018em' }}>{text.master}</p>
+                  <p className="text-[11.0px] text-muted-foreground" style={{ letterSpacing: '-0.039em' }}>{text.master}</p>
                 </div>
               </div>
             </div>
