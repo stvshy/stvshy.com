@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { useState } from "react"
-import { ChevronDown, ExternalLink, Layers, X } from "lucide-react"
+import { ChevronDown, ExternalLink, Layers, X, Eye } from "lucide-react"
 import { MdLocalAirport, MdLock, MdOutlineLayers } from "react-icons/md"
 import { ImLinkedin2 } from "react-icons/im"
 import { IoLogoGithub } from "react-icons/io"
@@ -596,15 +596,20 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                       onOpenImagePreview(certificate.image, `${certificate.title} preview`)
                     }
                     aria-label={`${text.previewPrefix} ${certificate.title}`}
-                    className="inline-flex h-7.5 w-11 overflow-hidden rounded-md border border-border/70"
+                    className="relative group inline-flex h-7.5 w-11 overflow-hidden rounded-md border border-border/70"
                   >
                     <Image
                       src={certificate.image}
                       alt={`${certificate.title} preview`}
                       width={48}
                       height={32}
-                      className="h-8 w-12 object-cover"
+                      className="h-8 w-12 object-cover transition-[filter,transform,opacity] duration-200 group-hover:brightness-50 group-hover:scale-95"
                     />
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                      <div className="rounded-full bg-black/25 p-1.5">
+                        <Eye className="size-4 text-white" />
+                      </div>
+                    </div>
                   </button>
                 </div>
               </div>
@@ -625,8 +630,8 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
           type="button"
           onClick={() => setIsStackOpen((prev) => !prev)}
           className={`group flex w-full items-center gap-4 px-5 py-3 text-left transition-all duration-300 ${
-            isStackOpen ? "rounded-t-xl bg-[var(--dev-accent)]/10" : "rounded-xl"
-          }`}
+            isStackOpen ? "rounded-t-xl" : "rounded-xl"
+          } hover:border-[var(--dev-accent)]/45 hover:bg-[var(--dev-accent)]/10 hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]`}
         >
           <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-[var(--dev-accent)]/15 text-[var(--dev-accent)] transition-colors group-hover:bg-[var(--dev-accent)]/25">
             <Layers className="size-6" />
