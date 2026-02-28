@@ -123,6 +123,7 @@ const devText = {
     education: "Education",
     closeEducation: "Close Education",
     schoolFocus: "Focus: Mathematics & Computer Science",
+    schoolFocusShort: "Maths & Computer Science",
     bachelor: "Bachelor's degree",
     master: "Master's degree",
     certificates: "Certificates",
@@ -154,6 +155,7 @@ const devText = {
     education: "Edukacja",
     closeEducation: "Zamknij edukację",
     schoolFocus: "Profil: Matematyka & Informatyka",
+    schoolFocusShort: "Matematyka & Informatyka",
     bachelor: "Studia inżynierskie",
     master: "Studia magisterskie",
     certificates: "Certyfikaty",
@@ -271,6 +273,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
   const certificates = [
     {
       title: "Programming with JavaScript",
+      shortTitle: "Programming with JS", 
       issuer: "Meta",
       verifyUrl: "https://www.coursera.org/account/accomplishments/verify/DCEXTU27C4HO",
       image: "/images/meta2.png",
@@ -278,6 +281,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
     },
     {
       title: "Introduction to Mobile Development",
+      shortTitle: "Intro to Mobile Dev",
       issuer: "Meta",
       verifyUrl: "https://www.coursera.org/account/accomplishments/verify/8OJJV1T21QI5",
       image: "/images/meta1.png",
@@ -285,6 +289,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
     },
     {
       title: "CCNA: Introduction to Networks",
+      shortTitle: "Intro to Networks",
       issuer: "Cisco",
       verifyUrl:
         "https://www.credly.com/badges/9719de3d-0a39-41ad-b203-0c2f3cce6ab7/linked_in_profile",
@@ -309,10 +314,16 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
     }
   })
 
-  const highSchoolName =
+  const highSchoolName = {
+  long:
     language === "pl"
       ? "I\u2009\u2009\u2009\u2009Liceum Ogólnokształcące w Legnicy"
-      : "I\u2009\u2009\u2009\u2009High School in Legnica"
+      : "I\u2009\u2009\u2009\u2009High School in Legnica",
+  short:
+    language === "pl"
+      ? "I\u2009\u2009\u2009\u2009Liceum w Legnicy" // Tutaj też zostawiamy Twój idealny odstęp!
+      : "I\u2009\u2009\u2009\u2009High School in Legnica", // Po angielsku "1st" wygląda najnaturalniej w skrócie, bez udziwnień.
+}
   const computerEngineeringLabel = language === "pl" ? "Informatyka Techniczna" : "Computer Engineering"
   const appliedComputerScienceLabel = language === "pl" ? "Informatyka Stosowana" : "Applied Computer Science"
 
@@ -443,7 +454,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
       >
         <div className="overflow-hidden">
           <div
-            className={`relative rounded-xl border border-border bg-card/90 px-5 py-4 backdrop-blur-xl transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            className={`relative rounded-xl border border-border bg-card/90 px-4 py-4 backdrop-blur-xl transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
               isYearsOpen ? "translate-y-0 opacity-100" : "-translate-y-2 opacity-0"
             }`}
           >
@@ -461,16 +472,18 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
           <div className="space-y-3">
             <div className="relative rounded-lg border border-border/70 bg-card/42 px-2.5 py-2 pr-24">
               <p
-                className="absolute right-[25px] top-1/2 inline-flex -translate-y-1/2 items-center justify-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 py-0.5 text-[9.5px] font-semibold tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)] w-[74px] text-center"
+                className="absolute right-[22px] top-1/2 inline-flex -translate-y-1/2 items-center justify-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 py-0.5 text-[9.5px] font-semibold tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)] w-[74px] text-center"
                 style={{ fontFamily: 'Montserrat, MontserratCustom, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
               >
                 2018 - 2021
               </p>
-              <p className="text-[11.45px] text-foreground" style={{ letterSpacing: '-0.054em', marginBottom: '2.6px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
-                {highSchoolName}
+              <p className="text-[11.45px] text-foreground" style={{ letterSpacing: '-0.055em', marginBottom: '2.4px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
+                <span className="sm:hidden">{highSchoolName.short}</span>
+                <span className="hidden sm:inline">{highSchoolName.long}</span>
               </p>
               <p className="text-[10.95px] text-muted-foreground" style={{ letterSpacing: '-0.039em' }}>
-                {text.schoolFocus}
+                <span className="sm:hidden">{text.schoolFocusShort}</span>
+                <span className="hidden sm:inline">{text.schoolFocus}</span>
               </p>
             </div>
 
@@ -484,12 +497,16 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                 }
                 style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial', letterSpacing: '-0.01em' }}
               >
-                {language === "pl" ? "POLITECHNIKA WROCŁAWSKA" : "Wrocław University of Science and Technology"}
-              </p>
+                <span className="sm:hidden">
+                  {language === "pl" ? "Politechnika Wrocławska" : "Wrocław University of Science & Tech"}
+                </span>
+                <span className="hidden sm:inline">
+                  {language === "pl" ? "Politechnika Wrocławska" : "Wrocław University of Science and Technology"}
+                </span>              </p>
               <div className="mt-2 space-y-2">
                   <div className="relative rounded-md border border-border/60 bg-card px-2.5 py-2 pr-24">
                     <p
-                      className="absolute right-3 top-1/2 inline-flex -translate-y-1/2 items-center justify-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 py-0.5 text-[9.5px] font-semibold tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)] w-[74px] text-center"
+                      className="absolute right-2.5 top-1/2 inline-flex -translate-y-1/2 items-center justify-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 py-0.5 text-[9.5px] font-semibold tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)] w-[74px] text-center"
                       style={{ fontFamily: 'Montserrat, MontserratCustom, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
                     >
                       2021 - 2025
@@ -504,7 +521,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                 </div>
                 <div className="relative rounded-md border border-border/60 bg-card px-2.5 py-2 pr-24">
                   <p
-                    className="absolute right-3 top-1/2 inline-flex -translate-y-1/2 items-center justify-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 py-0.5 text-[9.5px] font-semibold tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)] w-[74px] text-center"
+                    className="absolute right-2.5 top-1/2 inline-flex -translate-y-1/2 items-center justify-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 py-0.5 text-[9.5px] font-semibold tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)] w-[74px] text-center"
                     style={{ fontFamily: 'Montserrat, MontserratCustom, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
                   >
                     2025 - 2026
@@ -555,7 +572,8 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                   <certificate.logo className="size-[21px] shrink-0 text-foreground" />
                   <div className="min-w-0">
                     <p className="truncate text-[11.6px] text-foreground" style={{ letterSpacing: '-0.03em', marginBottom: '0.19px', marginLeft: '0.8px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
-                      {certificate.title}
+                      <span className="sm:hidden">{certificate.shortTitle}</span>
+                      <span className="hidden sm:inline">{certificate.title}</span>
                     </p>
                     <p className="text-[11.33px] text-muted-foreground" style={{ letterSpacing: '-0.01em', marginLeft: '0.8px' }}>{certificate.issuer}</p>
                   </div>
@@ -567,7 +585,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`${text.verifyPrefix} ${certificate.title}`}
-                    className="inline-flex size-8 items-center justify-center rounded-md border border-border/70 bg-card text-muted-foreground transition-colors hover:text-[var(--dev-accent)]"
+                    className="inline-flex size-7.5 items-center justify-center rounded-md border border-border/70 bg-card text-muted-foreground transition-colors hover:text-[var(--dev-accent)]"
                   >
                     <ExternalLink className="size-3.5" />
                   </a>
@@ -578,7 +596,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                       onOpenImagePreview(certificate.image, `${certificate.title} preview`)
                     }
                     aria-label={`${text.previewPrefix} ${certificate.title}`}
-                    className="inline-flex h-8 w-12 overflow-hidden rounded-md border border-border/70"
+                    className="inline-flex h-7.5 w-11 overflow-hidden rounded-md border border-border/70"
                   >
                     <Image
                       src={certificate.image}
