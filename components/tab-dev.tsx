@@ -39,6 +39,7 @@ import {
   SiNodedotjs,
   SiOpengl,
   SiPostgresql,
+  SiMongodb,
   SiPycharm,
   SiPython,
   SiReact,
@@ -96,7 +97,7 @@ const links = [
   },
   {
     label: "Tripify",
-    description: "Mobile app. Work in progress",
+    description: "Mobile app — work in progress",
     href: "#",
     icon: MdLocalAirport,
     blocked: true,
@@ -116,7 +117,7 @@ const devText = {
       travelAssistant: "AI trip planning assistant",
       hollowDepths: "Godot game project",
       renovationSystem: "Workflow management platform",
-      tripify: "Mobile app. Work in progress",
+      tripify: "Mobile app — work in progress",
     },
     yearsProgramming: "Years programming",
     certificatesCount: "Certificates",
@@ -148,7 +149,7 @@ const devText = {
       travelAssistant: "AI asystent do planowania podróży",
       hollowDepths: "Projekt gry w Godot",
       renovationSystem: "Platforma do zarządzania procesem",
-      tripify: "Aplikacja mobilna. Wkrótce dostępna",
+      tripify: "Aplikacja mobilna — już wkrótce",
     },
     yearsProgramming: "Lat programowania",
     certificatesCount: "Certyfikaty",
@@ -205,20 +206,29 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
       title: text.sectionTitles.frameworks,
       gradientClass: "from-[#05dafff8] via-indigo-500 to-purple-500",
       items: [
-        { label: "React Native", icon: TbBrandReactNative },
         { label: "React", icon: SiReact },
         { label: "Spring Boot", icon: SiSpringboot },
         { label: "Vite", icon: SiVite },
-        { label: "Expo", icon: SiExpo },
         { label: "Next.js", icon: SiNextdotjs },
         { label: "JavaFX", icon: FaJava },
         { label: "OpenGL", icon: SiOpengl },
         { label: "Flask", icon: SiFlask },
+        { label: "LLM APIs", icon: RiChatVoiceAiFill },
+        { label: "TailwindCSS", icon: SiCss3 },
+      ],
+    },
+    {
+      title: "Mobile Development",
+      gradientClass: "from-[#05dafff8] via-indigo-500 to-violet-500",
+      items: [
+        { label: "React Native", icon: TbBrandReactNative },
+        { label: "Expo", icon: SiExpo },
+        { label: "Android Studio", icon: SiIntellijidea },
       ],
     },
     {
       title: text.sectionTitles.databases,
-      gradientClass: "from-[#05dafff8] via-indigo-500 to-violet-500",
+      gradientClass: "from-[#05dafff8] via-purple-500 to-violet-600",
       items: [
         { label: "PostgreSQL", icon: SiPostgresql },
         { label: "SQL", icon: TbSql },
@@ -229,6 +239,8 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
         { label: "Linux", icon: SiLinux },
         { label: "Git", icon: SiGit },
         { label: "Supabase", icon: SiSupabase },
+        { label: "MongoDB", icon: SiMongodb },
+        { label: "GitHub Actions", icon: SiGit },
       ],
     },
     {
@@ -244,11 +256,13 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
         { label: "Jupyter Notebook", icon: SiJupyter },
         { label: "Godot Engine", icon: SiGodotengine },
         { label: "Xilinx", icon: FaMicrochip },
+        { label: "Cursor", icon: VscVscode },
+        { label: "GitHub Copilot", icon: IoLogoGithub },
       ],
     },
     {
       title: text.sectionTitles.testing,
-      gradientClass: "from-[#05dafff8] via-purple-500 to-violet-600",
+      gradientClass: "from-[#05dafff8] via-fuchsia-500 to-fuchsia-500",
       items: [
         { label: "Selenium", icon: SiSelenium },
         { label: "Weka", icon: GiKiwiBird },
@@ -259,7 +273,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
     },
     {
       title: text.sectionTitles.design,
-      gradientClass: "from-[#05dafff8] via-fuchsia-500 to-fuchsia-500",
+      gradientClass: "from-[#05dafff8] via-emerald-400 to-green-500",
       items: [
         { label: "Figma", icon: SiFigma },
         { label: "Photoshop", icon: SiAdobephotoshop },
@@ -566,16 +580,16 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
             {certificates.map((certificate) => (
               <div
                 key={certificate.title}
-                className="flex items-center justify-between gap-3 rounded-lg border border-border/70 bg-card/42 px-3 py-3"
+                className="flex items-center justify-between gap-3 rounded-lg border border-border/70 bg-card/42 px-3 py-[11.7px]"
               >
                 <div className="flex min-w-0 items-center gap-2.5">
                   <certificate.logo className="size-[21px] shrink-0 text-foreground" />
                   <div className="min-w-0">
-                    <p className="truncate text-[11.6px] text-foreground" style={{ letterSpacing: '-0.03em', marginBottom: '0.19px', marginLeft: '0.8px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
+                    <p className="truncate text-[11.3px] text-foreground" style={{ letterSpacing: '-0.03em', marginBottom: '0.19px', marginLeft: '0.8px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
                       <span className="sm:hidden">{certificate.shortTitle}</span>
                       <span className="hidden sm:inline">{certificate.title}</span>
                     </p>
-                    <p className="text-[11.33px] text-muted-foreground" style={{ letterSpacing: '-0.01em', marginLeft: '0.8px' }}>{certificate.issuer}</p>
+                    <p className="text-[11.03px] text-muted-foreground" style={{ letterSpacing: '-0.01em', marginLeft: '0.8px' }}>{certificate.issuer}</p>
                   </div>
                 </div>
 
@@ -662,7 +676,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                     {section.items.map((item) => (
                       <span
                         key={item.label}
-                        className="inline-flex items-center gap-1.5 rounded-md border border-border px-2.5 py-1 text-[10.6px] text-foreground"
+                        className="inline-flex items-center gap-1.5 rounded-lg border border-border px-2.5 py-1 text-[10.7px] text-foreground"
                         style={{ letterSpacing: '-0.01em' }}
                       >
                           <item.icon
