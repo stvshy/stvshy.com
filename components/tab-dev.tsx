@@ -354,16 +354,16 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
           <div className="flex flex-col gap-0.5">
             <span
               className={`text-[12.58px] ${
-                  link.blocked ? "text-foreground/70" : "text-foreground"
-                }`}
-                style={{
-                  fontFamily:
-                    'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
-                  letterSpacing: '-0.02em',
-                  marginBottom: '0.1px',
-                  fontWeight: 510,
-                  fontVariationSettings: "'wght' 510",
-                }}
+                link.blocked ? "text-foreground/70" : "text-foreground"
+              }`}
+              style={{
+                fontFamily:
+                  'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
+                letterSpacing: '-0.02em',
+                marginBottom: '0.1px',
+                fontWeight: 510,
+                fontVariationSettings: "'wght' 510",
+              }}
             >
               {link.label}
             </span>
@@ -603,12 +603,10 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                       alt={`${certificate.title} preview`}
                       width={48}
                       height={32}
-                      className="h-8 w-12 object-cover transition-[filter,transform,opacity] duration-200 group-hover:brightness-50 group-hover:scale-95"
+                      className="h-8 w-12 object-cover transition-[filter,opacity] duration-200 group-hover:brightness-40"
                     />
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-                      <div className="rounded-full bg-black/25 p-1.5">
-                        <Eye className="size-4 text-white" />
-                      </div>
+                      <Eye className="size-4 text-[var(--dev-accent)] drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]" />
                     </div>
                   </button>
                 </div>
@@ -622,7 +620,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
       <div
         className={`border bg-card backdrop-blur-xl transition-all duration-300 ${
           isStackOpen
-            ? "rounded-t-xl border-border"
+            ? "rounded-xl border-border"
             : "rounded-xl border-border hover:border-[var(--dev-accent)]/45 hover:bg-[var(--dev-accent)]/10 hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
         }`}
       >
@@ -650,7 +648,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
         </button>
 
         {isStackOpen && (
-          <div className="border-t border-border px-5 py-4">
+          <div className="border-t border-border px-5 py-4 rounded-b-xl">
             <div className="flex flex-col gap-3">
               {stackSections.map((section) => (
                 <div key={section.title}>
