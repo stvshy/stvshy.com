@@ -78,6 +78,13 @@ const updateUrl = (tab: string, lang: string) => {
     document.documentElement.lang = newLang
     window.localStorage.setItem("language", newLang)
   }
+  // Ta funkcja zdejmuje focus z opóźnieniem, żeby "przebić" systemowe kliknięcie
+  const handleTouchUnfocus = (e: React.TouchEvent<HTMLElement>) => {
+    const target = e.currentTarget
+    setTimeout(() => {
+      target.blur()
+    }, 100)
+  }
   useEffect(() => {
     if (!previewImage) {
       return
@@ -181,7 +188,7 @@ const updateUrl = (tab: string, lang: string) => {
         {/* Contact Button */}
         <Button
           asChild
-          onTouchEnd={(e) => e.currentTarget.blur()}
+          onTouchEnd={handleTouchUnfocus}
           className={`w-full rounded-xl border border-border bg-card text-sm text-foreground backdrop-blur-xl transition-all duration-300 ${contactHoverClassName}`}
           size="lg"
         >
@@ -199,7 +206,7 @@ const updateUrl = (tab: string, lang: string) => {
             <Button
               asChild
               size="lg"
-              onTouchEnd={(e) => e.currentTarget.blur()}
+              onTouchEnd={handleTouchUnfocus}
               className={`w-full rounded-xl border border-foreground/12 bg-transparent text-sm text-foreground shadow-none transition-all duration-300 [@media(hover:hover)]:hover:bg-transparent active:bg-transparent ${instagramHoverClassName}`}
             >
               <a
@@ -228,7 +235,7 @@ const updateUrl = (tab: string, lang: string) => {
             type="button"
             onClick={handleLanguageChange}
             aria-label={text.switchLanguageLabel}
-            onTouchEnd={(e) => e.currentTarget.blur()}
+            onTouchEnd={handleTouchUnfocus}
             className="inline-flex size-5 items-center justify-center overflow-hidden rounded-full bg-card/90 text-sm shadow-[0_0_14px_rgba(0,0,0,0.28)] backdrop-blur-xl transition-all duration-300 [@media(hover:hover)]:hover:brightness-110 [@media(hover:hover)]:hover:shadow-[0_0_16px_4px_rgba(255,255,255,0.28)] active:brightness-110 active:shadow-[0_0_16px_4px_rgba(255,255,255,0.28)]"
           >
             <img
@@ -244,7 +251,7 @@ const updateUrl = (tab: string, lang: string) => {
       <button
         type="button"
         onClick={handleLanguageChange}
-        onTouchEnd={(e) => e.currentTarget.blur()}
+        onTouchEnd={handleTouchUnfocus}
         aria-label={text.switchLanguageLabel}
         className="fixed bottom-6 right-6 z-40 hidden size-7 items-center justify-center overflow-hidden rounded-full bg-card/90 text-xl shadow-[0_0_24px_rgba(0,0,0,0.35)] backdrop-blur-xl transition-all duration-300 [@media(hover:hover)]:hover:brightness-110 [@media(hover:hover)]:hover:shadow-[0_0_12px_3px_rgba(255,255,255,0.22)] active:brightness-110 active:shadow-[0_0_12px_3px_rgba(255,255,255,0.22)] md:inline-flex"
       >
