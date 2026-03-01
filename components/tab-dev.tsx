@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { ChevronDown, ExternalLink, Layers, X, Eye } from "lucide-react"
 import { MdLocalAirport, MdLock, MdOutlineLayers } from "react-icons/md"
 import { ImLinkedin2 } from "react-icons/im"
@@ -182,7 +182,60 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
   const [isStackOpen, setIsStackOpen] = useState(false)
   const [isYearsOpen, setIsYearsOpen] = useState(false)
   const [isCertificatesOpen, setIsCertificatesOpen] = useState(false)
+  const [isYearsPressed, setIsYearsPressed] = useState(false)
+  const [isCertificatesPressed, setIsCertificatesPressed] = useState(false)
+  const [isStackPressed, setIsStackPressed] = useState(false)
+  const yearsPressTimeoutRef = useRef<number | null>(null)
+  const certificatesPressTimeoutRef = useRef<number | null>(null)
+  const stackPressTimeoutRef = useRef<number | null>(null)
   const text = devText[language]
+
+  useEffect(() => {
+    return () => {
+      if (yearsPressTimeoutRef.current !== null) {
+        window.clearTimeout(yearsPressTimeoutRef.current)
+      }
+      if (certificatesPressTimeoutRef.current !== null) {
+        window.clearTimeout(certificatesPressTimeoutRef.current)
+      }
+      if (stackPressTimeoutRef.current !== null) {
+        window.clearTimeout(stackPressTimeoutRef.current)
+      }
+    }
+  }, [])
+
+  const triggerYearsPress = () => {
+    setIsYearsPressed(true)
+    if (yearsPressTimeoutRef.current !== null) {
+      window.clearTimeout(yearsPressTimeoutRef.current)
+    }
+    yearsPressTimeoutRef.current = window.setTimeout(() => {
+      setIsYearsPressed(false)
+      yearsPressTimeoutRef.current = null
+    }, 1000)
+  }
+
+  const triggerCertificatesPress = () => {
+    setIsCertificatesPressed(true)
+    if (certificatesPressTimeoutRef.current !== null) {
+      window.clearTimeout(certificatesPressTimeoutRef.current)
+    }
+    certificatesPressTimeoutRef.current = window.setTimeout(() => {
+      setIsCertificatesPressed(false)
+      certificatesPressTimeoutRef.current = null
+    }, 1000)
+  }
+
+  const triggerStackPress = () => {
+    setIsStackPressed(true)
+    if (stackPressTimeoutRef.current !== null) {
+      window.clearTimeout(stackPressTimeoutRef.current)
+    }
+    stackPressTimeoutRef.current = window.setTimeout(() => {
+      setIsStackPressed(false)
+      stackPressTimeoutRef.current = null
+    }, 1000)
+  }
 
   const stackSections = [
     {
@@ -417,11 +470,16 @@ const handleTouchUnfocus = (e: React.TouchEvent<HTMLElement>) => {
         <button
           type="button"
 onClick={(e) => {
+    triggerYearsPress();
     setIsYearsOpen((prev) => !prev); 
     e.currentTarget.blur();          
   }}          aria-expanded={isYearsOpen}
           onTouchEnd={handleTouchUnfocus}
-          className="group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+          className={`group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] ${
+            isYearsPressed
+              ? "border-[var(--dev-accent)]/45 bg-[var(--dev-accent)]/10 shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+              : ""
+          }`}
         >
           <ChevronDown
             className={`absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground transition-transform ${
@@ -445,10 +503,15 @@ onClick={(e) => {
         <button
           type="button"
 onClick={(e) => {
+    triggerCertificatesPress();
     setIsCertificatesOpen((prev) => !prev);
     e.currentTarget.blur();
   }}          aria-expanded={isCertificatesOpen}
-          className="group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+          className={`group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] ${
+            isCertificatesPressed
+              ? "border-[var(--dev-accent)]/45 bg-[var(--dev-accent)]/10 shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+              : ""
+          }`}
         >
           <ChevronDown
             className={`absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground transition-transform ${
@@ -653,16 +716,25 @@ onClick={(e) => {
           isStackOpen
             ? "rounded-xl border-border"
             : "rounded-xl border-border [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+        } ${
+          isStackPressed
+            ? "border-[var(--dev-accent)]/45 bg-[var(--dev-accent)]/10 shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+            : ""
         }`}
       >
         <button
           type="button"
 onClick={(e) => {
+    triggerStackPress();
     setIsStackOpen((prev) => !prev);
     e.currentTarget.blur();
   }}          className={`group flex w-full items-center gap-4 px-5 py-3 text-left transition-all duration-300 ${
             isStackOpen ? "rounded-t-xl" : "rounded-xl"
-          } [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]`}
+          } [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] ${
+            isStackPressed
+              ? "border-[var(--dev-accent)]/45 bg-[var(--dev-accent)]/10 shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+              : ""
+          }`}
         >
           <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-[var(--dev-accent)]/15 text-[var(--dev-accent)] transition-colors [@media(hover:hover)_and_(pointer:fine)]:group-hover:bg-[var(--dev-accent)]/25 group-active:bg-[var(--dev-accent)]/25">
             <Layers className="size-6" />

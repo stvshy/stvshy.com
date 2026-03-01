@@ -1,4 +1,4 @@
-import { type CSSProperties, useState } from "react"
+import { type CSSProperties, useEffect, useRef, useState } from "react"
 import { BsSpotify } from "react-icons/bs"
 import { FaDeezer } from "react-icons/fa"
 import { PiSoundcloudLogoFill } from "react-icons/pi"
@@ -115,7 +115,28 @@ const musicText = {
 
 export function TabMusic({ language }: TabMusicProps) {
   const [isMoreOpen, setIsMoreOpen] = useState(false)
+  const [isMorePressed, setIsMorePressed] = useState(false)
+  const morePressTimeoutRef = useRef<number | null>(null)
   const text = musicText[language]
+
+  useEffect(() => {
+    return () => {
+      if (morePressTimeoutRef.current !== null) {
+        window.clearTimeout(morePressTimeoutRef.current)
+      }
+    }
+  }, [])
+
+  const triggerMorePress = () => {
+    setIsMorePressed(true)
+    if (morePressTimeoutRef.current !== null) {
+      window.clearTimeout(morePressTimeoutRef.current)
+    }
+    morePressTimeoutRef.current = window.setTimeout(() => {
+      setIsMorePressed(false)
+      morePressTimeoutRef.current = null
+    }, 1000)
+  }
 
   const localizedLinks = links.map((link) => {
     const descriptionMap = {
@@ -204,8 +225,15 @@ export function TabMusic({ language }: TabMusicProps) {
 
       <button
         type="button"
-        onClick={() => setIsMoreOpen((prev) => !prev)}
-        className="flex h-8 w-full items-center justify-center gap-2 rounded-lg border border-border/70 bg-card/70 text-[11px] font-medium uppercase tracking-wide text-muted-foreground transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[rgb(var(--music-accent-rgb)/0.3)] [@media(hover:hover)_and_(pointer:fine)]:hover:text-[rgb(var(--music-accent-rgb))] active:border-[rgb(var(--music-accent-rgb)/0.3)] active:text-[rgb(var(--music-accent-rgb))]"
+        onClick={() => {
+          triggerMorePress()
+          setIsMoreOpen((prev) => !prev)
+        }}
+        className={`flex h-8 w-full items-center justify-center gap-2 rounded-lg border border-border/70 bg-card/70 text-[11px] font-medium uppercase tracking-wide text-muted-foreground transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[rgb(var(--music-accent-rgb)/0.3)] [@media(hover:hover)_and_(pointer:fine)]:hover:text-[rgb(var(--music-accent-rgb))] active:border-[rgb(var(--music-accent-rgb)/0.3)] active:text-[rgb(var(--music-accent-rgb))] ${
+          isMorePressed
+            ? "border-[rgb(var(--music-accent-rgb)/0.3)] text-[rgb(var(--music-accent-rgb))]"
+            : ""
+        }`}
         aria-expanded={isMoreOpen}
         aria-controls="more-music-links"
       >
