@@ -188,7 +188,7 @@ const updateUrl = (tab: string, lang: string) => {
         {/* Contact Button */}
         <Button
           asChild
-          onTouchEnd={handleTouchUnfocus}
+          onClick={(e) => e.currentTarget.blur()}
           className={`w-full rounded-xl border border-border bg-card text-sm text-foreground backdrop-blur-xl transition-all duration-300 ${contactHoverClassName}`}
           size="lg"
         >
@@ -206,7 +206,7 @@ const updateUrl = (tab: string, lang: string) => {
             <Button
               asChild
               size="lg"
-              onTouchEnd={handleTouchUnfocus}
+              onClick={(e) => e.currentTarget.blur()}
               className={`w-full rounded-xl border border-foreground/12 bg-transparent text-sm text-foreground shadow-none transition-all duration-300 [@media(hover:hover)]:hover:bg-transparent active:bg-transparent ${instagramHoverClassName}`}
             >
               <a
@@ -233,10 +233,11 @@ const updateUrl = (tab: string, lang: string) => {
         <div className="-mt-3 flex justify-center md:hidden">
           <button
             type="button"
-            onClick={handleLanguageChange}
-            aria-label={text.switchLanguageLabel}
-            onTouchEnd={handleTouchUnfocus}
-            className="inline-flex size-5 items-center justify-center overflow-hidden rounded-full bg-card/90 text-sm shadow-[0_0_14px_rgba(0,0,0,0.28)] backdrop-blur-xl transition-all duration-300 [@media(hover:hover)]:hover:brightness-110 [@media(hover:hover)]:hover:shadow-[0_0_16px_4px_rgba(255,255,255,0.28)] active:brightness-110 active:shadow-[0_0_16px_4px_rgba(255,255,255,0.28)]"
+            onClick={(e) => {
+                handleLanguageChange();
+                e.currentTarget.blur();
+            }}
+            aria-label={text.switchLanguageLabel}            className="inline-flex size-5 items-center justify-center overflow-hidden rounded-full bg-card/90 text-sm shadow-[0_0_14px_rgba(0,0,0,0.28)] backdrop-blur-xl transition-all duration-300 [@media(hover:hover)]:hover:brightness-110 [@media(hover:hover)]:hover:shadow-[0_0_16px_4px_rgba(255,255,255,0.28)] active:brightness-110 active:shadow-[0_0_16px_4px_rgba(255,255,255,0.28)]"
           >
             <img
               src={language === "en" ? "/images/polish1.png" : "/images/english2.png"}

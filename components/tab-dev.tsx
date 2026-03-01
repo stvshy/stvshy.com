@@ -355,7 +355,7 @@ const handleTouchUnfocus = (e: React.TouchEvent<HTMLElement>) => {
           target={link.blocked ? undefined : "_blank"}
           rel={link.blocked ? undefined : "noopener noreferrer"}
           aria-disabled={link.blocked}
-          onTouchEnd={handleTouchUnfocus}
+          onClick={(e) => e.currentTarget.blur()}
           className={`group flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-3 backdrop-blur-xl transition-all duration-300 ${
             link.blocked
               ? "cursor-not-allowed border-border/70 bg-muted/15 opacity-100"
@@ -416,8 +416,10 @@ const handleTouchUnfocus = (e: React.TouchEvent<HTMLElement>) => {
       <div className="grid grid-cols-2 gap-3">
         <button
           type="button"
-          onClick={() => setIsYearsOpen((prev) => !prev)}
-          aria-expanded={isYearsOpen}
+onClick={(e) => {
+    setIsYearsOpen((prev) => !prev); 
+    e.currentTarget.blur();          
+  }}          aria-expanded={isYearsOpen}
           onTouchEnd={handleTouchUnfocus}
           className="group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 [@media(hover:hover)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
         >
@@ -442,9 +444,10 @@ const handleTouchUnfocus = (e: React.TouchEvent<HTMLElement>) => {
 
         <button
           type="button"
-          onClick={() => setIsCertificatesOpen((prev) => !prev)}
-          aria-expanded={isCertificatesOpen}
-          onTouchEnd={handleTouchUnfocus}
+onClick={(e) => {
+    setIsCertificatesOpen((prev) => !prev);
+    e.currentTarget.blur();
+  }}          aria-expanded={isCertificatesOpen}
           className="group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 [@media(hover:hover)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
         >
           <ChevronDown
@@ -482,8 +485,10 @@ const handleTouchUnfocus = (e: React.TouchEvent<HTMLElement>) => {
           >
           <button
             type="button"
-            onClick={() => setIsYearsOpen(false)}
-            onTouchEnd={handleTouchUnfocus}
+            onClick={(e) => {
+              setIsYearsOpen(false)
+              e.currentTarget.blur()
+            }}
             aria-label={text.closeEducation}
             className="absolute right-3 top-3 inline-flex size-6 items-center justify-center rounded-md text-muted-foreground transition-colors [@media(hover:hover)]:hover:bg-card [@media(hover:hover)]:hover:text-foreground active:bg-card active:text-foreground"
           >
@@ -576,9 +581,11 @@ const handleTouchUnfocus = (e: React.TouchEvent<HTMLElement>) => {
           >
           <button
             type="button"
-            onClick={() => setIsCertificatesOpen(false)}
+            onClick={(e) => {
+              setIsCertificatesOpen(false)
+              e.currentTarget.blur()
+            }}
             aria-label={text.closeCertificates}
-            onTouchEnd={handleTouchUnfocus}
             className="absolute right-3 top-3 inline-flex size-6 items-center justify-center rounded-md text-muted-foreground transition-colors [@media(hover:hover)]:hover:bg-card [@media(hover:hover)]:hover:text-foreground active:bg-card active:text-foreground"
           >
             <X className="size-3.5" />
@@ -650,8 +657,10 @@ const handleTouchUnfocus = (e: React.TouchEvent<HTMLElement>) => {
       >
         <button
           type="button"
-          onClick={() => setIsStackOpen((prev) => !prev)}
-          className={`group flex w-full items-center gap-4 px-5 py-3 text-left transition-all duration-300 ${
+onClick={(e) => {
+    setIsStackOpen((prev) => !prev);
+    e.currentTarget.blur();
+  }}          className={`group flex w-full items-center gap-4 px-5 py-3 text-left transition-all duration-300 ${
             isStackOpen ? "rounded-t-xl" : "rounded-xl"
           } [@media(hover:hover)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]`}
         >
