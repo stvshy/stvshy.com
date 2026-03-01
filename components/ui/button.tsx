@@ -9,16 +9,16 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-primary text-primary-foreground [@media(hover:hover)]:hover:bg-primary/90',
+        default: 'bg-primary text-primary-foreground [@media(hover:hover)_and_(pointer:fine)]:hover:bg-primary/90',
         destructive:
-          'bg-destructive text-white [@media(hover:hover)]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
+          'bg-destructive text-white [@media(hover:hover)_and_(pointer:fine)]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
         outline:
-          'border bg-background shadow-xs [@media(hover:hover)]:hover:bg-accent [@media(hover:hover)]:hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:[@media(hover:hover)]:hover:bg-input/50',
+          'border bg-background shadow-xs [@media(hover:hover)_and_(pointer:fine)]:hover:bg-accent [@media(hover:hover)_and_(pointer:fine)]:hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:[@media(hover:hover)_and_(pointer:fine)]:hover:bg-input/50',
         secondary:
-          'bg-secondary text-secondary-foreground [@media(hover:hover)]:hover:bg-secondary/80',
+          'bg-secondary text-secondary-foreground [@media(hover:hover)_and_(pointer:fine)]:hover:bg-secondary/80',
         ghost:
-          '[@media(hover:hover)]:hover:bg-accent [@media(hover:hover)]:hover:text-accent-foreground dark:[@media(hover:hover)]:hover:bg-accent/50',
-        link: 'text-primary underline-offset-4 [@media(hover:hover)]:hover:underline',
+          '[@media(hover:hover)_and_(pointer:fine)]:hover:bg-accent [@media(hover:hover)_and_(pointer:fine)]:hover:text-accent-foreground dark:[@media(hover:hover)_and_(pointer:fine)]:hover:bg-accent/50',
+        link: 'text-primary underline-offset-4 [@media(hover:hover)_and_(pointer:fine)]:hover:underline',
       },
       size: {
         default: 'h-9 px-4 py-2 has-[>svg]:px-3',

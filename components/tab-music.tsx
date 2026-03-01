@@ -144,10 +144,10 @@ export function TabMusic({ language }: TabMusicProps) {
   const musicRgb = hexToRgbChannels(MUSIC_ACCENT).split(" ").join(", ")
 
   const defaultLinkClassName =
-    "group flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-3 backdrop-blur-xl transition-all duration-300 [@media(hover:hover)]:hover:border-[rgb(var(--music-accent-rgb)/0.3)] [@media(hover:hover)]:hover:bg-[rgb(var(--music-accent-rgb)/0.05)] active:border-[rgb(var(--music-accent-rgb)/0.3)] active:bg-[rgb(var(--music-accent-rgb)/0.05)]"
+    "group flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-3 backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[rgb(var(--music-accent-rgb)/0.3)] [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[rgb(var(--music-accent-rgb)/0.05)] active:border-[rgb(var(--music-accent-rgb)/0.3)] active:bg-[rgb(var(--music-accent-rgb)/0.05)]"
 
   const fantasiaCardClassName =
-    "group flex items-center gap-4 rounded-xl border border-[rgb(var(--music-accent-rgb)/0.35)] bg-[rgb(var(--music-accent-rgb)/0.1)] px-5 py-3 backdrop-blur-xl transition-all duration-300 [@media(hover:hover)]:hover:border-[rgb(var(--music-accent-rgb)/0.45)] [@media(hover:hover)]:hover:bg-[rgb(var(--music-accent-rgb)/0.15)] active:border-[rgb(var(--music-accent-rgb)/0.45)] active:bg-[rgb(var(--music-accent-rgb)/0.15)]"
+    "group flex items-center gap-4 rounded-xl border border-[rgb(var(--music-accent-rgb)/0.35)] bg-[rgb(var(--music-accent-rgb)/0.1)] px-5 py-3 backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[rgb(var(--music-accent-rgb)/0.45)] [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[rgb(var(--music-accent-rgb)/0.15)] active:border-[rgb(var(--music-accent-rgb)/0.45)] active:bg-[rgb(var(--music-accent-rgb)/0.15)]"
 
   // const fantasiaCardClassName =
   //   "group flex items-center gap-4 rounded-xl border border-neon-magenta/35 bg-neon-magenta/10 px-5 py-3 backdrop-blur-xl transition-all duration-300 hover:border-neon-magenta/45 hover:bg-neon-magenta/15 hover:shadow-[0_0_24px_rgba(217,70,239,0.14)]"
@@ -169,7 +169,7 @@ export function TabMusic({ language }: TabMusicProps) {
             className={
               link.label === "Fantasia"
                 ? "flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-lg"
-                : "flex size-10 shrink-0 items-center justify-center rounded-lg bg-[rgb(var(--music-accent-rgb)/0.1)] text-[rgb(var(--music-accent-rgb))] transition-colors [@media(hover:hover)]:group-hover:bg-[rgb(var(--music-accent-rgb)/0.2)] group-active:bg-[rgb(var(--music-accent-rgb)/0.2)]"
+                : "flex size-10 shrink-0 items-center justify-center rounded-lg bg-[rgb(var(--music-accent-rgb)/0.1)] text-[rgb(var(--music-accent-rgb))] transition-colors [@media(hover:hover)_and_(pointer:fine)]:group-hover:bg-[rgb(var(--music-accent-rgb)/0.2)] group-active:bg-[rgb(var(--music-accent-rgb)/0.2)]"
             }
           >
             {link.label === "Fantasia" ? (
@@ -190,7 +190,7 @@ export function TabMusic({ language }: TabMusicProps) {
             </span>
           </div>
           <svg
-            className="ml-auto size-4 text-muted-foreground transition-transform [@media(hover:hover)]:group-hover:translate-x-0.5 [@media(hover:hover)]:group-hover:text-[rgb(var(--music-accent-rgb))] group-active:translate-x-0.5 group-active:text-[rgb(var(--music-accent-rgb))]"
+            className="ml-auto size-4 text-muted-foreground transition-transform [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-0.5 [@media(hover:hover)_and_(pointer:fine)]:group-hover:text-[rgb(var(--music-accent-rgb))] group-active:translate-x-0.5 group-active:text-[rgb(var(--music-accent-rgb))]"
             viewBox="0 0 16 16"
             fill="none"
             stroke="currentColor"
@@ -205,7 +205,7 @@ export function TabMusic({ language }: TabMusicProps) {
       <button
         type="button"
         onClick={() => setIsMoreOpen((prev) => !prev)}
-        className="flex h-8 w-full items-center justify-center gap-2 rounded-lg border border-border/70 bg-card/70 text-[11px] font-medium uppercase tracking-wide text-muted-foreground transition-all duration-300 [@media(hover:hover)]:hover:border-[rgb(var(--music-accent-rgb)/0.3)] [@media(hover:hover)]:hover:text-[rgb(var(--music-accent-rgb))] active:border-[rgb(var(--music-accent-rgb)/0.3)] active:text-[rgb(var(--music-accent-rgb))]"
+        className="flex h-8 w-full items-center justify-center gap-2 rounded-lg border border-border/70 bg-card/70 text-[11px] font-medium uppercase tracking-wide text-muted-foreground transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[rgb(var(--music-accent-rgb)/0.3)] [@media(hover:hover)_and_(pointer:fine)]:hover:text-[rgb(var(--music-accent-rgb))] active:border-[rgb(var(--music-accent-rgb)/0.3)] active:text-[rgb(var(--music-accent-rgb))]"
         aria-expanded={isMoreOpen}
         aria-controls="more-music-links"
       >
@@ -235,7 +235,7 @@ export function TabMusic({ language }: TabMusicProps) {
               rel="noopener noreferrer"
               className={defaultLinkClassName}
             >
-              <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-[rgb(var(--music-accent-rgb)/0.1)] text-[rgb(var(--music-accent-rgb))] transition-colors [@media(hover:hover)]:group-hover:bg-[rgb(var(--music-accent-rgb)/0.2)] group-active:bg-[rgb(var(--music-accent-rgb)/0.2)]">
+              <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-[rgb(var(--music-accent-rgb)/0.1)] text-[rgb(var(--music-accent-rgb))] transition-colors [@media(hover:hover)_and_(pointer:fine)]:group-hover:bg-[rgb(var(--music-accent-rgb)/0.2)] group-active:bg-[rgb(var(--music-accent-rgb)/0.2)]">
                 <link.icon className="size-5" />
               </div>
               <div className="flex flex-col gap-0.5">
@@ -253,7 +253,7 @@ export function TabMusic({ language }: TabMusicProps) {
                 </span>
               </div>
               <svg
-                className="ml-auto size-4 text-muted-foreground transition-transform [@media(hover:hover)]:group-hover:translate-x-0.5 [@media(hover:hover)]:group-hover:text-[rgb(var(--music-accent-rgb))] group-active:translate-x-0.5 group-active:text-[rgb(var(--music-accent-rgb))]"
+                className="ml-auto size-4 text-muted-foreground transition-transform [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-0.5 [@media(hover:hover)_and_(pointer:fine)]:group-hover:text-[rgb(var(--music-accent-rgb))] group-active:translate-x-0.5 group-active:text-[rgb(var(--music-accent-rgb))]"
                 viewBox="0 0 16 16"
                 fill="none"
                 stroke="currentColor"
