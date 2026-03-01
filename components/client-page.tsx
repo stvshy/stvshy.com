@@ -13,6 +13,11 @@ import { Button } from "@/components/ui/button"
 
 type Language = "en" | "pl"
 
+interface ClientPageProps {
+  initialSection?: string
+  initialLang: Language
+}
+
 const pageText = {
   en: {
     tabs: {
@@ -44,14 +49,35 @@ const pageText = {
   },
 } as const
 
-export default function Page() {
-  const [activeTab, setActiveTab] = useState("about")
-  const [language, setLanguage] = useState<Language>("en")
+export default function ClientPage({ initialSection, initialLang }: ClientPageProps) {
+  const [activeTab, setActiveTab] = useState(initialSection || "about")
+  const [language, setLanguage] = useState<Language>(initialLang)
+  const [isProfessionalMode] = useState(!!initialSection)
   const [previewImage, setPreviewImage] = useState<{ src: string; alt: string } | null>(null)
   const isTripifyMapPreview = previewImage?.src.includes("tripify-map")
   const text = pageText[language]
   const nextLanguage: Language = language === "en" ? "pl" : "en"
+const updateUrl = (tab: string, lang: string) => {
+    const tabPart = tab === "about" ? "" : `/${tab}` // "about" to strona główna
+    const langPart = lang === "pl" ? "/pl" : ""     // "en" jest domyślny, więc go nie pokazujemy
+    const newPath = `${tabPart}${langPart}` || "/"
+    window.history.replaceState(null, "", newPath)
+  }
 
+  // ZMIANA: Handler zmiany zakładki, który aktualizuje też URL
+  const handleTabChange = (value: string) => {
+    setActiveTab(value)
+    updateUrl(value, language)
+  }
+  const handleLanguageChange = () => {
+    const newLang = nextLanguage
+    setLanguage(newLang)
+    updateUrl(activeTab, newLang)
+    
+    // Zapisz też w localStorage jak wcześniej
+    document.documentElement.lang = newLang
+    window.localStorage.setItem("language", newLang)
+  }
   useEffect(() => {
     if (!previewImage) {
       return
@@ -65,12 +91,7 @@ export default function Page() {
     }
   }, [previewImage])
 
-  useEffect(() => {
-    const storedLanguage = window.localStorage.getItem("language")
-    if (storedLanguage === "en" || storedLanguage === "pl") {
-      setLanguage(storedLanguage)
-    }
-  }, [])
+
 
   useEffect(() => {
     document.documentElement.lang = language
@@ -99,8 +120,8 @@ export default function Page() {
         <ProfileHeader language={language} />
 
         {/* Navigation Tabs */}
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full -mt-[10px]">
-          <TabsList className="grid w-full grid-cols-3 bg-muted/50 backdrop-blur-xl border border-border">
+<Tabs value={activeTab} onValueChange={handleTabChange} className="w-full -mt-[10px]">
+              <TabsList className="grid w-full grid-cols-3 bg-muted/50 backdrop-blur-xl border border-border">
             <TabsTrigger
               value="dev"
               className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-neon-magenta/10 data-[state=active]:text-neon-magenta data-[state=active]:shadow-none [@media(hover:hover)]:data-[state=inactive]:hover:bg-background/10 [@media(hover:hover)]:data-[state=inactive]:hover:border-border [@media(hover:hover)]:data-[state=inactive]:hover:text-muted-foreground/70 data-[state=inactive]:active:bg-background/10 data-[state=inactive]:active:border-border data-[state=inactive]:active:text-muted-foreground/70"
@@ -172,7 +193,7 @@ export default function Page() {
           </a>
         </Button>
 
-        {activeTab === "about" && (
+        {activeTab === "about" && !isProfessionalMode && (
           <div className="-mt-4.5">
             <Button
               asChild
@@ -203,7 +224,7 @@ export default function Page() {
         <div className="-mt-3 flex justify-center md:hidden">
           <button
             type="button"
-            onClick={() => setLanguage(nextLanguage)}
+            onClick={handleLanguageChange}
             aria-label={text.switchLanguageLabel}
             className="inline-flex size-5 items-center justify-center overflow-hidden rounded-full bg-card/90 text-sm shadow-[0_0_14px_rgba(0,0,0,0.28)] backdrop-blur-xl transition-all duration-300 [@media(hover:hover)]:hover:brightness-110 [@media(hover:hover)]:hover:shadow-[0_0_16px_4px_rgba(255,255,255,0.28)] active:brightness-110 active:shadow-[0_0_16px_4px_rgba(255,255,255,0.28)]"
           >
@@ -219,7 +240,7 @@ export default function Page() {
 
       <button
         type="button"
-        onClick={() => setLanguage(nextLanguage)}
+        onClick={handleLanguageChange}
         aria-label={text.switchLanguageLabel}
         className="fixed bottom-6 right-6 z-40 hidden size-7 items-center justify-center overflow-hidden rounded-full bg-card/90 text-xl shadow-[0_0_24px_rgba(0,0,0,0.35)] backdrop-blur-xl transition-all duration-300 [@media(hover:hover)]:hover:brightness-110 [@media(hover:hover)]:hover:shadow-[0_0_12px_3px_rgba(255,255,255,0.22)] active:brightness-110 active:shadow-[0_0_12px_3px_rgba(255,255,255,0.22)] md:inline-flex"
       >
