@@ -350,6 +350,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
           target={link.blocked ? undefined : "_blank"}
           rel={link.blocked ? undefined : "noopener noreferrer"}
           aria-disabled={link.blocked}
+          onTouchEnd={(e) => e.currentTarget.blur()}
           className={`group flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-3 backdrop-blur-xl transition-all duration-300 ${
             link.blocked
               ? "cursor-not-allowed border-border/70 bg-muted/15 opacity-100"
@@ -412,6 +413,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
           type="button"
           onClick={() => setIsYearsOpen((prev) => !prev)}
           aria-expanded={isYearsOpen}
+          onTouchEnd={(e) => e.currentTarget.blur()}
           className="group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 [@media(hover:hover)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
         >
           <ChevronDown
@@ -437,6 +439,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
           type="button"
           onClick={() => setIsCertificatesOpen((prev) => !prev)}
           aria-expanded={isCertificatesOpen}
+          onTouchEnd={(e) => e.currentTarget.blur()}
           className="group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 [@media(hover:hover)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
         >
           <ChevronDown
@@ -475,6 +478,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
           <button
             type="button"
             onClick={() => setIsYearsOpen(false)}
+            onTouchEnd={(e) => e.currentTarget.blur()}
             aria-label={text.closeEducation}
             className="absolute right-3 top-3 inline-flex size-6 items-center justify-center rounded-md text-muted-foreground transition-colors [@media(hover:hover)]:hover:bg-card [@media(hover:hover)]:hover:text-foreground active:bg-card active:text-foreground"
           >
@@ -569,6 +573,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
             type="button"
             onClick={() => setIsCertificatesOpen(false)}
             aria-label={text.closeCertificates}
+            onTouchEnd={(e) => e.currentTarget.blur()}
             className="absolute right-3 top-3 inline-flex size-6 items-center justify-center rounded-md text-muted-foreground transition-colors [@media(hover:hover)]:hover:bg-card [@media(hover:hover)]:hover:text-foreground active:bg-card active:text-foreground"
           >
             <X className="size-3.5" />
