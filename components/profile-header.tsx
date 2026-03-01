@@ -14,7 +14,7 @@ export function ProfileHeader({ language }: ProfileHeaderProps) {
       <Logo />
 
       <div className="relative mb-[1px] group">
-        <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-cyan-500 to-fuchsia-500 blur-md opacity-75 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-cyan-500 to-fuchsia-500 blur-md opacity-75 [@media(hover:hover)]:group-hover:opacity-100 transition-opacity duration-500"></div>
         <div className="relative w-[143px] h-[143px] rounded-full p-1 bg-gradient-to-tr from-cyan-500 via-purple-500 to-fuchsia-500" style={{ boxShadow: '0 0 40px -10px rgba(6, 182, 212, 0.5), 0 0 40px -10px rgba(217, 70, 239, 0.5)' }}>
           <img
             src="/images/avatar8.jpeg"
