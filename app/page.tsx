@@ -79,17 +79,17 @@ export default function Page() {
 
   const contactHoverClassName =
     activeTab === "dev"
-      ? "hover:border-[var(--dev-accent)]/45 hover:bg-[var(--dev-accent)]/10 hover:text-[var(--dev-accent)] hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+      ? "[@media(hover:hover)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)]:hover:text-[var(--dev-accent)] [@media(hover:hover)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:text-[var(--dev-accent)] active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
       : activeTab === "music"
-        ? "hover:border-[#b817e4]/45 hover:bg-[#b817e4]/10 hover:text-[#b817e4] hover:shadow-[0_0_20px_rgba(184,23,228,0.18)]"
-        : "hover:border-foreground/30 hover:bg-foreground/10 hover:text-foreground hover:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
+        ? "[@media(hover:hover)]:hover:border-[#b817e4]/45 [@media(hover:hover)]:hover:bg-[#b817e4]/10 [@media(hover:hover)]:hover:text-[#b817e4] [@media(hover:hover)]:hover:shadow-[0_0_20px_rgba(184,23,228,0.18)] active:border-[#b817e4]/45 active:bg-[#b817e4]/10 active:text-[#b817e4] active:shadow-[0_0_20px_rgba(184,23,228,0.18)]"
+        : "[@media(hover:hover)]:hover:border-foreground/30 [@media(hover:hover)]:hover:bg-foreground/10 [@media(hover:hover)]:hover:text-foreground [@media(hover:hover)]:hover:shadow-[0_0_20px_rgba(240,240,240,0.08)] active:border-foreground/30 active:bg-foreground/10 active:text-foreground active:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
 
   const instagramHoverClassName =
     activeTab === "dev"
-      ? "hover:border-[var(--dev-accent)]/55 hover:text-[var(--dev-accent)] hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+      ? "[@media(hover:hover)]:hover:border-[var(--dev-accent)]/55 [@media(hover:hover)]:hover:text-[var(--dev-accent)] [@media(hover:hover)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/55 active:text-[var(--dev-accent)] active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
       : activeTab === "music"
-        ? "hover:border-[#b817e4]/55 hover:text-[#b817e4] hover:shadow-[0_0_20px_rgba(184,23,228,0.18)]"
-        : "hover:border-foreground/45 hover:text-foreground hover:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
+        ? "[@media(hover:hover)]:hover:border-[#b817e4]/55 [@media(hover:hover)]:hover:text-[#b817e4] [@media(hover:hover)]:hover:shadow-[0_0_20px_rgba(184,23,228,0.18)] active:border-[#b817e4]/55 active:text-[#b817e4] active:shadow-[0_0_20px_rgba(184,23,228,0.18)]"
+        : "[@media(hover:hover)]:hover:border-foreground/45 [@media(hover:hover)]:hover:text-foreground [@media(hover:hover)]:hover:shadow-[0_0_20px_rgba(240,240,240,0.08)] active:border-foreground/45 active:text-foreground active:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
 
   return (
     <main className="relative flex min-h-svh flex-col items-center bg-background">
@@ -103,34 +103,34 @@ export default function Page() {
           <TabsList className="grid w-full grid-cols-3 bg-muted/50 backdrop-blur-xl border border-border">
             <TabsTrigger
               value="dev"
-              className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-neon-magenta/10 data-[state=active]:text-neon-magenta data-[state=active]:shadow-none data-[state=inactive]:hover:bg-background/10 data-[state=inactive]:hover:border-border data-[state=inactive]:hover:text-muted-foreground/70"
+              className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-neon-magenta/10 data-[state=active]:text-neon-magenta data-[state=active]:shadow-none [@media(hover:hover)]:data-[state=inactive]:hover:bg-background/10 [@media(hover:hover)]:data-[state=inactive]:hover:border-border [@media(hover:hover)]:data-[state=inactive]:hover:text-muted-foreground/70 data-[state=inactive]:active:bg-background/10 data-[state=inactive]:active:border-border data-[state=inactive]:active:text-muted-foreground/70"
             >
               <img
                 src="/images/dev-icon3-4.png"
                 alt="Dev icon"
-                className="mr-1.5 size-4"
+                className="mr-1 size-4"
               />
               {text.tabs.dev}
             </TabsTrigger>
             <TabsTrigger
               value="about"
-              className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-foreground/10 data-[state=active]:text-foreground data-[state=active]:shadow-none data-[state=inactive]:hover:bg-background/10 data-[state=inactive]:hover:border-border data-[state=inactive]:hover:text-muted-foreground/70"
+              className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-foreground/10 data-[state=active]:text-foreground data-[state=active]:shadow-none [@media(hover:hover)]:data-[state=inactive]:hover:bg-background/10 [@media(hover:hover)]:data-[state=inactive]:hover:border-border [@media(hover:hover)]:data-[state=inactive]:hover:text-muted-foreground/70 data-[state=inactive]:active:bg-background/10 data-[state=inactive]:active:border-border data-[state=inactive]:active:text-muted-foreground/70"
             >
               <img
                 src="/images/about-icon5.png"
                 alt="About icon"
-                className="mr-1.5 size-4"
+                className="mr-1 size-4"
               />
               {text.tabs.about}
             </TabsTrigger>
             <TabsTrigger
               value="music"
-              className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-[#b817e4]/10 data-[state=active]:text-[#b817e4] data-[state=active]:shadow-none data-[state=inactive]:hover:bg-background/10 data-[state=inactive]:hover:border-border data-[state=inactive]:hover:text-muted-foreground/70"
+              className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-[#b817e4]/10 data-[state=active]:text-[#b817e4] data-[state=active]:shadow-none [@media(hover:hover)]:data-[state=inactive]:hover:bg-background/10 [@media(hover:hover)]:data-[state=inactive]:hover:border-border [@media(hover:hover)]:data-[state=inactive]:hover:text-muted-foreground/70 data-[state=inactive]:active:bg-background/10 data-[state=inactive]:active:border-border data-[state=inactive]:active:text-muted-foreground/70"
             >
               <img
                 src="/images/music-icon2.png"
                 alt="Music note"
-                className="mr-1.5 size-4"
+                className="mr-1 size-4"
               />
               {text.tabs.music}
             </TabsTrigger>
@@ -177,7 +177,7 @@ export default function Page() {
             <Button
               asChild
               size="lg"
-              className={`w-full rounded-xl border border-foreground/12 bg-transparent text-sm text-foreground shadow-none transition-all duration-300 hover:bg-transparent ${instagramHoverClassName}`}
+              className={`w-full rounded-xl border border-foreground/12 bg-transparent text-sm text-foreground shadow-none transition-all duration-300 [@media(hover:hover)]:hover:bg-transparent active:bg-transparent ${instagramHoverClassName}`}
             >
               <a
                 href="https://instagram.com/stvshy"
@@ -205,7 +205,7 @@ export default function Page() {
             type="button"
             onClick={() => setLanguage(nextLanguage)}
             aria-label={text.switchLanguageLabel}
-            className="inline-flex size-5 items-center justify-center overflow-hidden rounded-full bg-card/90 text-sm shadow-[0_0_14px_rgba(0,0,0,0.28)] backdrop-blur-xl transition-all duration-300 hover:brightness-110 hover:shadow-[0_0_16px_4px_rgba(255,255,255,0.28)]"
+            className="inline-flex size-5 items-center justify-center overflow-hidden rounded-full bg-card/90 text-sm shadow-[0_0_14px_rgba(0,0,0,0.28)] backdrop-blur-xl transition-all duration-300 [@media(hover:hover)]:hover:brightness-110 [@media(hover:hover)]:hover:shadow-[0_0_16px_4px_rgba(255,255,255,0.28)] active:brightness-110 active:shadow-[0_0_16px_4px_rgba(255,255,255,0.28)]"
           >
             <img
               src={language === "en" ? "/images/polish1.png" : "/images/english2.png"}
@@ -221,7 +221,7 @@ export default function Page() {
         type="button"
         onClick={() => setLanguage(nextLanguage)}
         aria-label={text.switchLanguageLabel}
-        className="fixed bottom-6 right-6 z-40 hidden size-7 items-center justify-center overflow-hidden rounded-full bg-card/90 text-xl shadow-[0_0_24px_rgba(0,0,0,0.35)] backdrop-blur-xl transition-all duration-300 hover:brightness-110 hover:shadow-[0_0_12px_3px_rgba(255,255,255,0.22)] md:inline-flex"
+        className="fixed bottom-6 right-6 z-40 hidden size-7 items-center justify-center overflow-hidden rounded-full bg-card/90 text-xl shadow-[0_0_24px_rgba(0,0,0,0.35)] backdrop-blur-xl transition-all duration-300 [@media(hover:hover)]:hover:brightness-110 [@media(hover:hover)]:hover:shadow-[0_0_12px_3px_rgba(255,255,255,0.22)] active:brightness-110 active:shadow-[0_0_12px_3px_rgba(255,255,255,0.22)] md:inline-flex"
       >
         <img
           src={language === "en" ? "/images/polish1.png" : "/images/english2.png"}
@@ -249,7 +249,7 @@ export default function Page() {
               type="button"
               onClick={() => setPreviewImage(null)}
               aria-label={text.previewCloseLabel}
-              className="absolute right-2 top-2 z-10 inline-flex size-8 items-center justify-center rounded-full border border-border/70 bg-background/80 text-foreground transition-colors hover:bg-background"
+              className="absolute right-2 top-2 z-10 inline-flex size-8 items-center justify-center rounded-full border border-border/70 bg-background/80 text-foreground transition-colors [@media(hover:hover)]:hover:bg-background active:bg-background"
             >
               <X className="size-4" />
             </button>

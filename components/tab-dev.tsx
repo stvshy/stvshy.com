@@ -353,14 +353,14 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
           className={`group flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-3 backdrop-blur-xl transition-all duration-300 ${
             link.blocked
               ? "cursor-not-allowed border-border/70 bg-muted/15 opacity-100"
-              : "hover:border-[var(--dev-accent)]/45 hover:bg-[var(--dev-accent)]/10 hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+              : "[@media(hover:hover)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
           }`}
         >
           <div
             className={`flex size-10 shrink-0 items-center justify-center rounded-lg transition-colors ${
               link.blocked
                 ? "bg-[var(--dev-accent)]/10 text-[var(--dev-accent)]/60"
-                : "bg-[var(--dev-accent)]/15 text-[var(--dev-accent)] group-hover:bg-[var(--dev-accent)]/25"
+                : "bg-[var(--dev-accent)]/15 text-[var(--dev-accent)] [@media(hover:hover)]:group-hover:bg-[var(--dev-accent)]/25 group-active:bg-[var(--dev-accent)]/25"
             }`}
           >
             <link.icon className={link.label === "GitHub" ? "size-6" : "size-5"} />
@@ -394,7 +394,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
             <MdLock className="ml-auto size-4 text-muted-foreground/70" />
           ) : (
             <svg
-              className="ml-auto size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-[var(--dev-accent)]"
+              className="ml-auto size-4 text-muted-foreground transition-transform [@media(hover:hover)]:group-hover:translate-x-0.5 [@media(hover:hover)]:group-hover:text-[var(--dev-accent)] group-active:translate-x-0.5 group-active:text-[var(--dev-accent)]"
               viewBox="0 0 16 16"
               fill="none"
               stroke="currentColor"
@@ -412,7 +412,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
           type="button"
           onClick={() => setIsYearsOpen((prev) => !prev)}
           aria-expanded={isYearsOpen}
-          className="group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 hover:border-[var(--dev-accent)]/45 hover:bg-[var(--dev-accent)]/10 hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+          className="group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 [@media(hover:hover)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
         >
           <ChevronDown
             className={`absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground transition-transform ${
@@ -437,7 +437,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
           type="button"
           onClick={() => setIsCertificatesOpen((prev) => !prev)}
           aria-expanded={isCertificatesOpen}
-          className="group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 hover:border-[var(--dev-accent)]/45 hover:bg-[var(--dev-accent)]/10 hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+          className="group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 [@media(hover:hover)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
         >
           <ChevronDown
             className={`absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground transition-transform ${
@@ -476,7 +476,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
             type="button"
             onClick={() => setIsYearsOpen(false)}
             aria-label={text.closeEducation}
-            className="absolute right-3 top-3 inline-flex size-6 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-card hover:text-foreground"
+            className="absolute right-3 top-3 inline-flex size-6 items-center justify-center rounded-md text-muted-foreground transition-colors [@media(hover:hover)]:hover:bg-card [@media(hover:hover)]:hover:text-foreground active:bg-card active:text-foreground"
           >
             <X className="size-3.5" />
           </button>
@@ -569,7 +569,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
             type="button"
             onClick={() => setIsCertificatesOpen(false)}
             aria-label={text.closeCertificates}
-            className="absolute right-3 top-3 inline-flex size-6 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-card hover:text-foreground"
+            className="absolute right-3 top-3 inline-flex size-6 items-center justify-center rounded-md text-muted-foreground transition-colors [@media(hover:hover)]:hover:bg-card [@media(hover:hover)]:hover:text-foreground active:bg-card active:text-foreground"
           >
             <X className="size-3.5" />
           </button>
@@ -599,7 +599,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`${text.verifyPrefix} ${certificate.title}`}
-                    className="inline-flex size-7.5 items-center justify-center rounded-md border border-border/70 bg-card text-muted-foreground transition-colors hover:text-[var(--dev-accent)]"
+                    className="inline-flex size-7.5 items-center justify-center rounded-md border border-border/70 bg-card text-muted-foreground transition-colors [@media(hover:hover)]:hover:text-[var(--dev-accent)] active:text-[var(--dev-accent)]"
                   >
                     <ExternalLink className="size-3.5" />
                   </a>
@@ -617,9 +617,9 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                       alt={`${certificate.title} preview`}
                       width={48}
                       height={32}
-                      className="h-8 w-12 object-cover transition-[filter,opacity] duration-200 group-hover:brightness-30"
+                      className="h-8 w-12 object-cover transition-[filter,opacity] duration-200 [@media(hover:hover)]:group-hover:brightness-30 group-active:brightness-30"
                     />
-                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 transition-opacity duration-200 [@media(hover:hover)]:group-hover:opacity-100 group-active:opacity-100">
                       <Eye className="size-4 text-[var(--dev-accent)] drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]" />
                     </div>
                   </button>
@@ -635,7 +635,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
         className={`border bg-card backdrop-blur-xl transition-all duration-300 ${
           isStackOpen
             ? "rounded-xl border-border"
-            : "rounded-xl border-border hover:border-[var(--dev-accent)]/45 hover:bg-[var(--dev-accent)]/10 hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+            : "rounded-xl border-border [@media(hover:hover)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
         }`}
       >
         <button
@@ -643,9 +643,9 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
           onClick={() => setIsStackOpen((prev) => !prev)}
           className={`group flex w-full items-center gap-4 px-5 py-3 text-left transition-all duration-300 ${
             isStackOpen ? "rounded-t-xl" : "rounded-xl"
-          } hover:border-[var(--dev-accent)]/45 hover:bg-[var(--dev-accent)]/10 hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]`}
+          } [@media(hover:hover)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]`}
         >
-          <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-[var(--dev-accent)]/15 text-[var(--dev-accent)] transition-colors group-hover:bg-[var(--dev-accent)]/25">
+          <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-[var(--dev-accent)]/15 text-[var(--dev-accent)] transition-colors [@media(hover:hover)]:group-hover:bg-[var(--dev-accent)]/25 group-active:bg-[var(--dev-accent)]/25">
             <Layers className="size-6" />
           </div>
           <div className="flex flex-col gap-0.5">

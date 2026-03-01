@@ -201,7 +201,7 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
           <div className="mt-0.5 mb-[-14px] flex justify-center">
             <CollapsibleTrigger asChild>
               <button
-                className="-m-4 inline-flex cursor-pointer items-center justify-center rounded-full p-4 text-foreground/70 transition-colors hover:text-foreground"
+                className="-m-4 inline-flex cursor-pointer items-center justify-center rounded-full p-4 text-foreground/70 transition-colors [@media(hover:hover)]:hover:text-foreground active:text-foreground"
                 type="button"
                 aria-label={isOpen ? text.collapse : text.expand}
               >
@@ -216,10 +216,10 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
         <button
           type="button"
           onClick={() => onOpenImagePreview("/images/tripify-map.jpg", "Tripify map")}
-          className="group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 hover:border-foreground/30 hover:bg-foreground/10 hover:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
+          className="group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 [@media(hover:hover)]:hover:border-foreground/30 [@media(hover:hover)]:hover:bg-foreground/10 [@media(hover:hover)]:hover:shadow-[0_0_20px_rgba(240,240,240,0.08)] active:border-foreground/30 active:bg-foreground/10 active:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
           aria-label={text.mapPreviewLabel}
         >
-          <ChevronRight className="absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-foreground" />
+          <ChevronRight className="absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground transition-transform [@media(hover:hover)]:group-hover:translate-x-0.5 [@media(hover:hover)]:group-hover:text-foreground group-active:translate-x-0.5 group-active:text-foreground" />
           <span
             className="bg-[linear-gradient(to_right,var(--dev-accent)_0%,#8b60e8_40%,#8b60e8_60%,#b817e4_100%)] bg-clip-text text-[20px] text-transparent"
             style={{
@@ -236,10 +236,10 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
           href="https://www.fragrantica.pl/uzytkownicy/34655"
           target="_blank"
           rel="noopener noreferrer"
-          className="group relative rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl transition-all duration-300 hover:border-foreground/30 hover:bg-foreground/10 hover:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
+          className="group relative rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl transition-all duration-300 [@media(hover:hover)]:hover:border-foreground/30 [@media(hover:hover)]:hover:bg-foreground/10 [@media(hover:hover)]:hover:shadow-[0_0_20px_rgba(240,240,240,0.08)] active:border-foreground/30 active:bg-foreground/10 active:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
           aria-label={text.fragranticaLabel}
         >
-          <ChevronRight className="absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-foreground" />
+          <ChevronRight className="absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground transition-transform [@media(hover:hover)]:group-hover:translate-x-0.5 [@media(hover:hover)]:group-hover:text-foreground group-active:translate-x-0.5 group-active:text-foreground" />
           <span
             className="bg-[linear-gradient(to_right,var(--dev-accent)_0%,#8b60e8_40%,#8b60e8_60%,#b817e4_100%)] bg-clip-text text-xl text-transparent"
             style={{
