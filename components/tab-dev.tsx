@@ -187,8 +187,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
   const stackSections = [
     {
       title: text.sectionTitles.languages,
-      gradientClass: "from-[#05dafff8] via-blue-500 to-[#879ffc]",
-      items: [
+      gradientClass: "from-[#05dafff8] via-blue-500 to-[#879ffc] via-75%",      items: [
         { label: "C++", icon: SiCplusplusbuilder },
         { label: "Java", icon: FaJava },
         { label: "JavaScript", icon: SiJavascript },
@@ -206,7 +205,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
     },
     {
       title: text.sectionTitles.frameworks,
-      gradientClass: "from-[#05dafff8] via-indigo-500 to-purple-500",
+            gradientClass: "from-[#05dafff8] via-indigo-500 to-purple-500 via-55%",
       items: [
         { label: "React", icon: SiReact },
         { label: "Spring Boot", icon: SiSpringboot },
@@ -221,7 +220,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
     },
     {
       title: "Mobile Development",
-      gradientClass: "from-[#05dafff8] via-indigo-500 to-violet-500",
+      gradientClass: "from-[#05dafff8] via-indigo-400 to-violet-400 via-45%",      
       items: [
         { label: "React Native", icon: TbBrandReactNative },
         { label: "Expo", icon: SiExpo },
@@ -230,8 +229,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
     },
     {
       title: text.sectionTitles.databases,
-      gradientClass: "from-[#05dafff8] via-purple-500 to-violet-600",
-      items: [
+      gradientClass: "from-[#05dafff8] via-purple-500 to-violet-500 via-74%",      items: [
         { label: "PostgreSQL", icon: SiPostgresql },
         { label: "SQL", icon: TbSql },
         { label: "Firebase", icon: SiFirebase },
@@ -264,7 +262,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
     },
     {
       title: text.sectionTitles.testing,
-      gradientClass: "from-[#05dafff8] via-fuchsia-500 to-fuchsia-500",
+      gradientClass: "from-[#05dafff8] to-[#a81ad3] to-66%",
       items: [
         { label: "Selenium", icon: SiSelenium },
         { label: "Weka", icon: GiKiwiBird },
@@ -275,7 +273,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
     },
     {
       title: text.sectionTitles.design,
-      gradientClass: "from-[#05dafff8] via-emerald-400 to-green-500",
+      gradientClass: "from-[#05dafff8] to-[#a81ad3] to-45%",
       items: [
         { label: "Figma", icon: SiFigma },
         { label: "Photoshop", icon: SiAdobephotoshop },
