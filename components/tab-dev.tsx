@@ -187,7 +187,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
   const stackSections = [
     {
       title: text.sectionTitles.languages,
-      gradientClass: "from-[#05dafff8] via-blue-500 to-[#879ffc] via-75%",      items: [
+      gradientClass: "from-[#05dafff8] via-#82d5f8 to-blue-500 via-78%",      items: [
         { label: "C++", icon: SiCplusplusbuilder },
         { label: "Java", icon: FaJava },
         { label: "JavaScript", icon: SiJavascript },
@@ -205,7 +205,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
     },
     {
       title: text.sectionTitles.frameworks,
-            gradientClass: "from-[#05dafff8] via-indigo-500 to-purple-500 via-55%",
+            gradientClass: "from-[#05dafff8] to-[#8fa0ff] to-75%",
       items: [
         { label: "React", icon: SiReact },
         { label: "Spring Boot", icon: SiSpringboot },
@@ -220,7 +220,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
     },
     {
       title: "Mobile Development",
-      gradientClass: "from-[#05dafff8] via-indigo-400 to-violet-400 via-45%",      
+      gradientClass: "from-[#05dafff8] via-[#8fa0ff] to-violet-400 via-42%",      
       items: [
         { label: "React Native", icon: TbBrandReactNative },
         { label: "Expo", icon: SiExpo },
@@ -262,7 +262,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
     },
     {
       title: text.sectionTitles.testing,
-      gradientClass: "from-[#05dafff8] to-[#a81ad3] to-66%",
+      gradientClass: "from-[#05dafff8] to-[#a81ad3] to-70%",
       items: [
         { label: "Selenium", icon: SiSelenium },
         { label: "Weka", icon: GiKiwiBird },
@@ -273,7 +273,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
     },
     {
       title: text.sectionTitles.design,
-      gradientClass: "from-[#05dafff8] to-[#a81ad3] to-45%",
+      gradientClass: "from-[#05dafff8] to-[#a81ad3] to-49%",
       items: [
         { label: "Figma", icon: SiFigma },
         { label: "Photoshop", icon: SiAdobephotoshop },
