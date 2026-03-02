@@ -171,8 +171,6 @@ export function TabMusic({ language }: TabMusicProps) {
   const fantasiaCardClassName =
     "group flex items-center gap-4 rounded-xl border border-[rgb(var(--music-accent-rgb)/0.35)] bg-[rgb(var(--music-accent-rgb)/0.1)] px-5 py-3 backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[rgb(var(--music-accent-rgb)/0.45)] [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[rgb(var(--music-accent-rgb)/0.15)] active:border-[rgb(var(--music-accent-rgb)/0.45)] active:bg-[rgb(var(--music-accent-rgb)/0.15)]"
 
-  // const fantasiaCardClassName =
-  //   "group flex items-center gap-4 rounded-xl border border-neon-magenta/35 bg-neon-magenta/10 px-5 py-3 backdrop-blur-xl transition-all duration-300 hover:border-neon-magenta/45 hover:bg-neon-magenta/15 hover:shadow-[0_0_24px_rgba(217,70,239,0.14)]"
 
   const visibleLinks = localizedLinks.slice(0, 4)
   const hiddenLinks = localizedLinks.slice(4)

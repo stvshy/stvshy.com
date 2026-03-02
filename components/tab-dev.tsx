@@ -394,8 +394,8 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
       : "I\u2009\u2009\u2009\u2009High School in Legnica",
   short:
     language === "pl"
-      ? "I\u2009\u2009\u2009\u2009Liceum w Legnicy" // Tutaj też zostawiamy Twój idealny odstęp!
-      : "I\u2009\u2009\u2009\u2009High School in Legnica", // Po angielsku "1st" wygląda najnaturalniej w skrócie, bez udziwnień.
+      ? "I\u2009\u2009\u2009\u2009Liceum w Legnicy" 
+      : "I\u2009\u2009\u2009\u2009High School in Legnica", 
 }
   const computerEngineeringLabel = language === "pl" ? "Informatyka Techniczna" : "Computer Engineering"
   const appliedComputerScienceLabel = language === "pl" ? "Informatyka Stosowana" : "Applied Computer Science"

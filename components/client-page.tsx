@@ -67,7 +67,7 @@ export default function ClientPage({ initialSection, initialLang }: ClientPagePr
     langPressTimeoutRef.current = window.setTimeout(() => {
       setIsLangPressed(false)
       langPressTimeoutRef.current = null
-    }, 100)
+    }, 200)
   }
   const nextLanguage: Language = language === "en" ? "pl" : "en"
 const updateUrl = (tab: string, lang: string) => {
@@ -77,7 +77,6 @@ const updateUrl = (tab: string, lang: string) => {
     window.history.replaceState(null, "", newPath)
   }
 
-  // ZMIANA: Handler zmiany zakładki, który aktualizuje też URL
   const handleTabChange = (value: string) => {
     setActiveTab(value)
     updateUrl(value, language)
@@ -87,7 +86,7 @@ const updateUrl = (tab: string, lang: string) => {
     setLanguage(newLang)
     updateUrl(activeTab, newLang)
     
-    // Zapisz też w localStorage jak wcześniej
+    // Zapisz też w localStorage 
     document.documentElement.lang = newLang
     window.localStorage.setItem("language", newLang)
   }

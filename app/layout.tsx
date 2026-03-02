@@ -14,13 +14,41 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'stvshy',
-  description: 'Mateusz Staszków - Developer & Producer. Discover my music, projects, and more.',
-  generator: 'v0.app',
+  metadataBase: new URL('https://stvshy.com'),
+// Tytuł z szablonem (na podstronach "Music | Mateusz Staszków")
+  title: {
+    default: 'Mateusz Staszków (stvshy) - Developer & Producer',
+    template: '%s | Mateusz Staszków (stvshy)',
+  },  
+description: 'Mateusz Staszków (stvshy) - Developer & Producer. Discover my music, projects, and portfolio. Fullstack Development & Sound Engineering.',  
+keywords: ['Mateusz Staszków', 'stvshy', 'Developer', 'Music Producer', 'Wrocław', 'Development', 'Sound Engineering'],
+generator: 'v0.app',
   icons: {
     icon: '/images/stvshy-s2.png',
     shortcut: '/images/stvshy-s2.png',
     apple: '/images/stvshy-s2.png',
+  },
+openGraph: {
+    title: 'Mateusz Staszków (stvshy)',
+    description: 'Developer & Producer. Discover my music, projects, and portfolio.',
+    url: 'https://stvshy.com',
+    siteName: 'stvshy.com',
+    locale: 'pl_PL',
+    type: 'website',
+    images: [
+      {
+        url: '/images/stvshy-open.png',
+        width: 1200,
+        height: 630,
+        alt: 'Mateusz Staszków (stvshy)',
+      },
+    ],
+  },
+
+  // Konfiguracja dla robotów Google
+  robots: {
+    index: true,
+    follow: true,
   },
 }
 
@@ -34,6 +62,27 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Mateusz Staszków',
+    alternateName: 'stvshy',
+    url: 'https://stvshy.com',
+    image: 'https://stvshy.com/images/stvshy-s2.png',
+    jobTitle: ['Software Developer', 'Music Producer'],
+    sameAs: [
+      'https://github.com/stvshy',
+      'https://www.linkedin.com/in/mateusz-staszk%C3%B3w/',
+      'https://www.instagram.com/stvshy',
+      'https://open.spotify.com/artist/20jL6FuQUNHnlP3ApdjBbI?si=fvGq0tvJRXmhMa5_KKnAXg',
+      'https://music.apple.com/pl/artist/stvshy/1863822260',
+      'https://music.youtube.com/search?q=stvshy',
+      'https://tidal.com/artist/72120078',
+      'https://www.deezer.com/pl/artist/363730262',
+      'https://music.amazon.com/artists/B0GCCG5GH3/stvshy',
+      'https://soundcloud.com/stvshy',
+    ]
+  }
   return (
     <html lang="en" className="dark">
        <head>
@@ -58,6 +107,10 @@ cursor: url('/cursors/cursor10.png') 0 0, pointer !important;  }
 
       </head>
       <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         {children}
         <Analytics />
       </body>

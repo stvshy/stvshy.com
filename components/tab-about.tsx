@@ -54,8 +54,6 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
   const hyphenateText = useMemo(() => {
     const hyphenate = language === "pl" ? hyphenatePl : hyphenateEn
 
-    // ...existing code...
-
     const plWords = [
       "programistą",
       "producentem muzycznym",
@@ -69,7 +67,7 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
       "Wave",
       "Phonk"
     ]
-    // common English words to highlight (avoid Wrocław, Poland and travelling here)
+
     const enCommon = [
       "intuitive solutions",
       "in­tu­itive so­lu­ti­ons",
@@ -86,8 +84,7 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
     // paragraph-specific English words
     const enPara2Extra = ["travelling", "trav­el­ing"]
 
-    // Use lighter gray for highlight
-    // Use much lighter gray for highlight
+ 
     const highlightClass = "text-neutral-300"
     // Hyphenation inserts soft-hyphen chars (\u00AD) which break simple regex matches.
     // Approach: hyphenate plain text, build mapping from de-hyphenated indices to hyphenated indices,
