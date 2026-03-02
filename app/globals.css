@@ -163,6 +163,7 @@
   body {
     @apply bg-background text-foreground;
     cursor: url('/cursors/cursor10.png') 0 0, auto !important;
+    forced-color-adjust: none;
   }
 
   /* 2. Kursor dla linków, przycisków i WSZYSTKIEGO, co jest w ich środku */

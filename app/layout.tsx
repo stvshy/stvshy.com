@@ -55,6 +55,7 @@ openGraph: {
 export const viewport: Viewport = {
   themeColor: '#0a0a0a',
   userScalable: false,
+  colorScheme: 'dark',
 }
 
 export default function RootLayout({
