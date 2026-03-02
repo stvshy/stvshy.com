@@ -26,7 +26,7 @@ generator: 'v0.app',
   icons: {
     icon: '/images/stvshy-s2.png',
     shortcut: '/images/stvshy-s2.png',
-    apple: '/images/stvshy-s2.png',
+    apple: '/images/stvshy-s-mobile.png',
   },
 openGraph: {
     title: 'Mateusz Staszków (stvshy)',

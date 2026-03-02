@@ -35,8 +35,7 @@ export function MeshGradient() {
     window.addEventListener("resize", resize)
 
     const animate = () => {
-      time += 0.0025
-
+      time = (time + 0.0025) % 100;
       ctx.save()
       ctx.clearRect(0, 0, width, height)
       // Subtle base wash so edges/sides never drop to pure black
