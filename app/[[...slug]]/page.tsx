@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   
   // Słownik tytułów
   const titles: Record<string, string> = {
-    home: 'Mateusz Staszków (stvshy) - Developer & Producer',
+    home: 'stvshy | Mateusz Staszków',
     about: isPl ? 'O mnie | Mateusz Staszków' : 'About Me | Mateusz Staszków',
     dev: isPl ? 'Dev | Mateusz Staszków' : 'Dev | Mateusz Staszków',
     music: isPl ? 'Muzyka | stvshy' : 'Music | stvshy',
@@ -39,7 +39,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const description = descriptions[sectionRaw] || descriptions.default
 
   return {
-    title: title,
+    title: {
+      absolute: title,
+    },
     description: description,
     openGraph: {
       title: title,
@@ -58,8 +60,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default async function Page({ params }: { params: Promise<{ slug?: string[] }> }) {
-  // Odbieramy parametry z adresu URL
+export default async function Page({ params }: Props) {  // Odbieramy parametry z adresu URL
   const resolvedParams = await params
   const slug = resolvedParams.slug || []
 
