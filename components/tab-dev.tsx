@@ -479,7 +479,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
           aria-expanded={isYearsOpen}
           className={`group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] ${
             isYearsPressed
-              ? "border-[var(--dev-accent)]/45 bg-[var(--dev-accent)]/10 shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+              ? "!border-[var(--dev-accent)]/45 !bg-[var(--dev-accent)]/10 !shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
               : ""
           }`}
         >
@@ -512,7 +512,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
           aria-expanded={isCertificatesOpen}
           className={`group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] ${
             isCertificatesPressed
-              ? "border-[var(--dev-accent)]/45 bg-[var(--dev-accent)]/10 shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+              ? "!border-[var(--dev-accent)]/45 !bg-[var(--dev-accent)]/10 !shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
               : ""
           }`}
         >
@@ -721,7 +721,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
             : "rounded-xl border-border [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
         } ${
           isStackPressed
-            ? "border-[var(--dev-accent)]/65 bg-[var(--dev-accent)]/10 shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+            ? "!border-[var(--dev-accent)]/65 !bg-[var(--dev-accent)]/10 !shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
             : ""
         }`}
       >
