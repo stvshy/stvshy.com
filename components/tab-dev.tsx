@@ -179,9 +179,10 @@ const devText = {
 } as const
 
 export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
+  const CARD_TOGGLE_DELAY_MS = 85
   const YEARS_PRESS_DURATION_MS = 1000
   const CERTIFICATES_PRESS_DURATION_MS = 1000
-  const STACK_PRESS_DURATION_MS = 500
+  const STACK_PRESS_DURATION_MS = 360
   const [isStackOpen, setIsStackOpen] = useState(false)
   const [isYearsOpen, setIsYearsOpen] = useState(false)
   const [isCertificatesOpen, setIsCertificatesOpen] = useState(false)
@@ -191,6 +192,8 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
   const yearsPressTimeoutRef = useRef<number | null>(null)
   const certificatesPressTimeoutRef = useRef<number | null>(null)
   const stackPressTimeoutRef = useRef<number | null>(null)
+  const yearsToggleTimeoutRef = useRef<number | null>(null)
+  const certificatesToggleTimeoutRef = useRef<number | null>(null)
   const text = devText[language]
 
   useEffect(() => {
@@ -203,6 +206,12 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
       }
       if (stackPressTimeoutRef.current !== null) {
         window.clearTimeout(stackPressTimeoutRef.current)
+      }
+      if (yearsToggleTimeoutRef.current !== null) {
+        window.clearTimeout(yearsToggleTimeoutRef.current)
+      }
+      if (certificatesToggleTimeoutRef.current !== null) {
+        window.clearTimeout(certificatesToggleTimeoutRef.current)
       }
     }
   }, [])
@@ -243,17 +252,25 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
   const handleYearsToggle = (button: HTMLButtonElement) => {
     triggerYearsPress()
     button.blur()
-    window.requestAnimationFrame(() => {
+    if (yearsToggleTimeoutRef.current !== null) {
+      window.clearTimeout(yearsToggleTimeoutRef.current)
+    }
+    yearsToggleTimeoutRef.current = window.setTimeout(() => {
       setIsYearsOpen((prev) => !prev)
-    })
+      yearsToggleTimeoutRef.current = null
+    }, CARD_TOGGLE_DELAY_MS)
   }
 
   const handleCertificatesToggle = (button: HTMLButtonElement) => {
     triggerCertificatesPress()
     button.blur()
-    window.requestAnimationFrame(() => {
+    if (certificatesToggleTimeoutRef.current !== null) {
+      window.clearTimeout(certificatesToggleTimeoutRef.current)
+    }
+    certificatesToggleTimeoutRef.current = window.setTimeout(() => {
       setIsCertificatesOpen((prev) => !prev)
-    })
+      certificatesToggleTimeoutRef.current = null
+    }, CARD_TOGGLE_DELAY_MS)
   }
 
   const handleStackToggle = (button: HTMLButtonElement) => {
@@ -767,7 +784,7 @@ const handleTouchUnfocus = (e: React.TouchEvent<HTMLElement>) => {
             : "rounded-xl border-border [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
         } ${
           isStackPressed
-            ? "border-[var(--dev-accent)]/65 shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+            ? "border-[var(--dev-accent)]/65 bg-[var(--dev-accent)]/10 shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
             : ""
         }`}
       >
@@ -785,11 +802,7 @@ const handleTouchUnfocus = (e: React.TouchEvent<HTMLElement>) => {
           }}
           className={`group flex w-full items-center gap-4 px-5 py-3 text-left transition-all duration-300 ${
             isStackOpen ? "rounded-t-xl" : "rounded-xl"
-          } [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] ${
-            isStackPressed
-              ? "bg-[var(--dev-accent)]/12"
-              : ""
-          }`}
+          } [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]`}
         >
           <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-[var(--dev-accent)]/15 text-[var(--dev-accent)] transition-colors [@media(hover:hover)_and_(pointer:fine)]:group-hover:bg-[var(--dev-accent)]/25 group-active:bg-[var(--dev-accent)]/25">
             <Layers className="size-6" />
