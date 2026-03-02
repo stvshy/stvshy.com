@@ -181,7 +181,7 @@ const devText = {
 export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
   const YEARS_PRESS_DURATION_MS = 1000
   const CERTIFICATES_PRESS_DURATION_MS = 1000
-  const STACK_PRESS_DURATION_MS = 800
+  const STACK_PRESS_DURATION_MS = 450
   const [isStackOpen, setIsStackOpen] = useState(false)
   const [isYearsOpen, setIsYearsOpen] = useState(false)
   const [isCertificatesOpen, setIsCertificatesOpen] = useState(false)
@@ -473,12 +473,14 @@ const handleTouchUnfocus = (e: React.TouchEvent<HTMLElement>) => {
         <button
           type="button"
           onPointerDown={triggerYearsPress}
+          onTouchStart={triggerYearsPress}
           onKeyDown={(event) => {
             if (event.key === "Enter" || event.key === " ") {
               triggerYearsPress()
             }
           }}
           onClick={(e) => {
+            triggerYearsPress()
             setIsYearsOpen((prev) => !prev)
             e.currentTarget.blur()
           }}
@@ -512,12 +514,14 @@ const handleTouchUnfocus = (e: React.TouchEvent<HTMLElement>) => {
         <button
           type="button"
           onPointerDown={triggerCertificatesPress}
+          onTouchStart={triggerCertificatesPress}
           onKeyDown={(event) => {
             if (event.key === "Enter" || event.key === " ") {
               triggerCertificatesPress()
             }
           }}
           onClick={(e) => {
+            triggerCertificatesPress()
             setIsCertificatesOpen((prev) => !prev)
             e.currentTarget.blur()
           }}
@@ -739,22 +743,18 @@ const handleTouchUnfocus = (e: React.TouchEvent<HTMLElement>) => {
       >
         <button
           type="button"
-          onPointerDown={triggerStackPress}
           onKeyDown={(event) => {
             if (event.key === "Enter" || event.key === " ") {
               triggerStackPress()
             }
           }}
           onClick={(e) => {
+            triggerStackPress()
             setIsStackOpen((prev) => !prev)
             e.currentTarget.blur()
           }}
           className={`group flex w-full items-center gap-4 px-5 py-3 text-left transition-all duration-300 ${
             isStackOpen ? "rounded-t-xl" : "rounded-xl"
-          } [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] ${
-            isStackPressed
-              ? "border-[var(--dev-accent)]/45 bg-[var(--dev-accent)]/10 shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
-              : ""
           }`}
         >
           <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-[var(--dev-accent)]/15 text-[var(--dev-accent)] transition-colors [@media(hover:hover)_and_(pointer:fine)]:group-hover:bg-[var(--dev-accent)]/25 group-active:bg-[var(--dev-accent)]/25">
