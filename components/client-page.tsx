@@ -67,7 +67,7 @@ export default function ClientPage({ initialSection, initialLang }: ClientPagePr
     langPressTimeoutRef.current = window.setTimeout(() => {
       setIsLangPressed(false)
       langPressTimeoutRef.current = null
-    }, 300)
+    }, 100)
   }
   const nextLanguage: Language = language === "en" ? "pl" : "en"
 const updateUrl = (tab: string, lang: string) => {
