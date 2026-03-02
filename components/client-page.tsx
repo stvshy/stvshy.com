@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Mail, X } from "lucide-react"
 import { BsInstagram } from "react-icons/bs"
 import { MeshGradient } from "@/components/mesh-gradient"
@@ -54,8 +54,21 @@ export default function ClientPage({ initialSection, initialLang }: ClientPagePr
   const [language, setLanguage] = useState<Language>(initialLang)
   const [isProfessionalMode] = useState(!!initialSection)
   const [previewImage, setPreviewImage] = useState<{ src: string; alt: string } | null>(null)
+  const [isLangPressed, setIsLangPressed] = useState(false)
+  const langPressTimeoutRef = useRef<number | null>(null)
   const isTripifyMapPreview = previewImage?.src.includes("tripify-map")
   const text = pageText[language]
+
+  const triggerLangPress = () => {
+    setIsLangPressed(true)
+    if (langPressTimeoutRef.current !== null) {
+      window.clearTimeout(langPressTimeoutRef.current)
+    }
+    langPressTimeoutRef.current = window.setTimeout(() => {
+      setIsLangPressed(false)
+      langPressTimeoutRef.current = null
+    }, 800)
+  }
   const nextLanguage: Language = language === "en" ? "pl" : "en"
 const updateUrl = (tab: string, lang: string) => {
     const tabPart = tab === "about" ? "" : `/${tab}` // "about" to strona główna
@@ -118,6 +131,10 @@ const updateUrl = (tab: string, lang: string) => {
       : activeTab === "music"
         ? "[@media(hover:hover)_and_(pointer:fine)]:hover:border-[#b817e4]/55 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[#b817e4] [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(184,23,228,0.18)] active:border-[#b817e4]/55 active:text-[#b817e4] active:shadow-[0_0_20px_rgba(184,23,228,0.18)]"
         : "[@media(hover:hover)_and_(pointer:fine)]:hover:border-foreground/45 [@media(hover:hover)_and_(pointer:fine)]:hover:text-foreground [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(240,240,240,0.08)] active:border-foreground/45 active:text-foreground active:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
+
+  const mobileLangButtonClassName = `inline-flex size-5 items-center justify-center overflow-hidden rounded-full bg-card/90 text-sm shadow-[0_0_14px_rgba(0,0,0,0.28)] backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:brightness-110 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_16px_4px_rgba(255,255,255,0.28)] active:brightness-110 active:shadow-[0_0_16px_4px_rgba(255,255,255,0.28)] ${isLangPressed ? "!brightness-110 !shadow-[0_0_16px_4px_rgba(255,255,255,0.28)]" : ""}`
+
+  const desktopLangButtonClassName = `fixed bottom-6 right-6 z-40 hidden size-7 items-center justify-center overflow-hidden rounded-full bg-card/90 text-xl shadow-[0_0_24px_rgba(0,0,0,0.35)] backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:brightness-110 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_12px_3px_rgba(255,255,255,0.22)] active:brightness-110 active:shadow-[0_0_12px_3px_rgba(255,255,255,0.22)] md:inline-flex ${isLangPressed ? "!brightness-110 !shadow-[0_0_12px_3px_rgba(255,255,255,0.22)]" : ""}`
 
   return (
     <main className="relative flex min-h-svh flex-col items-center bg-background">
@@ -233,11 +250,13 @@ const updateUrl = (tab: string, lang: string) => {
         <div className="-mt-3 flex justify-center md:hidden">
           <button
             type="button"
+            onTouchStart={triggerLangPress}
             onClick={(e) => {
                 handleLanguageChange();
                 e.currentTarget.blur();
             }}
-            aria-label={text.switchLanguageLabel}            className="inline-flex size-5 items-center justify-center overflow-hidden rounded-full bg-card/90 text-sm shadow-[0_0_14px_rgba(0,0,0,0.28)] backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:brightness-110 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_16px_4px_rgba(255,255,255,0.28)] active:brightness-110 active:shadow-[0_0_16px_4px_rgba(255,255,255,0.28)]"
+            aria-label={text.switchLanguageLabel}
+            className={mobileLangButtonClassName}
           >
             <img
               src={language === "en" ? "/images/polish1.png" : "/images/english2.png"}
@@ -251,10 +270,11 @@ const updateUrl = (tab: string, lang: string) => {
 
       <button
         type="button"
+        onTouchStart={triggerLangPress}
         onClick={handleLanguageChange}
         onTouchEnd={handleTouchUnfocus}
         aria-label={text.switchLanguageLabel}
-        className="fixed bottom-6 right-6 z-40 hidden size-7 items-center justify-center overflow-hidden rounded-full bg-card/90 text-xl shadow-[0_0_24px_rgba(0,0,0,0.35)] backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:brightness-110 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_12px_3px_rgba(255,255,255,0.22)] active:brightness-110 active:shadow-[0_0_12px_3px_rgba(255,255,255,0.22)] md:inline-flex"
+        className={desktopLangButtonClassName}
       >
         <img
           src={language === "en" ? "/images/polish1.png" : "/images/english2.png"}
