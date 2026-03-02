@@ -182,15 +182,18 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
   const YEARS_PRESS_DURATION_MS = 1000
   const CERTIFICATES_PRESS_DURATION_MS = 1000
   const STACK_PRESS_DURATION_MS = 500
+  const STACK_TRANSITION_HIGHLIGHT_MS = 320
   const [isStackOpen, setIsStackOpen] = useState(false)
   const [isYearsOpen, setIsYearsOpen] = useState(false)
   const [isCertificatesOpen, setIsCertificatesOpen] = useState(false)
   const [isYearsPressed, setIsYearsPressed] = useState(false)
   const [isCertificatesPressed, setIsCertificatesPressed] = useState(false)
   const [isStackPressed, setIsStackPressed] = useState(false)
+  const [isStackTransitionHighlightActive, setIsStackTransitionHighlightActive] = useState(false)
   const yearsPressTimeoutRef = useRef<number | null>(null)
   const certificatesPressTimeoutRef = useRef<number | null>(null)
   const stackPressTimeoutRef = useRef<number | null>(null)
+  const stackTransitionTimeoutRef = useRef<number | null>(null)
   const text = devText[language]
 
   useEffect(() => {
@@ -203,6 +206,9 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
       }
       if (stackPressTimeoutRef.current !== null) {
         window.clearTimeout(stackPressTimeoutRef.current)
+      }
+      if (stackTransitionTimeoutRef.current !== null) {
+        window.clearTimeout(stackTransitionTimeoutRef.current)
       }
     }
   }, [])
@@ -258,6 +264,14 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
 
   const handleStackToggle = (button: HTMLButtonElement) => {
     triggerStackPress()
+    setIsStackTransitionHighlightActive(true)
+    if (stackTransitionTimeoutRef.current !== null) {
+      window.clearTimeout(stackTransitionTimeoutRef.current)
+    }
+    stackTransitionTimeoutRef.current = window.setTimeout(() => {
+      setIsStackTransitionHighlightActive(false)
+      stackTransitionTimeoutRef.current = null
+    }, STACK_TRANSITION_HIGHLIGHT_MS)
     button.blur()
     window.requestAnimationFrame(() => {
       setIsStackOpen((prev) => !prev)
@@ -496,6 +510,7 @@ const handleTouchUnfocus = (e: React.TouchEvent<HTMLElement>) => {
       <div className="grid grid-cols-2 gap-3">
         <button
           type="button"
+          onTouchStart={triggerYearsPress}
           onKeyDown={(event) => {
             if (event.key === "Enter" || event.key === " ") {
               event.preventDefault()
@@ -509,7 +524,7 @@ const handleTouchUnfocus = (e: React.TouchEvent<HTMLElement>) => {
           onTouchEnd={handleTouchUnfocus}
           className={`group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] ${
             isYearsPressed
-              ? "border-[var(--dev-accent)]/45 bg-[var(--dev-accent)]/10 ring-1 ring-[var(--dev-accent)]/35 shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+              ? "border-[var(--dev-accent)]/70 bg-[var(--dev-accent)]/18 ring-1 ring-[var(--dev-accent)]/45 shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
               : ""
           }`}
         >
@@ -534,6 +549,7 @@ const handleTouchUnfocus = (e: React.TouchEvent<HTMLElement>) => {
 
         <button
           type="button"
+          onTouchStart={triggerCertificatesPress}
           onKeyDown={(event) => {
             if (event.key === "Enter" || event.key === " ") {
               event.preventDefault()
@@ -546,7 +562,7 @@ const handleTouchUnfocus = (e: React.TouchEvent<HTMLElement>) => {
           aria-expanded={isCertificatesOpen}
           className={`group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] ${
             isCertificatesPressed
-              ? "border-[var(--dev-accent)]/45 bg-[var(--dev-accent)]/10 ring-1 ring-[var(--dev-accent)]/35 shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+              ? "border-[var(--dev-accent)]/70 bg-[var(--dev-accent)]/18 ring-1 ring-[var(--dev-accent)]/45 shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
               : ""
           }`}
         >
@@ -754,13 +770,14 @@ const handleTouchUnfocus = (e: React.TouchEvent<HTMLElement>) => {
             ? "rounded-xl border-border"
             : "rounded-xl border-border [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
         } ${
-          isStackPressed
-            ? "border-[var(--dev-accent)]/45 bg-[var(--dev-accent)]/10 shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+          isStackPressed || isStackTransitionHighlightActive
+            ? "border-[var(--dev-accent)]/65 shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
             : ""
         }`}
       >
         <button
           type="button"
+          onTouchStart={triggerStackPress}
           onKeyDown={(event) => {
             if (event.key === "Enter" || event.key === " ") {
               event.preventDefault()
@@ -772,7 +789,11 @@ const handleTouchUnfocus = (e: React.TouchEvent<HTMLElement>) => {
           }}
           className={`group flex w-full items-center gap-4 px-5 py-3 text-left transition-all duration-300 ${
             isStackOpen ? "rounded-t-xl" : "rounded-xl"
-          } [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]`}
+          } [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] ${
+            isStackPressed
+              ? "bg-[var(--dev-accent)]/12"
+              : ""
+          }`}
         >
           <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-[var(--dev-accent)]/15 text-[var(--dev-accent)] transition-colors [@media(hover:hover)_and_(pointer:fine)]:group-hover:bg-[var(--dev-accent)]/25 group-active:bg-[var(--dev-accent)]/25">
             <Layers className="size-6" />
