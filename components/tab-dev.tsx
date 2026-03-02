@@ -179,10 +179,9 @@ const devText = {
 } as const
 
 export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
-  const CARD_TOGGLE_DELAY_MS = 85
   const YEARS_PRESS_DURATION_MS = 1000
   const CERTIFICATES_PRESS_DURATION_MS = 1000
-  const STACK_PRESS_DURATION_MS = 360
+  const STACK_PRESS_DURATION_MS = 350
   const [isStackOpen, setIsStackOpen] = useState(false)
   const [isYearsOpen, setIsYearsOpen] = useState(false)
   const [isCertificatesOpen, setIsCertificatesOpen] = useState(false)
@@ -192,8 +191,9 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
   const yearsPressTimeoutRef = useRef<number | null>(null)
   const certificatesPressTimeoutRef = useRef<number | null>(null)
   const stackPressTimeoutRef = useRef<number | null>(null)
-  const yearsToggleTimeoutRef = useRef<number | null>(null)
-  const certificatesToggleTimeoutRef = useRef<number | null>(null)
+  const skipYearsClickRef = useRef(false)
+  const skipCertificatesClickRef = useRef(false)
+  const skipStackClickRef = useRef(false)
   const text = devText[language]
 
   useEffect(() => {
@@ -206,12 +206,6 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
       }
       if (stackPressTimeoutRef.current !== null) {
         window.clearTimeout(stackPressTimeoutRef.current)
-      }
-      if (yearsToggleTimeoutRef.current !== null) {
-        window.clearTimeout(yearsToggleTimeoutRef.current)
-      }
-      if (certificatesToggleTimeoutRef.current !== null) {
-        window.clearTimeout(certificatesToggleTimeoutRef.current)
       }
     }
   }, [])
@@ -252,25 +246,17 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
   const handleYearsToggle = (button: HTMLButtonElement) => {
     triggerYearsPress()
     button.blur()
-    if (yearsToggleTimeoutRef.current !== null) {
-      window.clearTimeout(yearsToggleTimeoutRef.current)
-    }
-    yearsToggleTimeoutRef.current = window.setTimeout(() => {
+    window.requestAnimationFrame(() => {
       setIsYearsOpen((prev) => !prev)
-      yearsToggleTimeoutRef.current = null
-    }, CARD_TOGGLE_DELAY_MS)
+    })
   }
 
   const handleCertificatesToggle = (button: HTMLButtonElement) => {
     triggerCertificatesPress()
     button.blur()
-    if (certificatesToggleTimeoutRef.current !== null) {
-      window.clearTimeout(certificatesToggleTimeoutRef.current)
-    }
-    certificatesToggleTimeoutRef.current = window.setTimeout(() => {
+    window.requestAnimationFrame(() => {
       setIsCertificatesOpen((prev) => !prev)
-      certificatesToggleTimeoutRef.current = null
-    }, CARD_TOGGLE_DELAY_MS)
+    })
   }
 
   const handleStackToggle = (button: HTMLButtonElement) => {
@@ -443,6 +429,25 @@ const handleTouchUnfocus = (e: React.TouchEvent<HTMLElement>) => {
       target.blur()
     }, 100)
   }
+
+  const handleYearsTouchEnd = (event: React.TouchEvent<HTMLButtonElement>) => {
+    event.preventDefault()
+    skipYearsClickRef.current = true
+    handleYearsToggle(event.currentTarget)
+  }
+
+  const handleCertificatesTouchEnd = (event: React.TouchEvent<HTMLButtonElement>) => {
+    event.preventDefault()
+    skipCertificatesClickRef.current = true
+    handleCertificatesToggle(event.currentTarget)
+  }
+
+  const handleStackTouchEnd = (event: React.TouchEvent<HTMLButtonElement>) => {
+    event.preventDefault()
+    skipStackClickRef.current = true
+    handleStackToggle(event.currentTarget)
+  }
+
   return (
     <div className="flex flex-col gap-3" style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
       {localizedLinks.map((link) => (
@@ -526,10 +531,15 @@ const handleTouchUnfocus = (e: React.TouchEvent<HTMLElement>) => {
             }
           }}
           onClick={(e) => {
+            if (skipYearsClickRef.current) {
+              skipYearsClickRef.current = false
+              return
+            }
             handleYearsToggle(e.currentTarget)
           }}
           aria-expanded={isYearsOpen}
           onTouchEnd={handleTouchUnfocus}
+          onTouchEndCapture={handleYearsTouchEnd}
           className={`group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] ${
             isYearsPressed
               ? "border-[var(--dev-accent)]/45 bg-[var(--dev-accent)]/10 shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
@@ -570,8 +580,13 @@ const handleTouchUnfocus = (e: React.TouchEvent<HTMLElement>) => {
             }
           }}
           onClick={(e) => {
+            if (skipCertificatesClickRef.current) {
+              skipCertificatesClickRef.current = false
+              return
+            }
             handleCertificatesToggle(e.currentTarget)
           }}
+          onTouchEndCapture={handleCertificatesTouchEnd}
           aria-expanded={isCertificatesOpen}
           className={`group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] ${
             isCertificatesPressed
@@ -798,8 +813,13 @@ const handleTouchUnfocus = (e: React.TouchEvent<HTMLElement>) => {
             }
           }}
           onClick={(e) => {
+            if (skipStackClickRef.current) {
+              skipStackClickRef.current = false
+              return
+            }
             handleStackToggle(e.currentTarget)
           }}
+          onTouchEndCapture={handleStackTouchEnd}
           className={`group flex w-full items-center gap-4 px-5 py-3 text-left transition-all duration-300 ${
             isStackOpen ? "rounded-t-xl" : "rounded-xl"
           } [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]`}
