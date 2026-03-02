@@ -240,6 +240,30 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
     }, STACK_PRESS_DURATION_MS)
   }
 
+  const handleYearsToggle = (button: HTMLButtonElement) => {
+    triggerYearsPress()
+    button.blur()
+    window.requestAnimationFrame(() => {
+      setIsYearsOpen((prev) => !prev)
+    })
+  }
+
+  const handleCertificatesToggle = (button: HTMLButtonElement) => {
+    triggerCertificatesPress()
+    button.blur()
+    window.requestAnimationFrame(() => {
+      setIsCertificatesOpen((prev) => !prev)
+    })
+  }
+
+  const handleStackToggle = (button: HTMLButtonElement) => {
+    triggerStackPress()
+    button.blur()
+    window.requestAnimationFrame(() => {
+      setIsStackOpen((prev) => !prev)
+    })
+  }
+
   const stackSections = [
     {
       title: text.sectionTitles.languages,
@@ -472,22 +496,20 @@ const handleTouchUnfocus = (e: React.TouchEvent<HTMLElement>) => {
       <div className="grid grid-cols-2 gap-3">
         <button
           type="button"
-          onTouchStart={triggerYearsPress}
           onKeyDown={(event) => {
             if (event.key === "Enter" || event.key === " ") {
-              triggerYearsPress()
+              event.preventDefault()
+              handleYearsToggle(event.currentTarget)
             }
           }}
           onClick={(e) => {
-            triggerYearsPress()
-            setIsYearsOpen((prev) => !prev)
-            e.currentTarget.blur()
+            handleYearsToggle(e.currentTarget)
           }}
           aria-expanded={isYearsOpen}
           onTouchEnd={handleTouchUnfocus}
           className={`group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] ${
             isYearsPressed
-              ? "border-[var(--dev-accent)]/45 bg-[var(--dev-accent)]/10 shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+              ? "border-[var(--dev-accent)]/45 bg-[var(--dev-accent)]/10 ring-1 ring-[var(--dev-accent)]/35 shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
               : ""
           }`}
         >
@@ -512,21 +534,19 @@ const handleTouchUnfocus = (e: React.TouchEvent<HTMLElement>) => {
 
         <button
           type="button"
-          onTouchStart={triggerCertificatesPress}
           onKeyDown={(event) => {
             if (event.key === "Enter" || event.key === " ") {
-              triggerCertificatesPress()
+              event.preventDefault()
+              handleCertificatesToggle(event.currentTarget)
             }
           }}
           onClick={(e) => {
-            triggerCertificatesPress()
-            setIsCertificatesOpen((prev) => !prev)
-            e.currentTarget.blur()
+            handleCertificatesToggle(e.currentTarget)
           }}
           aria-expanded={isCertificatesOpen}
           className={`group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] ${
             isCertificatesPressed
-              ? "border-[var(--dev-accent)]/45 bg-[var(--dev-accent)]/10 shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+              ? "border-[var(--dev-accent)]/45 bg-[var(--dev-accent)]/10 ring-1 ring-[var(--dev-accent)]/35 shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
               : ""
           }`}
         >
@@ -743,13 +763,12 @@ const handleTouchUnfocus = (e: React.TouchEvent<HTMLElement>) => {
           type="button"
           onKeyDown={(event) => {
             if (event.key === "Enter" || event.key === " ") {
-              triggerStackPress()
+              event.preventDefault()
+              handleStackToggle(event.currentTarget)
             }
           }}
           onClick={(e) => {
-            triggerStackPress()
-            setIsStackOpen((prev) => !prev)
-            e.currentTarget.blur()
+            handleStackToggle(e.currentTarget)
           }}
           className={`group flex w-full items-center gap-4 px-5 py-3 text-left transition-all duration-300 ${
             isStackOpen ? "rounded-t-xl" : "rounded-xl"
