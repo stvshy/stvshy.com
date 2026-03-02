@@ -179,9 +179,9 @@ const devText = {
 } as const
 
 export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
-  const YEARS_PRESS_DURATION_MS = 1000
-  const CERTIFICATES_PRESS_DURATION_MS = 1000
-  const STACK_PRESS_DURATION_MS = 350
+  const YEARS_PRESS_DURATION_MS = 290
+  const CERTIFICATES_PRESS_DURATION_MS = 290
+  const STACK_PRESS_DURATION_MS = 300
   const [isStackOpen, setIsStackOpen] = useState(false)
   const [isYearsOpen, setIsYearsOpen] = useState(false)
   const [isCertificatesOpen, setIsCertificatesOpen] = useState(false)
