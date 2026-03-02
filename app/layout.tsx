@@ -50,6 +50,10 @@ openGraph: {
     index: true,
     follow: true,
   },
+
+  other: {
+    'nightmode': 'disable',
+  }
 }
 
 export const viewport: Viewport = {

@@ -21,6 +21,9 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  turbopack: {
+    
+  }
 };
 
 // 3. Eksportujemy połączoną konfigurację

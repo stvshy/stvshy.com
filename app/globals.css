@@ -153,6 +153,7 @@
 @layer base {
   html {
     -webkit-tap-highlight-color: transparent;
+    theme: dark;
   }
 
   * {
@@ -164,7 +165,6 @@
     @apply bg-background text-foreground;
     cursor: url('/cursors/cursor10.png') 0 0, auto !important;
     forced-color-adjust: none;
-    background-color: #0a0a0a;
   }
 
   /* 2. Kursor dla linków, przycisków i WSZYSTKIEGO, co jest w ich środku */
