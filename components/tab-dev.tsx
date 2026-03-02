@@ -733,8 +733,10 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
             e.currentTarget.blur()
           }}
           className={`group flex w-full items-center gap-4 px-5 py-3 text-left transition-all duration-300 ${
-            isStackOpen ? "rounded-t-xl" : "rounded-xl"
-          } [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]`}
+            isStackOpen
+              ? "rounded-t-xl [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+              : "rounded-xl"
+          }`}
         >
           <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-[var(--dev-accent)]/15 text-[var(--dev-accent)] transition-colors [@media(hover:hover)_and_(pointer:fine)]:group-hover:bg-[var(--dev-accent)]/25 group-active:bg-[var(--dev-accent)]/25">
             <Layers className="size-6" />
