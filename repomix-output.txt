@@ -8055,6 +8055,28 @@ FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
 OTHER DEALINGS IN THE FONT SOFTWARE.
 
 ================
+File: .gitignore
+================
+# v0 runtime files (should only exist in preview, not in git)
+__v0_runtime_loader.js
+__v0_devtools.tsx
+__v0_jsx-dev-runtime.ts
+
+# Common ignores
+node_modules/
+.next/
+.env*.local
+.DS_Store
+.vercel
+# PWA files
+public/sw.js
+public/sw.js.map
+public/workbox-*.js
+public/workbox-*.js.map
+repomix-output.txt
+repomix-output.txt
+
+================
 File: components/ui/button.tsx
 ================
 import * as React from 'react'
@@ -8112,62 +8134,6 @@ function Button({
   )
 }
 export { Button, buttonVariants }
-
-================
-File: next.config.mjs
-================
-import withPWAInit from "@ducanh2912/next-pwa";
-
-// 1. Konfiguracja PWA
-const withPWA = withPWAInit({
-  dest: "public", // Gdzie mają się zapisać pliki PWA
-  cacheOnFrontEndNav: true,
-  aggressiveFrontEndNavCaching: true,
-  reloadOnOnline: true,
-  swcMinify: true,
-  disable: process.env.NODE_ENV === "development", // Wyłączamy PWA podczas pracy lokalnej (npm run dev)
-  workboxOptions: {
-    disableDevLogs: true,
-  },
-});
-
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  images: {
-    unoptimized: true,
-  },
-  turbopack: {
-    
-  }
-};
-
-// 3. Eksportujemy połączoną konfigurację
-export default withPWA(nextConfig);
-
-================
-File: .gitignore
-================
-# v0 runtime files (should only exist in preview, not in git)
-__v0_runtime_loader.js
-__v0_devtools.tsx
-__v0_jsx-dev-runtime.ts
-
-# Common ignores
-node_modules/
-.next/
-.env*.local
-.DS_Store
-.vercel
-# PWA files
-public/sw.js
-public/sw.js.map
-public/workbox-*.js
-public/workbox-*.js.map
-repomix-output.txt
-repomix-output.txt
 
 ================
 File: app/[[...slug]]/page.tsx
@@ -8412,6 +8378,40 @@ export function MeshGradient() {
 }
 
 ================
+File: next.config.mjs
+================
+import withPWAInit from "@ducanh2912/next-pwa";
+
+// 1. Konfiguracja PWA
+const withPWA = withPWAInit({
+  dest: "public", // Gdzie mają się zapisać pliki PWA
+  cacheOnFrontEndNav: true,
+  aggressiveFrontEndNavCaching: true,
+  reloadOnOnline: true,
+  swcMinify: true,
+  disable: process.env.NODE_ENV === "development", // Wyłączamy PWA podczas pracy lokalnej (npm run dev)
+  workboxOptions: {
+    disableDevLogs: true,
+  },
+});
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  images: {
+    formats: ['image/avif', 'image/webp'],
+  },
+  turbopack: {
+
+  }
+};
+
+// 3. Eksportujemy połączoną konfigurację
+export default withPWA(nextConfig);
+
+================
 File: package.json
 ================
 {
@@ -8489,6 +8489,122 @@ File: package.json
     "tw-animate-css": "1.3.3",
     "typescript": "5.7.3"
   }
+}
+
+================
+File: app/layout.tsx
+================
+import type { Metadata, Viewport } from 'next'
+import { Inter, JetBrains_Mono } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/next'
+import './globals.css'
+const inter = Inter({
+  subsets: ['latin', 'latin-ext'],
+  variable: '--font-inter',
+})
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jetbrains-mono',
+})
+export const metadata: Metadata = {
+  metadataBase: new URL('https://stvshy.com'),
+  title: {
+    default: 'Mateusz Staszków (stvshy) - Developer & Producer',
+    template: '%s | Mateusz Staszków (stvshy)',
+  },
+description: 'Mateusz Staszków (stvshy) - Developer & Producer. Discover my music, projects, and portfolio. Fullstack Development & Sound Engineering.',
+keywords: ['Mateusz Staszków', 'stvshy', 'Developer', 'Music Producer', 'Wrocław', 'Development', 'Sound Engineering'],
+generator: 'v0.app',
+  icons: {
+    icon: '/images/stvshy-s2.png',
+    shortcut: '/images/stvshy-s2.png',
+    apple: '/images/stvshy-s-mobile.png',
+  },
+openGraph: {
+    title: 'Mateusz Staszków (stvshy)',
+    description: 'Developer & Producer. Discover my music, projects, and portfolio.',
+    url: 'https://stvshy.com',
+    siteName: 'stvshy.com',
+    locale: 'pl_PL',
+    type: 'website',
+    images: [
+      {
+        url: '/images/stvshy-open.png',
+        width: 1200,
+        height: 630,
+        alt: 'Mateusz Staszków (stvshy)',
+      },
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  other: {
+    'nightmode': 'disable',
+  }
+}
+export const viewport: Viewport = {
+  themeColor: '#0a0a0a',
+  userScalable: false,
+  colorScheme: 'dark',
+}
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Mateusz Staszków',
+    alternateName: 'stvshy',
+    url: 'https://stvshy.com',
+    image: 'https://stvshy.com/images/stvshy-s2.png',
+    jobTitle: ['Software Developer', 'Music Producer'],
+    sameAs: [
+      'https://github.com/stvshy',
+      'https://www.linkedin.com/in/mateusz-staszk%C3%B3w/',
+      'https://www.instagram.com/stvshy',
+      'https://open.spotify.com/artist/20jL6FuQUNHnlP3ApdjBbI?si=fvGq0tvJRXmhMa5_KKnAXg',
+      'https://music.apple.com/pl/artist/stvshy/1863822260',
+      'https://music.youtube.com/search?q=stvshy',
+      'https://tidal.com/artist/72120078',
+      'https://www.deezer.com/pl/artist/363730262',
+      'https://music.amazon.com/artists/B0GCCG5GH3/stvshy',
+      'https://soundcloud.com/stvshy',
+    ]
+  }
+  return (
+    <html lang="en" className="dark">
+       <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap" rel="stylesheet" />
+        <link rel="preload" href="/fonts/Monorale%20(Raleway)/Monorale-Regular.woff" as="font" type="font/woff" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/Monorale%20(Raleway)/Monorale-Bold.woff" as="font" type="font/woff" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <style dangerouslySetInnerHTML={{ __html: `
+          /* Główny kursor na stronie */
+          body {
+    cursor: url('/cursors/cursor10.png') 0 0, auto !important;
+          }
+          /* Kursor w kształcie łapki/pointera dla klikalnych elementów */
+          a, button, [role="button"], label, select,
+          a *, button *, [role="button"] *, label *, select * {
+cursor: url('/cursors/cursor10.png') 0 0, pointer !important;  }
+        `}} />
+      </head>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        {children}
+        <Analytics />
+      </body>
+    </html>
+  )
 }
 
 ================
@@ -8791,126 +8907,12 @@ const updateUrl = (tab: string, lang: string) => {
 }
 
 ================
-File: app/layout.tsx
-================
-import type { Metadata, Viewport } from 'next'
-import { Inter, JetBrains_Mono } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
-import './globals.css'
-const inter = Inter({
-  subsets: ['latin', 'latin-ext'],
-  variable: '--font-inter',
-})
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-jetbrains-mono',
-})
-export const metadata: Metadata = {
-  metadataBase: new URL('https://stvshy.com'),
-  title: {
-    default: 'Mateusz Staszków (stvshy) - Developer & Producer',
-    template: '%s | Mateusz Staszków (stvshy)',
-  },
-description: 'Mateusz Staszków (stvshy) - Developer & Producer. Discover my music, projects, and portfolio. Fullstack Development & Sound Engineering.',
-keywords: ['Mateusz Staszków', 'stvshy', 'Developer', 'Music Producer', 'Wrocław', 'Development', 'Sound Engineering'],
-generator: 'v0.app',
-  icons: {
-    icon: '/images/stvshy-s2.png',
-    shortcut: '/images/stvshy-s2.png',
-    apple: '/images/stvshy-s-mobile.png',
-  },
-openGraph: {
-    title: 'Mateusz Staszków (stvshy)',
-    description: 'Developer & Producer. Discover my music, projects, and portfolio.',
-    url: 'https://stvshy.com',
-    siteName: 'stvshy.com',
-    locale: 'pl_PL',
-    type: 'website',
-    images: [
-      {
-        url: '/images/stvshy-open.png',
-        width: 1200,
-        height: 630,
-        alt: 'Mateusz Staszków (stvshy)',
-      },
-    ],
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-  other: {
-    'nightmode': 'disable',
-  }
-}
-export const viewport: Viewport = {
-  themeColor: '#0a0a0a',
-  userScalable: false,
-  colorScheme: 'dark',
-}
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Person',
-    name: 'Mateusz Staszków',
-    alternateName: 'stvshy',
-    url: 'https://stvshy.com',
-    image: 'https://stvshy.com/images/stvshy-s2.png',
-    jobTitle: ['Software Developer', 'Music Producer'],
-    sameAs: [
-      'https://github.com/stvshy',
-      'https://www.linkedin.com/in/mateusz-staszk%C3%B3w/',
-      'https://www.instagram.com/stvshy',
-      'https://open.spotify.com/artist/20jL6FuQUNHnlP3ApdjBbI?si=fvGq0tvJRXmhMa5_KKnAXg',
-      'https://music.apple.com/pl/artist/stvshy/1863822260',
-      'https://music.youtube.com/search?q=stvshy',
-      'https://tidal.com/artist/72120078',
-      'https://www.deezer.com/pl/artist/363730262',
-      'https://music.amazon.com/artists/B0GCCG5GH3/stvshy',
-      'https://soundcloud.com/stvshy',
-    ]
-  }
-  return (
-    <html lang="en" className="dark">
-       <head>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap" rel="stylesheet" />
-        <link rel="preload" href="/fonts/Monorale%20(Raleway)/Monorale-Regular.woff" as="font" type="font/woff" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/Monorale%20(Raleway)/Monorale-Bold.woff" as="font" type="font/woff" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-        <style dangerouslySetInnerHTML={{ __html: `
-          /* Główny kursor na stronie */
-          body {
-    cursor: url('/cursors/cursor10.png') 0 0, auto !important;
-          }
-          /* Kursor w kształcie łapki/pointera dla klikalnych elementów */
-          a, button, [role="button"], label, select,
-          a *, button *, [role="button"] *, label *, select * {
-cursor: url('/cursors/cursor10.png') 0 0, pointer !important;  }
-        `}} />
-      </head>
-      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        {children}
-        <Analytics />
-      </body>
-    </html>
-  )
-}
-
-================
 File: components/profile-header.tsx
 ================
 import { Logo } from "@/components/logo"
 import { HiLocationMarker } from "react-icons/hi"
+import Image from "next/image"
+import avatarImg from "@/public/images/avatar8.jpeg"
 type ProfileHeaderProps = {
   language: "en" | "pl"
 }
@@ -8923,10 +8925,13 @@ export function ProfileHeader({ language }: ProfileHeaderProps) {
       <div className="relative mb-[1px] group">
         <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-cyan-500 to-fuchsia-500 blur-md opacity-75 [@media(hover:hover)_and_(pointer:fine)]:group-hover:opacity-100 transition-opacity duration-500"></div>
         <div className="relative w-[143px] h-[143px] rounded-full p-1 bg-gradient-to-tr from-cyan-500 via-purple-500 to-fuchsia-500" style={{ boxShadow: '0 0 40px -10px rgba(6, 182, 212, 0.5), 0 0 40px -10px rgba(217, 70, 239, 0.5)' }}>
-          <img
-            src="/images/avatar8.jpeg"
+          <Image
+            src={avatarImg}
             alt="Mateusz Staszków profile photo"
             className="w-full h-full object-cover rounded-full border-4 border-white dark:border-slate-950"
+            priority={true}
+             quality={95}
+             placeholder="blur"
           />
         </div>
       </div>
@@ -8946,348 +8951,6 @@ export function ProfileHeader({ language }: ProfileHeaderProps) {
         </div>
       </div>
     </header>
-  )
-}
-
-================
-File: components/tab-music.tsx
-================
-import { type CSSProperties, useEffect, useRef, useState } from "react"
-import { BsSpotify } from "react-icons/bs"
-import { FaDeezer } from "react-icons/fa"
-import { PiSoundcloudLogoFill } from "react-icons/pi"
-import { SiAmazonmusic, SiApplemusic, SiTidal, SiYoutubemusic } from "react-icons/si"
-const MUSIC_ACCENT = "#b817e4"
-function hexToRgbChannels(hex: string) {
-  const normalizedHex = hex.replace("#", "")
-  const fullHex =
-    normalizedHex.length === 3
-      ? normalizedHex
-          .split("")
-          .map((char) => `${char}${char}`)
-          .join("")
-      : normalizedHex
-  const red = Number.parseInt(fullHex.slice(0, 2), 16)
-  const green = Number.parseInt(fullHex.slice(2, 4), 16)
-  const blue = Number.parseInt(fullHex.slice(4, 6), 16)
-  return `${red} ${green} ${blue}`
-}
-const links = [
-  {
-    label: "Fantasia",
-    description: "Listen latest song",
-    href: "https://artists.landr.com/057914392592",
-    icon: BsSpotify,
-  },
-  {
-    label: "Spotify",
-    description: "Listen on Spotify",
-    href: "https://open.spotify.com/artist/20jL6FuQUNHnlP3ApdjBbI?si=fvGq0tvJRXmhMa5_KKnAXg",
-    icon: BsSpotify,
-  },
-  {
-    label: "Apple Music",
-    description: "Listen on Apple Music",
-    href: "https://music.apple.com/pl/artist/stvshy/1863822260",
-    icon: SiApplemusic,
-  },
-  {
-    label: "YouTube Music",
-    description: "Listen on YouTube Music",
-    href: "https://music.youtube.com/search?q=stvshy",
-    icon: SiYoutubemusic,
-  },
-  {
-    label: "Deezer",
-    description: "Listen on Deezer",
-    href: "https://www.deezer.com/pl/artist/363730262",
-    icon: FaDeezer,
-  },
-  {
-    label: "Amazon Music",
-    description: "Listen on Amazon Music",
-    href: "https://music.amazon.com/artists/B0GCCG5GH3/stvshy",
-    icon: SiAmazonmusic,
-  },
-  {
-    label: "TIDAL",
-    description: "Listen on TIDAL",
-    href: "https://tidal.com/artist/72120078",
-    icon: SiTidal,
-  },
-  {
-    label: "SoundCloud",
-    description: "Unreleased beats",
-    href: "https://soundcloud.com/stvshy",
-    icon: PiSoundcloudLogoFill,
-  },
-]
-type TabMusicProps = {
-  language: "en" | "pl"
-}
-const musicText = {
-  en: {
-    links: {
-      fantasia: "Listen latest song",
-      spotify: "Listen on Spotify",
-      appleMusic: "Listen on Apple Music",
-      youtubeMusic: "Listen on YouTube Music",
-      deezer: "Listen on Deezer",
-      amazonMusic: "Listen on Amazon Music",
-      tidal: "Listen on TIDAL",
-      soundcloud: "Unreleased beats",
-    },
-    more: "More",
-    tracksReleased: "Tracks released",
-    yearsProducing: "Years producing",
-    genres: "Genres",
-  },
-  pl: {
-    links: {
-      fantasia: "Posłuchaj najnowszego utworu",
-      spotify: "Posłuchaj na Spotify",
-      appleMusic: "Posłuchaj w Apple Music",
-      youtubeMusic: "Posłuchaj w YouTube Music",
-      deezer: "Posłuchaj na Deezer",
-      amazonMusic: "Posłuchaj w Amazon Music",
-      tidal: "Posłuchaj na TIDAL",
-      soundcloud: "Niewydane beaty",
-    },
-    more: "Więcej",
-    tracksReleased: "Wydane utwory",
-    yearsProducing: "Lata produkcji",
-    genres: "Gatunki",
-  },
-} as const
-export function TabMusic({ language }: TabMusicProps) {
-  const MORE_PRESS_DURATION_MS = 1200
-  const [isMoreOpen, setIsMoreOpen] = useState(false)
-  const [isMorePressed, setIsMorePressed] = useState(false)
-  const morePressTimeoutRef = useRef<number | null>(null)
-  const text = musicText[language]
-  useEffect(() => {
-    return () => {
-      if (morePressTimeoutRef.current !== null) {
-        window.clearTimeout(morePressTimeoutRef.current)
-      }
-    }
-  }, [])
-  const triggerMorePress = () => {
-    setIsMorePressed(true)
-    if (morePressTimeoutRef.current !== null) {
-      window.clearTimeout(morePressTimeoutRef.current)
-    }
-    morePressTimeoutRef.current = window.setTimeout(() => {
-      setIsMorePressed(false)
-      morePressTimeoutRef.current = null
-    }, MORE_PRESS_DURATION_MS)
-  }
-  const localizedLinks = links.map((link) => {
-    const descriptionMap = {
-      Fantasia: text.links.fantasia,
-      Spotify: text.links.spotify,
-      "Apple Music": text.links.appleMusic,
-      "YouTube Music": text.links.youtubeMusic,
-      Deezer: text.links.deezer,
-      "Amazon Music": text.links.amazonMusic,
-      TIDAL: text.links.tidal,
-      SoundCloud: text.links.soundcloud,
-    } as const
-    return {
-      ...link,
-      description: descriptionMap[link.label as keyof typeof descriptionMap] ?? link.description,
-    }
-  })
-  const musicThemeStyle = {
-    "--music-accent": MUSIC_ACCENT,
-    "--music-accent-rgb": hexToRgbChannels(MUSIC_ACCENT),
-    fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
-  } as CSSProperties
-  const musicRgb = hexToRgbChannels(MUSIC_ACCENT).split(" ").join(", ")
-  const defaultLinkClassName =
-    "group flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-3 backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[rgb(var(--music-accent-rgb)/0.3)] [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[rgb(var(--music-accent-rgb)/0.05)] active:border-[rgb(var(--music-accent-rgb)/0.3)] active:bg-[rgb(var(--music-accent-rgb)/0.05)]"
-  const fantasiaCardClassName =
-    "group flex items-center gap-4 rounded-xl border border-[rgb(var(--music-accent-rgb)/0.35)] bg-[rgb(var(--music-accent-rgb)/0.1)] px-5 py-3 backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[rgb(var(--music-accent-rgb)/0.45)] [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[rgb(var(--music-accent-rgb)/0.15)] active:border-[rgb(var(--music-accent-rgb)/0.45)] active:bg-[rgb(var(--music-accent-rgb)/0.15)]"
-  const visibleLinks = localizedLinks.slice(0, 4)
-  const hiddenLinks = localizedLinks.slice(4)
-  return (
-    <div className="flex flex-col gap-3" style={musicThemeStyle}>
-      {visibleLinks.map((link) => (
-        <a
-          key={link.label}
-          href={link.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={link.label === "Fantasia" ? fantasiaCardClassName : defaultLinkClassName}
-        >
-          <div
-            className={
-              link.label === "Fantasia"
-                ? "flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-lg"
-                : "flex size-10 shrink-0 items-center justify-center rounded-lg bg-[rgb(var(--music-accent-rgb)/0.1)] text-[rgb(var(--music-accent-rgb))] transition-colors [@media(hover:hover)_and_(pointer:fine)]:group-hover:bg-[rgb(var(--music-accent-rgb)/0.2)] group-active:bg-[rgb(var(--music-accent-rgb)/0.2)]"
-            }
-          >
-            {link.label === "Fantasia" ? (
-              <img src="/images/fantasia.png" alt="Fantasia cover" className="size-full rounded-lg object-cover" />
-            ) : (
-              <link.icon className="size-5" />
-            )}
-          </div>
-          <div className="flex flex-col gap-0.5">
-            <span
-              className="text-[12.58px] text-foreground"
-              style={{ letterSpacing: '-0.02em', marginBottom: '0.1px', fontWeight: 510, fontVariationSettings: "'wght' 510" }}
-            >
-              {link.label}
-            </span>
-            <span className="text-[11.43px] text-muted-foreground" style={{ letterSpacing: '-0.01em' }}>
-              {link.description}
-            </span>
-          </div>
-          <svg
-            className="ml-auto size-4 text-muted-foreground transition-transform [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-0.5 [@media(hover:hover)_and_(pointer:fine)]:group-hover:text-[rgb(var(--music-accent-rgb))] group-active:translate-x-0.5 group-active:text-[rgb(var(--music-accent-rgb))]"
-            viewBox="0 0 16 16"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            aria-hidden="true"
-          >
-            <path d="M6 3l5 5-5 5" />
-          </svg>
-        </a>
-      ))}
-      <button
-        type="button"
-        onPointerDown={triggerMorePress}
-        onKeyDown={(event) => {
-          if (event.key === "Enter" || event.key === " ") {
-            triggerMorePress()
-          }
-        }}
-        onClick={() => {
-          setIsMoreOpen((prev) => !prev)
-        }}
-        className={`flex h-8 w-full items-center justify-center gap-2 rounded-lg border border-border/70 bg-card/70 text-[11px] font-medium uppercase tracking-wide text-muted-foreground transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[rgb(var(--music-accent-rgb)/0.3)] [@media(hover:hover)_and_(pointer:fine)]:hover:text-[rgb(var(--music-accent-rgb))] active:border-[rgb(var(--music-accent-rgb)/0.3)] active:text-[rgb(var(--music-accent-rgb))] ${
-          isMorePressed
-            ? "border-[rgb(var(--music-accent-rgb)/0.3)] text-[rgb(var(--music-accent-rgb))]"
-            : ""
-        }`}
-        aria-expanded={isMoreOpen}
-        aria-controls="more-music-links"
-      >
-        {text.more}
-        <svg
-          className={isMoreOpen ? "size-3 transition-transform duration-300 rotate-180" : "size-3 transition-transform duration-300"}
-          viewBox="0 0 16 16"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          aria-hidden="true"
-        >
-          <path d="M3.5 6l4.5 4 4.5-4" />
-        </svg>
-      </button>
-      {isMoreOpen && (
-        <div
-          id="more-music-links"
-          className="flex flex-col gap-3 animate-in fade-in-0 slide-in-from-top-1 duration-300"
-        >
-          {hiddenLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={defaultLinkClassName}
-            >
-              <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-[rgb(var(--music-accent-rgb)/0.1)] text-[rgb(var(--music-accent-rgb))] transition-colors [@media(hover:hover)_and_(pointer:fine)]:group-hover:bg-[rgb(var(--music-accent-rgb)/0.2)] group-active:bg-[rgb(var(--music-accent-rgb)/0.2)]">
-                <link.icon className="size-5" />
-              </div>
-              <div className="flex flex-col gap-0.5">
-                <span
-                  className="text-[12.58px] text-foreground"
-                  style={{ letterSpacing: '-0.02em', marginBottom: '0.1px', fontWeight: 510, fontVariationSettings: "'wght' 510" }}
-                >
-                  {link.label}
-                </span>
-                <span
-                  className="text-[11.43px] text-muted-foreground"
-                  style={{ letterSpacing: '-0.01em' }}
-                >
-                  {link.description}
-                </span>
-              </div>
-              <svg
-                className="ml-auto size-4 text-muted-foreground transition-transform [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-0.5 [@media(hover:hover)_and_(pointer:fine)]:group-hover:text-[rgb(var(--music-accent-rgb))] group-active:translate-x-0.5 group-active:text-[rgb(var(--music-accent-rgb))]"
-                viewBox="0 0 16 16"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                aria-hidden="true"
-              >
-                <path d="M6 3l5 5-5 5" />
-              </svg>
-            </a>
-          ))}
-        </div>
-      )}
-        <div className="grid grid-cols-2 gap-3">
-        <div className="rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl">
-          <span
-            className="text-[20.1px] text-[rgb(var(--music-accent-rgb))]"
-            style={{
-              fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
-              fontWeight: 510,
-              fontVariationSettings: "'wght' 510",
-            }}
-          >
-            1
-          </span>
-          <p className="mt-1 text-[11.43px] text-muted-foreground">{text.tracksReleased}</p>
-        </div>
-        <div className="rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl">
-          <span
-            className="text-[20.1px] text-[#0ab8d6f8]"
-            style={{
-              fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
-              fontWeight: 510,
-              fontVariationSettings: "'wght' 500",
-            }}
-          >
-            3+
-          </span>
-          <p className="mt-1 text-[11.43px] text-muted-foreground">{text.yearsProducing}</p>
-        </div>
-      </div>
-      <div className="rounded-xl border border-border bg-card px-5 py-4 backdrop-blur-xl">
-        <h3 className="mb-3 text-[11.2px] font-semibold uppercase tracking-wider text-muted-foreground" style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
-          {text.genres}
-        </h3>
-        <div className="flex flex-wrap gap-2" style={{ marginLeft: '-3.4px' }}>
-          {["Wave", "Electronic", "Trap", "Hardwave", "Hip-hop", "Witch House", "Trapwave"].map((genre, idx) => {
-            const angle = (idx * 47 + 15) % 360
-            const angleDeg = `${angle}deg`
-            return (
-              <span
-                key={genre}
-                className="rounded-full px-3 py-1 text-[11px] text-foreground"
-                style={{
-                  backgroundImage: `linear-gradient(${angleDeg}, rgba(29, 28, 28, 0.87), rgba(27, 26, 26, 0.87)), linear-gradient(${angleDeg}, rgba(${musicRgb},0.25), rgba(5, 218, 255, 0.25))`,
-                  backgroundOrigin: 'padding-box, border-box',
-                  backgroundClip: 'padding-box, border-box',
-                  border: '1px solid transparent',
-                  WebkitBackdropFilter: 'blur(6px)',
-                  backdropFilter: 'blur(6px)',
-                  boxShadow: '0 1px 0 rgba(255,255,255,0.02) inset'
-                }}
-              >
-                {genre}
-              </span>
-            )
-          })}
-        </div>
-      </div>
-    </div>
   )
 }
 
@@ -9796,6 +9459,357 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
           </span>
           <p className="mt-1 text-[11.43px] text-muted-foreground" style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>{text.perfumesOwned}</p>
         </a>
+      </div>
+    </div>
+  )
+}
+
+================
+File: components/tab-music.tsx
+================
+import { type CSSProperties, useEffect, useRef, useState } from "react"
+import { BsSpotify } from "react-icons/bs"
+import { FaDeezer } from "react-icons/fa"
+import { PiSoundcloudLogoFill } from "react-icons/pi"
+import { SiAmazonmusic, SiApplemusic, SiTidal, SiYoutubemusic } from "react-icons/si"
+import Image from "next/image"
+import fantasiaImg from "@/public/images/fantasia.png"
+const MUSIC_ACCENT = "#b817e4"
+function hexToRgbChannels(hex: string) {
+  const normalizedHex = hex.replace("#", "")
+  const fullHex =
+    normalizedHex.length === 3
+      ? normalizedHex
+          .split("")
+          .map((char) => `${char}${char}`)
+          .join("")
+      : normalizedHex
+  const red = Number.parseInt(fullHex.slice(0, 2), 16)
+  const green = Number.parseInt(fullHex.slice(2, 4), 16)
+  const blue = Number.parseInt(fullHex.slice(4, 6), 16)
+  return `${red} ${green} ${blue}`
+}
+const links = [
+  {
+    label: "Fantasia",
+    description: "Listen latest song",
+    href: "https://artists.landr.com/057914392592",
+    icon: BsSpotify,
+  },
+  {
+    label: "Spotify",
+    description: "Listen on Spotify",
+    href: "https://open.spotify.com/artist/20jL6FuQUNHnlP3ApdjBbI?si=fvGq0tvJRXmhMa5_KKnAXg",
+    icon: BsSpotify,
+  },
+  {
+    label: "Apple Music",
+    description: "Listen on Apple Music",
+    href: "https://music.apple.com/pl/artist/stvshy/1863822260",
+    icon: SiApplemusic,
+  },
+  {
+    label: "YouTube Music",
+    description: "Listen on YouTube Music",
+    href: "https://music.youtube.com/search?q=stvshy",
+    icon: SiYoutubemusic,
+  },
+  {
+    label: "Deezer",
+    description: "Listen on Deezer",
+    href: "https://www.deezer.com/pl/artist/363730262",
+    icon: FaDeezer,
+  },
+  {
+    label: "Amazon Music",
+    description: "Listen on Amazon Music",
+    href: "https://music.amazon.com/artists/B0GCCG5GH3/stvshy",
+    icon: SiAmazonmusic,
+  },
+  {
+    label: "TIDAL",
+    description: "Listen on TIDAL",
+    href: "https://tidal.com/artist/72120078",
+    icon: SiTidal,
+  },
+  {
+    label: "SoundCloud",
+    description: "Unreleased beats",
+    href: "https://soundcloud.com/stvshy",
+    icon: PiSoundcloudLogoFill,
+  },
+]
+type TabMusicProps = {
+  language: "en" | "pl"
+}
+const musicText = {
+  en: {
+    links: {
+      fantasia: "Listen latest song",
+      spotify: "Listen on Spotify",
+      appleMusic: "Listen on Apple Music",
+      youtubeMusic: "Listen on YouTube Music",
+      deezer: "Listen on Deezer",
+      amazonMusic: "Listen on Amazon Music",
+      tidal: "Listen on TIDAL",
+      soundcloud: "Unreleased beats",
+    },
+    more: "More",
+    tracksReleased: "Tracks released",
+    yearsProducing: "Years producing",
+    genres: "Genres",
+  },
+  pl: {
+    links: {
+      fantasia: "Posłuchaj najnowszego utworu",
+      spotify: "Posłuchaj na Spotify",
+      appleMusic: "Posłuchaj w Apple Music",
+      youtubeMusic: "Posłuchaj w YouTube Music",
+      deezer: "Posłuchaj na Deezer",
+      amazonMusic: "Posłuchaj w Amazon Music",
+      tidal: "Posłuchaj na TIDAL",
+      soundcloud: "Niewydane beaty",
+    },
+    more: "Więcej",
+    tracksReleased: "Wydane utwory",
+    yearsProducing: "Lata produkcji",
+    genres: "Gatunki",
+  },
+} as const
+export function TabMusic({ language }: TabMusicProps) {
+  const MORE_PRESS_DURATION_MS = 1200
+  const [isMoreOpen, setIsMoreOpen] = useState(false)
+  const [isMorePressed, setIsMorePressed] = useState(false)
+  const morePressTimeoutRef = useRef<number | null>(null)
+  const text = musicText[language]
+  useEffect(() => {
+    return () => {
+      if (morePressTimeoutRef.current !== null) {
+        window.clearTimeout(morePressTimeoutRef.current)
+      }
+    }
+  }, [])
+  const triggerMorePress = () => {
+    setIsMorePressed(true)
+    if (morePressTimeoutRef.current !== null) {
+      window.clearTimeout(morePressTimeoutRef.current)
+    }
+    morePressTimeoutRef.current = window.setTimeout(() => {
+      setIsMorePressed(false)
+      morePressTimeoutRef.current = null
+    }, MORE_PRESS_DURATION_MS)
+  }
+  const localizedLinks = links.map((link) => {
+    const descriptionMap = {
+      Fantasia: text.links.fantasia,
+      Spotify: text.links.spotify,
+      "Apple Music": text.links.appleMusic,
+      "YouTube Music": text.links.youtubeMusic,
+      Deezer: text.links.deezer,
+      "Amazon Music": text.links.amazonMusic,
+      TIDAL: text.links.tidal,
+      SoundCloud: text.links.soundcloud,
+    } as const
+    return {
+      ...link,
+      description: descriptionMap[link.label as keyof typeof descriptionMap] ?? link.description,
+    }
+  })
+  const musicThemeStyle = {
+    "--music-accent": MUSIC_ACCENT,
+    "--music-accent-rgb": hexToRgbChannels(MUSIC_ACCENT),
+    fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
+  } as CSSProperties
+  const musicRgb = hexToRgbChannels(MUSIC_ACCENT).split(" ").join(", ")
+  const defaultLinkClassName =
+    "group flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-3 backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[rgb(var(--music-accent-rgb)/0.3)] [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[rgb(var(--music-accent-rgb)/0.05)] active:border-[rgb(var(--music-accent-rgb)/0.3)] active:bg-[rgb(var(--music-accent-rgb)/0.05)]"
+  const fantasiaCardClassName =
+    "group flex items-center gap-4 rounded-xl border border-[rgb(var(--music-accent-rgb)/0.35)] bg-[rgb(var(--music-accent-rgb)/0.1)] px-5 py-3 backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[rgb(var(--music-accent-rgb)/0.45)] [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[rgb(var(--music-accent-rgb)/0.15)] active:border-[rgb(var(--music-accent-rgb)/0.45)] active:bg-[rgb(var(--music-accent-rgb)/0.15)]"
+  const visibleLinks = localizedLinks.slice(0, 4)
+  const hiddenLinks = localizedLinks.slice(4)
+  return (
+    <div className="flex flex-col gap-3" style={musicThemeStyle}>
+      {visibleLinks.map((link) => (
+        <a
+          key={link.label}
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={link.label === "Fantasia" ? fantasiaCardClassName : defaultLinkClassName}
+        >
+          <div
+            className={
+              link.label === "Fantasia"
+                ? "flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-lg"
+                : "flex size-10 shrink-0 items-center justify-center rounded-lg bg-[rgb(var(--music-accent-rgb)/0.1)] text-[rgb(var(--music-accent-rgb))] transition-colors [@media(hover:hover)_and_(pointer:fine)]:group-hover:bg-[rgb(var(--music-accent-rgb)/0.2)] group-active:bg-[rgb(var(--music-accent-rgb)/0.2)]"
+            }
+          >
+            {link.label === "Fantasia" ? (
+              <Image
+                src={fantasiaImg}
+                alt="Fantasia cover"
+                className="size-full rounded-lg object-cover"
+                priority={true}
+                quality={95}
+                placeholder="blur"
+              />
+            ) : (
+              <link.icon className="size-5" />
+            )}
+          </div>
+          <div className="flex flex-col gap-0.5">
+            <span
+              className="text-[12.58px] text-foreground"
+              style={{ letterSpacing: '-0.02em', marginBottom: '0.1px', fontWeight: 510, fontVariationSettings: "'wght' 510" }}
+            >
+              {link.label}
+            </span>
+            <span className="text-[11.43px] text-muted-foreground" style={{ letterSpacing: '-0.01em' }}>
+              {link.description}
+            </span>
+          </div>
+          <svg
+            className="ml-auto size-4 text-muted-foreground transition-transform [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-0.5 [@media(hover:hover)_and_(pointer:fine)]:group-hover:text-[rgb(var(--music-accent-rgb))] group-active:translate-x-0.5 group-active:text-[rgb(var(--music-accent-rgb))]"
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            aria-hidden="true"
+          >
+            <path d="M6 3l5 5-5 5" />
+          </svg>
+        </a>
+      ))}
+      <button
+        type="button"
+        onPointerDown={triggerMorePress}
+        onKeyDown={(event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            triggerMorePress()
+          }
+        }}
+        onClick={() => {
+          setIsMoreOpen((prev) => !prev)
+        }}
+        className={`flex h-8 w-full items-center justify-center gap-2 rounded-lg border border-border/70 bg-card/70 text-[11px] font-medium uppercase tracking-wide text-muted-foreground transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[rgb(var(--music-accent-rgb)/0.3)] [@media(hover:hover)_and_(pointer:fine)]:hover:text-[rgb(var(--music-accent-rgb))] active:border-[rgb(var(--music-accent-rgb)/0.3)] active:text-[rgb(var(--music-accent-rgb))] ${
+          isMorePressed
+            ? "border-[rgb(var(--music-accent-rgb)/0.3)] text-[rgb(var(--music-accent-rgb))]"
+            : ""
+        }`}
+        aria-expanded={isMoreOpen}
+        aria-controls="more-music-links"
+      >
+        {text.more}
+        <svg
+          className={isMoreOpen ? "size-3 transition-transform duration-300 rotate-180" : "size-3 transition-transform duration-300"}
+          viewBox="0 0 16 16"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          aria-hidden="true"
+        >
+          <path d="M3.5 6l4.5 4 4.5-4" />
+        </svg>
+      </button>
+      {isMoreOpen && (
+        <div
+          id="more-music-links"
+          className="flex flex-col gap-3 animate-in fade-in-0 slide-in-from-top-1 duration-300"
+        >
+          {hiddenLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={defaultLinkClassName}
+            >
+              <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-[rgb(var(--music-accent-rgb)/0.1)] text-[rgb(var(--music-accent-rgb))] transition-colors [@media(hover:hover)_and_(pointer:fine)]:group-hover:bg-[rgb(var(--music-accent-rgb)/0.2)] group-active:bg-[rgb(var(--music-accent-rgb)/0.2)]">
+                <link.icon className="size-5" />
+              </div>
+              <div className="flex flex-col gap-0.5">
+                <span
+                  className="text-[12.58px] text-foreground"
+                  style={{ letterSpacing: '-0.02em', marginBottom: '0.1px', fontWeight: 510, fontVariationSettings: "'wght' 510" }}
+                >
+                  {link.label}
+                </span>
+                <span
+                  className="text-[11.43px] text-muted-foreground"
+                  style={{ letterSpacing: '-0.01em' }}
+                >
+                  {link.description}
+                </span>
+              </div>
+              <svg
+                className="ml-auto size-4 text-muted-foreground transition-transform [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-0.5 [@media(hover:hover)_and_(pointer:fine)]:group-hover:text-[rgb(var(--music-accent-rgb))] group-active:translate-x-0.5 group-active:text-[rgb(var(--music-accent-rgb))]"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                aria-hidden="true"
+              >
+                <path d="M6 3l5 5-5 5" />
+              </svg>
+            </a>
+          ))}
+        </div>
+      )}
+        <div className="grid grid-cols-2 gap-3">
+        <div className="rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl">
+          <span
+            className="text-[20.1px] text-[rgb(var(--music-accent-rgb))]"
+            style={{
+              fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
+              fontWeight: 510,
+              fontVariationSettings: "'wght' 510",
+            }}
+          >
+            1
+          </span>
+          <p className="mt-1 text-[11.43px] text-muted-foreground">{text.tracksReleased}</p>
+        </div>
+        <div className="rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl">
+          <span
+            className="text-[20.1px] text-[#0ab8d6f8]"
+            style={{
+              fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
+              fontWeight: 510,
+              fontVariationSettings: "'wght' 500",
+            }}
+          >
+            3+
+          </span>
+          <p className="mt-1 text-[11.43px] text-muted-foreground">{text.yearsProducing}</p>
+        </div>
+      </div>
+      <div className="rounded-xl border border-border bg-card px-5 py-4 backdrop-blur-xl">
+        <h3 className="mb-3 text-[11.2px] font-semibold uppercase tracking-wider text-muted-foreground" style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
+          {text.genres}
+        </h3>
+        <div className="flex flex-wrap gap-2" style={{ marginLeft: '-3.4px' }}>
+          {["Wave", "Electronic", "Trap", "Hardwave", "Hip-hop", "Witch House", "Trapwave"].map((genre, idx) => {
+            const angle = (idx * 47 + 15) % 360
+            const angleDeg = `${angle}deg`
+            return (
+              <span
+                key={genre}
+                className="rounded-full px-3 py-1 text-[11px] text-foreground"
+                style={{
+                  backgroundImage: `linear-gradient(${angleDeg}, rgba(29, 28, 28, 0.87), rgba(27, 26, 26, 0.87)), linear-gradient(${angleDeg}, rgba(${musicRgb},0.25), rgba(5, 218, 255, 0.25))`,
+                  backgroundOrigin: 'padding-box, border-box',
+                  backgroundClip: 'padding-box, border-box',
+                  border: '1px solid transparent',
+                  WebkitBackdropFilter: 'blur(6px)',
+                  backdropFilter: 'blur(6px)',
+                  boxShadow: '0 1px 0 rgba(255,255,255,0.02) inset'
+                }}
+              >
+                {genre}
+              </span>
+            )
+          })}
+        </div>
       </div>
     </div>
   )
