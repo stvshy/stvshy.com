@@ -1,5 +1,7 @@
 import { Logo } from "@/components/logo"
 import { HiLocationMarker } from "react-icons/hi"
+import Image from "next/image" // 1. IMPORT KOMPONENTU IMAGE
+import avatarImg from "@/public/images/avatar8.jpeg" // 2. STATYCZNY IMPORT OBRAZKA (jeśli wywali błąd ścieżki, użyj: "../public/images/avatar8.jpeg")
 
 type ProfileHeaderProps = {
   language: "en" | "pl"
@@ -16,10 +18,13 @@ export function ProfileHeader({ language }: ProfileHeaderProps) {
       <div className="relative mb-[1px] group">
         <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-cyan-500 to-fuchsia-500 blur-md opacity-75 [@media(hover:hover)_and_(pointer:fine)]:group-hover:opacity-100 transition-opacity duration-500"></div>
         <div className="relative w-[143px] h-[143px] rounded-full p-1 bg-gradient-to-tr from-cyan-500 via-purple-500 to-fuchsia-500" style={{ boxShadow: '0 0 40px -10px rgba(6, 182, 212, 0.5), 0 0 40px -10px rgba(217, 70, 239, 0.5)' }}>
-          <img
-            src="/images/avatar8.jpeg"
+          <Image
+            src={avatarImg}
             alt="Mateusz Staszków profile photo"
             className="w-full h-full object-cover rounded-full border-4 border-white dark:border-slate-950"
+            priority={true}
+             quality={95}
+             placeholder="blur"
           />
         </div>
       </div>

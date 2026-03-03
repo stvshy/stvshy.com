@@ -3,6 +3,8 @@ import { BsSpotify } from "react-icons/bs"
 import { FaDeezer } from "react-icons/fa"
 import { PiSoundcloudLogoFill } from "react-icons/pi"
 import { SiAmazonmusic, SiApplemusic, SiTidal, SiYoutubemusic } from "react-icons/si"
+import Image from "next/image"
+import fantasiaImg from "@/public/images/fantasia.png" // lub względna ścieżka np. "../public/images/fantasia.png"
 
 const MUSIC_ACCENT = "#b817e4"
 
@@ -193,7 +195,14 @@ export function TabMusic({ language }: TabMusicProps) {
             }
           >
             {link.label === "Fantasia" ? (
-              <img src="/images/fantasia.png" alt="Fantasia cover" className="size-full rounded-lg object-cover" />
+              <Image 
+                src={fantasiaImg} 
+                alt="Fantasia cover"  
+                className="size-full rounded-lg object-cover" 
+                priority={true} 
+                quality={95}
+                placeholder="blur"
+              />
             ) : (
               <link.icon className="size-5" />
             )}

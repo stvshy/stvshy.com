@@ -398,66 +398,6 @@ Files
 ================================================================
 
 ================
-File: app/robots.ts
-================
-import { MetadataRoute } from 'next'
-export default function robots(): MetadataRoute.Robots {
-  return {
-    rules: {
-      userAgent: '*',
-      allow: '/',
-    },
-    sitemap: 'https://stvshy.com/sitemap.xml',
-  }
-}
-
-================
-File: app/sitemap.ts
-================
-import { MetadataRoute } from 'next'
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://stvshy.com'
-  return [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/about`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/dev`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/music`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/about/pl`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/dev/pl`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-  ]
-}
-
-================
 File: components.json
 ================
 {
@@ -4354,1160 +4294,6 @@ const config = {
 export default config
 
 ================
-File: public/fonts/Figtree/OFL.txt
-================
-Copyright 2022 The Figtree Project Authors (https://github.com/erikdkennedy/figtree)
-
-This Font Software is licensed under the SIL Open Font License, Version 1.1.
-This license is copied below, and is also available with a FAQ at:
-https://openfontlicense.org
-
-
------------------------------------------------------------
-SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
------------------------------------------------------------
-
-PREAMBLE
-The goals of the Open Font License (OFL) are to stimulate worldwide
-development of collaborative font projects, to support the font creation
-efforts of academic and linguistic communities, and to provide a free and
-open framework in which fonts may be shared and improved in partnership
-with others.
-
-The OFL allows the licensed fonts to be used, studied, modified and
-redistributed freely as long as they are not sold by themselves. The
-fonts, including any derivative works, can be bundled, embedded, 
-redistributed and/or sold with any software provided that any reserved
-names are not used by derivative works. The fonts and derivatives,
-however, cannot be released under any other type of license. The
-requirement for fonts to remain under this license does not apply
-to any document created using the fonts or their derivatives.
-
-DEFINITIONS
-"Font Software" refers to the set of files released by the Copyright
-Holder(s) under this license and clearly marked as such. This may
-include source files, build scripts and documentation.
-
-"Reserved Font Name" refers to any names specified as such after the
-copyright statement(s).
-
-"Original Version" refers to the collection of Font Software components as
-distributed by the Copyright Holder(s).
-
-"Modified Version" refers to any derivative made by adding to, deleting,
-or substituting -- in part or in whole -- any of the components of the
-Original Version, by changing formats or by porting the Font Software to a
-new environment.
-
-"Author" refers to any designer, engineer, programmer, technical
-writer or other person who contributed to the Font Software.
-
-PERMISSION & CONDITIONS
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of the Font Software, to use, study, copy, merge, embed, modify,
-redistribute, and sell modified and unmodified copies of the Font
-Software, subject to the following conditions:
-
-1) Neither the Font Software nor any of its individual components,
-in Original or Modified Versions, may be sold by itself.
-
-2) Original or Modified Versions of the Font Software may be bundled,
-redistributed and/or sold with any software, provided that each copy
-contains the above copyright notice and this license. These can be
-included either as stand-alone text files, human-readable headers or
-in the appropriate machine-readable metadata fields within text or
-binary files as long as those fields can be easily viewed by the user.
-
-3) No Modified Version of the Font Software may use the Reserved Font
-Name(s) unless explicit written permission is granted by the corresponding
-Copyright Holder. This restriction only applies to the primary font name as
-presented to the users.
-
-4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
-Software shall not be used to promote, endorse or advertise any
-Modified Version, except to acknowledge the contribution(s) of the
-Copyright Holder(s) and the Author(s) or with their explicit written
-permission.
-
-5) The Font Software, modified or unmodified, in part or in whole,
-must be distributed entirely under this license, and must not be
-distributed under any other license. The requirement for fonts to
-remain under this license does not apply to any document created
-using the Font Software.
-
-TERMINATION
-This license becomes null and void if any of the above conditions are
-not met.
-
-DISCLAIMER
-THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
-OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
-COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
-DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
-OTHER DEALINGS IN THE FONT SOFTWARE.
-
-================
-File: public/fonts/Figtree/README.txt
-================
-Figtree Variable Font
-=====================
-
-This download contains Figtree as both variable fonts and static fonts.
-
-Figtree is a variable font with this axis:
-  wght
-
-This means all the styles are contained in these files:
-  Figtree/Figtree-VariableFont_wght.ttf
-  Figtree/Figtree-Italic-VariableFont_wght.ttf
-
-If your app fully supports variable fonts, you can now pick intermediate styles
-that aren’t available as static fonts. Not all apps support variable fonts, and
-in those cases you can use the static font files for Figtree:
-  Figtree/static/Figtree-Light.ttf
-  Figtree/static/Figtree-Regular.ttf
-  Figtree/static/Figtree-Medium.ttf
-  Figtree/static/Figtree-SemiBold.ttf
-  Figtree/static/Figtree-Bold.ttf
-  Figtree/static/Figtree-ExtraBold.ttf
-  Figtree/static/Figtree-Black.ttf
-  Figtree/static/Figtree-LightItalic.ttf
-  Figtree/static/Figtree-Italic.ttf
-  Figtree/static/Figtree-MediumItalic.ttf
-  Figtree/static/Figtree-SemiBoldItalic.ttf
-  Figtree/static/Figtree-BoldItalic.ttf
-  Figtree/static/Figtree-ExtraBoldItalic.ttf
-  Figtree/static/Figtree-BlackItalic.ttf
-
-Get started
------------
-
-1. Install the font files you want to use
-
-2. Use your app's font picker to view the font family and all the
-available styles
-
-Learn more about variable fonts
--------------------------------
-
-  https://developers.google.com/web/fundamentals/design-and-ux/typography/variable-fonts
-  https://variablefonts.typenetwork.com
-  https://medium.com/variable-fonts
-
-In desktop apps
-
-  https://theblog.adobe.com/can-variable-fonts-illustrator-cc
-  https://helpx.adobe.com/nz/photoshop/using/fonts.html#variable_fonts
-
-Online
-
-  https://developers.google.com/fonts/docs/getting_started
-  https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide
-  https://developer.microsoft.com/en-us/microsoft-edge/testdrive/demos/variable-fonts
-
-Installing fonts
-
-  MacOS: https://support.apple.com/en-us/HT201749
-  Linux: https://www.google.com/search?q=how+to+install+a+font+on+gnu%2Blinux
-  Windows: https://support.microsoft.com/en-us/help/314960/how-to-install-or-remove-a-font-in-windows
-
-Android Apps
-
-  https://developers.google.com/fonts/docs/android
-  https://developer.android.com/guide/topics/ui/look-and-feel/downloadable-fonts
-
-License
--------
-Please read the full license text (OFL.txt) to understand the permissions,
-restrictions and requirements for usage, redistribution, and modification.
-
-You can use them in your products & projects – print or digital,
-commercial or otherwise.
-
-This isn't legal advice, please consider consulting a lawyer and see the full
-license for all details.
-
-================
-File: public/fonts/Google_Sans/OFL.txt
-================
-This Font Software is licensed under the SIL Open Font License, Version 1.1.
-This license is copied below, and is also available with a FAQ at:
-https://openfontlicense.org
-
-
------------------------------------------------------------
-SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
------------------------------------------------------------
-
-PREAMBLE
-The goals of the Open Font License (OFL) are to stimulate worldwide
-development of collaborative font projects, to support the font creation
-efforts of academic and linguistic communities, and to provide a free and
-open framework in which fonts may be shared and improved in partnership
-with others.
-
-The OFL allows the licensed fonts to be used, studied, modified and
-redistributed freely as long as they are not sold by themselves. The
-fonts, including any derivative works, can be bundled, embedded, 
-redistributed and/or sold with any software provided that any reserved
-names are not used by derivative works. The fonts and derivatives,
-however, cannot be released under any other type of license. The
-requirement for fonts to remain under this license does not apply
-to any document created using the fonts or their derivatives.
-
-DEFINITIONS
-"Font Software" refers to the set of files released by the Copyright
-Holder(s) under this license and clearly marked as such. This may
-include source files, build scripts and documentation.
-
-"Reserved Font Name" refers to any names specified as such after the
-copyright statement(s).
-
-"Original Version" refers to the collection of Font Software components as
-distributed by the Copyright Holder(s).
-
-"Modified Version" refers to any derivative made by adding to, deleting,
-or substituting -- in part or in whole -- any of the components of the
-Original Version, by changing formats or by porting the Font Software to a
-new environment.
-
-"Author" refers to any designer, engineer, programmer, technical
-writer or other person who contributed to the Font Software.
-
-PERMISSION & CONDITIONS
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of the Font Software, to use, study, copy, merge, embed, modify,
-redistribute, and sell modified and unmodified copies of the Font
-Software, subject to the following conditions:
-
-1) Neither the Font Software nor any of its individual components,
-in Original or Modified Versions, may be sold by itself.
-
-2) Original or Modified Versions of the Font Software may be bundled,
-redistributed and/or sold with any software, provided that each copy
-contains the above copyright notice and this license. These can be
-included either as stand-alone text files, human-readable headers or
-in the appropriate machine-readable metadata fields within text or
-binary files as long as those fields can be easily viewed by the user.
-
-3) No Modified Version of the Font Software may use the Reserved Font
-Name(s) unless explicit written permission is granted by the corresponding
-Copyright Holder. This restriction only applies to the primary font name as
-presented to the users.
-
-4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
-Software shall not be used to promote, endorse or advertise any
-Modified Version, except to acknowledge the contribution(s) of the
-Copyright Holder(s) and the Author(s) or with their explicit written
-permission.
-
-5) The Font Software, modified or unmodified, in part or in whole,
-must be distributed entirely under this license, and must not be
-distributed under any other license. The requirement for fonts to
-remain under this license does not apply to any document created
-using the Font Software.
-
-TERMINATION
-This license becomes null and void if any of the above conditions are
-not met.
-
-DISCLAIMER
-THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
-OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
-COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
-DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
-OTHER DEALINGS IN THE FONT SOFTWARE.
-
-================
-File: public/fonts/Google_Sans/README.txt
-================
-Google Sans Variable Font
-=========================
-
-This download contains Google Sans as both variable fonts and static fonts.
-
-Google Sans is a variable font with these axes:
-  GRAD
-  opsz
-  wght
-
-This means all the styles are contained in these files:
-  Google_Sans/GoogleSans-VariableFont_GRAD,opsz,wght.ttf
-  Google_Sans/GoogleSans-Italic-VariableFont_GRAD,opsz,wght.ttf
-
-If your app fully supports variable fonts, you can now pick intermediate styles
-that aren’t available as static fonts. Not all apps support variable fonts, and
-in those cases you can use the static font files for Google Sans:
-  Google_Sans/static/GoogleSans_17pt-Regular.ttf
-  Google_Sans/static/GoogleSans_17pt-Medium.ttf
-  Google_Sans/static/GoogleSans_17pt-SemiBold.ttf
-  Google_Sans/static/GoogleSans_17pt-Bold.ttf
-  Google_Sans/static/GoogleSans-Regular.ttf
-  Google_Sans/static/GoogleSans-Medium.ttf
-  Google_Sans/static/GoogleSans-SemiBold.ttf
-  Google_Sans/static/GoogleSans-Bold.ttf
-  Google_Sans/static/GoogleSans_17pt-Italic.ttf
-  Google_Sans/static/GoogleSans_17pt-MediumItalic.ttf
-  Google_Sans/static/GoogleSans_17pt-SemiBoldItalic.ttf
-  Google_Sans/static/GoogleSans_17pt-BoldItalic.ttf
-  Google_Sans/static/GoogleSans-Italic.ttf
-  Google_Sans/static/GoogleSans-MediumItalic.ttf
-  Google_Sans/static/GoogleSans-SemiBoldItalic.ttf
-  Google_Sans/static/GoogleSans-BoldItalic.ttf
-
-Get started
------------
-
-1. Install the font files you want to use
-
-2. Use your app's font picker to view the font family and all the
-available styles
-
-Learn more about variable fonts
--------------------------------
-
-  https://developers.google.com/web/fundamentals/design-and-ux/typography/variable-fonts
-  https://variablefonts.typenetwork.com
-  https://medium.com/variable-fonts
-
-In desktop apps
-
-  https://theblog.adobe.com/can-variable-fonts-illustrator-cc
-  https://helpx.adobe.com/nz/photoshop/using/fonts.html#variable_fonts
-
-Online
-
-  https://developers.google.com/fonts/docs/getting_started
-  https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide
-  https://developer.microsoft.com/en-us/microsoft-edge/testdrive/demos/variable-fonts
-
-Installing fonts
-
-  MacOS: https://support.apple.com/en-us/HT201749
-  Linux: https://www.google.com/search?q=how+to+install+a+font+on+gnu%2Blinux
-  Windows: https://support.microsoft.com/en-us/help/314960/how-to-install-or-remove-a-font-in-windows
-
-Android Apps
-
-  https://developers.google.com/fonts/docs/android
-  https://developer.android.com/guide/topics/ui/look-and-feel/downloadable-fonts
-
-License
--------
-Please read the full license text (OFL.txt) to understand the permissions,
-restrictions and requirements for usage, redistribution, and modification.
-
-You can use them in your products & projects – print or digital,
-commercial or otherwise.
-
-This isn't legal advice, please consider consulting a lawyer and see the full
-license for all details.
-
-================
-File: public/fonts/Inter/OFL.txt
-================
-Copyright 2020 The Inter Project Authors (https://github.com/rsms/inter)
-
-This Font Software is licensed under the SIL Open Font License, Version 1.1.
-This license is copied below, and is also available with a FAQ at:
-https://openfontlicense.org
-
-
------------------------------------------------------------
-SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
------------------------------------------------------------
-
-PREAMBLE
-The goals of the Open Font License (OFL) are to stimulate worldwide
-development of collaborative font projects, to support the font creation
-efforts of academic and linguistic communities, and to provide a free and
-open framework in which fonts may be shared and improved in partnership
-with others.
-
-The OFL allows the licensed fonts to be used, studied, modified and
-redistributed freely as long as they are not sold by themselves. The
-fonts, including any derivative works, can be bundled, embedded, 
-redistributed and/or sold with any software provided that any reserved
-names are not used by derivative works. The fonts and derivatives,
-however, cannot be released under any other type of license. The
-requirement for fonts to remain under this license does not apply
-to any document created using the fonts or their derivatives.
-
-DEFINITIONS
-"Font Software" refers to the set of files released by the Copyright
-Holder(s) under this license and clearly marked as such. This may
-include source files, build scripts and documentation.
-
-"Reserved Font Name" refers to any names specified as such after the
-copyright statement(s).
-
-"Original Version" refers to the collection of Font Software components as
-distributed by the Copyright Holder(s).
-
-"Modified Version" refers to any derivative made by adding to, deleting,
-or substituting -- in part or in whole -- any of the components of the
-Original Version, by changing formats or by porting the Font Software to a
-new environment.
-
-"Author" refers to any designer, engineer, programmer, technical
-writer or other person who contributed to the Font Software.
-
-PERMISSION & CONDITIONS
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of the Font Software, to use, study, copy, merge, embed, modify,
-redistribute, and sell modified and unmodified copies of the Font
-Software, subject to the following conditions:
-
-1) Neither the Font Software nor any of its individual components,
-in Original or Modified Versions, may be sold by itself.
-
-2) Original or Modified Versions of the Font Software may be bundled,
-redistributed and/or sold with any software, provided that each copy
-contains the above copyright notice and this license. These can be
-included either as stand-alone text files, human-readable headers or
-in the appropriate machine-readable metadata fields within text or
-binary files as long as those fields can be easily viewed by the user.
-
-3) No Modified Version of the Font Software may use the Reserved Font
-Name(s) unless explicit written permission is granted by the corresponding
-Copyright Holder. This restriction only applies to the primary font name as
-presented to the users.
-
-4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
-Software shall not be used to promote, endorse or advertise any
-Modified Version, except to acknowledge the contribution(s) of the
-Copyright Holder(s) and the Author(s) or with their explicit written
-permission.
-
-5) The Font Software, modified or unmodified, in part or in whole,
-must be distributed entirely under this license, and must not be
-distributed under any other license. The requirement for fonts to
-remain under this license does not apply to any document created
-using the Font Software.
-
-TERMINATION
-This license becomes null and void if any of the above conditions are
-not met.
-
-DISCLAIMER
-THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
-OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
-COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
-DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
-OTHER DEALINGS IN THE FONT SOFTWARE.
-
-================
-File: public/fonts/Inter/README.txt
-================
-Inter Variable Font
-===================
-
-This download contains Inter as both variable fonts and static fonts.
-
-Inter is a variable font with these axes:
-  opsz
-  wght
-
-This means all the styles are contained in these files:
-  Inter/Inter-VariableFont_opsz,wght.ttf
-  Inter/Inter-Italic-VariableFont_opsz,wght.ttf
-
-If your app fully supports variable fonts, you can now pick intermediate styles
-that aren’t available as static fonts. Not all apps support variable fonts, and
-in those cases you can use the static font files for Inter:
-  Inter/static/Inter_18pt-Thin.ttf
-  Inter/static/Inter_18pt-ExtraLight.ttf
-  Inter/static/Inter_18pt-Light.ttf
-  Inter/static/Inter_18pt-Regular.ttf
-  Inter/static/Inter_18pt-Medium.ttf
-  Inter/static/Inter_18pt-SemiBold.ttf
-  Inter/static/Inter_18pt-Bold.ttf
-  Inter/static/Inter_18pt-ExtraBold.ttf
-  Inter/static/Inter_18pt-Black.ttf
-  Inter/static/Inter_24pt-Thin.ttf
-  Inter/static/Inter_24pt-ExtraLight.ttf
-  Inter/static/Inter_24pt-Light.ttf
-  Inter/static/Inter_24pt-Regular.ttf
-  Inter/static/Inter_24pt-Medium.ttf
-  Inter/static/Inter_24pt-SemiBold.ttf
-  Inter/static/Inter_24pt-Bold.ttf
-  Inter/static/Inter_24pt-ExtraBold.ttf
-  Inter/static/Inter_24pt-Black.ttf
-  Inter/static/Inter_28pt-Thin.ttf
-  Inter/static/Inter_28pt-ExtraLight.ttf
-  Inter/static/Inter_28pt-Light.ttf
-  Inter/static/Inter_28pt-Regular.ttf
-  Inter/static/Inter_28pt-Medium.ttf
-  Inter/static/Inter_28pt-SemiBold.ttf
-  Inter/static/Inter_28pt-Bold.ttf
-  Inter/static/Inter_28pt-ExtraBold.ttf
-  Inter/static/Inter_28pt-Black.ttf
-  Inter/static/Inter_18pt-ThinItalic.ttf
-  Inter/static/Inter_18pt-ExtraLightItalic.ttf
-  Inter/static/Inter_18pt-LightItalic.ttf
-  Inter/static/Inter_18pt-Italic.ttf
-  Inter/static/Inter_18pt-MediumItalic.ttf
-  Inter/static/Inter_18pt-SemiBoldItalic.ttf
-  Inter/static/Inter_18pt-BoldItalic.ttf
-  Inter/static/Inter_18pt-ExtraBoldItalic.ttf
-  Inter/static/Inter_18pt-BlackItalic.ttf
-  Inter/static/Inter_24pt-ThinItalic.ttf
-  Inter/static/Inter_24pt-ExtraLightItalic.ttf
-  Inter/static/Inter_24pt-LightItalic.ttf
-  Inter/static/Inter_24pt-Italic.ttf
-  Inter/static/Inter_24pt-MediumItalic.ttf
-  Inter/static/Inter_24pt-SemiBoldItalic.ttf
-  Inter/static/Inter_24pt-BoldItalic.ttf
-  Inter/static/Inter_24pt-ExtraBoldItalic.ttf
-  Inter/static/Inter_24pt-BlackItalic.ttf
-  Inter/static/Inter_28pt-ThinItalic.ttf
-  Inter/static/Inter_28pt-ExtraLightItalic.ttf
-  Inter/static/Inter_28pt-LightItalic.ttf
-  Inter/static/Inter_28pt-Italic.ttf
-  Inter/static/Inter_28pt-MediumItalic.ttf
-  Inter/static/Inter_28pt-SemiBoldItalic.ttf
-  Inter/static/Inter_28pt-BoldItalic.ttf
-  Inter/static/Inter_28pt-ExtraBoldItalic.ttf
-  Inter/static/Inter_28pt-BlackItalic.ttf
-
-Get started
------------
-
-1. Install the font files you want to use
-
-2. Use your app's font picker to view the font family and all the
-available styles
-
-Learn more about variable fonts
--------------------------------
-
-  https://developers.google.com/web/fundamentals/design-and-ux/typography/variable-fonts
-  https://variablefonts.typenetwork.com
-  https://medium.com/variable-fonts
-
-In desktop apps
-
-  https://theblog.adobe.com/can-variable-fonts-illustrator-cc
-  https://helpx.adobe.com/nz/photoshop/using/fonts.html#variable_fonts
-
-Online
-
-  https://developers.google.com/fonts/docs/getting_started
-  https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide
-  https://developer.microsoft.com/en-us/microsoft-edge/testdrive/demos/variable-fonts
-
-Installing fonts
-
-  MacOS: https://support.apple.com/en-us/HT201749
-  Linux: https://www.google.com/search?q=how+to+install+a+font+on+gnu%2Blinux
-  Windows: https://support.microsoft.com/en-us/help/314960/how-to-install-or-remove-a-font-in-windows
-
-Android Apps
-
-  https://developers.google.com/fonts/docs/android
-  https://developer.android.com/guide/topics/ui/look-and-feel/downloadable-fonts
-
-License
--------
-Please read the full license text (OFL.txt) to understand the permissions,
-restrictions and requirements for usage, redistribution, and modification.
-
-You can use them in your products & projects – print or digital,
-commercial or otherwise.
-
-This isn't legal advice, please consider consulting a lawyer and see the full
-license for all details.
-
-================
-File: public/fonts/Lato/OFL.txt
-================
-Copyright (c) 2010-2014 by tyPoland Lukasz Dziedzic (team@latofonts.com) with Reserved Font Name "Lato"
-
-This Font Software is licensed under the SIL Open Font License, Version 1.1.
-This license is copied below, and is also available with a FAQ at:
-https://openfontlicense.org
-
-
------------------------------------------------------------
-SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
------------------------------------------------------------
-
-PREAMBLE
-The goals of the Open Font License (OFL) are to stimulate worldwide
-development of collaborative font projects, to support the font creation
-efforts of academic and linguistic communities, and to provide a free and
-open framework in which fonts may be shared and improved in partnership
-with others.
-
-The OFL allows the licensed fonts to be used, studied, modified and
-redistributed freely as long as they are not sold by themselves. The
-fonts, including any derivative works, can be bundled, embedded, 
-redistributed and/or sold with any software provided that any reserved
-names are not used by derivative works. The fonts and derivatives,
-however, cannot be released under any other type of license. The
-requirement for fonts to remain under this license does not apply
-to any document created using the fonts or their derivatives.
-
-DEFINITIONS
-"Font Software" refers to the set of files released by the Copyright
-Holder(s) under this license and clearly marked as such. This may
-include source files, build scripts and documentation.
-
-"Reserved Font Name" refers to any names specified as such after the
-copyright statement(s).
-
-"Original Version" refers to the collection of Font Software components as
-distributed by the Copyright Holder(s).
-
-"Modified Version" refers to any derivative made by adding to, deleting,
-or substituting -- in part or in whole -- any of the components of the
-Original Version, by changing formats or by porting the Font Software to a
-new environment.
-
-"Author" refers to any designer, engineer, programmer, technical
-writer or other person who contributed to the Font Software.
-
-PERMISSION & CONDITIONS
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of the Font Software, to use, study, copy, merge, embed, modify,
-redistribute, and sell modified and unmodified copies of the Font
-Software, subject to the following conditions:
-
-1) Neither the Font Software nor any of its individual components,
-in Original or Modified Versions, may be sold by itself.
-
-2) Original or Modified Versions of the Font Software may be bundled,
-redistributed and/or sold with any software, provided that each copy
-contains the above copyright notice and this license. These can be
-included either as stand-alone text files, human-readable headers or
-in the appropriate machine-readable metadata fields within text or
-binary files as long as those fields can be easily viewed by the user.
-
-3) No Modified Version of the Font Software may use the Reserved Font
-Name(s) unless explicit written permission is granted by the corresponding
-Copyright Holder. This restriction only applies to the primary font name as
-presented to the users.
-
-4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
-Software shall not be used to promote, endorse or advertise any
-Modified Version, except to acknowledge the contribution(s) of the
-Copyright Holder(s) and the Author(s) or with their explicit written
-permission.
-
-5) The Font Software, modified or unmodified, in part or in whole,
-must be distributed entirely under this license, and must not be
-distributed under any other license. The requirement for fonts to
-remain under this license does not apply to any document created
-using the Font Software.
-
-TERMINATION
-This license becomes null and void if any of the above conditions are
-not met.
-
-DISCLAIMER
-THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
-OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
-COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
-DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
-OTHER DEALINGS IN THE FONT SOFTWARE.
-
-================
-File: public/fonts/Montserrat/OFL.txt
-================
-Copyright 2024 The Montserrat.Git Project Authors (https://github.com/JulietaUla/Montserrat.git)
-
-This Font Software is licensed under the SIL Open Font License, Version 1.1.
-This license is copied below, and is also available with a FAQ at:
-https://openfontlicense.org
-
-
------------------------------------------------------------
-SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
------------------------------------------------------------
-
-PREAMBLE
-The goals of the Open Font License (OFL) are to stimulate worldwide
-development of collaborative font projects, to support the font creation
-efforts of academic and linguistic communities, and to provide a free and
-open framework in which fonts may be shared and improved in partnership
-with others.
-
-The OFL allows the licensed fonts to be used, studied, modified and
-redistributed freely as long as they are not sold by themselves. The
-fonts, including any derivative works, can be bundled, embedded, 
-redistributed and/or sold with any software provided that any reserved
-names are not used by derivative works. The fonts and derivatives,
-however, cannot be released under any other type of license. The
-requirement for fonts to remain under this license does not apply
-to any document created using the fonts or their derivatives.
-
-DEFINITIONS
-"Font Software" refers to the set of files released by the Copyright
-Holder(s) under this license and clearly marked as such. This may
-include source files, build scripts and documentation.
-
-"Reserved Font Name" refers to any names specified as such after the
-copyright statement(s).
-
-"Original Version" refers to the collection of Font Software components as
-distributed by the Copyright Holder(s).
-
-"Modified Version" refers to any derivative made by adding to, deleting,
-or substituting -- in part or in whole -- any of the components of the
-Original Version, by changing formats or by porting the Font Software to a
-new environment.
-
-"Author" refers to any designer, engineer, programmer, technical
-writer or other person who contributed to the Font Software.
-
-PERMISSION & CONDITIONS
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of the Font Software, to use, study, copy, merge, embed, modify,
-redistribute, and sell modified and unmodified copies of the Font
-Software, subject to the following conditions:
-
-1) Neither the Font Software nor any of its individual components,
-in Original or Modified Versions, may be sold by itself.
-
-2) Original or Modified Versions of the Font Software may be bundled,
-redistributed and/or sold with any software, provided that each copy
-contains the above copyright notice and this license. These can be
-included either as stand-alone text files, human-readable headers or
-in the appropriate machine-readable metadata fields within text or
-binary files as long as those fields can be easily viewed by the user.
-
-3) No Modified Version of the Font Software may use the Reserved Font
-Name(s) unless explicit written permission is granted by the corresponding
-Copyright Holder. This restriction only applies to the primary font name as
-presented to the users.
-
-4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
-Software shall not be used to promote, endorse or advertise any
-Modified Version, except to acknowledge the contribution(s) of the
-Copyright Holder(s) and the Author(s) or with their explicit written
-permission.
-
-5) The Font Software, modified or unmodified, in part or in whole,
-must be distributed entirely under this license, and must not be
-distributed under any other license. The requirement for fonts to
-remain under this license does not apply to any document created
-using the Font Software.
-
-TERMINATION
-This license becomes null and void if any of the above conditions are
-not met.
-
-DISCLAIMER
-THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
-OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
-COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
-DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
-OTHER DEALINGS IN THE FONT SOFTWARE.
-
-================
-File: public/fonts/Montserrat/README.txt
-================
-Montserrat Variable Font
-========================
-
-This download contains Montserrat as both variable fonts and static fonts.
-
-Montserrat is a variable font with this axis:
-  wght
-
-This means all the styles are contained in these files:
-  Montserrat/Montserrat-VariableFont_wght.ttf
-  Montserrat/Montserrat-Italic-VariableFont_wght.ttf
-
-If your app fully supports variable fonts, you can now pick intermediate styles
-that aren’t available as static fonts. Not all apps support variable fonts, and
-in those cases you can use the static font files for Montserrat:
-  Montserrat/static/Montserrat-Thin.ttf
-  Montserrat/static/Montserrat-ExtraLight.ttf
-  Montserrat/static/Montserrat-Light.ttf
-  Montserrat/static/Montserrat-Regular.ttf
-  Montserrat/static/Montserrat-Medium.ttf
-  Montserrat/static/Montserrat-SemiBold.ttf
-  Montserrat/static/Montserrat-Bold.ttf
-  Montserrat/static/Montserrat-ExtraBold.ttf
-  Montserrat/static/Montserrat-Black.ttf
-  Montserrat/static/Montserrat-ThinItalic.ttf
-  Montserrat/static/Montserrat-ExtraLightItalic.ttf
-  Montserrat/static/Montserrat-LightItalic.ttf
-  Montserrat/static/Montserrat-Italic.ttf
-  Montserrat/static/Montserrat-MediumItalic.ttf
-  Montserrat/static/Montserrat-SemiBoldItalic.ttf
-  Montserrat/static/Montserrat-BoldItalic.ttf
-  Montserrat/static/Montserrat-ExtraBoldItalic.ttf
-  Montserrat/static/Montserrat-BlackItalic.ttf
-
-Get started
------------
-
-1. Install the font files you want to use
-
-2. Use your app's font picker to view the font family and all the
-available styles
-
-Learn more about variable fonts
--------------------------------
-
-  https://developers.google.com/web/fundamentals/design-and-ux/typography/variable-fonts
-  https://variablefonts.typenetwork.com
-  https://medium.com/variable-fonts
-
-In desktop apps
-
-  https://theblog.adobe.com/can-variable-fonts-illustrator-cc
-  https://helpx.adobe.com/nz/photoshop/using/fonts.html#variable_fonts
-
-Online
-
-  https://developers.google.com/fonts/docs/getting_started
-  https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide
-  https://developer.microsoft.com/en-us/microsoft-edge/testdrive/demos/variable-fonts
-
-Installing fonts
-
-  MacOS: https://support.apple.com/en-us/HT201749
-  Linux: https://www.google.com/search?q=how+to+install+a+font+on+gnu%2Blinux
-  Windows: https://support.microsoft.com/en-us/help/314960/how-to-install-or-remove-a-font-in-windows
-
-Android Apps
-
-  https://developers.google.com/fonts/docs/android
-  https://developer.android.com/guide/topics/ui/look-and-feel/downloadable-fonts
-
-License
--------
-Please read the full license text (OFL.txt) to understand the permissions,
-restrictions and requirements for usage, redistribution, and modification.
-
-You can use them in your products & projects – print or digital,
-commercial or otherwise.
-
-This isn't legal advice, please consider consulting a lawyer and see the full
-license for all details.
-
-================
-File: public/fonts/Open_Sans/OFL.txt
-================
-Copyright 2020 The Open Sans Project Authors (https://github.com/googlefonts/opensans)
-
-This Font Software is licensed under the SIL Open Font License, Version 1.1.
-This license is copied below, and is also available with a FAQ at:
-https://openfontlicense.org
-
-
------------------------------------------------------------
-SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
------------------------------------------------------------
-
-PREAMBLE
-The goals of the Open Font License (OFL) are to stimulate worldwide
-development of collaborative font projects, to support the font creation
-efforts of academic and linguistic communities, and to provide a free and
-open framework in which fonts may be shared and improved in partnership
-with others.
-
-The OFL allows the licensed fonts to be used, studied, modified and
-redistributed freely as long as they are not sold by themselves. The
-fonts, including any derivative works, can be bundled, embedded, 
-redistributed and/or sold with any software provided that any reserved
-names are not used by derivative works. The fonts and derivatives,
-however, cannot be released under any other type of license. The
-requirement for fonts to remain under this license does not apply
-to any document created using the fonts or their derivatives.
-
-DEFINITIONS
-"Font Software" refers to the set of files released by the Copyright
-Holder(s) under this license and clearly marked as such. This may
-include source files, build scripts and documentation.
-
-"Reserved Font Name" refers to any names specified as such after the
-copyright statement(s).
-
-"Original Version" refers to the collection of Font Software components as
-distributed by the Copyright Holder(s).
-
-"Modified Version" refers to any derivative made by adding to, deleting,
-or substituting -- in part or in whole -- any of the components of the
-Original Version, by changing formats or by porting the Font Software to a
-new environment.
-
-"Author" refers to any designer, engineer, programmer, technical
-writer or other person who contributed to the Font Software.
-
-PERMISSION & CONDITIONS
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of the Font Software, to use, study, copy, merge, embed, modify,
-redistribute, and sell modified and unmodified copies of the Font
-Software, subject to the following conditions:
-
-1) Neither the Font Software nor any of its individual components,
-in Original or Modified Versions, may be sold by itself.
-
-2) Original or Modified Versions of the Font Software may be bundled,
-redistributed and/or sold with any software, provided that each copy
-contains the above copyright notice and this license. These can be
-included either as stand-alone text files, human-readable headers or
-in the appropriate machine-readable metadata fields within text or
-binary files as long as those fields can be easily viewed by the user.
-
-3) No Modified Version of the Font Software may use the Reserved Font
-Name(s) unless explicit written permission is granted by the corresponding
-Copyright Holder. This restriction only applies to the primary font name as
-presented to the users.
-
-4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
-Software shall not be used to promote, endorse or advertise any
-Modified Version, except to acknowledge the contribution(s) of the
-Copyright Holder(s) and the Author(s) or with their explicit written
-permission.
-
-5) The Font Software, modified or unmodified, in part or in whole,
-must be distributed entirely under this license, and must not be
-distributed under any other license. The requirement for fonts to
-remain under this license does not apply to any document created
-using the Font Software.
-
-TERMINATION
-This license becomes null and void if any of the above conditions are
-not met.
-
-DISCLAIMER
-THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
-OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
-COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
-DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
-OTHER DEALINGS IN THE FONT SOFTWARE.
-
-================
-File: public/fonts/Open_Sans/README.txt
-================
-Open Sans Variable Font
-=======================
-
-This download contains Open Sans as both variable fonts and static fonts.
-
-Open Sans is a variable font with these axes:
-  wdth
-  wght
-
-This means all the styles are contained in these files:
-  OpenSans-VariableFont_wdth,wght.ttf
-  OpenSans-Italic-VariableFont_wdth,wght.ttf
-
-If your app fully supports variable fonts, you can now pick intermediate styles
-that aren’t available as static fonts. Not all apps support variable fonts, and
-in those cases you can use the static font files for Open Sans:
-  static/OpenSans_Condensed-Light.ttf
-  static/OpenSans_Condensed-Regular.ttf
-  static/OpenSans_Condensed-Medium.ttf
-  static/OpenSans_Condensed-SemiBold.ttf
-  static/OpenSans_Condensed-Bold.ttf
-  static/OpenSans_Condensed-ExtraBold.ttf
-  static/OpenSans_SemiCondensed-Light.ttf
-  static/OpenSans_SemiCondensed-Regular.ttf
-  static/OpenSans_SemiCondensed-Medium.ttf
-  static/OpenSans_SemiCondensed-SemiBold.ttf
-  static/OpenSans_SemiCondensed-Bold.ttf
-  static/OpenSans_SemiCondensed-ExtraBold.ttf
-  static/OpenSans-Light.ttf
-  static/OpenSans-Regular.ttf
-  static/OpenSans-Medium.ttf
-  static/OpenSans-SemiBold.ttf
-  static/OpenSans-Bold.ttf
-  static/OpenSans-ExtraBold.ttf
-  static/OpenSans_Condensed-LightItalic.ttf
-  static/OpenSans_Condensed-Italic.ttf
-  static/OpenSans_Condensed-MediumItalic.ttf
-  static/OpenSans_Condensed-SemiBoldItalic.ttf
-  static/OpenSans_Condensed-BoldItalic.ttf
-  static/OpenSans_Condensed-ExtraBoldItalic.ttf
-  static/OpenSans_SemiCondensed-LightItalic.ttf
-  static/OpenSans_SemiCondensed-Italic.ttf
-  static/OpenSans_SemiCondensed-MediumItalic.ttf
-  static/OpenSans_SemiCondensed-SemiBoldItalic.ttf
-  static/OpenSans_SemiCondensed-BoldItalic.ttf
-  static/OpenSans_SemiCondensed-ExtraBoldItalic.ttf
-  static/OpenSans-LightItalic.ttf
-  static/OpenSans-Italic.ttf
-  static/OpenSans-MediumItalic.ttf
-  static/OpenSans-SemiBoldItalic.ttf
-  static/OpenSans-BoldItalic.ttf
-  static/OpenSans-ExtraBoldItalic.ttf
-
-Get started
------------
-
-1. Install the font files you want to use
-
-2. Use your app's font picker to view the font family and all the
-available styles
-
-Learn more about variable fonts
--------------------------------
-
-  https://developers.google.com/web/fundamentals/design-and-ux/typography/variable-fonts
-  https://variablefonts.typenetwork.com
-  https://medium.com/variable-fonts
-
-In desktop apps
-
-  https://theblog.adobe.com/can-variable-fonts-illustrator-cc
-  https://helpx.adobe.com/nz/photoshop/using/fonts.html#variable_fonts
-
-Online
-
-  https://developers.google.com/fonts/docs/getting_started
-  https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide
-  https://developer.microsoft.com/en-us/microsoft-edge/testdrive/demos/variable-fonts
-
-Installing fonts
-
-  MacOS: https://support.apple.com/en-us/HT201749
-  Linux: https://www.google.com/search?q=how+to+install+a+font+on+gnu%2Blinux
-  Windows: https://support.microsoft.com/en-us/help/314960/how-to-install-or-remove-a-font-in-windows
-
-Android Apps
-
-  https://developers.google.com/fonts/docs/android
-  https://developer.android.com/guide/topics/ui/look-and-feel/downloadable-fonts
-
-License
--------
-Please read the full license text (OFL.txt) to understand the permissions,
-restrictions and requirements for usage, redistribution, and modification.
-
-You can use them in your products & projects – print or digital,
-commercial or otherwise.
-
-This isn't legal advice, please consider consulting a lawyer and see the full
-license for all details.
-
-================
-File: public/fonts/Poppins/OFL.txt
-================
-Copyright 2020 The Poppins Project Authors (https://github.com/itfoundry/Poppins)
-
-This Font Software is licensed under the SIL Open Font License, Version 1.1.
-This license is copied below, and is also available with a FAQ at:
-https://openfontlicense.org
-
-
------------------------------------------------------------
-SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
------------------------------------------------------------
-
-PREAMBLE
-The goals of the Open Font License (OFL) are to stimulate worldwide
-development of collaborative font projects, to support the font creation
-efforts of academic and linguistic communities, and to provide a free and
-open framework in which fonts may be shared and improved in partnership
-with others.
-
-The OFL allows the licensed fonts to be used, studied, modified and
-redistributed freely as long as they are not sold by themselves. The
-fonts, including any derivative works, can be bundled, embedded, 
-redistributed and/or sold with any software provided that any reserved
-names are not used by derivative works. The fonts and derivatives,
-however, cannot be released under any other type of license. The
-requirement for fonts to remain under this license does not apply
-to any document created using the fonts or their derivatives.
-
-DEFINITIONS
-"Font Software" refers to the set of files released by the Copyright
-Holder(s) under this license and clearly marked as such. This may
-include source files, build scripts and documentation.
-
-"Reserved Font Name" refers to any names specified as such after the
-copyright statement(s).
-
-"Original Version" refers to the collection of Font Software components as
-distributed by the Copyright Holder(s).
-
-"Modified Version" refers to any derivative made by adding to, deleting,
-or substituting -- in part or in whole -- any of the components of the
-Original Version, by changing formats or by porting the Font Software to a
-new environment.
-
-"Author" refers to any designer, engineer, programmer, technical
-writer or other person who contributed to the Font Software.
-
-PERMISSION & CONDITIONS
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of the Font Software, to use, study, copy, merge, embed, modify,
-redistribute, and sell modified and unmodified copies of the Font
-Software, subject to the following conditions:
-
-1) Neither the Font Software nor any of its individual components,
-in Original or Modified Versions, may be sold by itself.
-
-2) Original or Modified Versions of the Font Software may be bundled,
-redistributed and/or sold with any software, provided that each copy
-contains the above copyright notice and this license. These can be
-included either as stand-alone text files, human-readable headers or
-in the appropriate machine-readable metadata fields within text or
-binary files as long as those fields can be easily viewed by the user.
-
-3) No Modified Version of the Font Software may use the Reserved Font
-Name(s) unless explicit written permission is granted by the corresponding
-Copyright Holder. This restriction only applies to the primary font name as
-presented to the users.
-
-4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
-Software shall not be used to promote, endorse or advertise any
-Modified Version, except to acknowledge the contribution(s) of the
-Copyright Holder(s) and the Author(s) or with their explicit written
-permission.
-
-5) The Font Software, modified or unmodified, in part or in whole,
-must be distributed entirely under this license, and must not be
-distributed under any other license. The requirement for fonts to
-remain under this license does not apply to any document created
-using the Font Software.
-
-TERMINATION
-This license becomes null and void if any of the above conditions are
-not met.
-
-DISCLAIMER
-THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
-OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
-COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
-DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
-OTHER DEALINGS IN THE FONT SOFTWARE.
-
-================
 File: public/icon.svg
 ================
 PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE4MCAxODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHN0eWxlPgogICAgQG1lZGlhIChwcmVmZXJzLWNvbG9yLXNjaGVtZTogbGlnaHQpIHsKICAgICAgLmJhY2tncm91bmQgeyBmaWxsOiBibGFjazsgfQogICAgICAuZm9yZWdyb3VuZCB7IGZpbGw6IHdoaXRlOyB9CiAgICB9CiAgICBAbWVkaWEgKHByZWZlcnMtY29sb3Itc2NoZW1lOiBkYXJrKSB7CiAgICAgIC5iYWNrZ3JvdW5kIHsgZmlsbDogd2hpdGU7IH0KICAgICAgLmZvcmVncm91bmQgeyBmaWxsOiBibGFjazsgfQogICAgfQogIDwvc3R5bGU+CiAgPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzc5NjBfNDM5NDUpIj4KICAgIDxyZWN0IGNsYXNzPSJiYWNrZ3JvdW5kIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgcng9IjM3IiAvPgogICAgPGcgc3R5bGU9InRyYW5zZm9ybTogc2NhbGUoOTUlKTsgdHJhbnNmb3JtLW9yaWdpbjogY2VudGVyIj4KICAgICAgPHBhdGggY2xhc3M9ImZvcmVncm91bmQiCiAgICAgICAgZD0iTTEwMS4xNDEgNTNIMTM2LjYzMkMxNTEuMDIzIDUzIDE2Mi42ODkgNjQuNjY2MiAxNjIuNjg5IDc5LjA1NzNWMTEyLjkwNEgxNDguMTEyVjc5LjA1NzNDMTQ4LjExMiA3OC43MTA1IDE0OC4wOTggNzguMzY2MiAxNDguMDcyIDc4LjAyNTFMMTEyLjU4MSAxMTIuODk4QzExMi43MDEgMTEyLjkwMiAxMTIuODIxIDExMi45MDQgMTEyLjk0MSAxMTIuOTA0SDE0OC4xMTJWMTI2LjY3MkgxMTIuOTQxQzk4LjU1MDQgMTI2LjY3MiA4Ni41NjM4IDExNC44OTEgODYuNTYzOCAxMDAuNVY2Ni43NDM0SDEwMS4xNDFWMTAwLjVDMTAxLjE0MSAxMDEuMTUgMTAxLjE5MSAxMDEuNzkyIDEwMS4yODkgMTAyLjQyMkwxMzcuNTYgNjYuNzgxNkMxMzcuMjU1IDY2Ljc1NjMgMTM2Ljk0NSA2Ni43NDM0IDEzNi42MzIgNjYuNzQzNEgxMDEuMTQxVjUzWiIgLz4KICAgICAgPHBhdGggY2xhc3M9ImZvcmVncm91bmQiCiAgICAgICAgZD0iTTY1LjI5MjYgMTI0LjEzNkwxNCA2Ni43MzcySDM0LjYzNTVMNjQuNzQ5NSAxMDAuNDM2VjY2LjczNzJIODAuMTM2NVYxMTguNDdDODAuMTM2NSAxMjYuMjc4IDcwLjQ5NTMgMTI5Ljk1OCA2NS4yOTI2IDEyNC4xMzZaIiAvPgogICAgPC9nPgogIDwvZz4KICA8ZGVmcz4KICAgIDxjbGlwUGF0aCBpZD0iY2xpcDBfNzk2MF80Mzk0NSI+CiAgICAgIDxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiBmaWxsPSJ3aGl0ZSIgLz4KICAgIDwvY2xpcFBhdGg+CiAgPC9kZWZzPgo8L3N2Zz4=
@@ -5688,6 +4474,66 @@ File: tsconfig.json
   ],
   "exclude": [
     "node_modules"
+  ]
+}
+
+================
+File: app/robots.ts
+================
+import { MetadataRoute } from 'next'
+export default function robots(): MetadataRoute.Robots {
+  return {
+    rules: {
+      userAgent: '*',
+      allow: '/',
+    },
+    sitemap: 'https://stvshy.com/sitemap.xml',
+  }
+}
+
+================
+File: app/sitemap.ts
+================
+import { MetadataRoute } from 'next'
+export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = 'https://stvshy.com'
+  return [
+    {
+      url: baseUrl,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 1,
+    },
+    {
+      url: `${baseUrl}/about`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/dev`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/music`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/about/pl`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/dev/pl`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
   ]
 }
 
@@ -8055,6 +6901,1219 @@ function useToast() {
 export { useToast, toast }
 
 ================
+File: public/fonts/Figtree/OFL.txt
+================
+Copyright 2022 The Figtree Project Authors (https://github.com/erikdkennedy/figtree)
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+https://openfontlicense.org
+
+
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded, 
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+
+================
+File: public/fonts/Figtree/README.txt
+================
+Figtree Variable Font
+=====================
+
+This download contains Figtree as both variable fonts and static fonts.
+
+Figtree is a variable font with this axis:
+  wght
+
+This means all the styles are contained in these files:
+  Figtree/Figtree-VariableFont_wght.ttf
+  Figtree/Figtree-Italic-VariableFont_wght.ttf
+
+If your app fully supports variable fonts, you can now pick intermediate styles
+that aren’t available as static fonts. Not all apps support variable fonts, and
+in those cases you can use the static font files for Figtree:
+  Figtree/static/Figtree-Light.ttf
+  Figtree/static/Figtree-Regular.ttf
+  Figtree/static/Figtree-Medium.ttf
+  Figtree/static/Figtree-SemiBold.ttf
+  Figtree/static/Figtree-Bold.ttf
+  Figtree/static/Figtree-ExtraBold.ttf
+  Figtree/static/Figtree-Black.ttf
+  Figtree/static/Figtree-LightItalic.ttf
+  Figtree/static/Figtree-Italic.ttf
+  Figtree/static/Figtree-MediumItalic.ttf
+  Figtree/static/Figtree-SemiBoldItalic.ttf
+  Figtree/static/Figtree-BoldItalic.ttf
+  Figtree/static/Figtree-ExtraBoldItalic.ttf
+  Figtree/static/Figtree-BlackItalic.ttf
+
+Get started
+-----------
+
+1. Install the font files you want to use
+
+2. Use your app's font picker to view the font family and all the
+available styles
+
+Learn more about variable fonts
+-------------------------------
+
+  https://developers.google.com/web/fundamentals/design-and-ux/typography/variable-fonts
+  https://variablefonts.typenetwork.com
+  https://medium.com/variable-fonts
+
+In desktop apps
+
+  https://theblog.adobe.com/can-variable-fonts-illustrator-cc
+  https://helpx.adobe.com/nz/photoshop/using/fonts.html#variable_fonts
+
+Online
+
+  https://developers.google.com/fonts/docs/getting_started
+  https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide
+  https://developer.microsoft.com/en-us/microsoft-edge/testdrive/demos/variable-fonts
+
+Installing fonts
+
+  MacOS: https://support.apple.com/en-us/HT201749
+  Linux: https://www.google.com/search?q=how+to+install+a+font+on+gnu%2Blinux
+  Windows: https://support.microsoft.com/en-us/help/314960/how-to-install-or-remove-a-font-in-windows
+
+Android Apps
+
+  https://developers.google.com/fonts/docs/android
+  https://developer.android.com/guide/topics/ui/look-and-feel/downloadable-fonts
+
+License
+-------
+Please read the full license text (OFL.txt) to understand the permissions,
+restrictions and requirements for usage, redistribution, and modification.
+
+You can use them in your products & projects – print or digital,
+commercial or otherwise.
+
+This isn't legal advice, please consider consulting a lawyer and see the full
+license for all details.
+
+================
+File: public/fonts/Google_Sans/OFL.txt
+================
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+https://openfontlicense.org
+
+
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded, 
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+
+================
+File: public/fonts/Google_Sans/README.txt
+================
+Google Sans Variable Font
+=========================
+
+This download contains Google Sans as both variable fonts and static fonts.
+
+Google Sans is a variable font with these axes:
+  GRAD
+  opsz
+  wght
+
+This means all the styles are contained in these files:
+  Google_Sans/GoogleSans-VariableFont_GRAD,opsz,wght.ttf
+  Google_Sans/GoogleSans-Italic-VariableFont_GRAD,opsz,wght.ttf
+
+If your app fully supports variable fonts, you can now pick intermediate styles
+that aren’t available as static fonts. Not all apps support variable fonts, and
+in those cases you can use the static font files for Google Sans:
+  Google_Sans/static/GoogleSans_17pt-Regular.ttf
+  Google_Sans/static/GoogleSans_17pt-Medium.ttf
+  Google_Sans/static/GoogleSans_17pt-SemiBold.ttf
+  Google_Sans/static/GoogleSans_17pt-Bold.ttf
+  Google_Sans/static/GoogleSans-Regular.ttf
+  Google_Sans/static/GoogleSans-Medium.ttf
+  Google_Sans/static/GoogleSans-SemiBold.ttf
+  Google_Sans/static/GoogleSans-Bold.ttf
+  Google_Sans/static/GoogleSans_17pt-Italic.ttf
+  Google_Sans/static/GoogleSans_17pt-MediumItalic.ttf
+  Google_Sans/static/GoogleSans_17pt-SemiBoldItalic.ttf
+  Google_Sans/static/GoogleSans_17pt-BoldItalic.ttf
+  Google_Sans/static/GoogleSans-Italic.ttf
+  Google_Sans/static/GoogleSans-MediumItalic.ttf
+  Google_Sans/static/GoogleSans-SemiBoldItalic.ttf
+  Google_Sans/static/GoogleSans-BoldItalic.ttf
+
+Get started
+-----------
+
+1. Install the font files you want to use
+
+2. Use your app's font picker to view the font family and all the
+available styles
+
+Learn more about variable fonts
+-------------------------------
+
+  https://developers.google.com/web/fundamentals/design-and-ux/typography/variable-fonts
+  https://variablefonts.typenetwork.com
+  https://medium.com/variable-fonts
+
+In desktop apps
+
+  https://theblog.adobe.com/can-variable-fonts-illustrator-cc
+  https://helpx.adobe.com/nz/photoshop/using/fonts.html#variable_fonts
+
+Online
+
+  https://developers.google.com/fonts/docs/getting_started
+  https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide
+  https://developer.microsoft.com/en-us/microsoft-edge/testdrive/demos/variable-fonts
+
+Installing fonts
+
+  MacOS: https://support.apple.com/en-us/HT201749
+  Linux: https://www.google.com/search?q=how+to+install+a+font+on+gnu%2Blinux
+  Windows: https://support.microsoft.com/en-us/help/314960/how-to-install-or-remove-a-font-in-windows
+
+Android Apps
+
+  https://developers.google.com/fonts/docs/android
+  https://developer.android.com/guide/topics/ui/look-and-feel/downloadable-fonts
+
+License
+-------
+Please read the full license text (OFL.txt) to understand the permissions,
+restrictions and requirements for usage, redistribution, and modification.
+
+You can use them in your products & projects – print or digital,
+commercial or otherwise.
+
+This isn't legal advice, please consider consulting a lawyer and see the full
+license for all details.
+
+================
+File: public/fonts/Inter/OFL.txt
+================
+Copyright 2020 The Inter Project Authors (https://github.com/rsms/inter)
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+https://openfontlicense.org
+
+
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded, 
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+
+================
+File: public/fonts/Inter/README.txt
+================
+Inter Variable Font
+===================
+
+This download contains Inter as both variable fonts and static fonts.
+
+Inter is a variable font with these axes:
+  opsz
+  wght
+
+This means all the styles are contained in these files:
+  Inter/Inter-VariableFont_opsz,wght.ttf
+  Inter/Inter-Italic-VariableFont_opsz,wght.ttf
+
+If your app fully supports variable fonts, you can now pick intermediate styles
+that aren’t available as static fonts. Not all apps support variable fonts, and
+in those cases you can use the static font files for Inter:
+  Inter/static/Inter_18pt-Thin.ttf
+  Inter/static/Inter_18pt-ExtraLight.ttf
+  Inter/static/Inter_18pt-Light.ttf
+  Inter/static/Inter_18pt-Regular.ttf
+  Inter/static/Inter_18pt-Medium.ttf
+  Inter/static/Inter_18pt-SemiBold.ttf
+  Inter/static/Inter_18pt-Bold.ttf
+  Inter/static/Inter_18pt-ExtraBold.ttf
+  Inter/static/Inter_18pt-Black.ttf
+  Inter/static/Inter_24pt-Thin.ttf
+  Inter/static/Inter_24pt-ExtraLight.ttf
+  Inter/static/Inter_24pt-Light.ttf
+  Inter/static/Inter_24pt-Regular.ttf
+  Inter/static/Inter_24pt-Medium.ttf
+  Inter/static/Inter_24pt-SemiBold.ttf
+  Inter/static/Inter_24pt-Bold.ttf
+  Inter/static/Inter_24pt-ExtraBold.ttf
+  Inter/static/Inter_24pt-Black.ttf
+  Inter/static/Inter_28pt-Thin.ttf
+  Inter/static/Inter_28pt-ExtraLight.ttf
+  Inter/static/Inter_28pt-Light.ttf
+  Inter/static/Inter_28pt-Regular.ttf
+  Inter/static/Inter_28pt-Medium.ttf
+  Inter/static/Inter_28pt-SemiBold.ttf
+  Inter/static/Inter_28pt-Bold.ttf
+  Inter/static/Inter_28pt-ExtraBold.ttf
+  Inter/static/Inter_28pt-Black.ttf
+  Inter/static/Inter_18pt-ThinItalic.ttf
+  Inter/static/Inter_18pt-ExtraLightItalic.ttf
+  Inter/static/Inter_18pt-LightItalic.ttf
+  Inter/static/Inter_18pt-Italic.ttf
+  Inter/static/Inter_18pt-MediumItalic.ttf
+  Inter/static/Inter_18pt-SemiBoldItalic.ttf
+  Inter/static/Inter_18pt-BoldItalic.ttf
+  Inter/static/Inter_18pt-ExtraBoldItalic.ttf
+  Inter/static/Inter_18pt-BlackItalic.ttf
+  Inter/static/Inter_24pt-ThinItalic.ttf
+  Inter/static/Inter_24pt-ExtraLightItalic.ttf
+  Inter/static/Inter_24pt-LightItalic.ttf
+  Inter/static/Inter_24pt-Italic.ttf
+  Inter/static/Inter_24pt-MediumItalic.ttf
+  Inter/static/Inter_24pt-SemiBoldItalic.ttf
+  Inter/static/Inter_24pt-BoldItalic.ttf
+  Inter/static/Inter_24pt-ExtraBoldItalic.ttf
+  Inter/static/Inter_24pt-BlackItalic.ttf
+  Inter/static/Inter_28pt-ThinItalic.ttf
+  Inter/static/Inter_28pt-ExtraLightItalic.ttf
+  Inter/static/Inter_28pt-LightItalic.ttf
+  Inter/static/Inter_28pt-Italic.ttf
+  Inter/static/Inter_28pt-MediumItalic.ttf
+  Inter/static/Inter_28pt-SemiBoldItalic.ttf
+  Inter/static/Inter_28pt-BoldItalic.ttf
+  Inter/static/Inter_28pt-ExtraBoldItalic.ttf
+  Inter/static/Inter_28pt-BlackItalic.ttf
+
+Get started
+-----------
+
+1. Install the font files you want to use
+
+2. Use your app's font picker to view the font family and all the
+available styles
+
+Learn more about variable fonts
+-------------------------------
+
+  https://developers.google.com/web/fundamentals/design-and-ux/typography/variable-fonts
+  https://variablefonts.typenetwork.com
+  https://medium.com/variable-fonts
+
+In desktop apps
+
+  https://theblog.adobe.com/can-variable-fonts-illustrator-cc
+  https://helpx.adobe.com/nz/photoshop/using/fonts.html#variable_fonts
+
+Online
+
+  https://developers.google.com/fonts/docs/getting_started
+  https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide
+  https://developer.microsoft.com/en-us/microsoft-edge/testdrive/demos/variable-fonts
+
+Installing fonts
+
+  MacOS: https://support.apple.com/en-us/HT201749
+  Linux: https://www.google.com/search?q=how+to+install+a+font+on+gnu%2Blinux
+  Windows: https://support.microsoft.com/en-us/help/314960/how-to-install-or-remove-a-font-in-windows
+
+Android Apps
+
+  https://developers.google.com/fonts/docs/android
+  https://developer.android.com/guide/topics/ui/look-and-feel/downloadable-fonts
+
+License
+-------
+Please read the full license text (OFL.txt) to understand the permissions,
+restrictions and requirements for usage, redistribution, and modification.
+
+You can use them in your products & projects – print or digital,
+commercial or otherwise.
+
+This isn't legal advice, please consider consulting a lawyer and see the full
+license for all details.
+
+================
+File: public/fonts/Lato/OFL.txt
+================
+Copyright (c) 2010-2014 by tyPoland Lukasz Dziedzic (team@latofonts.com) with Reserved Font Name "Lato"
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+https://openfontlicense.org
+
+
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded, 
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+
+================
+File: public/fonts/Montserrat/OFL.txt
+================
+Copyright 2024 The Montserrat.Git Project Authors (https://github.com/JulietaUla/Montserrat.git)
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+https://openfontlicense.org
+
+
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded, 
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+
+================
+File: public/fonts/Montserrat/README.txt
+================
+Montserrat Variable Font
+========================
+
+This download contains Montserrat as both variable fonts and static fonts.
+
+Montserrat is a variable font with this axis:
+  wght
+
+This means all the styles are contained in these files:
+  Montserrat/Montserrat-VariableFont_wght.ttf
+  Montserrat/Montserrat-Italic-VariableFont_wght.ttf
+
+If your app fully supports variable fonts, you can now pick intermediate styles
+that aren’t available as static fonts. Not all apps support variable fonts, and
+in those cases you can use the static font files for Montserrat:
+  Montserrat/static/Montserrat-Thin.ttf
+  Montserrat/static/Montserrat-ExtraLight.ttf
+  Montserrat/static/Montserrat-Light.ttf
+  Montserrat/static/Montserrat-Regular.ttf
+  Montserrat/static/Montserrat-Medium.ttf
+  Montserrat/static/Montserrat-SemiBold.ttf
+  Montserrat/static/Montserrat-Bold.ttf
+  Montserrat/static/Montserrat-ExtraBold.ttf
+  Montserrat/static/Montserrat-Black.ttf
+  Montserrat/static/Montserrat-ThinItalic.ttf
+  Montserrat/static/Montserrat-ExtraLightItalic.ttf
+  Montserrat/static/Montserrat-LightItalic.ttf
+  Montserrat/static/Montserrat-Italic.ttf
+  Montserrat/static/Montserrat-MediumItalic.ttf
+  Montserrat/static/Montserrat-SemiBoldItalic.ttf
+  Montserrat/static/Montserrat-BoldItalic.ttf
+  Montserrat/static/Montserrat-ExtraBoldItalic.ttf
+  Montserrat/static/Montserrat-BlackItalic.ttf
+
+Get started
+-----------
+
+1. Install the font files you want to use
+
+2. Use your app's font picker to view the font family and all the
+available styles
+
+Learn more about variable fonts
+-------------------------------
+
+  https://developers.google.com/web/fundamentals/design-and-ux/typography/variable-fonts
+  https://variablefonts.typenetwork.com
+  https://medium.com/variable-fonts
+
+In desktop apps
+
+  https://theblog.adobe.com/can-variable-fonts-illustrator-cc
+  https://helpx.adobe.com/nz/photoshop/using/fonts.html#variable_fonts
+
+Online
+
+  https://developers.google.com/fonts/docs/getting_started
+  https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide
+  https://developer.microsoft.com/en-us/microsoft-edge/testdrive/demos/variable-fonts
+
+Installing fonts
+
+  MacOS: https://support.apple.com/en-us/HT201749
+  Linux: https://www.google.com/search?q=how+to+install+a+font+on+gnu%2Blinux
+  Windows: https://support.microsoft.com/en-us/help/314960/how-to-install-or-remove-a-font-in-windows
+
+Android Apps
+
+  https://developers.google.com/fonts/docs/android
+  https://developer.android.com/guide/topics/ui/look-and-feel/downloadable-fonts
+
+License
+-------
+Please read the full license text (OFL.txt) to understand the permissions,
+restrictions and requirements for usage, redistribution, and modification.
+
+You can use them in your products & projects – print or digital,
+commercial or otherwise.
+
+This isn't legal advice, please consider consulting a lawyer and see the full
+license for all details.
+
+================
+File: public/fonts/Open_Sans/OFL.txt
+================
+Copyright 2020 The Open Sans Project Authors (https://github.com/googlefonts/opensans)
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+https://openfontlicense.org
+
+
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded, 
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+
+================
+File: public/fonts/Open_Sans/README.txt
+================
+Open Sans Variable Font
+=======================
+
+This download contains Open Sans as both variable fonts and static fonts.
+
+Open Sans is a variable font with these axes:
+  wdth
+  wght
+
+This means all the styles are contained in these files:
+  OpenSans-VariableFont_wdth,wght.ttf
+  OpenSans-Italic-VariableFont_wdth,wght.ttf
+
+If your app fully supports variable fonts, you can now pick intermediate styles
+that aren’t available as static fonts. Not all apps support variable fonts, and
+in those cases you can use the static font files for Open Sans:
+  static/OpenSans_Condensed-Light.ttf
+  static/OpenSans_Condensed-Regular.ttf
+  static/OpenSans_Condensed-Medium.ttf
+  static/OpenSans_Condensed-SemiBold.ttf
+  static/OpenSans_Condensed-Bold.ttf
+  static/OpenSans_Condensed-ExtraBold.ttf
+  static/OpenSans_SemiCondensed-Light.ttf
+  static/OpenSans_SemiCondensed-Regular.ttf
+  static/OpenSans_SemiCondensed-Medium.ttf
+  static/OpenSans_SemiCondensed-SemiBold.ttf
+  static/OpenSans_SemiCondensed-Bold.ttf
+  static/OpenSans_SemiCondensed-ExtraBold.ttf
+  static/OpenSans-Light.ttf
+  static/OpenSans-Regular.ttf
+  static/OpenSans-Medium.ttf
+  static/OpenSans-SemiBold.ttf
+  static/OpenSans-Bold.ttf
+  static/OpenSans-ExtraBold.ttf
+  static/OpenSans_Condensed-LightItalic.ttf
+  static/OpenSans_Condensed-Italic.ttf
+  static/OpenSans_Condensed-MediumItalic.ttf
+  static/OpenSans_Condensed-SemiBoldItalic.ttf
+  static/OpenSans_Condensed-BoldItalic.ttf
+  static/OpenSans_Condensed-ExtraBoldItalic.ttf
+  static/OpenSans_SemiCondensed-LightItalic.ttf
+  static/OpenSans_SemiCondensed-Italic.ttf
+  static/OpenSans_SemiCondensed-MediumItalic.ttf
+  static/OpenSans_SemiCondensed-SemiBoldItalic.ttf
+  static/OpenSans_SemiCondensed-BoldItalic.ttf
+  static/OpenSans_SemiCondensed-ExtraBoldItalic.ttf
+  static/OpenSans-LightItalic.ttf
+  static/OpenSans-Italic.ttf
+  static/OpenSans-MediumItalic.ttf
+  static/OpenSans-SemiBoldItalic.ttf
+  static/OpenSans-BoldItalic.ttf
+  static/OpenSans-ExtraBoldItalic.ttf
+
+Get started
+-----------
+
+1. Install the font files you want to use
+
+2. Use your app's font picker to view the font family and all the
+available styles
+
+Learn more about variable fonts
+-------------------------------
+
+  https://developers.google.com/web/fundamentals/design-and-ux/typography/variable-fonts
+  https://variablefonts.typenetwork.com
+  https://medium.com/variable-fonts
+
+In desktop apps
+
+  https://theblog.adobe.com/can-variable-fonts-illustrator-cc
+  https://helpx.adobe.com/nz/photoshop/using/fonts.html#variable_fonts
+
+Online
+
+  https://developers.google.com/fonts/docs/getting_started
+  https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide
+  https://developer.microsoft.com/en-us/microsoft-edge/testdrive/demos/variable-fonts
+
+Installing fonts
+
+  MacOS: https://support.apple.com/en-us/HT201749
+  Linux: https://www.google.com/search?q=how+to+install+a+font+on+gnu%2Blinux
+  Windows: https://support.microsoft.com/en-us/help/314960/how-to-install-or-remove-a-font-in-windows
+
+Android Apps
+
+  https://developers.google.com/fonts/docs/android
+  https://developer.android.com/guide/topics/ui/look-and-feel/downloadable-fonts
+
+License
+-------
+Please read the full license text (OFL.txt) to understand the permissions,
+restrictions and requirements for usage, redistribution, and modification.
+
+You can use them in your products & projects – print or digital,
+commercial or otherwise.
+
+This isn't legal advice, please consider consulting a lawyer and see the full
+license for all details.
+
+================
+File: public/fonts/Poppins/OFL.txt
+================
+Copyright 2020 The Poppins Project Authors (https://github.com/itfoundry/Poppins)
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+https://openfontlicense.org
+
+
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded, 
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+
+================
+File: components/ui/button.tsx
+================
+import * as React from 'react'
+import { Slot } from '@radix-ui/react-slot'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn } from '@/lib/utils'
+const buttonVariants = cva(
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+  {
+    variants: {
+      variant: {
+        default: 'bg-primary text-primary-foreground [@media(hover:hover)_and_(pointer:fine)]:hover:bg-primary/90',
+        destructive:
+          'bg-destructive text-white [@media(hover:hover)_and_(pointer:fine)]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
+        outline:
+          'border bg-background shadow-xs [@media(hover:hover)_and_(pointer:fine)]:hover:bg-accent [@media(hover:hover)_and_(pointer:fine)]:hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:[@media(hover:hover)_and_(pointer:fine)]:hover:bg-input/50',
+        secondary:
+          'bg-secondary text-secondary-foreground [@media(hover:hover)_and_(pointer:fine)]:hover:bg-secondary/80',
+        ghost:
+          '[@media(hover:hover)_and_(pointer:fine)]:hover:bg-accent [@media(hover:hover)_and_(pointer:fine)]:hover:text-accent-foreground dark:[@media(hover:hover)_and_(pointer:fine)]:hover:bg-accent/50',
+        link: 'text-primary underline-offset-4 [@media(hover:hover)_and_(pointer:fine)]:hover:underline',
+      },
+      size: {
+        default: 'h-9 px-4 py-2 has-[>svg]:px-3',
+        sm: 'h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5',
+        lg: 'h-10 rounded-md px-6 has-[>svg]:px-4',
+        icon: 'size-9',
+        'icon-sm': 'size-8',
+        'icon-lg': 'size-10',
+      },
+    },
+    defaultVariants: {
+      variant: 'default',
+      size: 'default',
+    },
+  },
+)
+function Button({
+  className,
+  variant,
+  size,
+  asChild = false,
+  ...props
+}: React.ComponentProps<'button'> &
+  VariantProps<typeof buttonVariants> & {
+    asChild?: boolean
+  }) {
+  const Comp = asChild ? Slot : 'button'
+  return (
+    <Comp
+      data-slot="button"
+      className={cn(buttonVariants({ variant, size, className }))}
+      {...props}
+    />
+  )
+}
+export { Button, buttonVariants }
+
+================
 File: next.config.mjs
 ================
 import withPWAInit from "@ducanh2912/next-pwa";
@@ -8080,10 +8139,35 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  turbopack: {
+    
+  }
 };
 
 // 3. Eksportujemy połączoną konfigurację
 export default withPWA(nextConfig);
+
+================
+File: .gitignore
+================
+# v0 runtime files (should only exist in preview, not in git)
+__v0_runtime_loader.js
+__v0_devtools.tsx
+__v0_jsx-dev-runtime.ts
+
+# Common ignores
+node_modules/
+.next/
+.env*.local
+.DS_Store
+.vercel
+# PWA files
+public/sw.js
+public/sw.js.map
+public/workbox-*.js
+public/workbox-*.js.map
+repomix-output.txt
+repomix-output.txt
 
 ================
 File: app/[[...slug]]/page.tsx
@@ -8225,7 +8309,7 @@ export function MeshGradient() {
     resize()
     window.addEventListener("resize", resize)
     const animate = () => {
-      time += 0.0025
+      time = (time + 0.0025) % 100;
       ctx.save()
       ctx.clearRect(0, 0, width, height)
       ctx.globalCompositeOperation = "source-over"
@@ -8328,87 +8412,6 @@ export function MeshGradient() {
 }
 
 ================
-File: components/ui/button.tsx
-================
-import * as React from 'react'
-import { Slot } from '@radix-ui/react-slot'
-import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '@/lib/utils'
-const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
-  {
-    variants: {
-      variant: {
-        default: 'bg-primary text-primary-foreground [@media(hover:hover)_and_(pointer:fine)]:hover:bg-primary/90',
-        destructive:
-          'bg-destructive text-white [@media(hover:hover)_and_(pointer:fine)]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
-        outline:
-          'border bg-background shadow-xs [@media(hover:hover)_and_(pointer:fine)]:hover:bg-accent [@media(hover:hover)_and_(pointer:fine)]:hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:[@media(hover:hover)_and_(pointer:fine)]:hover:bg-input/50',
-        secondary:
-          'bg-secondary text-secondary-foreground [@media(hover:hover)_and_(pointer:fine)]:hover:bg-secondary/80',
-        ghost:
-          '[@media(hover:hover)_and_(pointer:fine)]:hover:bg-accent [@media(hover:hover)_and_(pointer:fine)]:hover:text-accent-foreground dark:[@media(hover:hover)_and_(pointer:fine)]:hover:bg-accent/50',
-        link: 'text-primary underline-offset-4 [@media(hover:hover)_and_(pointer:fine)]:hover:underline',
-      },
-      size: {
-        default: 'h-9 px-4 py-2 has-[>svg]:px-3',
-        sm: 'h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5',
-        lg: 'h-10 rounded-md px-6 has-[>svg]:px-4',
-        icon: 'size-9',
-        'icon-sm': 'size-8',
-        'icon-lg': 'size-10',
-      },
-    },
-    defaultVariants: {
-      variant: 'default',
-      size: 'default',
-    },
-  },
-)
-function Button({
-  className,
-  variant,
-  size,
-  asChild = false,
-  ...props
-}: React.ComponentProps<'button'> &
-  VariantProps<typeof buttonVariants> & {
-    asChild?: boolean
-  }) {
-  const Comp = asChild ? Slot : 'button'
-  return (
-    <Comp
-      data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
-      {...props}
-    />
-  )
-}
-export { Button, buttonVariants }
-
-================
-File: .gitignore
-================
-# v0 runtime files (should only exist in preview, not in git)
-__v0_runtime_loader.js
-__v0_devtools.tsx
-__v0_jsx-dev-runtime.ts
-
-# Common ignores
-node_modules/
-.next/
-.env*.local
-.DS_Store
-.vercel
-# PWA files
-public/sw.js
-public/sw.js.map
-public/workbox-*.js
-public/workbox-*.js.map
-repomix-output.txt
-repomix-output.txt
-
-================
 File: package.json
 ================
 {
@@ -8486,119 +8489,6 @@ File: package.json
     "tw-animate-css": "1.3.3",
     "typescript": "5.7.3"
   }
-}
-
-================
-File: app/layout.tsx
-================
-import type { Metadata, Viewport } from 'next'
-import { Inter, JetBrains_Mono } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
-import './globals.css'
-const inter = Inter({
-  subsets: ['latin', 'latin-ext'],
-  variable: '--font-inter',
-})
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-jetbrains-mono',
-})
-export const metadata: Metadata = {
-  metadataBase: new URL('https://stvshy.com'),
-  title: {
-    default: 'Mateusz Staszków (stvshy) - Developer & Producer',
-    template: '%s | Mateusz Staszków (stvshy)',
-  },
-description: 'Mateusz Staszków (stvshy) - Developer & Producer. Discover my music, projects, and portfolio. Fullstack Development & Sound Engineering.',
-keywords: ['Mateusz Staszków', 'stvshy', 'Developer', 'Music Producer', 'Wrocław', 'Development', 'Sound Engineering'],
-generator: 'v0.app',
-  icons: {
-    icon: '/images/stvshy-s2.png',
-    shortcut: '/images/stvshy-s2.png',
-    apple: '/images/stvshy-s2.png',
-  },
-openGraph: {
-    title: 'Mateusz Staszków (stvshy)',
-    description: 'Developer & Producer. Discover my music, projects, and portfolio.',
-    url: 'https://stvshy.com',
-    siteName: 'stvshy.com',
-    locale: 'pl_PL',
-    type: 'website',
-    images: [
-      {
-        url: '/images/stvshy-open.png',
-        width: 1200,
-        height: 630,
-        alt: 'Mateusz Staszków (stvshy)',
-      },
-    ],
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-}
-export const viewport: Viewport = {
-  themeColor: '#0a0a0a',
-  userScalable: false,
-  colorScheme: 'dark',
-}
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Person',
-    name: 'Mateusz Staszków',
-    alternateName: 'stvshy',
-    url: 'https://stvshy.com',
-    image: 'https://stvshy.com/images/stvshy-s2.png',
-    jobTitle: ['Software Developer', 'Music Producer'],
-    sameAs: [
-      'https://github.com/stvshy',
-      'https://www.linkedin.com/in/mateusz-staszk%C3%B3w/',
-      'https://www.instagram.com/stvshy',
-      'https://open.spotify.com/artist/20jL6FuQUNHnlP3ApdjBbI?si=fvGq0tvJRXmhMa5_KKnAXg',
-      'https://music.apple.com/pl/artist/stvshy/1863822260',
-      'https://music.youtube.com/search?q=stvshy',
-      'https://tidal.com/artist/72120078',
-      'https://www.deezer.com/pl/artist/363730262',
-      'https://music.amazon.com/artists/B0GCCG5GH3/stvshy',
-      'https://soundcloud.com/stvshy',
-    ]
-  }
-  return (
-    <html lang="en" className="dark">
-       <head>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap" rel="stylesheet" />
-        <link rel="preload" href="/fonts/Monorale%20(Raleway)/Monorale-Regular.woff" as="font" type="font/woff" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/Monorale%20(Raleway)/Monorale-Bold.woff" as="font" type="font/woff" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-        <style dangerouslySetInnerHTML={{ __html: `
-          /* Główny kursor na stronie */
-          body {
-    cursor: url('/cursors/cursor10.png') 0 0, auto !important;
-          }
-          /* Kursor w kształcie łapki/pointera dla klikalnych elementów */
-          a, button, [role="button"], label, select,
-          a *, button *, [role="button"] *, label *, select * {
-cursor: url('/cursors/cursor10.png') 0 0, pointer !important;  }
-        `}} />
-      </head>
-      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        {children}
-        <Analytics />
-      </body>
-    </html>
-  )
 }
 
 ================
@@ -8901,6 +8791,122 @@ const updateUrl = (tab: string, lang: string) => {
 }
 
 ================
+File: app/layout.tsx
+================
+import type { Metadata, Viewport } from 'next'
+import { Inter, JetBrains_Mono } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/next'
+import './globals.css'
+const inter = Inter({
+  subsets: ['latin', 'latin-ext'],
+  variable: '--font-inter',
+})
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jetbrains-mono',
+})
+export const metadata: Metadata = {
+  metadataBase: new URL('https://stvshy.com'),
+  title: {
+    default: 'Mateusz Staszków (stvshy) - Developer & Producer',
+    template: '%s | Mateusz Staszków (stvshy)',
+  },
+description: 'Mateusz Staszków (stvshy) - Developer & Producer. Discover my music, projects, and portfolio. Fullstack Development & Sound Engineering.',
+keywords: ['Mateusz Staszków', 'stvshy', 'Developer', 'Music Producer', 'Wrocław', 'Development', 'Sound Engineering'],
+generator: 'v0.app',
+  icons: {
+    icon: '/images/stvshy-s2.png',
+    shortcut: '/images/stvshy-s2.png',
+    apple: '/images/stvshy-s-mobile.png',
+  },
+openGraph: {
+    title: 'Mateusz Staszków (stvshy)',
+    description: 'Developer & Producer. Discover my music, projects, and portfolio.',
+    url: 'https://stvshy.com',
+    siteName: 'stvshy.com',
+    locale: 'pl_PL',
+    type: 'website',
+    images: [
+      {
+        url: '/images/stvshy-open.png',
+        width: 1200,
+        height: 630,
+        alt: 'Mateusz Staszków (stvshy)',
+      },
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  other: {
+    'nightmode': 'disable',
+  }
+}
+export const viewport: Viewport = {
+  themeColor: '#0a0a0a',
+  userScalable: false,
+  colorScheme: 'dark',
+}
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Mateusz Staszków',
+    alternateName: 'stvshy',
+    url: 'https://stvshy.com',
+    image: 'https://stvshy.com/images/stvshy-s2.png',
+    jobTitle: ['Software Developer', 'Music Producer'],
+    sameAs: [
+      'https://github.com/stvshy',
+      'https://www.linkedin.com/in/mateusz-staszk%C3%B3w/',
+      'https://www.instagram.com/stvshy',
+      'https://open.spotify.com/artist/20jL6FuQUNHnlP3ApdjBbI?si=fvGq0tvJRXmhMa5_KKnAXg',
+      'https://music.apple.com/pl/artist/stvshy/1863822260',
+      'https://music.youtube.com/search?q=stvshy',
+      'https://tidal.com/artist/72120078',
+      'https://www.deezer.com/pl/artist/363730262',
+      'https://music.amazon.com/artists/B0GCCG5GH3/stvshy',
+      'https://soundcloud.com/stvshy',
+    ]
+  }
+  return (
+    <html lang="en" className="dark">
+       <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap" rel="stylesheet" />
+        <link rel="preload" href="/fonts/Monorale%20(Raleway)/Monorale-Regular.woff" as="font" type="font/woff" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/Monorale%20(Raleway)/Monorale-Bold.woff" as="font" type="font/woff" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <style dangerouslySetInnerHTML={{ __html: `
+          /* Główny kursor na stronie */
+          body {
+    cursor: url('/cursors/cursor10.png') 0 0, auto !important;
+          }
+          /* Kursor w kształcie łapki/pointera dla klikalnych elementów */
+          a, button, [role="button"], label, select,
+          a *, button *, [role="button"] *, label *, select * {
+cursor: url('/cursors/cursor10.png') 0 0, pointer !important;  }
+        `}} />
+      </head>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        {children}
+        <Analytics />
+      </body>
+    </html>
+  )
+}
+
+================
 File: components/profile-header.tsx
 ================
 import { Logo } from "@/components/logo"
@@ -8941,281 +8947,6 @@ export function ProfileHeader({ language }: ProfileHeaderProps) {
       </div>
     </header>
   )
-}
-
-================
-File: app/globals.css
-================
-@import 'tailwindcss';
-@import 'tw-animate-css';
-@custom-variant dark (&:is(.dark *));
-@font-face {
-  font-family: 'MontserratCustom';
-  src: url('/fonts/Montserrat/static/Montserrat-Thin.ttf') format('truetype');
-  font-weight: 100;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'MontserratCustom';
-  src: url('/fonts/Montserrat/static/Montserrat-ExtraLight.ttf') format('truetype');
-  font-weight: 200;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'MontserratCustom';
-  src: url('/fonts/Montserrat/static/Montserrat-Light.ttf') format('truetype');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'MontserratCustom';
-  src: url('/fonts/Montserrat/static/Montserrat-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'MontserratCustom';
-  src: url('/fonts/Montserrat/static/Montserrat-Medium.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'MontserratCustom';
-  src: url('/fonts/Montserrat/static/Montserrat-SemiBold.ttf') format('truetype');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'MontserratCustom';
-  src: url('/fonts/Montserrat/static/Montserrat-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'MontserratCustom';
-  src: url('/fonts/Montserrat/static/Montserrat-ExtraBold.ttf') format('truetype');
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'MontserratCustom';
-  src: url('/fonts/Montserrat/static/Montserrat-Black.ttf') format('truetype');
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-:root {
-  --background: #0a0a0a;
-  --foreground: #f0f0f0;
-  --card: rgba(255, 255, 255, 0.04);
-  --card-foreground: #f0f0f0;
-  --popover: #111111;
-  --popover-foreground: #f0f0f0;
-  --primary: #00f2ea;
-  --primary-foreground: #0a0a0a;
-  --secondary: #ff0050;
-  --secondary-foreground: #ffffff;
-  --muted: #1a1a1a;
-  --muted-foreground: #888888;
-  --accent: #ff0050;
-  --accent-foreground: #ffffff;
-  --destructive: #ff0050;
-  --destructive-foreground: #ffffff;
-  --border: rgba(255, 255, 255, 0.08);
-  --input: rgba(255, 255, 255, 0.08);
-  --ring: #00f2ea;
-  --chart-1: #00f2ea;
-  --chart-2: #ff0050;
-  --chart-3: #1a1a1a;
-  --chart-4: #00f2ea;
-  --chart-5: #ff0050;
-  --radius: 0.75rem;
-  --sidebar: #0f0f0f;
-  --sidebar-foreground: #f0f0f0;
-  --sidebar-primary: #00f2ea;
-  --sidebar-primary-foreground: #0a0a0a;
-  --sidebar-accent: #1a1a1a;
-  --sidebar-accent-foreground: #f0f0f0;
-  --sidebar-border: rgba(255, 255, 255, 0.08);
-  --sidebar-ring: #00f2ea;
-  --neon-cyan: #00f2ea;
-  --neon-magenta: #ff0050;
-  --dev-accent: #05dafff8;
-  --dev-accent-rgb: 49 222 255;
-  --profile-name-weight: 435;
-}
-@theme inline {
-  --font-sans: 'Inter', 'Inter Fallback';
-  --font-mono: 'JetBrains Mono', 'JetBrains Mono Fallback';
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-neon-cyan: var(--neon-cyan);
-  --color-neon-magenta: var(--neon-magenta);
-}
-@layer base {
-  html {
-    -webkit-tap-highlight-color: transparent;
-  }
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-    cursor: url('/cursors/cursor10.png') 0 0, auto !important;
-    forced-color-adjust: none;
-  }
-  a,
-  button,
-  [role="button"],
-  label,
-  select,
-  a *,
-  button *,
-  [role="button"] *,
-  label *,
-  select * {
-    cursor: url('/cursors/cursor10.png') 0 0, pointer !important;
-  }
-}
-@font-face {
-  font-family: 'Monorale';
-  src: url('/fonts/Monorale%20(Raleway)/Monorale-Thin.woff') format('woff');
-  font-weight: 100;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Monorale';
-  src: url('/fonts/Monorale%20(Raleway)/Monorale-ExtraLight.woff') format('woff');
-  font-weight: 200;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Monorale';
-  src: url('/fonts/Monorale%20(Raleway)/Monorale-Light.woff') format('woff');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Monorale';
-  src: url('/fonts/Monorale%20(Raleway)/Monorale-Regular.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Monorale';
-  src: url('/fonts/Monorale%20(Raleway)/Monorale-Medium.woff') format('woff');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Monorale';
-  src: url('/fonts/Monorale%20(Raleway)/Monorale-SemiBold.woff') format('woff');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Monorale';
-  src: url('/fonts/Monorale%20(Raleway)/Monorale-Bold.woff') format('woff');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Monorale';
-  src: url('/fonts/Monorale%20(Raleway)/Monorale-ExtraBold.woff') format('woff');
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Monorale';
-  src: url('/fonts/Monorale%20(Raleway)/Monorale-Black.woff') format('woff');
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-.custom-name {
-  font-family: 'Montserrat', 'MontserratCustom', var(--font-sans), system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  font-weight: var(--profile-name-weight);
-  letter-spacing: 0.08px;
-  text-shadow: 0.25px 0 0 currentColor, -0.25px 0 0 currentColor;
-}
-.location-sans {
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.19em;
-  font-size: 8.4px;
-}
-.role-smaller {
-  font-size: 10.7055px;
-}
-[data-slot="tabs-list"] {
-  --tabbar-font-family: 'Montserrat', 'MontserratCustom', var(--font-sans);
-  --tabbar-font-size: 12.5px;
-  --tabbar-font-weight: 490;
-  --tabbar-letter-spacing: -0.02em;
-  --tabbar-gap: 0.375rem;
-}
-[data-slot="tabs-list"] [data-slot="tabs-trigger"] {
-  font-family: var(--tabbar-font-family) !important;
-  font-size: var(--tabbar-font-size) !important;
-  font-weight: var(--tabbar-font-weight) !important;
-  letter-spacing: var(--tabbar-letter-spacing) !important;
-  gap: var(--tabbar-gap) !important;
-}
-@media (min-width: 1024px) {
-  .page-scale-desktop {
-    transform: scale(1.1);
-    transform-origin: top center;
-  }
 }
 
 ================
@@ -9558,6 +9289,282 @@ export function TabMusic({ language }: TabMusicProps) {
       </div>
     </div>
   )
+}
+
+================
+File: app/globals.css
+================
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@custom-variant dark (&:is(.dark *));
+@font-face {
+  font-family: 'MontserratCustom';
+  src: url('/fonts/Montserrat/static/Montserrat-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'MontserratCustom';
+  src: url('/fonts/Montserrat/static/Montserrat-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'MontserratCustom';
+  src: url('/fonts/Montserrat/static/Montserrat-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'MontserratCustom';
+  src: url('/fonts/Montserrat/static/Montserrat-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'MontserratCustom';
+  src: url('/fonts/Montserrat/static/Montserrat-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'MontserratCustom';
+  src: url('/fonts/Montserrat/static/Montserrat-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'MontserratCustom';
+  src: url('/fonts/Montserrat/static/Montserrat-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'MontserratCustom';
+  src: url('/fonts/Montserrat/static/Montserrat-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'MontserratCustom';
+  src: url('/fonts/Montserrat/static/Montserrat-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+:root {
+  --background: #0a0a0a;
+  --foreground: #f0f0f0;
+  --card: rgba(255, 255, 255, 0.04);
+  --card-foreground: #f0f0f0;
+  --popover: #111111;
+  --popover-foreground: #f0f0f0;
+  --primary: #00f2ea;
+  --primary-foreground: #0a0a0a;
+  --secondary: #ff0050;
+  --secondary-foreground: #ffffff;
+  --muted: #1a1a1a;
+  --muted-foreground: #888888;
+  --accent: #ff0050;
+  --accent-foreground: #ffffff;
+  --destructive: #ff0050;
+  --destructive-foreground: #ffffff;
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.08);
+  --ring: #00f2ea;
+  --chart-1: #00f2ea;
+  --chart-2: #ff0050;
+  --chart-3: #1a1a1a;
+  --chart-4: #00f2ea;
+  --chart-5: #ff0050;
+  --radius: 0.75rem;
+  --sidebar: #0f0f0f;
+  --sidebar-foreground: #f0f0f0;
+  --sidebar-primary: #00f2ea;
+  --sidebar-primary-foreground: #0a0a0a;
+  --sidebar-accent: #1a1a1a;
+  --sidebar-accent-foreground: #f0f0f0;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-ring: #00f2ea;
+  --neon-cyan: #00f2ea;
+  --neon-magenta: #ff0050;
+  --dev-accent: #05dafff8;
+  --dev-accent-rgb: 49 222 255;
+  --profile-name-weight: 435;
+}
+@theme inline {
+  --font-sans: 'Inter', 'Inter Fallback';
+  --font-mono: 'JetBrains Mono', 'JetBrains Mono Fallback';
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-neon-cyan: var(--neon-cyan);
+  --color-neon-magenta: var(--neon-magenta);
+}
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    theme: dark;
+  }
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    cursor: url('/cursors/cursor10.png') 0 0, auto !important;
+    forced-color-adjust: none;
+  }
+  a,
+  button,
+  [role="button"],
+  label,
+  select,
+  a *,
+  button *,
+  [role="button"] *,
+  label *,
+  select * {
+    cursor: url('/cursors/cursor10.png') 0 0, pointer !important;
+  }
+}
+@font-face {
+  font-family: 'Monorale';
+  src: url('/fonts/Monorale%20(Raleway)/Monorale-Thin.woff') format('woff');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Monorale';
+  src: url('/fonts/Monorale%20(Raleway)/Monorale-ExtraLight.woff') format('woff');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Monorale';
+  src: url('/fonts/Monorale%20(Raleway)/Monorale-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Monorale';
+  src: url('/fonts/Monorale%20(Raleway)/Monorale-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Monorale';
+  src: url('/fonts/Monorale%20(Raleway)/Monorale-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Monorale';
+  src: url('/fonts/Monorale%20(Raleway)/Monorale-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Monorale';
+  src: url('/fonts/Monorale%20(Raleway)/Monorale-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Monorale';
+  src: url('/fonts/Monorale%20(Raleway)/Monorale-ExtraBold.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Monorale';
+  src: url('/fonts/Monorale%20(Raleway)/Monorale-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+.custom-name {
+  font-family: 'Montserrat', 'MontserratCustom', var(--font-sans), system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  font-weight: var(--profile-name-weight);
+  letter-spacing: 0.08px;
+  text-shadow: 0.25px 0 0 currentColor, -0.25px 0 0 currentColor;
+}
+.location-sans {
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.19em;
+  font-size: 8.4px;
+}
+.role-smaller {
+  font-size: 10.7055px;
+}
+[data-slot="tabs-list"] {
+  --tabbar-font-family: 'Montserrat', 'MontserratCustom', var(--font-sans);
+  --tabbar-font-size: 12.5px;
+  --tabbar-font-weight: 490;
+  --tabbar-letter-spacing: -0.02em;
+  --tabbar-gap: 0.375rem;
+}
+[data-slot="tabs-list"] [data-slot="tabs-trigger"] {
+  font-family: var(--tabbar-font-family) !important;
+  font-size: var(--tabbar-font-size) !important;
+  font-weight: var(--tabbar-font-weight) !important;
+  letter-spacing: var(--tabbar-letter-spacing) !important;
+  gap: var(--tabbar-gap) !important;
+}
+@media (min-width: 1024px) {
+  .page-scale-desktop {
+    transform: scale(1.1);
+    transform-origin: top center;
+  }
 }
 
 ================
