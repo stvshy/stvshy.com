@@ -19,8 +19,6 @@ const MeshGradient = dynamic(
     ssr: false,
     loading: () => (
       <div className="absolute inset-0 bg-background" /> 
-      // Możesz tu też dać prosty CSS gradient, np.:
-      // <div className="absolute inset-0 bg-gradient-to-br from-background to-purple-900/20" />
     )
   }
 )
@@ -284,8 +282,8 @@ const updateUrl = (tab: string, lang: string) => {
               src={language === "en" ? "/images/polish1.png" : "/images/english2.png"}
               alt=""
               aria-hidden="true"
-              width={1000}
-              height={1000}
+              width={32}
+              height={32}
               className="w-full h-full object-cover brightness-[0.87] transition-all duration-300"
             />
           </button>
@@ -304,8 +302,8 @@ const updateUrl = (tab: string, lang: string) => {
           src={language === "en" ? "/images/polish1.png" : "/images/english2.png"}
           alt=""
           aria-hidden="true"
-          width={1000}
-          height={1000}
+          width={32}
+          height={32  }
           className="w-full h-full object-cover brightness-[0.85] transition-all duration-300"
         />
       </button>
