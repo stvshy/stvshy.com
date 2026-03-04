@@ -241,9 +241,12 @@ const updateUrl = (tab: string, lang: string) => {
 
         {/* Footer */}
         <footer className="text-center -mt-1 -mb-1">
-          <p className="text-[11px] text-muted-foreground/50">
+            <p
+            className="text-[11.3px] text-muted-foreground/50 tracking-tight"
+            style={{ fontFamily: 'Montserrat, MontserratCustom, var(--font-sans), system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
+            >
             {text.footer}
-          </p>
+            </p>
         </footer>
 
         <div className="-mt-3 flex justify-center md:hidden">

@@ -1,16 +1,28 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, JetBrains_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { Montserrat } from 'next/font/google'
+import localFont from 'next/font/local'
 import './globals.css'
 
-const inter = Inter({
+const montserrat = Montserrat({
   subsets: ['latin', 'latin-ext'],
-  variable: '--font-inter',
+  variable: '--font-montserrat',
 })
 
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-jetbrains-mono',
+const monorale = localFont({
+  src: [
+    {
+      path: '../public/fonts/Monorale (Raleway)/Monorale-Regular.woff',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/Monorale (Raleway)/Monorale-Bold.woff',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-monorale',
 })
 
 export const metadata: Metadata = {
@@ -24,7 +36,7 @@ description: 'Mateusz Staszków (stvshy) - Developer & Producer. Discover my mus
 keywords: ['Mateusz Staszków', 'stvshy', 'Developer', 'Music Producer', 'Wrocław', 'Development', 'Sound Engineering'],
 generator: 'v0.app',
   icons: {
-    icon: '/images/stvshy-s2.png',
+    icon: '/images/stvshy-s4.png',
     shortcut: '/images/stvshy-s2.png',
     apple: '/images/stvshy-s-mobile.png',
   },
@@ -91,13 +103,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
        <head>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap" rel="stylesheet" />
-        <link rel="preload" href="/fonts/Monorale%20(Raleway)/Monorale-Regular.woff" as="font" type="font/woff" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/Monorale%20(Raleway)/Monorale-Bold.woff" as="font" type="font/woff" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-
         <style dangerouslySetInnerHTML={{ __html: `
           /* Główny kursor na stronie */
           body {
@@ -111,7 +116,7 @@ cursor: url('/cursors/cursor10.png') 0 0, pointer !important;  }
         `}} />
 
       </head>
-      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
+      <body className={`${montserrat.variable} ${monorale.variable} font-sans antialiased`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
