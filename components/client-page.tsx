@@ -3,13 +3,27 @@
 import { useEffect, useRef, useState } from "react"
 import { Mail, X } from "lucide-react"
 import { BsInstagram } from "react-icons/bs"
-import { MeshGradient } from "@/components/mesh-gradient"
+// import { MeshGradient } from "@/components/mesh-gradient"
 import { ProfileHeader } from "@/components/profile-header"
 import { TabMusic } from "@/components/tab-music"
 import { TabDev } from "@/components/tab-dev"
 import { TabAbout } from "@/components/tab-about"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
+import dynamic from "next/dynamic"
+
+const MeshGradient = dynamic(
+  () => import("@/components/mesh-gradient").then((mod) => mod.MeshGradient),
+  { 
+    ssr: false,
+    loading: () => (
+      <div className="absolute inset-0 bg-background" /> 
+      // Możesz tu też dać prosty CSS gradient, np.:
+      // <div className="absolute inset-0 bg-gradient-to-br from-background to-purple-900/20" />
+    )
+  }
+)
 
 type Language = "en" | "pl"
 
@@ -149,9 +163,11 @@ const updateUrl = (tab: string, lang: string) => {
               value="dev"
               className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-neon-magenta/10 data-[state=active]:text-neon-magenta data-[state=active]:shadow-none [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:bg-background/10 [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:border-border [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:text-muted-foreground/70 data-[state=inactive]:active:bg-background/10 data-[state=inactive]:active:border-border data-[state=inactive]:active:text-muted-foreground/70"
             >
-              <img
+              <Image
                 src="/images/dev-icon3-4.png"
                 alt="Dev icon"
+                width={16}
+                height={16}
                 className="mr-1 size-4"
               />
               {text.tabs.dev}
@@ -160,9 +176,11 @@ const updateUrl = (tab: string, lang: string) => {
               value="about"
               className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-foreground/10 data-[state=active]:text-foreground data-[state=active]:shadow-none [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:bg-background/10 [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:border-border [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:text-muted-foreground/70 data-[state=inactive]:active:bg-background/10 data-[state=inactive]:active:border-border data-[state=inactive]:active:text-muted-foreground/70"
             >
-              <img
+              <Image
                 src="/images/about-icon5.png"
                 alt="About icon"
+                width={16}
+                height={16}
                 className="mr-1 size-4"
               />
               {text.tabs.about}
@@ -171,9 +189,11 @@ const updateUrl = (tab: string, lang: string) => {
               value="music"
               className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-[#b817e4]/10 data-[state=active]:text-[#b817e4] data-[state=active]:shadow-none [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:bg-background/10 [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:border-border [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:text-muted-foreground/70 data-[state=inactive]:active:bg-background/10 data-[state=inactive]:active:border-border data-[state=inactive]:active:text-muted-foreground/70"
             >
-              <img
+              <Image
                 src="/images/music-icon2.png"
                 alt="Music note"
+                width={16}
+                height={16}
                 className="mr-1 size-4"
               />
               {text.tabs.music}
@@ -260,10 +280,12 @@ const updateUrl = (tab: string, lang: string) => {
             aria-label={text.switchLanguageLabel}
             className={mobileLangButtonClassName}
           >
-            <img
+            <Image
               src={language === "en" ? "/images/polish1.png" : "/images/english2.png"}
               alt=""
               aria-hidden="true"
+              width={1000}
+              height={1000}
               className="w-full h-full object-cover brightness-[0.87] transition-all duration-300"
             />
           </button>
@@ -278,10 +300,12 @@ const updateUrl = (tab: string, lang: string) => {
         aria-label={text.switchLanguageLabel}
         className={desktopLangButtonClassName}
       >
-        <img
+        <Image
           src={language === "en" ? "/images/polish1.png" : "/images/english2.png"}
           alt=""
           aria-hidden="true"
+          width={1000}
+          height={1000}
           className="w-full h-full object-cover brightness-[0.85] transition-all duration-300"
         />
       </button>
