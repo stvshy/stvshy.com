@@ -66,10 +66,17 @@ export default function ClientPage({ initialSection, initialLang }: ClientPagePr
   const [language, setLanguage] = useState<Language>(initialLang)
   const [isProfessionalMode] = useState(!!initialSection)
   const [previewImage, setPreviewImage] = useState<{ src: string; alt: string } | null>(null)
+  const [isPreviewLoaded, setIsPreviewLoaded] = useState(false)
   const [isLangPressed, setIsLangPressed] = useState(false)
   const langPressTimeoutRef = useRef<number | null>(null)
   const isTripifyMapPreview = previewImage?.src.includes("tripify-map")
   const text = pageText[language]
+  const previewImageSources = [
+    "/images/meta2.png",
+    "/images/meta1.png",
+    "/images/cisco.png",
+    "/images/tripify-map.jpg",
+  ]
 
   const triggerLangPress = () => {
     setIsLangPressed(true)
@@ -120,6 +127,42 @@ const updateUrl = (tab: string, lang: string) => {
     return () => {
       document.body.style.overflow = previousOverflow
     }
+  }, [previewImage])
+
+useEffect(() => {
+    let isPreloaded = false
+
+    const preloadImages = () => {
+      if (isPreloaded) return
+      isPreloaded = true
+
+      // Pobieranie obrazów w tle
+      previewImageSources.forEach((source) => {
+        const image = new window.Image()
+        image.decoding = "async"
+        image.src = source
+      })
+
+      // Sprzątamy eventy, żeby funkcja odpaliła się tylko raz w życiu
+      window.removeEventListener("mousemove", preloadImages)
+      window.removeEventListener("touchstart", preloadImages)
+      window.removeEventListener("scroll", preloadImages)
+    }
+
+    // Nasłuchujemy jakiejkolwiek akcji od prawdziwego człowieka
+    window.addEventListener("mousemove", preloadImages)
+    window.addEventListener("touchstart", preloadImages)
+    window.addEventListener("scroll", preloadImages)
+
+    return () => {
+      window.removeEventListener("mousemove", preloadImages)
+      window.removeEventListener("touchstart", preloadImages)
+      window.removeEventListener("scroll", preloadImages)
+    }
+  }, [previewImageSources])
+
+  useEffect(() => {
+    setIsPreviewLoaded(false)
   }, [previewImage])
 
 
@@ -326,7 +369,9 @@ const updateUrl = (tab: string, lang: string) => {
               type="button"
               onClick={() => setPreviewImage(null)}
               aria-label={text.previewCloseLabel}
-              className="absolute right-2 top-2 z-10 inline-flex size-8 items-center justify-center rounded-full border border-border/70 bg-background/80 text-foreground transition-colors [@media(hover:hover)_and_(pointer:fine)]:hover:bg-background active:bg-background"
+              className={`absolute right-2 top-2 z-10 inline-flex size-8 items-center justify-center rounded-full border border-border/70 bg-background/80 text-foreground transition-[opacity,transform] duration-150 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-background active:bg-background ${
+                isPreviewLoaded ? "opacity-100" : "pointer-events-none opacity-0"
+              }`}
             >
               <X className="size-4" />
             </button>
@@ -334,11 +379,15 @@ const updateUrl = (tab: string, lang: string) => {
             <img
               src={previewImage.src}
               alt={previewImage.alt}
+              loading="eager"
+              fetchPriority="high"
+              onLoad={() => setIsPreviewLoaded(true)}
+              onError={() => setIsPreviewLoaded(true)}
               className={`w-auto max-w-[95vw] rounded-xl object-contain ${
                 isTripifyMapPreview
                   ? "max-h-[90vh] md:max-h-[96vh]"
                   : "max-h-[90vh]"
-              }`}
+              } ${isPreviewLoaded ? "opacity-100" : "opacity-0"}`}
               style={{ touchAction: "pinch-zoom" }}
             />
           </div>
