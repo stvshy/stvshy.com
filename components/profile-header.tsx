@@ -1,7 +1,7 @@
 import { Logo } from "@/components/logo"
 import { HiLocationMarker } from "react-icons/hi"
 import Image from "next/image" // 1. IMPORT KOMPONENTU IMAGE
-import avatarImg from "@/public/images/avatar8.jpeg" // 2. STATYCZNY IMPORT OBRAZKA (jeśli wywali błąd ścieżki, użyj: "../public/images/avatar8.jpeg")
+import avatarImg from "@/public/images/avatar9.jpeg" // 2. STATYCZNY IMPORT OBRAZKA (jeśli wywali błąd ścieżki, użyj: "../public/images/avatar8.jpeg")
 
 type ProfileHeaderProps = {
   language: "en" | "pl"
@@ -24,7 +24,7 @@ export function ProfileHeader({ language }: ProfileHeaderProps) {
             className="w-full h-full object-cover rounded-full border-4 border-white dark:border-slate-950"
             priority={true}
             quality={95}
-            // sizes="143px"
+            sizes="450px"
             placeholder="blur"
           />
         </div>

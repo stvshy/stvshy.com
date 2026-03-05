@@ -4,7 +4,7 @@ import { FaDeezer } from "react-icons/fa"
 import { PiSoundcloudLogoFill } from "react-icons/pi"
 import { SiAmazonmusic, SiApplemusic, SiTidal, SiYoutubemusic } from "react-icons/si"
 import Image from "next/image"
-import fantasiaImg from "@/public/images/fantasia.png" // lub względna ścieżka np. "../public/images/fantasia.png"
+import fantasiaImg from "@/public/images/fantasia.jpg" // lub względna ścieżka np. "../public/images/fantasia.png"
 
 const MUSIC_ACCENT = "#b817e4"
 
@@ -199,8 +199,8 @@ export function TabMusic({ language }: TabMusicProps) {
                 src={fantasiaImg} 
                 alt="Fantasia cover"  
                 className="size-full rounded-lg object-cover" 
-                quality={82}
-                sizes="40px"
+                quality={95}
+                sizes="150px"
                 placeholder="blur"
               />
             ) : (

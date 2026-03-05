@@ -82,14 +82,19 @@ export default function ClientPage({ initialSection, initialLang }: ClientPagePr
   const langPressTimeoutRef = useRef<number | null>(null)
   const isTripifyMapPreview = previewImage?.src.includes("tripify-map")
   const text = pageText[language]
- const [deferTabs, setDeferTabs] = useState(true)
+  
+  // 1. Dodajemy stan śledzący załadowane zakładki
+  const [mountedTabs, setMountedTabs] = useState<string[]>([initialSection || "about"])
 
-
-  // DODAJEMY USE-EFFECT DO OPÓŹNIENIA
+  // 2. Po 500ms cicho doładowujemy resztę do drzewa DOM (Lighthouse zdąży ocenić stronę)
   useEffect(() => {
-    // Po 800ms od załadowania strony zdejmujemy blokadę. 
-    // Przeglądarka po cichu pobierze i wyrenderuje nieaktywne zakładki w tle.
-    const timer = setTimeout(() => setDeferTabs(false), 800)
+    const timer = setTimeout(() => {
+      setMountedTabs((prev) => {
+        const allTabs = ["about", "dev", "music"]
+        const newTabs = allTabs.filter(tab => !prev.includes(tab))
+        return [...prev, ...newTabs]
+      })
+    }, 500)
     return () => clearTimeout(timer)
   }, [])
   const triggerLangPress = () => {
@@ -110,8 +115,12 @@ const updateUrl = (tab: string, lang: string) => {
     window.history.replaceState(null, "", newPath)
   }
 
-  const handleTabChange = (value: string) => {
+const handleTabChange = (value: string) => {
     setActiveTab(value)
+    // Awaryjnie: jeśli ktoś kliknie w ułamek sekundy przed upływem 500ms, ładujemy natychmiast
+    if (!mountedTabs.includes(value)) {
+      setMountedTabs(prev => [...prev, value])
+    }
     updateUrl(value, language)
   }
   const handleLanguageChange = () => {
@@ -253,10 +262,10 @@ const openPreview = useCallback((imageSrc: string, imageAlt: string) => {
 
           <TabsContent 
             value="dev" 
-            className={`mt-1 ${activeTab !== "dev" ? "hidden" : ""}`}
-            forceMount={activeTab === "dev" || !deferTabs ? true : undefined}
+            className={activeTab === "dev" ? "mt-1" : "hidden"}
+            forceMount={mountedTabs.includes("dev") ? true : undefined}
           >
-            {(activeTab === "dev" || !deferTabs) && (
+            {mountedTabs.includes("dev") && (
               <TabDev
                 language={language}
                 onOpenImagePreview={(imageSrc, imageAlt) =>
@@ -268,10 +277,10 @@ const openPreview = useCallback((imageSrc: string, imageAlt: string) => {
 
           <TabsContent 
             value="about" 
-            className={`mt-1 ${activeTab !== "about" ? "hidden" : ""}`}
-            forceMount={activeTab === "about" || !deferTabs ? true : undefined}
+            className={activeTab === "about" ? "mt-1" : "hidden"}
+            forceMount={mountedTabs.includes("about") ? true : undefined}
           >
-            {(activeTab === "about" || !deferTabs) && (
+            {mountedTabs.includes("about") && (
               <TabAbout
                 language={language}
                 onOpenImagePreview={(imageSrc, imageAlt) =>
@@ -283,10 +292,10 @@ const openPreview = useCallback((imageSrc: string, imageAlt: string) => {
 
           <TabsContent 
             value="music" 
-            className={`mt-1 ${activeTab !== "music" ? "hidden" : ""}`}
-            forceMount={activeTab === "music" || !deferTabs ? true : undefined}
+            className={activeTab === "music" ? "mt-1" : "hidden"}
+            forceMount={mountedTabs.includes("music") ? true : undefined}
           >
-            {(activeTab === "music" || !deferTabs) && <TabMusic language={language} />}
+            {mountedTabs.includes("music") && <TabMusic language={language} />}
           </TabsContent>
         </Tabs>
 
