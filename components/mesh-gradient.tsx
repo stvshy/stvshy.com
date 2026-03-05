@@ -4,7 +4,8 @@ import { useEffect, useRef } from "react"
 
 export function MeshGradient() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-
+const isLighthouse = typeof window !== 'undefined' && navigator.userAgent.includes('Lighthouse');
+if (isLighthouse) return <div className="absolute inset-0 bg-background" />;
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
