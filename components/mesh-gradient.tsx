@@ -6,21 +6,13 @@ export function MeshGradient() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
-    const browserWindow = window as Window & {
-      requestIdleCallback?: (callback: IdleRequestCallback, options?: IdleRequestOptions) => number
-      cancelIdleCallback?: (handle: number) => void
-    }
-
     const canvas = canvasRef.current
     if (!canvas) return
 
     const ctx = canvas.getContext("2d")
     if (!ctx) return
 
-    let animationId: number | null = null
-    let startTimeoutId: ReturnType<typeof setTimeout> | null = null
-    let idleId: number | null = null
-    let hasStarted = false
+    let animationId: number
     let time = 0
     let width = 0
     let height = 0
@@ -50,8 +42,19 @@ export function MeshGradient() {
     resize()
     window.addEventListener("resize", resize)
 
-    const drawFrame = (nextTime: number) => {
-      time = nextTime
+    const animate = (currentTime: number) => {
+      animationId = requestAnimationFrame(animate)
+
+      // DODANE: Logika ucinania klatek - rysujemy rzadziej, procesor odpoczywa!
+      if (!lastTime) lastTime = currentTime;
+      const deltaTime = currentTime - lastTime;
+      
+      if (deltaTime < fpsInterval) return; 
+      lastTime = currentTime - (deltaTime % fpsInterval);
+
+      // Poprawka na to, by przy 30 FPS animacja płynęła w identycznym tempie co przy 60 FPS
+      const timeMultiplier = isMobile ? (deltaTime / 16.66) : 1;
+      time = (time + 0.0025 * timeMultiplier) % 100;
 
       ctx.save()
       ctx.clearRect(0, 0, width, height)
@@ -138,64 +141,12 @@ export function MeshGradient() {
       ctx.restore()
     }
 
-    const animate = (currentTime: number) => {
-      animationId = requestAnimationFrame(animate)
-
-      if (!lastTime) lastTime = currentTime
-      const deltaTime = currentTime - lastTime
-
-      if (deltaTime < fpsInterval) return
-      lastTime = currentTime - (deltaTime % fpsInterval)
-
-      const timeMultiplier = isMobile ? deltaTime / 16.66 : 1
-      time = (time + 0.0025 * timeMultiplier) % 100
-      drawFrame(time)
-    }
-
-    const startAnimation = () => {
-      if (hasStarted) return
-      hasStarted = true
-      animationId = requestAnimationFrame(animate)
-    }
-
-    const scheduleAnimationStart = () => {
-      if (document.visibilityState === "hidden") return
-
-      const startWhenIdle = () => {
-        if (typeof browserWindow.requestIdleCallback === "function") {
-          idleId = browserWindow.requestIdleCallback(() => startAnimation(), { timeout: 1200 })
-          return
-        }
-        startTimeoutId = globalThis.setTimeout(startAnimation, 650)
-      }
-
-      if (document.readyState === "complete") {
-        startWhenIdle()
-        return
-      }
-
-      const onLoad = () => {
-        startWhenIdle()
-        window.removeEventListener("load", onLoad)
-      }
-      window.addEventListener("load", onLoad, { once: true })
-    }
-
-    // Draw the final look immediately, then animate after the page settles.
-    drawFrame(0)
-    scheduleAnimationStart()
+    // Uruchamiamy pierwszą klatkę z currentTime = 0
+    animationId = requestAnimationFrame(animate)
 
     return () => {
       window.removeEventListener("resize", resize)
-      if (animationId !== null) {
-        cancelAnimationFrame(animationId)
-      }
-      if (startTimeoutId !== null) {
-        globalThis.clearTimeout(startTimeoutId)
-      }
-      if (idleId !== null) {
-        browserWindow.cancelIdleCallback?.(idleId)
-      }
+      cancelAnimationFrame(animationId)
     }
   }, [])
 
