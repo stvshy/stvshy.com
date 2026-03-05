@@ -32,7 +32,7 @@ const nextConfig = {
   },
   // Tu dodajemy domyślną optymalizację ikon Lucide (dla nowszych wersji Next.js)
   experimental: {
-    optimizePackageImports: ['lucide-react'], 
+    optimizePackageImports: ['lucide-react', 'react-icons'], 
   },
 };
 

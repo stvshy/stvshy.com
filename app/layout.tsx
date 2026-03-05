@@ -24,7 +24,7 @@ const monorale = localFont({
   ],
   variable: '--font-monorale',
   display: 'swap',
-  preload: false,
+  preload: true,
 })
 
 export const metadata: Metadata = {

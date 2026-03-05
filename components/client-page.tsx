@@ -4,13 +4,25 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { Mail, X } from "lucide-react"
 import { BsInstagram } from "react-icons/bs"
 import { ProfileHeader } from "@/components/profile-header"
-import { TabMusic } from "@/components/tab-music"
-import { TabDev } from "@/components/tab-dev"
-import { TabAbout } from "@/components/tab-about"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import dynamic from "next/dynamic"
+
+const TabAbout = dynamic(
+  () => import("@/components/tab-about").then((mod) => mod.TabAbout),
+  { ssr: false }
+)
+
+const TabDev = dynamic(
+  () => import("@/components/tab-dev").then((mod) => mod.TabDev),
+  { ssr: false }
+)
+
+const TabMusic = dynamic(
+  () => import("@/components/tab-music").then((mod) => mod.TabMusic),
+  { ssr: false }
+)
 
 const MeshGradient = dynamic(
   () => import("@/components/mesh-gradient").then((mod) => mod.MeshGradient),
@@ -164,6 +176,33 @@ export default function ClientPage({ initialSection, initialLang }: ClientPagePr
     document.documentElement.lang = language
     window.localStorage.setItem("language", language)
   }, [language])
+
+  useEffect(() => {
+    const browserWindow = window as Window & {
+      requestIdleCallback?: (callback: IdleRequestCallback, options?: IdleRequestOptions) => number
+      cancelIdleCallback?: (handle: number) => void
+    }
+
+    const preloadInactiveTabs = () => {
+      if (activeTab !== "about") {
+        void import("@/components/tab-about")
+      }
+      if (activeTab !== "dev") {
+        void import("@/components/tab-dev")
+      }
+      if (activeTab !== "music") {
+        void import("@/components/tab-music")
+      }
+    }
+
+    if (typeof browserWindow.requestIdleCallback === "function") {
+      const idleId = browserWindow.requestIdleCallback(preloadInactiveTabs, { timeout: 1500 })
+      return () => browserWindow.cancelIdleCallback?.(idleId)
+    }
+
+    const timeoutId = globalThis.setTimeout(preloadInactiveTabs, 350)
+    return () => globalThis.clearTimeout(timeoutId)
+  }, [activeTab])
 
   // ── Memoizowane klasy CSS ──
 

@@ -23,8 +23,9 @@ export function ProfileHeader({ language }: ProfileHeaderProps) {
             alt="Mateusz Staszków profile photo"
             className="w-full h-full object-cover rounded-full border-4 border-white dark:border-slate-950"
             priority={true}
-             quality={95}
-             placeholder="blur"
+            quality={95}
+            // sizes="143px"
+            placeholder="blur"
           />
         </div>
       </div>

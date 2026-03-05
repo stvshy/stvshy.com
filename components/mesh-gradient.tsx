@@ -6,63 +6,31 @@ export function MeshGradient() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
+    const browserWindow = window as Window & {
+      requestIdleCallback?: (callback: IdleRequestCallback, options?: IdleRequestOptions) => number
+      cancelIdleCallback?: (handle: number) => void
+    }
+
     const canvas = canvasRef.current
     if (!canvas) return
 
-    const ctx = canvas.getContext("2d", { alpha: true, desynchronized: true })
+    const ctx = canvas.getContext("2d")
     if (!ctx) return
 
-    let animationId = 0
+    let animationId: number | null = null
+    let startTimeoutId: ReturnType<typeof setTimeout> | null = null
+    let idleId: number | null = null
+    let hasStarted = false
     let time = 0
     let width = 0
     let height = 0
-    let isPaused = false
 
-    let lastTime = 0
-    const isMobile = window.innerWidth < 768
-    const targetFps = isMobile ? 30 : 60
-    const fpsInterval = 1000 / targetFps
-
-    let wash: CanvasGradient | null = null
-    let rightBias: CanvasGradient | null = null
-    let vignette: CanvasGradient | null = null
-    let topShade: CanvasGradient | null = null
-
-    const rebuildStaticGradients = () => {
-      wash = ctx.createLinearGradient(0, height * 0.4, width, height * 0.6)
-      wash.addColorStop(0, "rgba(211, 60, 225, 0.025)")
-      wash.addColorStop(1, "rgba(54, 132, 233, 0.03)")
-
-      rightBias = ctx.createRadialGradient(
-        width * 0.9,
-        height * 0.55,
-        0,
-        width * 0.9,
-        height * 0.55,
-        Math.max(width, height) * 0.65
-      )
-      rightBias.addColorStop(0, "rgba(54, 132, 233, 0.028)")
-      rightBias.addColorStop(1, "rgba(54, 132, 233, 0)")
-
-      vignette = ctx.createRadialGradient(
-        width * 0.5,
-        height * 0.5,
-        Math.min(width, height) * 0.25,
-        width * 0.5,
-        height * 0.5,
-        Math.max(width, height) * 0.75
-      )
-      vignette.addColorStop(0, "rgba(0, 0, 0, 0)")
-      vignette.addColorStop(0.65, "rgba(0, 0, 0, 0.03)")
-      vignette.addColorStop(1, "rgba(0, 0, 0, 0.22)")
-
-      const topShadeY = Math.min(height * 0.14, 160)
-      const topShadeRadius = Math.min(Math.max(width, height) * 0.42, 560)
-      topShade = ctx.createRadialGradient(width * 0.5, topShadeY, 0, width * 0.5, topShadeY, topShadeRadius)
-      topShade.addColorStop(0, "rgba(0, 0, 0, 0.38)")
-      topShade.addColorStop(0.55, "rgba(0, 0, 0, 0.17)")
-      topShade.addColorStop(1, "rgba(0, 0, 0, 0)")
-    }
+    // Zmienne do kontroli klatek na sekundę (FPS)
+    let lastTime = 0;
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    // 30 FPS na telefonach oszczędza 50% CPU
+    const targetFps = isMobile ? 30 : 60; 
+    const fpsInterval = 1000 / targetFps;
 
     const resize = () => {
       const nextWidth = window.innerWidth
@@ -70,50 +38,40 @@ export function MeshGradient() {
       width = nextWidth
       height = nextHeight
 
+      // WRACAMY DO ORYGINAŁU: Skalowanie ekranu zostaje nienaruszone, więc kolory i blur wracają do normy!
       const dpr = Math.min(window.devicePixelRatio || 1, 2)
       canvas.width = Math.floor(nextWidth * dpr)
       canvas.height = Math.floor(nextHeight * dpr)
       canvas.style.width = `${nextWidth}px`
       canvas.style.height = `${nextHeight}px`
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-
-      rebuildStaticGradients()
     }
 
     resize()
-    window.addEventListener("resize", resize, { passive: true })
+    window.addEventListener("resize", resize)
 
-    const onVisibilityChange = () => {
-      isPaused = document.hidden
-    }
-    document.addEventListener("visibilitychange", onVisibilityChange)
+    const drawFrame = (nextTime: number) => {
+      time = nextTime
 
-    const animate = (currentTime: number) => {
-      animationId = requestAnimationFrame(animate)
-      if (isPaused) return
-
-      if (!lastTime) lastTime = currentTime
-      const deltaTime = currentTime - lastTime
-
-      if (deltaTime < fpsInterval) return
-      lastTime = currentTime - (deltaTime % fpsInterval)
-
-      const timeMultiplier = isMobile ? deltaTime / 16.66 : 1
-      time = (time + 0.0025 * timeMultiplier) % 100
-
+      ctx.save()
       ctx.clearRect(0, 0, width, height)
-
+      
       ctx.globalCompositeOperation = "source-over"
       ctx.filter = "blur(120px)"
-      if (wash) {
-        ctx.fillStyle = wash
-        ctx.fillRect(0, 0, width, height)
-      }
+      const wash = ctx.createLinearGradient(0, height * 0.4, width, height * 0.6)
+      wash.addColorStop(0, "rgba(211, 60, 225, 0.025)")
+      wash.addColorStop(1, "rgba(54, 132, 233, 0.03)")
+      ctx.fillStyle = wash
+      ctx.fillRect(0, 0, width, height)
 
-      if (rightBias) {
-        ctx.fillStyle = rightBias
-        ctx.fillRect(0, 0, width, height)
-      }
+      const rightBias = ctx.createRadialGradient(
+        width * 0.9, height * 0.55, 0,
+        width * 0.9, height * 0.55, Math.max(width, height) * 0.65
+      )
+      rightBias.addColorStop(0, "rgba(54, 132, 233, 0.028)")
+      rightBias.addColorStop(1, "rgba(54, 132, 233, 0)")
+      ctx.fillStyle = rightBias
+      ctx.fillRect(0, 0, width, height)
 
       ctx.globalCompositeOperation = "lighter"
       ctx.filter = "blur(80px)"
@@ -155,23 +113,89 @@ export function MeshGradient() {
       ctx.fillStyle = "rgba(0, 0, 0, 0.34)"
       ctx.fillRect(0, 0, width, height)
 
-      if (vignette) {
-        ctx.fillStyle = vignette
-        ctx.fillRect(0, 0, width, height)
-      }
+      const vignette = ctx.createRadialGradient(
+        width * 0.5, height * 0.5, Math.min(width, height) * 0.25,
+        width * 0.5, height * 0.5, Math.max(width, height) * 0.75
+      )
+      vignette.addColorStop(0, "rgba(0, 0, 0, 0)")
+      vignette.addColorStop(0.65, "rgba(0, 0, 0, 0.03)")
+      vignette.addColorStop(1, "rgba(0, 0, 0, 0.22)")
+      ctx.fillStyle = vignette
+      ctx.fillRect(0, 0, width, height)
 
-      if (topShade) {
-        ctx.fillStyle = topShade
-        ctx.fillRect(0, 0, width, height)
-      }
+      const topShadeY = Math.min(height * 0.14, 160)
+      const topShadeRadius = Math.min(Math.max(width, height) * 0.42, 560)
+      const topShade = ctx.createRadialGradient(
+        width * 0.5, topShadeY, 0,
+        width * 0.5, topShadeY, topShadeRadius
+      )
+      topShade.addColorStop(0, "rgba(0, 0, 0, 0.38)")
+      topShade.addColorStop(0.55, "rgba(0, 0, 0, 0.17)")
+      topShade.addColorStop(1, "rgba(0, 0, 0, 0)")
+      ctx.fillStyle = topShade
+      ctx.fillRect(0, 0, width, height)
+
+      ctx.restore()
     }
 
-    animationId = requestAnimationFrame(animate)
+    const animate = (currentTime: number) => {
+      animationId = requestAnimationFrame(animate)
+
+      if (!lastTime) lastTime = currentTime
+      const deltaTime = currentTime - lastTime
+
+      if (deltaTime < fpsInterval) return
+      lastTime = currentTime - (deltaTime % fpsInterval)
+
+      const timeMultiplier = isMobile ? deltaTime / 16.66 : 1
+      time = (time + 0.0025 * timeMultiplier) % 100
+      drawFrame(time)
+    }
+
+    const startAnimation = () => {
+      if (hasStarted) return
+      hasStarted = true
+      animationId = requestAnimationFrame(animate)
+    }
+
+    const scheduleAnimationStart = () => {
+      if (document.visibilityState === "hidden") return
+
+      const startWhenIdle = () => {
+        if (typeof browserWindow.requestIdleCallback === "function") {
+          idleId = browserWindow.requestIdleCallback(() => startAnimation(), { timeout: 1200 })
+          return
+        }
+        startTimeoutId = globalThis.setTimeout(startAnimation, 650)
+      }
+
+      if (document.readyState === "complete") {
+        startWhenIdle()
+        return
+      }
+
+      const onLoad = () => {
+        startWhenIdle()
+        window.removeEventListener("load", onLoad)
+      }
+      window.addEventListener("load", onLoad, { once: true })
+    }
+
+    // Draw the final look immediately, then animate after the page settles.
+    drawFrame(0)
+    scheduleAnimationStart()
 
     return () => {
       window.removeEventListener("resize", resize)
-      document.removeEventListener("visibilitychange", onVisibilityChange)
-      cancelAnimationFrame(animationId)
+      if (animationId !== null) {
+        cancelAnimationFrame(animationId)
+      }
+      if (startTimeoutId !== null) {
+        globalThis.clearTimeout(startTimeoutId)
+      }
+      if (idleId !== null) {
+        browserWindow.cancelIdleCallback?.(idleId)
+      }
     }
   }, [])
 
