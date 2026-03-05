@@ -7,11 +7,13 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const resolvedParams = await params
   const slug = resolvedParams.slug || []
+  const firstSegment = slug[0]
+  const secondSegment = slug[1]
+  const isLangFirst = firstSegment === "pl" || firstSegment === "en"
+  const isPl = firstSegment === "pl" || secondSegment === "pl"
   
-  // Logika: Pierwszy element to sekcja (np. music), drugi to język (np. pl)
-  // Jeśli brak slug, to 'home'
-  const sectionRaw = slug[0] || 'home'
-  const isPl = slug[1] === 'pl' || slug.includes('pl') // proste wykrywanie języka
+  // Obsługa /pl i /en: sam język kieruje na domyślną sekcję "about"
+  const sectionRaw = isLangFirst ? secondSegment || "about" : firstSegment || "home"
   
   // Słownik tytułów
   const titles: Record<string, string> = {
@@ -63,13 +65,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {  // Odbieramy parametry z adresu URL
   const resolvedParams = await params
   const slug = resolvedParams.slug || []
+  const firstSegment = slug[0]
+  const secondSegment = slug[1]
+  const isLangFirst = firstSegment === "pl" || firstSegment === "en"
 
-  // Pierwszy człon to sekcja (np. 'dev' lub 'music'), domyślnie 'about'
-  // Jeśli slug jest pusty (strona główna), ustawiamy undefined, żeby ClientPage wybrał domyślne "about"
-  const section = slug[0] || undefined
+  // Dla /pl i /en ustawiamy domyślnie sekcję "about"
+  // Dla pustego slug zostawiamy undefined, żeby ClientPage użył swojego domyślnego zachowania
+  const section = isLangFirst ? secondSegment || "about" : firstSegment || undefined
   
-  // Drugi człon to język, jeśli występuje (np. 'pl')
-  const lang = slug[1] === "pl" ? "pl" : "en"
+  // Język może być pierwszym członem (/pl) albo drugim (/about/pl)
+  const lang = firstSegment === "pl" || secondSegment === "pl" ? "pl" : "en"
 
   return (
     <ClientPage 
@@ -83,6 +88,8 @@ export default async function Page({ params }: Props) {  // Odbieramy parametry 
 export function generateStaticParams() {
   return [
     { slug: [] },
+    { slug: ["pl"] },
+    { slug: ["en"] },
     { slug: ["dev"] },
     { slug: ["dev", "pl"] },
     { slug: ["dev", "en"] },

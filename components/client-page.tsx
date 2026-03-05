@@ -82,9 +82,14 @@ export default function ClientPage({ initialSection, initialLang }: ClientPagePr
   )
   const previewImageRef = useRef<HTMLImageElement | null>(null)
   const pointersRef = useRef(new Map<number, { x: number; y: number }>())
+  const pointerStartRef = useRef(new Map<number, { x: number; y: number; time: number }>())
+  const lastTapRef = useRef<{ x: number; y: number; time: number } | null>(null)
   const transformRef = useRef({ scale: 1, x: 0, y: 0 })
   const pinchStartRef = useRef({ distance: 0, scale: 1 })
   const panStartRef = useRef({ x: 0, y: 0, originX: 0, originY: 0 })
+  const DOUBLE_TAP_DELAY_MS = 280
+  const DOUBLE_TAP_RADIUS_PX = 24
+  const TAP_MOVE_TOLERANCE_PX = 10
 
   const applyPreviewTransform = () => {
     const img = previewImageRef.current
@@ -98,6 +103,8 @@ export default function ClientPage({ initialSection, initialLang }: ClientPagePr
     pinchStartRef.current = { distance: 0, scale: 1 }
     panStartRef.current = { x: 0, y: 0, originX: 0, originY: 0 }
     pointersRef.current.clear()
+    pointerStartRef.current.clear()
+    lastTapRef.current = null
     applyPreviewTransform()
   }
 
@@ -114,6 +121,11 @@ export default function ClientPage({ initialSection, initialLang }: ClientPagePr
     const target = event.currentTarget
     target.setPointerCapture(event.pointerId)
     pointersRef.current.set(event.pointerId, { x: event.clientX, y: event.clientY })
+    pointerStartRef.current.set(event.pointerId, {
+      x: event.clientX,
+      y: event.clientY,
+      time: event.timeStamp,
+    })
 
     if (pointersRef.current.size === 2) {
       const [p1, p2] = Array.from(pointersRef.current.values())
@@ -166,7 +178,36 @@ export default function ClientPage({ initialSection, initialLang }: ClientPagePr
 
   const handlePreviewPointerUp = (event: React.PointerEvent<HTMLImageElement>) => {
     if (!isMobileViewport) return
+    const startPoint = pointerStartRef.current.get(event.pointerId)
+    pointerStartRef.current.delete(event.pointerId)
     pointersRef.current.delete(event.pointerId)
+
+    if (event.pointerType === "touch" && startPoint && pointersRef.current.size === 0) {
+      const movedDistance = getDistance(startPoint, { x: event.clientX, y: event.clientY })
+      const isTap = movedDistance <= TAP_MOVE_TOLERANCE_PX
+
+      if (isTap && transformRef.current.scale > 1.01) {
+        const lastTap = lastTapRef.current
+        const isDoubleTap =
+          !!lastTap &&
+          event.timeStamp - lastTap.time <= DOUBLE_TAP_DELAY_MS &&
+          getDistance(lastTap, { x: event.clientX, y: event.clientY }) <= DOUBLE_TAP_RADIUS_PX
+
+        if (isDoubleTap) {
+          resetPreviewTransform()
+          return
+        }
+
+        lastTapRef.current = {
+          x: event.clientX,
+          y: event.clientY,
+          time: event.timeStamp,
+        }
+      } else if (!isTap) {
+        lastTapRef.current = null
+      }
+    }
+
     if (pointersRef.current.size < 2) {
       pinchStartRef.current.distance = 0
       pinchStartRef.current.scale = transformRef.current.scale
@@ -230,29 +271,67 @@ const updateUrl = (tab: string, lang: string) => {
 
 
 
-  // Preload dużych obrazów przy pierwszej interakcji – tylko raz
+  // Preload podglądów: w idle albo przy pierwszej interakcji (co nastąpi szybciej)
   useEffect(() => {
     let done = false
+    let idleCallbackId: number | null = null
+    let fallbackTimeoutId: number | null = null
+
     const preload = () => {
       if (done) return
       done = true
       PREVIEW_IMAGE_SOURCES.forEach((src) => {
         const img = new window.Image()
         img.decoding = "async"
+        img.loading = "eager"
         img.src = src
+        if (typeof img.decode === "function") {
+          img.decode().catch(() => {
+            // decode może odrzucić przy szybkim unmount/missing cache; obraz i tak się ładuje.
+          })
+        }
       })
       cleanup()
     }
+
     const cleanup = () => {
+      if (idleCallbackId !== null && "cancelIdleCallback" in window) {
+        ;(window as Window & { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(
+          idleCallbackId
+        )
+        idleCallbackId = null
+      }
+      if (fallbackTimeoutId !== null) {
+        window.clearTimeout(fallbackTimeoutId)
+        fallbackTimeoutId = null
+      }
+
       window.removeEventListener("mousemove", preload)
+      window.removeEventListener("pointerdown", preload)
+      window.removeEventListener("keydown", preload)
       window.removeEventListener("touchstart", preload)
       window.removeEventListener("scroll", preload)
     }
+
+    const supportsIdleCallback =
+      typeof (window as Window & { requestIdleCallback?: unknown }).requestIdleCallback ===
+      "function"
+
+    if (supportsIdleCallback) {
+      idleCallbackId = (
+        window as Window & { requestIdleCallback: (cb: IdleRequestCallback, opts?: IdleRequestOptions) => number }
+      ).requestIdleCallback(() => preload(), { timeout: 1200 })
+    } else {
+      fallbackTimeoutId = window.setTimeout(preload, 1200)
+    }
+
     window.addEventListener("mousemove", preload, { once: true, passive: true })
+    window.addEventListener("pointerdown", preload, { once: true, passive: true })
+    window.addEventListener("keydown", preload, { once: true, passive: true })
     window.addEventListener("touchstart", preload, { once: true, passive: true })
     window.addEventListener("scroll", preload, { once: true, passive: true })
     return cleanup
-  }, []) // <-- pusta tablica – uruchamia się RAZ
+  }, [])
 
   useEffect(() => {
     setIsPreviewLoaded(false)
@@ -460,23 +539,28 @@ const updateUrl = (tab: string, lang: string) => {
           style={{ touchAction: "pinch-zoom" }}
         >
           <div
-            className="relative flex items-center justify-center"
+            className="relative inline-flex items-center justify-center"
             onClick={(event) => event.stopPropagation()}
             style={{ touchAction: "pinch-zoom" }}
           >
-            <button
-              type="button"
-              onClick={() => setPreviewImage(null)}
-              aria-label={text.previewCloseLabel}
-              className="absolute right-2 top-2 z-10 inline-flex size-8 items-center justify-center rounded-full border border-border/70 bg-background/80 text-foreground transition-colors [@media(hover:hover)_and_(pointer:fine)]:hover:bg-background active:bg-background"
-            >
-              <X className="size-4" />
-            </button>
+            {isPreviewLoaded && (
+              <button
+                type="button"
+                onClick={() => setPreviewImage(null)}
+                aria-label={text.previewCloseLabel}
+                className="absolute right-2 top-2 z-10 inline-flex size-8 items-center justify-center rounded-full border border-border/70 bg-background/80 text-foreground transition-colors [@media(hover:hover)_and_(pointer:fine)]:hover:bg-background active:bg-background"
+              >
+                <X className="size-4" />
+              </button>
+            )}
 
             <img
               ref={previewImageRef}
               src={previewImage.src}
               alt={previewImage.alt}
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
               className={`w-auto max-w-[95vw] rounded-xl object-contain ${
                 isTripifyMapPreview
                   ? "max-h-[90vh] md:max-h-[96vh]"
@@ -493,6 +577,8 @@ const updateUrl = (tab: string, lang: string) => {
               onPointerMove={handlePreviewPointerMove}
               onPointerUp={handlePreviewPointerUp}
               onPointerCancel={handlePreviewPointerUp}
+              onLoad={() => setIsPreviewLoaded(true)}
+              onError={() => setIsPreviewLoaded(true)}
             />
           </div>
         </div>

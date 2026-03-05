@@ -191,6 +191,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
   const yearsPressTimeoutRef = useRef<number | null>(null)
   const certificatesPressTimeoutRef = useRef<number | null>(null)
   const stackPressTimeoutRef = useRef<number | null>(null)
+  const preloadedPreviewsRef = useRef(new Set<string>())
 
   const text = devText[language]
 
@@ -239,6 +240,14 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
       setIsStackPressed(false)
       stackPressTimeoutRef.current = null
     }, STACK_PRESS_DURATION_MS)
+  }
+
+  const preloadPreviewImage = (src: string) => {
+    if (preloadedPreviewsRef.current.has(src)) return
+    preloadedPreviewsRef.current.add(src)
+    const image = new window.Image()
+    image.decoding = "async"
+    image.src = src
   }
 
 
@@ -692,6 +701,9 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                     onClick={() =>
                       onOpenImagePreview(certificate.image, `${certificate.title} preview`)
                     }
+                    onPointerEnter={() => preloadPreviewImage(certificate.image)}
+                    onFocus={() => preloadPreviewImage(certificate.image)}
+                    onTouchStart={() => preloadPreviewImage(certificate.image)}
                     aria-label={`${text.previewPrefix} ${certificate.title}`}
                     className="relative group inline-flex h-7.5 w-11 overflow-hidden rounded-md border border-border/70"
                   >

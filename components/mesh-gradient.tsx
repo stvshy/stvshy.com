@@ -21,7 +21,7 @@ export function MeshGradient() {
 
     let lastTime = 0
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    const targetFps = prefersReducedMotion ? 0 : 30
+     const targetFps = prefersReducedMotion ? 0 : 30
     const fpsInterval = targetFps > 0 ? 1000 / targetFps : Number.POSITIVE_INFINITY
 
     const resize = () => {
@@ -29,17 +29,25 @@ export function MeshGradient() {
       const nextHeight = window.innerHeight
       width = nextWidth
       height = nextHeight
+      const isMobileViewport = nextWidth <= 767
 
-      // ROZWIĄZANIE NA PIKSELOZĘ: Zwiększamy rozdzielczość z 25% do 50%.
-      // To daje lepszą podstawę do rozmycia przez CSS, nadal drastycznie zmniejszając narzut na rysowanie.
-      const renderScale = 0.5; 
-      
+      if (isMobileViewport) {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2)
+        canvas.width = Math.floor(nextWidth * dpr)
+        canvas.height = Math.floor(nextHeight * dpr)
+        canvas.style.filter = "none"
+        canvas.style.width = `${nextWidth}px`
+        canvas.style.height = `${nextHeight}px`
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+        return
+      }
+
+      const renderScale = 0.5
       canvas.width = Math.floor(nextWidth * renderScale)
       canvas.height = Math.floor(nextHeight * renderScale)
+      canvas.style.filter = "blur(100px)"
       canvas.style.width = `${nextWidth}px`
       canvas.style.height = `${nextHeight}px`
-      
-      // Skalujemy kontekst, aby cała matematyka gradientów poniżej działała bez zmian!
       ctx.setTransform(renderScale, 0, 0, renderScale, 0, 0)
     }
 
@@ -47,11 +55,15 @@ export function MeshGradient() {
     window.addEventListener("resize", resize)
 
     const renderFrame = () => {
+      const isMobileViewport = width <= 767
+
       ctx.save()
       ctx.clearRect(0, 0, width, height)
       
       ctx.globalCompositeOperation = "source-over"
-      // USUNIĘTO: ctx.filter = "blur(120px)" - TO BLOKOWAŁO STRONĘ!
+      if (isMobileViewport) {
+        ctx.filter = "blur(120px)"
+      }
 
       const wash = ctx.createLinearGradient(0, height * 0.4, width, height * 0.6)
       wash.addColorStop(0, "rgba(211, 60, 225, 0.025)")
@@ -69,7 +81,9 @@ export function MeshGradient() {
       ctx.fillRect(0, 0, width, height)
 
       ctx.globalCompositeOperation = "lighter"
-      // USUNIĘTO: ctx.filter = "blur(80px)"
+      if (isMobileViewport) {
+        ctx.filter = "blur(80px)"
+      }
 
       const driftX = Math.sin(time * 0.16) * width * 0.035
       const driftY = Math.cos(time * 0.15) * height * 0.035
@@ -104,7 +118,8 @@ export function MeshGradient() {
       ctx.fillRect(0, 0, width, height)
 
       ctx.globalCompositeOperation = "source-over"
-      ctx.fillStyle = "rgba(0, 0, 0, 0.28)"
+      ctx.filter = "none"
+      ctx.fillStyle = isMobileViewport ? "rgba(0, 0, 0, 0.34)" : "rgba(0, 0, 0, 0.28)"
       ctx.fillRect(0, 0, width, height)
 
       const vignette = ctx.createRadialGradient(
@@ -112,8 +127,8 @@ export function MeshGradient() {
         width * 0.5, height * 0.5, Math.max(width, height) * 0.75
       )
       vignette.addColorStop(0, "rgba(0, 0, 0, 0)")
-      vignette.addColorStop(0.65, "rgba(0, 0, 0, 0.03)")
-      vignette.addColorStop(1, "rgba(0, 0, 0, 0.22)")
+      vignette.addColorStop(0.65, isMobileViewport ? "rgba(0, 0, 0, 0.03)" : "rgba(0, 0, 0, 0.03)")
+      vignette.addColorStop(1, isMobileViewport ? "rgba(0, 0, 0, 0.22)" : "rgba(0, 0, 0, 0.22)")
       ctx.fillStyle = vignette
       ctx.fillRect(0, 0, width, height)
 
@@ -123,8 +138,8 @@ export function MeshGradient() {
         width * 0.5, topShadeY, 0,
         width * 0.5, topShadeY, topShadeRadius
       )
-      topShade.addColorStop(0, "rgba(0, 0, 0, 0.38)")
-      topShade.addColorStop(0.55, "rgba(0, 0, 0, 0.17)")
+      topShade.addColorStop(0, isMobileViewport ? "rgba(0, 0, 0, 0.38)" : "rgba(0, 0, 0, 0.38)")
+      topShade.addColorStop(0.55, isMobileViewport ? "rgba(0, 0, 0, 0.17)" : "rgba(0, 0, 0, 0.17)")
       topShade.addColorStop(1, "rgba(0, 0, 0, 0)")
       ctx.fillStyle = topShade
       ctx.fillRect(0, 0, width, height)
@@ -152,11 +167,17 @@ export function MeshGradient() {
 
     renderFrame()
 
-    startAnimationTimeoutId = window.setTimeout(() => {
+    if (width <= 767) {
       isAnimating = true
       lastTime = 0
       animationId = requestAnimationFrame(animate)
-    }, 10_000)
+    } else {
+      startAnimationTimeoutId = window.setTimeout(() => {
+        isAnimating = true
+        lastTime = 0
+        animationId = requestAnimationFrame(animate)
+      }, 10_000)
+    }
 
     return () => {
       isAnimating = false
@@ -174,10 +195,6 @@ export function MeshGradient() {
     <canvas
       ref={canvasRef}
       className="pointer-events-none fixed inset-0 z-0"
-      // ROZWIĄZANIE NA JAKOŚĆ: Przesuwamy morderczy blur z procesora na kartę graficzną!
-      // To sprawia, że tło jest gładkie, a strona działa błyskawicznie.
-      // 80px do 100px powinno idealnie wygładzić rozdzielczość 50%.
-      style={{ filter: "blur(100px)" }}
       aria-hidden="true"
     />
   )
