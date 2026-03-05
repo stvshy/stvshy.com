@@ -411,7 +411,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
           rel={link.blocked ? undefined : "noopener noreferrer"}
           aria-disabled={link.blocked}
           onClick={(e) => e.currentTarget.blur()}
-          className={`group flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-3 backdrop-blur-xl transition-all duration-300 ${
+          className={`group flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-3 backdrop-blur-xl transition-[background-color,border-color,color,box-shadow] duration-300 ${
             link.blocked
               ? "cursor-not-allowed border-border/70 bg-muted/15 opacity-100"
               : "[@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
@@ -477,7 +477,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
             e.currentTarget.blur()
           }}
           aria-expanded={isYearsOpen}
-          className={`group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] ${
+          className={`group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-[background-color,border-color,color,box-shadow] duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] ${
             isYearsPressed
               ? "!border-[var(--dev-accent)]/45 !bg-[var(--dev-accent)]/10 !shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
               : ""
@@ -510,7 +510,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
             e.currentTarget.blur()
           }}
           aria-expanded={isCertificatesOpen}
-          className={`group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] ${
+          className={`group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-[background-color,border-color,color,box-shadow] duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] ${
             isCertificatesPressed
               ? "!border-[var(--dev-accent)]/45 !bg-[var(--dev-accent)]/10 !shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
               : ""
@@ -715,7 +715,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
       </div>
 
       <div
-        className={`border bg-card backdrop-blur-xl transition-all duration-300 ${
+        className={`border bg-card backdrop-blur-xl transition-[background-color,border-color,color,box-shadow] duration-300 ${
           isStackOpen
             ? "rounded-xl border-border"
             : "rounded-xl border-border [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
@@ -732,7 +732,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
             setIsStackOpen((prev) => !prev)
             e.currentTarget.blur()
           }}
-          className={`group flex w-full items-center gap-4 px-5 py-3 text-left transition-all duration-300 ${
+          className={`group flex w-full items-center gap-4 px-5 py-3 text-left transition-[background-color,border-color,color,box-shadow] duration-300 ${
             isStackOpen
               ? "rounded-t-xl [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
               : "rounded-xl"

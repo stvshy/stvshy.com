@@ -53,7 +53,6 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
 
   const hyphenateText = useMemo(() => {
     const hyphenate = language === "pl" ? hyphenatePl : hyphenateEn
-
     const plWords = [
       "programistą",
       "producentem muzycznym",
@@ -213,7 +212,7 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
         <button
           type="button"
           onClick={() => onOpenImagePreview("/images/tripify-map.jpg", "Tripify map")}
-          className="group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-foreground/30 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-foreground/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(240,240,240,0.08)] active:border-foreground/30 active:bg-foreground/10 active:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
+          className="group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-[background-color,border-color,color,box-shadow] duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-foreground/30 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-foreground/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(240,240,240,0.08)] active:border-foreground/30 active:bg-foreground/10 active:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
           aria-label={text.mapPreviewLabel}
         >
           <ChevronRight className="absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground transition-transform [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-0.5 [@media(hover:hover)_and_(pointer:fine)]:group-hover:text-foreground group-active:translate-x-0.5 group-active:text-foreground" />
@@ -233,7 +232,7 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
           href="https://www.fragrantica.pl/uzytkownicy/34655"
           target="_blank"
           rel="noopener noreferrer"
-          className="group relative rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-foreground/30 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-foreground/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(240,240,240,0.08)] active:border-foreground/30 active:bg-foreground/10 active:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
+          className="group relative rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl transition-[background-color,border-color,color,box-shadow] duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-foreground/30 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-foreground/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(240,240,240,0.08)] active:border-foreground/30 active:bg-foreground/10 active:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
           aria-label={text.fragranticaLabel}
         >
           <ChevronRight className="absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground transition-transform [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-0.5 [@media(hover:hover)_and_(pointer:fine)]:group-hover:text-foreground group-active:translate-x-0.5 group-active:text-foreground" />

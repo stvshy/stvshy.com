@@ -168,10 +168,10 @@ export function TabMusic({ language }: TabMusicProps) {
   const musicRgb = hexToRgbChannels(MUSIC_ACCENT).split(" ").join(", ")
 
   const defaultLinkClassName =
-    "group flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-3 backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[rgb(var(--music-accent-rgb)/0.3)] [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[rgb(var(--music-accent-rgb)/0.05)] active:border-[rgb(var(--music-accent-rgb)/0.3)] active:bg-[rgb(var(--music-accent-rgb)/0.05)]"
+    "group flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-3 backdrop-blur-xl transition-[background-color,border-color,color,box-shadow] duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[rgb(var(--music-accent-rgb)/0.3)] [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[rgb(var(--music-accent-rgb)/0.05)] active:border-[rgb(var(--music-accent-rgb)/0.3)] active:bg-[rgb(var(--music-accent-rgb)/0.05)]"
 
   const fantasiaCardClassName =
-    "group flex items-center gap-4 rounded-xl border border-[rgb(var(--music-accent-rgb)/0.35)] bg-[rgb(var(--music-accent-rgb)/0.1)] px-5 py-3 backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[rgb(var(--music-accent-rgb)/0.45)] [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[rgb(var(--music-accent-rgb)/0.15)] active:border-[rgb(var(--music-accent-rgb)/0.45)] active:bg-[rgb(var(--music-accent-rgb)/0.15)]"
+    "group flex items-center gap-4 rounded-xl border border-[rgb(var(--music-accent-rgb)/0.35)] bg-[rgb(var(--music-accent-rgb)/0.1)] px-5 py-3 backdrop-blur-xl transition-[background-color,border-color,color,box-shadow] duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[rgb(var(--music-accent-rgb)/0.45)] [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[rgb(var(--music-accent-rgb)/0.15)] active:border-[rgb(var(--music-accent-rgb)/0.45)] active:bg-[rgb(var(--music-accent-rgb)/0.15)]"
 
 
   const visibleLinks = localizedLinks.slice(0, 4)
@@ -242,7 +242,7 @@ export function TabMusic({ language }: TabMusicProps) {
         onClick={() => {
           setIsMoreOpen((prev) => !prev)
         }}
-        className={`flex h-8 w-full items-center justify-center gap-2 rounded-lg border border-border/70 bg-card/70 text-[11px] font-medium uppercase tracking-wide text-muted-foreground transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[rgb(var(--music-accent-rgb)/0.3)] [@media(hover:hover)_and_(pointer:fine)]:hover:text-[rgb(var(--music-accent-rgb))] active:border-[rgb(var(--music-accent-rgb)/0.3)] active:text-[rgb(var(--music-accent-rgb))] ${
+        className={`flex h-8 w-full items-center justify-center gap-2 rounded-lg border border-border/70 bg-card/70 text-[11px] font-medium uppercase tracking-wide text-muted-foreground transition-[background-color,border-color,color,box-shadow] duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[rgb(var(--music-accent-rgb)/0.3)] [@media(hover:hover)_and_(pointer:fine)]:hover:text-[rgb(var(--music-accent-rgb))] active:border-[rgb(var(--music-accent-rgb)/0.3)] active:text-[rgb(var(--music-accent-rgb))] ${
           isMorePressed
             ? "border-[rgb(var(--music-accent-rgb)/0.3)] text-[rgb(var(--music-accent-rgb))]"
             : ""

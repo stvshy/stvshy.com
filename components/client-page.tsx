@@ -143,11 +143,29 @@ export default function ClientPage({ initialSection, initialLang }: ClientPagePr
   const prefetchTabFromValue = useCallback((value: string) => {
     if (value === "about" || value === "dev" || value === "music") {
       preloadTabModule(value)
-      prefetchTabs(getRemainingTabs(value))
+      const remainingTabs = getRemainingTabs(value)
+      const requestIdle = (window as Window & {
+        requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number
+      }).requestIdleCallback
+
+      if (requestIdle) {
+        requestIdle(() => {
+          prefetchTabs(remainingTabs)
+        }, { timeout: 1500 })
+        return
+      }
+
+      window.setTimeout(() => {
+        prefetchTabs(remainingTabs)
+      }, 250)
     }
   }, [getRemainingTabs, prefetchTabs])
 
-  // Prefetch uruchamiany zaraz po pierwszym paint, żeby pierwszy switch był natychmiastowy.
+  const warmTabOnIntent = useCallback((tab: TabKey) => {
+    preloadTabModule(tab)
+  }, [])
+
+  // Delikatny fallback: jeśli user nie wejdzie w taby, doładuj pozostałe moduły dopiero po czasie i w idle.
   useEffect(() => {
     const prioritizedTabs = getRemainingTabs(initialTabForPrefetch)
     const connection = (navigator as Navigator & {
@@ -157,8 +175,8 @@ export default function ClientPage({ initialSection, initialLang }: ClientPagePr
       connection?.saveData || /(^|-)2g$/.test(connection?.effectiveType ?? "")
 
     let isCancelled = false
-    let firstRaf: number | null = null
-    let secondRaf: number | null = null
+    let idleHandle: number | null = null
+    let startTimeout: number | null = null
     const staggeredTimeouts: number[] = []
 
     const runStaggeredPrefetch = (stepMs: number) => {
@@ -172,24 +190,34 @@ export default function ClientPage({ initialSection, initialLang }: ClientPagePr
       })
     }
 
-    if (isConstrainedConnection) {
-      runStaggeredPrefetch(220)
-    } else {
-      // Double RAF: startujemy po pierwszym renderze, ale bez widocznej zwłoki dla użytkownika.
-      firstRaf = window.requestAnimationFrame(() => {
-        secondRaf = window.requestAnimationFrame(() => {
-          runStaggeredPrefetch(80)
-        })
-      })
-    }
+    const requestIdle = (window as Window & {
+      requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number
+    }).requestIdleCallback
+    const cancelIdle = (window as Window & {
+      cancelIdleCallback?: (handle: number) => void
+    }).cancelIdleCallback
+
+    const startDelay = isConstrainedConnection ? 2600 : 1400
+    startTimeout = window.setTimeout(() => {
+      if (isCancelled) return
+
+      if (requestIdle) {
+        idleHandle = requestIdle(() => {
+          runStaggeredPrefetch(isConstrainedConnection ? 320 : 180)
+        }, { timeout: isConstrainedConnection ? 2800 : 1800 })
+        return
+      }
+
+      runStaggeredPrefetch(isConstrainedConnection ? 320 : 180)
+    }, startDelay)
 
     return () => {
       isCancelled = true
-      if (firstRaf !== null) {
-        window.cancelAnimationFrame(firstRaf)
+      if (startTimeout !== null) {
+        window.clearTimeout(startTimeout)
       }
-      if (secondRaf !== null) {
-        window.cancelAnimationFrame(secondRaf)
+      if (idleHandle !== null && cancelIdle) {
+        cancelIdle(idleHandle)
       }
       staggeredTimeouts.forEach((timeoutId) => window.clearTimeout(timeoutId))
     }
@@ -314,15 +342,15 @@ const openPreview = useCallback((imageSrc: string, imageAlt: string) => {
         {/* Navigation Tabs */}
  <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full -mt-[10px]">
           <TabsList className="grid w-full grid-cols-3 bg-muted/50 backdrop-blur-xl border border-border">
-            <TabsTrigger value="dev" className="text-xs font-medium text-muted-foreground transition-[background-color,border-color,color,box-shadow] duration-150 data-[state=active]:bg-neon-magenta/10 data-[state=active]:text-neon-magenta data-[state=active]:shadow-none hover:data-[state=inactive]:bg-background/10 hover:data-[state=inactive]:border-border hover:data-[state=inactive]:text-muted-foreground/70">
+            <TabsTrigger value="dev" onPointerDown={() => warmTabOnIntent("dev")} onFocus={() => warmTabOnIntent("dev")} className="text-xs font-medium text-muted-foreground transition-[background-color,border-color,color,box-shadow] duration-150 data-[state=active]:bg-neon-magenta/10 data-[state=active]:text-neon-magenta data-[state=active]:shadow-none hover:data-[state=inactive]:bg-background/10 hover:data-[state=inactive]:border-border hover:data-[state=inactive]:text-muted-foreground/70">
               <Image src="/images/dev-icon3-4.png" alt="Dev icon" width={16} height={16} className="mr-1 size-4" />
               {text.tabs.dev}
             </TabsTrigger>
-            <TabsTrigger value="about" className="text-xs font-medium text-muted-foreground transition-[background-color,border-color,color,box-shadow] duration-150 data-[state=active]:bg-foreground/10 data-[state=active]:text-foreground data-[state=active]:shadow-none hover:data-[state=inactive]:bg-background/10 hover:data-[state=inactive]:border-border hover:data-[state=inactive]:text-muted-foreground/70">
+            <TabsTrigger value="about" onPointerDown={() => warmTabOnIntent("about")} onFocus={() => warmTabOnIntent("about")} className="text-xs font-medium text-muted-foreground transition-[background-color,border-color,color,box-shadow] duration-150 data-[state=active]:bg-foreground/10 data-[state=active]:text-foreground data-[state=active]:shadow-none hover:data-[state=inactive]:bg-background/10 hover:data-[state=inactive]:border-border hover:data-[state=inactive]:text-muted-foreground/70">
               <Image src="/images/about-icon5.png" alt="About icon" width={16} height={16} className="mr-1 size-4" />
               {text.tabs.about}
             </TabsTrigger>
-            <TabsTrigger value="music" className="text-xs font-medium text-muted-foreground transition-[background-color,border-color,color,box-shadow] duration-150 data-[state=active]:bg-[#b817e4]/10 data-[state=active]:text-[#b817e4] data-[state=active]:shadow-none hover:data-[state=inactive]:bg-background/10 hover:data-[state=inactive]:border-border hover:data-[state=inactive]:text-muted-foreground/70">
+            <TabsTrigger value="music" onPointerDown={() => warmTabOnIntent("music")} onFocus={() => warmTabOnIntent("music")} className="text-xs font-medium text-muted-foreground transition-[background-color,border-color,color,box-shadow] duration-150 data-[state=active]:bg-[#b817e4]/10 data-[state=active]:text-[#b817e4] data-[state=active]:shadow-none hover:data-[state=inactive]:bg-background/10 hover:data-[state=inactive]:border-border hover:data-[state=inactive]:text-muted-foreground/70">
               <Image src="/images/music-icon2.png" alt="Music note" width={16} height={16} className="mr-1 size-4" />
               {text.tabs.music}
             </TabsTrigger>
