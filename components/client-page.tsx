@@ -24,24 +24,36 @@ const TAB_IMPORTERS = {
 let aboutModulePromise: ReturnType<typeof TAB_IMPORTERS.about> | null = null
 let devModulePromise: ReturnType<typeof TAB_IMPORTERS.dev> | null = null
 let musicModulePromise: ReturnType<typeof TAB_IMPORTERS.music> | null = null
+let aboutModuleLoaded = false
+let devModuleLoaded = false
+let musicModuleLoaded = false
 
 const preloadAboutModule = () => {
   if (!aboutModulePromise) {
-    aboutModulePromise = TAB_IMPORTERS.about()
+    aboutModulePromise = TAB_IMPORTERS.about().then((module) => {
+      aboutModuleLoaded = true
+      return module
+    })
   }
   return aboutModulePromise
 }
 
 const preloadDevModule = () => {
   if (!devModulePromise) {
-    devModulePromise = TAB_IMPORTERS.dev()
+    devModulePromise = TAB_IMPORTERS.dev().then((module) => {
+      devModuleLoaded = true
+      return module
+    })
   }
   return devModulePromise
 }
 
 const preloadMusicModule = () => {
   if (!musicModulePromise) {
-    musicModulePromise = TAB_IMPORTERS.music()
+    musicModulePromise = TAB_IMPORTERS.music().then((module) => {
+      musicModuleLoaded = true
+      return module
+    })
   }
   return musicModulePromise
 }
@@ -50,6 +62,16 @@ const preloadTabModule = (tab: TabKey) => {
   if (tab === "about") return preloadAboutModule()
   if (tab === "dev") return preloadDevModule()
   return preloadMusicModule()
+}
+
+const isTabModuleLoaded = (tab: TabKey) => {
+  if (tab === "about") return aboutModuleLoaded
+  if (tab === "dev") return devModuleLoaded
+  return musicModuleLoaded
+}
+
+const isTabKey = (value: string): value is TabKey => {
+  return value === "about" || value === "dev" || value === "music"
 }
 
 // Importujemy z zachowaniem SSR
@@ -119,109 +141,19 @@ export default function ClientPage({ initialSection, initialLang }: ClientPagePr
   const [isPreviewLoaded, setIsPreviewLoaded] = useState(false)
   const [isLangPressed, setIsLangPressed] = useState(false)
   const langPressTimeoutRef = useRef<number | null>(null)
+  const tabSwitchRequestIdRef = useRef(0)
   const isTripifyMapPreview = previewImage?.src.includes("tripify-map")
-  const initialTabForPrefetch: TabKey =
-    initialSection === "dev" || initialSection === "music" ? initialSection : "about"
   const text = pageText[language]
-
-  const prefetchTabs = useCallback((tabs?: TabKey[]) => {
-    if (tabs) {
-      tabs.forEach(preloadTabModule)
-      return
-    }
-    preloadTabModule("about")
-    preloadTabModule("dev")
-    preloadTabModule("music")
-  }, [])
-
-  const getRemainingTabs = useCallback((currentTab: TabKey): TabKey[] => {
-    if (currentTab === "about") return ["dev", "music"]
-    if (currentTab === "dev") return ["about", "music"]
-    return ["about", "dev"]
-  }, [])
 
   const prefetchTabFromValue = useCallback((value: string) => {
     if (value === "about" || value === "dev" || value === "music") {
       preloadTabModule(value)
-      const remainingTabs = getRemainingTabs(value)
-      const requestIdle = (window as Window & {
-        requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number
-      }).requestIdleCallback
-
-      if (requestIdle) {
-        requestIdle(() => {
-          prefetchTabs(remainingTabs)
-        }, { timeout: 1500 })
-        return
-      }
-
-      window.setTimeout(() => {
-        prefetchTabs(remainingTabs)
-      }, 250)
     }
-  }, [getRemainingTabs, prefetchTabs])
+  }, [])
 
   const warmTabOnIntent = useCallback((tab: TabKey) => {
     preloadTabModule(tab)
   }, [])
-
-  // Delikatny fallback: jeśli user nie wejdzie w taby, doładuj pozostałe moduły dopiero po czasie i w idle.
-  useEffect(() => {
-    const prioritizedTabs = getRemainingTabs(initialTabForPrefetch)
-    const connection = (navigator as Navigator & {
-      connection?: { saveData?: boolean; effectiveType?: string }
-    }).connection
-    const isConstrainedConnection =
-      connection?.saveData || /(^|-)2g$/.test(connection?.effectiveType ?? "")
-
-    let isCancelled = false
-    let idleHandle: number | null = null
-    let startTimeout: number | null = null
-    const staggeredTimeouts: number[] = []
-
-    const runStaggeredPrefetch = (stepMs: number) => {
-      prioritizedTabs.forEach((tab, index) => {
-        const timeoutId = window.setTimeout(() => {
-          if (!isCancelled) {
-            preloadTabModule(tab)
-          }
-        }, index * stepMs)
-        staggeredTimeouts.push(timeoutId)
-      })
-    }
-
-    const requestIdle = (window as Window & {
-      requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number
-    }).requestIdleCallback
-    const cancelIdle = (window as Window & {
-      cancelIdleCallback?: (handle: number) => void
-    }).cancelIdleCallback
-
-    const startDelay = isConstrainedConnection ? 2600 : 1400
-    startTimeout = window.setTimeout(() => {
-      if (isCancelled) return
-
-      if (requestIdle) {
-        idleHandle = requestIdle(() => {
-          runStaggeredPrefetch(isConstrainedConnection ? 320 : 180)
-        }, { timeout: isConstrainedConnection ? 2800 : 1800 })
-        return
-      }
-
-      runStaggeredPrefetch(isConstrainedConnection ? 320 : 180)
-    }, startDelay)
-
-    return () => {
-      isCancelled = true
-      if (startTimeout !== null) {
-        window.clearTimeout(startTimeout)
-      }
-      if (idleHandle !== null && cancelIdle) {
-        cancelIdle(idleHandle)
-      }
-      staggeredTimeouts.forEach((timeoutId) => window.clearTimeout(timeoutId))
-    }
-  }, [getRemainingTabs, initialTabForPrefetch])
 
   const triggerLangPress = () => {
     setIsLangPressed(true)
@@ -242,10 +174,29 @@ const updateUrl = (tab: string, lang: string) => {
   }
 
 const handleTabChange = (value: string) => {
-  prefetchTabFromValue(value)
+  if (!isTabKey(value)) {
     setActiveTab(value)
     updateUrl(value, language)
+    return
   }
+
+  prefetchTabFromValue(value)
+
+  if (isTabModuleLoaded(value)) {
+    setActiveTab(value)
+    updateUrl(value, language)
+    return
+  }
+
+  const requestId = tabSwitchRequestIdRef.current + 1
+  tabSwitchRequestIdRef.current = requestId
+
+  preloadTabModule(value).then(() => {
+    if (tabSwitchRequestIdRef.current !== requestId) return
+    setActiveTab(value)
+    updateUrl(value, language)
+  })
+}
   const handleLanguageChange = () => {
     const newLang = nextLanguage
     setLanguage(newLang)

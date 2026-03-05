@@ -19,12 +19,13 @@ export function MeshGradient() {
     let height = 0
     let isAnimating = false
 
-    // Zmienne do kontroli klatek na sekundę (FPS)
-    let lastTime = 0;
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-    // 30 FPS na telefonach oszczędza 50% CPU
-    const targetFps = isMobile ? 30 : 60; 
-    const fpsInterval = 1000 / targetFps;
+    // Ograniczamy FPS, by wyraźnie zmniejszyć koszt CPU przy praktycznie takim samym odbiorze wizualnym.
+    let lastTime = 0
+    const isMobile = window.innerWidth < 768
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    const lowEndDevice = (navigator.hardwareConcurrency || 8) <= 4
+    const targetFps = prefersReducedMotion ? 0 : isMobile ? 24 : lowEndDevice ? 26 : 30
+    const fpsInterval = targetFps > 0 ? 1000 / targetFps : Number.POSITIVE_INFINITY
 
     const resize = () => {
       const nextWidth = window.innerWidth
@@ -134,6 +135,8 @@ export function MeshGradient() {
       if (!isAnimating) return
       animationId = requestAnimationFrame(animate)
 
+      if (document.hidden || targetFps === 0) return
+
       // DODANE: Logika ucinania klatek - rysujemy rzadziej, procesor odpoczywa!
       if (!lastTime) lastTime = currentTime
       const deltaTime = currentTime - lastTime
@@ -141,8 +144,8 @@ export function MeshGradient() {
       if (deltaTime < fpsInterval) return
       lastTime = currentTime - (deltaTime % fpsInterval)
 
-      // Poprawka na to, by przy 30 FPS animacja płynęła w identycznym tempie co przy 60 FPS
-      const timeMultiplier = isMobile ? (deltaTime / 16.66) : 1
+      // Zachowujemy to samo tempo "dryfu" niezależnie od FPS.
+      const timeMultiplier = deltaTime / 16.66
       time = (time + 0.0025 * timeMultiplier) % 100
 
       renderFrame()
@@ -156,7 +159,7 @@ export function MeshGradient() {
       isAnimating = true
       lastTime = 0
       animationId = requestAnimationFrame(animate)
-    }, 500)
+    }, 650)
 
     return () => {
       isAnimating = false
