@@ -4,8 +4,7 @@ import { useEffect, useRef } from "react"
 
 export function MeshGradient() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-const isLighthouse = typeof window !== 'undefined' && navigator.userAgent.includes('Lighthouse');
-if (isLighthouse) return <div className="absolute inset-0 bg-background" />;
+
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -13,10 +12,12 @@ if (isLighthouse) return <div className="absolute inset-0 bg-background" />;
     const ctx = canvas.getContext("2d")
     if (!ctx) return
 
-    let animationId: number
+    let animationId: number | undefined
+    let startAnimationTimeoutId: number | undefined
     let time = 0
     let width = 0
     let height = 0
+    let isAnimating = false
 
     // Zmienne do kontroli klatek na sekundę (FPS)
     let lastTime = 0;
@@ -43,20 +44,7 @@ if (isLighthouse) return <div className="absolute inset-0 bg-background" />;
     resize()
     window.addEventListener("resize", resize)
 
-    const animate = (currentTime: number) => {
-      animationId = requestAnimationFrame(animate)
-
-      // DODANE: Logika ucinania klatek - rysujemy rzadziej, procesor odpoczywa!
-      if (!lastTime) lastTime = currentTime;
-      const deltaTime = currentTime - lastTime;
-      
-      if (deltaTime < fpsInterval) return; 
-      lastTime = currentTime - (deltaTime % fpsInterval);
-
-      // Poprawka na to, by przy 30 FPS animacja płynęła w identycznym tempie co przy 60 FPS
-      const timeMultiplier = isMobile ? (deltaTime / 16.66) : 1;
-      time = (time + 0.0025 * timeMultiplier) % 100;
-
+    const renderFrame = () => {
       ctx.save()
       ctx.clearRect(0, 0, width, height)
       
@@ -142,12 +130,43 @@ if (isLighthouse) return <div className="absolute inset-0 bg-background" />;
       ctx.restore()
     }
 
-    // Uruchamiamy pierwszą klatkę z currentTime = 0
-    animationId = requestAnimationFrame(animate)
+    const animate = (currentTime: number) => {
+      if (!isAnimating) return
+      animationId = requestAnimationFrame(animate)
+
+      // DODANE: Logika ucinania klatek - rysujemy rzadziej, procesor odpoczywa!
+      if (!lastTime) lastTime = currentTime
+      const deltaTime = currentTime - lastTime
+
+      if (deltaTime < fpsInterval) return
+      lastTime = currentTime - (deltaTime % fpsInterval)
+
+      // Poprawka na to, by przy 30 FPS animacja płynęła w identycznym tempie co przy 60 FPS
+      const timeMultiplier = isMobile ? (deltaTime / 16.66) : 1
+      time = (time + 0.0025 * timeMultiplier) % 100
+
+      renderFrame()
+    }
+
+    // Natychmiast rysujemy statyczną "klatkę zero", bez czekania na pierwsze RAF.
+    renderFrame()
+
+    // Start animacji odkładamy, żeby ograniczyć obciążenie CPU przy starcie strony.
+    startAnimationTimeoutId = window.setTimeout(() => {
+      isAnimating = true
+      lastTime = 0
+      animationId = requestAnimationFrame(animate)
+    }, 500)
 
     return () => {
+      isAnimating = false
       window.removeEventListener("resize", resize)
-      cancelAnimationFrame(animationId)
+      if (startAnimationTimeoutId !== undefined) {
+        window.clearTimeout(startAnimationTimeoutId)
+      }
+      if (animationId !== undefined) {
+        cancelAnimationFrame(animationId)
+      }
     }
   }, [])
 

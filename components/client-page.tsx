@@ -5,13 +5,18 @@ import { Mail, X } from "lucide-react"
 import { BsInstagram } from "react-icons/bs"
 // import { MeshGradient } from "@/components/mesh-gradient"
 import { ProfileHeader } from "@/components/profile-header"
-import { TabMusic } from "@/components/tab-music"
-import { TabDev } from "@/components/tab-dev"
-import { TabAbout } from "@/components/tab-about"
+// import { TabMusic } from "@/components/tab-music"
+// import { TabDev } from "@/components/tab-dev"
+// import { TabAbout } from "@/components/tab-about"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import dynamic from "next/dynamic"
+
+// Importujemy z zachowaniem SSR
+const TabAbout = dynamic(() => import("@/components/tab-about").then((mod) => mod.TabAbout))
+const TabDev = dynamic(() => import("@/components/tab-dev").then((mod) => mod.TabDev))
+const TabMusic = dynamic(() => import("@/components/tab-music").then((mod) => mod.TabMusic))
 
 const MeshGradient = dynamic(
   () => import("@/components/mesh-gradient").then((mod) => mod.MeshGradient),
@@ -77,7 +82,16 @@ export default function ClientPage({ initialSection, initialLang }: ClientPagePr
   const langPressTimeoutRef = useRef<number | null>(null)
   const isTripifyMapPreview = previewImage?.src.includes("tripify-map")
   const text = pageText[language]
+ const [deferTabs, setDeferTabs] = useState(true)
 
+
+  // DODAJEMY USE-EFFECT DO OPÓŹNIENIA
+  useEffect(() => {
+    // Po 800ms od załadowania strony zdejmujemy blokadę. 
+    // Przeglądarka po cichu pobierze i wyrenderuje nieaktywne zakładki w tle.
+    const timer = setTimeout(() => setDeferTabs(false), 800)
+    return () => clearTimeout(timer)
+  }, [])
   const triggerLangPress = () => {
     setIsLangPressed(true)
     if (langPressTimeoutRef.current !== null) {
@@ -237,24 +251,42 @@ const openPreview = useCallback((imageSrc: string, imageAlt: string) => {
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="dev" className="mt-1">
-            <TabDev
-              language={language}
-              onOpenImagePreview={(imageSrc, imageAlt) =>
-                setPreviewImage({ src: imageSrc, alt: imageAlt })
-              }
-            />
+          <TabsContent 
+            value="dev" 
+            className={`mt-1 ${activeTab !== "dev" ? "hidden" : ""}`}
+            forceMount={activeTab === "dev" || !deferTabs ? true : undefined}
+          >
+            {(activeTab === "dev" || !deferTabs) && (
+              <TabDev
+                language={language}
+                onOpenImagePreview={(imageSrc, imageAlt) =>
+                  setPreviewImage({ src: imageSrc, alt: imageAlt })
+                }
+              />
+            )}
           </TabsContent>
-          <TabsContent value="about" className="mt-1">
-            <TabAbout
-              language={language}
-              onOpenImagePreview={(imageSrc, imageAlt) =>
-                setPreviewImage({ src: imageSrc, alt: imageAlt })
-              }
-            />
+
+          <TabsContent 
+            value="about" 
+            className={`mt-1 ${activeTab !== "about" ? "hidden" : ""}`}
+            forceMount={activeTab === "about" || !deferTabs ? true : undefined}
+          >
+            {(activeTab === "about" || !deferTabs) && (
+              <TabAbout
+                language={language}
+                onOpenImagePreview={(imageSrc, imageAlt) =>
+                  setPreviewImage({ src: imageSrc, alt: imageAlt })
+                }
+              />
+            )}
           </TabsContent>
-          <TabsContent value="music" className="mt-1">
-            <TabMusic language={language} />
+
+          <TabsContent 
+            value="music" 
+            className={`mt-1 ${activeTab !== "music" ? "hidden" : ""}`}
+            forceMount={activeTab === "music" || !deferTabs ? true : undefined}
+          >
+            {(activeTab === "music" || !deferTabs) && <TabMusic language={language} />}
           </TabsContent>
         </Tabs>
 
