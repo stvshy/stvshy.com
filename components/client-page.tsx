@@ -1,9 +1,8 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { Mail, X } from "lucide-react"
 import { BsInstagram } from "react-icons/bs"
-// import { MeshGradient } from "@/components/mesh-gradient"
 import { ProfileHeader } from "@/components/profile-header"
 import { TabMusic } from "@/components/tab-music"
 import { TabDev } from "@/components/tab-dev"
@@ -15,11 +14,9 @@ import dynamic from "next/dynamic"
 
 const MeshGradient = dynamic(
   () => import("@/components/mesh-gradient").then((mod) => mod.MeshGradient),
-  { 
+  {
     ssr: false,
-    loading: () => (
-      <div className="absolute inset-0 bg-background" /> 
-    )
+    loading: () => <div className="fixed inset-0 z-0 bg-background" />,
   }
 )
 
@@ -30,13 +27,19 @@ interface ClientPageProps {
   initialLang: Language
 }
 
+const FONT_STACK = 'Montserrat, MontserratCustom, var(--font-sans), system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial'
+
+// Stałe wyciągnięte poza komponent – nigdy się nie zmieniają, zero alokacji
+const PREVIEW_IMAGE_SOURCES = [
+  "/images/meta2.png",
+  "/images/meta1.png",
+  "/images/cisco.png",
+  "/images/tripify-map.jpg",
+]
+
 const pageText = {
   en: {
-    tabs: {
-      dev: "Dev",
-      about: "About",
-      music: "Music",
-    },
+    tabs: { dev: "Dev", about: "About", music: "Music" },
     contact: "Contact Me",
     instagram: "Instagram",
     instagramAria: "Open Instagram profile",
@@ -46,11 +49,7 @@ const pageText = {
     switchLanguageLabel: "Switch language to Polish",
   },
   pl: {
-    tabs: {
-      dev: "Dev",
-      about: "O mnie",
-      music: "Muzyka",
-    },
+    tabs: { dev: "Dev", about: "O mnie", music: "Muzyka" },
     contact: "Skontaktuj się",
     instagram: "Instagram",
     instagramAria: "Otwórz profil na Instagramie",
@@ -69,16 +68,14 @@ export default function ClientPage({ initialSection, initialLang }: ClientPagePr
   const [isPreviewLoaded, setIsPreviewLoaded] = useState(false)
   const [isLangPressed, setIsLangPressed] = useState(false)
   const langPressTimeoutRef = useRef<number | null>(null)
+
   const isTripifyMapPreview = previewImage?.src.includes("tripify-map")
   const text = pageText[language]
-  const previewImageSources = [
-    "/images/meta2.png",
-    "/images/meta1.png",
-    "/images/cisco.png",
-    "/images/tripify-map.jpg",
-  ]
+  const nextLanguage: Language = language === "en" ? "pl" : "en"
 
-  const triggerLangPress = () => {
+  // ── Stabilne callbacki ──
+
+  const triggerLangPress = useCallback(() => {
     setIsLangPressed(true)
     if (langPressTimeoutRef.current !== null) {
       window.clearTimeout(langPressTimeoutRef.current)
@@ -87,108 +84,117 @@ export default function ClientPage({ initialSection, initialLang }: ClientPagePr
       setIsLangPressed(false)
       langPressTimeoutRef.current = null
     }, 200)
-  }
-  const nextLanguage: Language = language === "en" ? "pl" : "en"
-const updateUrl = (tab: string, lang: string) => {
-    const tabPart = tab === "about" ? "" : `/${tab}` // "about" to strona główna
-    const langPart = lang === "pl" ? "/pl" : ""     // "en" jest domyślny, więc go nie pokazujemy
+  }, [])
+
+  const updateUrl = useCallback((tab: string, lang: string) => {
+    const tabPart = tab === "about" ? "" : `/${tab}`
+    const langPart = lang === "pl" ? "/pl" : ""
     const newPath = `${tabPart}${langPart}` || "/"
     window.history.replaceState(null, "", newPath)
-  }
+  }, [])
 
-  const handleTabChange = (value: string) => {
-    setActiveTab(value)
-    updateUrl(value, language)
-  }
-  const handleLanguageChange = () => {
+  const handleTabChange = useCallback(
+    (value: string) => {
+      setActiveTab(value)
+      updateUrl(value, language)
+    },
+    [language, updateUrl]
+  )
+
+  const handleLanguageChange = useCallback(() => {
     const newLang = nextLanguage
     setLanguage(newLang)
     updateUrl(activeTab, newLang)
-    
-    // Zapisz też w localStorage 
     document.documentElement.lang = newLang
     window.localStorage.setItem("language", newLang)
-  }
-  // Ta funkcja zdejmuje focus z opóźnieniem, żeby "przebić" systemowe kliknięcie
-  const handleTouchUnfocus = (e: React.TouchEvent<HTMLElement>) => {
-    const target = e.currentTarget
-    setTimeout(() => {
-      target.blur()
-    }, 100)
-  }
-  useEffect(() => {
-    if (!previewImage) {
-      return
-    }
+  }, [nextLanguage, activeTab, updateUrl])
 
+  const handleTouchUnfocus = useCallback((e: React.TouchEvent<HTMLElement>) => {
+    const target = e.currentTarget
+    setTimeout(() => target.blur(), 100)
+  }, [])
+
+  const openPreview = useCallback((imageSrc: string, imageAlt: string) => {
+    setPreviewImage({ src: imageSrc, alt: imageAlt })
+  }, [])
+
+  const closePreview = useCallback(() => setPreviewImage(null), [])
+
+  // ── Efekty ──
+
+  useEffect(() => {
+    if (!previewImage) return
     const previousOverflow = document.body.style.overflow
     document.body.style.overflow = "hidden"
-
     return () => {
       document.body.style.overflow = previousOverflow
     }
   }, [previewImage])
 
-useEffect(() => {
-    let isPreloaded = false
-
-    const preloadImages = () => {
-      if (isPreloaded) return
-      isPreloaded = true
-
-      // Pobieranie obrazów w tle
-      previewImageSources.forEach((source) => {
-        const image = new window.Image()
-        image.decoding = "async"
-        image.src = source
+  // Preload dużych obrazów przy pierwszej interakcji – tylko raz
+  useEffect(() => {
+    let done = false
+    const preload = () => {
+      if (done) return
+      done = true
+      PREVIEW_IMAGE_SOURCES.forEach((src) => {
+        const img = new window.Image()
+        img.decoding = "async"
+        img.src = src
       })
-
-      // Sprzątamy eventy, żeby funkcja odpaliła się tylko raz w życiu
-      window.removeEventListener("mousemove", preloadImages)
-      window.removeEventListener("touchstart", preloadImages)
-      window.removeEventListener("scroll", preloadImages)
+      cleanup()
     }
-
-    // Nasłuchujemy jakiejkolwiek akcji od prawdziwego człowieka
-    window.addEventListener("mousemove", preloadImages)
-    window.addEventListener("touchstart", preloadImages)
-    window.addEventListener("scroll", preloadImages)
-
-    return () => {
-      window.removeEventListener("mousemove", preloadImages)
-      window.removeEventListener("touchstart", preloadImages)
-      window.removeEventListener("scroll", preloadImages)
+    const cleanup = () => {
+      window.removeEventListener("mousemove", preload)
+      window.removeEventListener("touchstart", preload)
+      window.removeEventListener("scroll", preload)
     }
-  }, [previewImageSources])
+    window.addEventListener("mousemove", preload, { once: true, passive: true })
+    window.addEventListener("touchstart", preload, { once: true, passive: true })
+    window.addEventListener("scroll", preload, { once: true, passive: true })
+    return cleanup
+  }, []) // <-- pusta tablica – uruchamia się RAZ
 
   useEffect(() => {
     setIsPreviewLoaded(false)
   }, [previewImage])
-
-
 
   useEffect(() => {
     document.documentElement.lang = language
     window.localStorage.setItem("language", language)
   }, [language])
 
-  const contactHoverClassName =
-    activeTab === "dev"
-      ? "[@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[var(--dev-accent)] [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:text-[var(--dev-accent)] active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
-      : activeTab === "music"
-        ? "[@media(hover:hover)_and_(pointer:fine)]:hover:border-[#b817e4]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[#b817e4]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[#b817e4] [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(184,23,228,0.18)] active:border-[#b817e4]/45 active:bg-[#b817e4]/10 active:text-[#b817e4] active:shadow-[0_0_20px_rgba(184,23,228,0.18)]"
-        : "[@media(hover:hover)_and_(pointer:fine)]:hover:border-foreground/30 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-foreground/10 [@media(hover:hover)_and_(pointer:fine)]:hover:text-foreground [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(240,240,240,0.08)] active:border-foreground/30 active:bg-foreground/10 active:text-foreground active:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
+  // ── Memoizowane klasy CSS ──
 
-  const instagramHoverClassName =
-    activeTab === "dev"
-      ? "[@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/55 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[var(--dev-accent)] [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/55 active:text-[var(--dev-accent)] active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
-      : activeTab === "music"
-        ? "[@media(hover:hover)_and_(pointer:fine)]:hover:border-[#b817e4]/55 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[#b817e4] [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(184,23,228,0.18)] active:border-[#b817e4]/55 active:text-[#b817e4] active:shadow-[0_0_20px_rgba(184,23,228,0.18)]"
-        : "[@media(hover:hover)_and_(pointer:fine)]:hover:border-foreground/45 [@media(hover:hover)_and_(pointer:fine)]:hover:text-foreground [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(240,240,240,0.08)] active:border-foreground/45 active:text-foreground active:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
+  const contactHoverClassName = useMemo(() => {
+    if (activeTab === "dev")
+      return "[@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[var(--dev-accent)] [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:text-[var(--dev-accent)] active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+    if (activeTab === "music")
+      return "[@media(hover:hover)_and_(pointer:fine)]:hover:border-[#b817e4]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[#b817e4]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[#b817e4] [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(184,23,228,0.18)] active:border-[#b817e4]/45 active:bg-[#b817e4]/10 active:text-[#b817e4] active:shadow-[0_0_20px_rgba(184,23,228,0.18)]"
+    return "[@media(hover:hover)_and_(pointer:fine)]:hover:border-foreground/30 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-foreground/10 [@media(hover:hover)_and_(pointer:fine)]:hover:text-foreground [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(240,240,240,0.08)] active:border-foreground/30 active:bg-foreground/10 active:text-foreground active:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
+  }, [activeTab])
 
-  const mobileLangButtonClassName = `inline-flex size-5 items-center justify-center overflow-hidden rounded-full bg-card/90 text-sm shadow-[0_0_14px_rgba(0,0,0,0.28)] backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:brightness-110 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_16px_4px_rgba(255,255,255,0.28)] active:brightness-110 active:shadow-[0_0_16px_4px_rgba(255,255,255,0.28)] ${isLangPressed ? "!brightness-110 !shadow-[0_0_16px_4px_rgba(255,255,255,0.28)]" : ""}`
+  const instagramHoverClassName = useMemo(() => {
+    if (activeTab === "dev")
+      return "[@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/55 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[var(--dev-accent)] [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/55 active:text-[var(--dev-accent)] active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+    if (activeTab === "music")
+      return "[@media(hover:hover)_and_(pointer:fine)]:hover:border-[#b817e4]/55 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[#b817e4] [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(184,23,228,0.18)] active:border-[#b817e4]/55 active:text-[#b817e4] active:shadow-[0_0_20px_rgba(184,23,228,0.18)]"
+    return "[@media(hover:hover)_and_(pointer:fine)]:hover:border-foreground/45 [@media(hover:hover)_and_(pointer:fine)]:hover:text-foreground [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(240,240,240,0.08)] active:border-foreground/45 active:text-foreground active:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
+  }, [activeTab])
 
-  const desktopLangButtonClassName = `fixed bottom-6 right-6 z-40 hidden size-7 items-center justify-center overflow-hidden rounded-full bg-card/90 text-xl shadow-[0_0_24px_rgba(0,0,0,0.35)] backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:brightness-110 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_12px_3px_rgba(255,255,255,0.22)] active:brightness-110 active:shadow-[0_0_12px_3px_rgba(255,255,255,0.22)] md:inline-flex ${isLangPressed ? "!brightness-110 !shadow-[0_0_12px_3px_rgba(255,255,255,0.22)]" : ""}`
+  const mobileLangButtonClassName = useMemo(
+    () =>
+      `inline-flex size-5 items-center justify-center overflow-hidden rounded-full bg-card/90 text-sm shadow-[0_0_14px_rgba(0,0,0,0.28)] backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:brightness-110 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_16px_4px_rgba(255,255,255,0.28)] active:brightness-110 active:shadow-[0_0_16px_4px_rgba(255,255,255,0.28)] ${isLangPressed ? "!brightness-110 !shadow-[0_0_16px_4px_rgba(255,255,255,0.28)]" : ""}`,
+    [isLangPressed]
+  )
+
+  const desktopLangButtonClassName = useMemo(
+    () =>
+      `fixed bottom-6 right-6 z-40 hidden size-7 items-center justify-center overflow-hidden rounded-full bg-card/90 text-xl shadow-[0_0_24px_rgba(0,0,0,0.35)] backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:brightness-110 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_12px_3px_rgba(255,255,255,0.22)] active:brightness-110 active:shadow-[0_0_12px_3px_rgba(255,255,255,0.22)] md:inline-flex ${isLangPressed ? "!brightness-110 !shadow-[0_0_12px_3px_rgba(255,255,255,0.22)]" : ""}`,
+    [isLangPressed]
+  )
+
+  const langImageSrc = language === "en" ? "/images/polish1.png" : "/images/english2.png"
 
   return (
     <main className="relative flex min-h-svh flex-col items-center bg-background">
@@ -198,8 +204,8 @@ useEffect(() => {
         <ProfileHeader language={language} />
 
         {/* Navigation Tabs */}
-<Tabs value={activeTab} onValueChange={handleTabChange} className="w-full -mt-[10px]">
-              <TabsList className="grid w-full grid-cols-3 bg-muted/50 backdrop-blur-xl border border-border">
+        <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full -mt-[10px]">
+          <TabsList className="grid w-full grid-cols-3 bg-muted/50 backdrop-blur-xl border border-border">
             <TabsTrigger
               value="dev"
               className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-neon-magenta/10 data-[state=active]:text-neon-magenta data-[state=active]:shadow-none [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:bg-background/10 [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:border-border [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:text-muted-foreground/70 data-[state=inactive]:active:bg-background/10 data-[state=inactive]:active:border-border data-[state=inactive]:active:text-muted-foreground/70"
@@ -209,6 +215,7 @@ useEffect(() => {
                 alt="Dev icon"
                 width={16}
                 height={16}
+                priority={activeTab === "dev"}
                 className="mr-1 size-4"
               />
               {text.tabs.dev}
@@ -222,6 +229,7 @@ useEffect(() => {
                 alt="About icon"
                 width={16}
                 height={16}
+                priority={activeTab === "about"}
                 className="mr-1 size-4"
               />
               {text.tabs.about}
@@ -235,6 +243,7 @@ useEffect(() => {
                 alt="Music note"
                 width={16}
                 height={16}
+                priority={activeTab === "music"}
                 className="mr-1 size-4"
               />
               {text.tabs.music}
@@ -242,20 +251,10 @@ useEffect(() => {
           </TabsList>
 
           <TabsContent value="dev" className="mt-1">
-            <TabDev
-              language={language}
-              onOpenImagePreview={(imageSrc, imageAlt) =>
-                setPreviewImage({ src: imageSrc, alt: imageAlt })
-              }
-            />
+            <TabDev language={language} onOpenImagePreview={openPreview} />
           </TabsContent>
           <TabsContent value="about" className="mt-1">
-            <TabAbout
-              language={language}
-              onOpenImagePreview={(imageSrc, imageAlt) =>
-                setPreviewImage({ src: imageSrc, alt: imageAlt })
-              }
-            />
+            <TabAbout language={language} onOpenImagePreview={openPreview} />
           </TabsContent>
           <TabsContent value="music" className="mt-1">
             <TabMusic language={language} />
@@ -269,10 +268,7 @@ useEffect(() => {
           className={`w-full rounded-xl border border-border bg-card text-sm text-foreground backdrop-blur-xl transition-all duration-300 ${contactHoverClassName}`}
           size="lg"
         >
-          <a
-            href="mailto:matisp637@gmail.com"
-            style={{ fontFamily: 'Montserrat, MontserratCustom, var(--font-sans), system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
-          >
+          <a href="mailto:matisp637@gmail.com" style={{ fontFamily: FONT_STACK }}>
             <Mail className="size-[16.5px]" />
             {text.contact}
           </a>
@@ -291,7 +287,7 @@ useEffect(() => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={text.instagramAria}
-                style={{ fontFamily: 'Montserrat, MontserratCustom, var(--font-sans), system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
+                style={{ fontFamily: FONT_STACK }}
               >
                 <BsInstagram className="size-3.7" />
                 {text.instagram}
@@ -302,12 +298,12 @@ useEffect(() => {
 
         {/* Footer */}
         <footer className="text-center -mt-1 -mb-1">
-            <p
+          <p
             className="text-[11.3px] text-muted-foreground/50 tracking-tight"
-            style={{ fontFamily: 'Montserrat, MontserratCustom, var(--font-sans), system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
-            >
+            style={{ fontFamily: FONT_STACK }}
+          >
             {text.footer}
-            </p>
+          </p>
         </footer>
 
         <div className="-mt-3 flex justify-center md:hidden">
@@ -315,14 +311,14 @@ useEffect(() => {
             type="button"
             onTouchStart={triggerLangPress}
             onClick={(e) => {
-                handleLanguageChange();
-                e.currentTarget.blur();
+              handleLanguageChange()
+              e.currentTarget.blur()
             }}
             aria-label={text.switchLanguageLabel}
             className={mobileLangButtonClassName}
           >
             <Image
-              src={language === "en" ? "/images/polish1.png" : "/images/english2.png"}
+              src={langImageSrc}
               alt=""
               aria-hidden="true"
               width={32}
@@ -342,11 +338,11 @@ useEffect(() => {
         className={desktopLangButtonClassName}
       >
         <Image
-          src={language === "en" ? "/images/polish1.png" : "/images/english2.png"}
+          src={langImageSrc}
           alt=""
           aria-hidden="true"
           width={32}
-          height={32  }
+          height={32}
           className="w-full h-full object-cover brightness-[0.85] transition-all duration-300"
         />
       </button>
@@ -357,7 +353,7 @@ useEffect(() => {
           role="dialog"
           aria-modal="true"
           aria-label={text.previewDialogLabel}
-          onClick={() => setPreviewImage(null)}
+          onClick={closePreview}
           style={{ touchAction: "pinch-zoom" }}
         >
           <div
@@ -367,7 +363,7 @@ useEffect(() => {
           >
             <button
               type="button"
-              onClick={() => setPreviewImage(null)}
+              onClick={closePreview}
               aria-label={text.previewCloseLabel}
               className={`absolute right-2 top-2 z-10 inline-flex size-8 items-center justify-center rounded-full border border-border/70 bg-background/80 text-foreground transition-[opacity,transform] duration-150 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-background active:bg-background ${
                 isPreviewLoaded ? "opacity-100" : "pointer-events-none opacity-0"
@@ -384,9 +380,7 @@ useEffect(() => {
               onLoad={() => setIsPreviewLoaded(true)}
               onError={() => setIsPreviewLoaded(true)}
               className={`w-auto max-w-[95vw] rounded-xl object-contain ${
-                isTripifyMapPreview
-                  ? "max-h-[90vh] md:max-h-[96vh]"
-                  : "max-h-[90vh]"
+                isTripifyMapPreview ? "max-h-[90vh] md:max-h-[96vh]" : "max-h-[90vh]"
               } ${isPreviewLoaded ? "opacity-100" : "opacity-0"}`}
               style={{ touchAction: "pinch-zoom" }}
             />
