@@ -147,10 +147,6 @@ export default function ClientPage({ initialSection, initialLang }: ClientPagePr
     }
   }, [getRemainingTabs, prefetchTabs])
 
-  const warmTabOnIntent = useCallback((tab: TabKey) => {
-    preloadTabModule(tab)
-  }, [])
-
   // Prefetch uruchamiany zaraz po pierwszym paint, żeby pierwszy switch był natychmiastowy.
   useEffect(() => {
     const prioritizedTabs = getRemainingTabs(initialTabForPrefetch)
@@ -317,20 +313,16 @@ const openPreview = useCallback((imageSrc: string, imageAlt: string) => {
 
         {/* Navigation Tabs */}
  <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full -mt-[10px]">
-          <TabsList 
-            onMouseEnter={() => prefetchTabs()}
-            onTouchStart={() => prefetchTabs()}
-            className="grid w-full grid-cols-3 bg-muted/50 backdrop-blur-xl border border-border"
-          >
-            <TabsTrigger value="dev" onPointerEnter={() => warmTabOnIntent("dev")} onPointerDown={() => warmTabOnIntent("dev")} onFocus={() => warmTabOnIntent("dev")} className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-neon-magenta/10 data-[state=active]:text-neon-magenta data-[state=active]:shadow-none hover:data-[state=inactive]:bg-background/10 hover:data-[state=inactive]:border-border hover:data-[state=inactive]:text-muted-foreground/70">
+          <TabsList className="grid w-full grid-cols-3 bg-muted/50 backdrop-blur-xl border border-border">
+            <TabsTrigger value="dev" className="text-xs font-medium text-muted-foreground transition-[background-color,border-color,color,box-shadow] duration-150 data-[state=active]:bg-neon-magenta/10 data-[state=active]:text-neon-magenta data-[state=active]:shadow-none hover:data-[state=inactive]:bg-background/10 hover:data-[state=inactive]:border-border hover:data-[state=inactive]:text-muted-foreground/70">
               <Image src="/images/dev-icon3-4.png" alt="Dev icon" width={16} height={16} className="mr-1 size-4" />
               {text.tabs.dev}
             </TabsTrigger>
-            <TabsTrigger value="about" onPointerEnter={() => warmTabOnIntent("about")} onPointerDown={() => warmTabOnIntent("about")} onFocus={() => warmTabOnIntent("about")} className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-foreground/10 data-[state=active]:text-foreground data-[state=active]:shadow-none hover:data-[state=inactive]:bg-background/10 hover:data-[state=inactive]:border-border hover:data-[state=inactive]:text-muted-foreground/70">
+            <TabsTrigger value="about" className="text-xs font-medium text-muted-foreground transition-[background-color,border-color,color,box-shadow] duration-150 data-[state=active]:bg-foreground/10 data-[state=active]:text-foreground data-[state=active]:shadow-none hover:data-[state=inactive]:bg-background/10 hover:data-[state=inactive]:border-border hover:data-[state=inactive]:text-muted-foreground/70">
               <Image src="/images/about-icon5.png" alt="About icon" width={16} height={16} className="mr-1 size-4" />
               {text.tabs.about}
             </TabsTrigger>
-            <TabsTrigger value="music" onPointerEnter={() => warmTabOnIntent("music")} onPointerDown={() => warmTabOnIntent("music")} onFocus={() => warmTabOnIntent("music")} className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-[#b817e4]/10 data-[state=active]:text-[#b817e4] data-[state=active]:shadow-none hover:data-[state=inactive]:bg-background/10 hover:data-[state=inactive]:border-border hover:data-[state=inactive]:text-muted-foreground/70">
+            <TabsTrigger value="music" className="text-xs font-medium text-muted-foreground transition-[background-color,border-color,color,box-shadow] duration-150 data-[state=active]:bg-[#b817e4]/10 data-[state=active]:text-[#b817e4] data-[state=active]:shadow-none hover:data-[state=inactive]:bg-background/10 hover:data-[state=inactive]:border-border hover:data-[state=inactive]:text-muted-foreground/70">
               <Image src="/images/music-icon2.png" alt="Music note" width={16} height={16} className="mr-1 size-4" />
               {text.tabs.music}
             </TabsTrigger>
