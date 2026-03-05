@@ -19,12 +19,9 @@ export function MeshGradient() {
     let height = 0
     let isAnimating = false
 
-    // Ograniczamy FPS, by wyraźnie zmniejszyć koszt CPU przy praktycznie takim samym odbiorze wizualnym.
     let lastTime = 0
-    const isMobile = window.innerWidth < 768
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    const lowEndDevice = (navigator.hardwareConcurrency || 8) <= 4
-    const targetFps = prefersReducedMotion ? 0 : isMobile ? 24 : lowEndDevice ? 26 : 30
+    const targetFps = prefersReducedMotion ? 0 : 30
     const fpsInterval = targetFps > 0 ? 1000 / targetFps : Number.POSITIVE_INFINITY
 
     const resize = () => {
@@ -33,13 +30,17 @@ export function MeshGradient() {
       width = nextWidth
       height = nextHeight
 
-      // WRACAMY DO ORYGINAŁU: Skalowanie ekranu zostaje nienaruszone, więc kolory i blur wracają do normy!
-      const dpr = Math.min(window.devicePixelRatio || 1, 2)
-      canvas.width = Math.floor(nextWidth * dpr)
-      canvas.height = Math.floor(nextHeight * dpr)
+      // ROZWIĄZANIE NA PIKSELOZĘ: Zwiększamy rozdzielczość z 25% do 50%.
+      // To daje lepszą podstawę do rozmycia przez CSS, nadal drastycznie zmniejszając narzut na rysowanie.
+      const renderScale = 0.5; 
+      
+      canvas.width = Math.floor(nextWidth * renderScale)
+      canvas.height = Math.floor(nextHeight * renderScale)
       canvas.style.width = `${nextWidth}px`
       canvas.style.height = `${nextHeight}px`
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+      
+      // Skalujemy kontekst, aby cała matematyka gradientów poniżej działała bez zmian!
+      ctx.setTransform(renderScale, 0, 0, renderScale, 0, 0)
     }
 
     resize()
@@ -50,7 +51,8 @@ export function MeshGradient() {
       ctx.clearRect(0, 0, width, height)
       
       ctx.globalCompositeOperation = "source-over"
-      ctx.filter = "blur(120px)"
+      // USUNIĘTO: ctx.filter = "blur(120px)" - TO BLOKOWAŁO STRONĘ!
+
       const wash = ctx.createLinearGradient(0, height * 0.4, width, height * 0.6)
       wash.addColorStop(0, "rgba(211, 60, 225, 0.025)")
       wash.addColorStop(1, "rgba(54, 132, 233, 0.03)")
@@ -67,7 +69,7 @@ export function MeshGradient() {
       ctx.fillRect(0, 0, width, height)
 
       ctx.globalCompositeOperation = "lighter"
-      ctx.filter = "blur(80px)"
+      // USUNIĘTO: ctx.filter = "blur(80px)"
 
       const driftX = Math.sin(time * 0.16) * width * 0.035
       const driftY = Math.cos(time * 0.15) * height * 0.035
@@ -101,9 +103,8 @@ export function MeshGradient() {
       ctx.fillStyle = gradient3
       ctx.fillRect(0, 0, width, height)
 
-      ctx.filter = "none"
       ctx.globalCompositeOperation = "source-over"
-      ctx.fillStyle = "rgba(0, 0, 0, 0.34)"
+      ctx.fillStyle = "rgba(0, 0, 0, 0.28)"
       ctx.fillRect(0, 0, width, height)
 
       const vignette = ctx.createRadialGradient(
@@ -137,29 +138,25 @@ export function MeshGradient() {
 
       if (document.hidden || targetFps === 0) return
 
-      // DODANE: Logika ucinania klatek - rysujemy rzadziej, procesor odpoczywa!
       if (!lastTime) lastTime = currentTime
       const deltaTime = currentTime - lastTime
 
       if (deltaTime < fpsInterval) return
       lastTime = currentTime - (deltaTime % fpsInterval)
 
-      // Zachowujemy to samo tempo "dryfu" niezależnie od FPS.
       const timeMultiplier = deltaTime / 16.66
       time = (time + 0.0025 * timeMultiplier) % 100
 
       renderFrame()
     }
 
-    // Natychmiast rysujemy statyczną "klatkę zero", bez czekania na pierwsze RAF.
     renderFrame()
 
-    // Start animacji odkładamy, żeby ograniczyć obciążenie CPU przy starcie strony.
     startAnimationTimeoutId = window.setTimeout(() => {
       isAnimating = true
       lastTime = 0
       animationId = requestAnimationFrame(animate)
-    }, 650)
+    }, 10_000)
 
     return () => {
       isAnimating = false
@@ -177,6 +174,10 @@ export function MeshGradient() {
     <canvas
       ref={canvasRef}
       className="pointer-events-none fixed inset-0 z-0"
+      // ROZWIĄZANIE NA JAKOŚĆ: Przesuwamy morderczy blur z procesora na kartę graficzną!
+      // To sprawia, że tło jest gładkie, a strona działa błyskawicznie.
+      // 80px do 100px powinno idealnie wygładzić rozdzielczość 50%.
+      style={{ filter: "blur(100px)" }}
       aria-hidden="true"
     />
   )

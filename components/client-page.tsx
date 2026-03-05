@@ -1,83 +1,17 @@
 "use client"
 
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { Mail, X } from "lucide-react"
 import { BsInstagram } from "react-icons/bs"
 // import { MeshGradient } from "@/components/mesh-gradient"
 import { ProfileHeader } from "@/components/profile-header"
-// import { TabMusic } from "@/components/tab-music"
-// import { TabDev } from "@/components/tab-dev"
-// import { TabAbout } from "@/components/tab-about"
+import { TabMusic } from "@/components/tab-music"
+import { TabDev } from "@/components/tab-dev"
+import { TabAbout } from "@/components/tab-about"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import dynamic from "next/dynamic"
-
-type TabKey = "about" | "dev" | "music"
-
-const TAB_IMPORTERS = {
-  about: () => import("@/components/tab-about"),
-  dev: () => import("@/components/tab-dev"),
-  music: () => import("@/components/tab-music"),
-}
-
-let aboutModulePromise: ReturnType<typeof TAB_IMPORTERS.about> | null = null
-let devModulePromise: ReturnType<typeof TAB_IMPORTERS.dev> | null = null
-let musicModulePromise: ReturnType<typeof TAB_IMPORTERS.music> | null = null
-let aboutModuleLoaded = false
-let devModuleLoaded = false
-let musicModuleLoaded = false
-
-const preloadAboutModule = () => {
-  if (!aboutModulePromise) {
-    aboutModulePromise = TAB_IMPORTERS.about().then((module) => {
-      aboutModuleLoaded = true
-      return module
-    })
-  }
-  return aboutModulePromise
-}
-
-const preloadDevModule = () => {
-  if (!devModulePromise) {
-    devModulePromise = TAB_IMPORTERS.dev().then((module) => {
-      devModuleLoaded = true
-      return module
-    })
-  }
-  return devModulePromise
-}
-
-const preloadMusicModule = () => {
-  if (!musicModulePromise) {
-    musicModulePromise = TAB_IMPORTERS.music().then((module) => {
-      musicModuleLoaded = true
-      return module
-    })
-  }
-  return musicModulePromise
-}
-
-const preloadTabModule = (tab: TabKey) => {
-  if (tab === "about") return preloadAboutModule()
-  if (tab === "dev") return preloadDevModule()
-  return preloadMusicModule()
-}
-
-const isTabModuleLoaded = (tab: TabKey) => {
-  if (tab === "about") return aboutModuleLoaded
-  if (tab === "dev") return devModuleLoaded
-  return musicModuleLoaded
-}
-
-const isTabKey = (value: string): value is TabKey => {
-  return value === "about" || value === "dev" || value === "music"
-}
-
-// Importujemy z zachowaniem SSR
-const TabAbout = dynamic(() => preloadAboutModule().then((mod) => mod.TabAbout))
-const TabDev = dynamic(() => preloadDevModule().then((mod) => mod.TabDev))
-const TabMusic = dynamic(() => preloadMusicModule().then((mod) => mod.TabMusic))
 
 const MeshGradient = dynamic(
   () => import("@/components/mesh-gradient").then((mod) => mod.MeshGradient),
@@ -95,7 +29,6 @@ interface ClientPageProps {
   initialSection?: string
   initialLang: Language
 }
-
 const PREVIEW_IMAGE_SOURCES = [
   "/images/meta2.png",
   "/images/meta1.png",
@@ -138,22 +71,110 @@ export default function ClientPage({ initialSection, initialLang }: ClientPagePr
   const [language, setLanguage] = useState<Language>(initialLang)
   const [isProfessionalMode] = useState(!!initialSection)
   const [previewImage, setPreviewImage] = useState<{ src: string; alt: string } | null>(null)
-  const [isPreviewLoaded, setIsPreviewLoaded] = useState(false)
   const [isLangPressed, setIsLangPressed] = useState(false)
   const langPressTimeoutRef = useRef<number | null>(null)
-  const tabSwitchRequestIdRef = useRef(0)
   const isTripifyMapPreview = previewImage?.src.includes("tripify-map")
   const text = pageText[language]
+  const [isPreviewLoaded, setIsPreviewLoaded] = useState(false)
+  const isMobileViewport = useMemo(
+    () => typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches,
+    []
+  )
+  const previewImageRef = useRef<HTMLImageElement | null>(null)
+  const pointersRef = useRef(new Map<number, { x: number; y: number }>())
+  const transformRef = useRef({ scale: 1, x: 0, y: 0 })
+  const pinchStartRef = useRef({ distance: 0, scale: 1 })
+  const panStartRef = useRef({ x: 0, y: 0, originX: 0, originY: 0 })
 
-  const prefetchTabFromValue = useCallback((value: string) => {
-    if (value === "about" || value === "dev" || value === "music") {
-      preloadTabModule(value)
+  const applyPreviewTransform = () => {
+    const img = previewImageRef.current
+    if (!img) return
+    const { scale, x, y } = transformRef.current
+    img.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${scale})`
+  }
+
+  const resetPreviewTransform = () => {
+    transformRef.current = { scale: 1, x: 0, y: 0 }
+    pinchStartRef.current = { distance: 0, scale: 1 }
+    panStartRef.current = { x: 0, y: 0, originX: 0, originY: 0 }
+    pointersRef.current.clear()
+    applyPreviewTransform()
+  }
+
+  const getDistance = (a: { x: number; y: number }, b: { x: number; y: number }) => {
+    const dx = a.x - b.x
+    const dy = a.y - b.y
+    return Math.hypot(dx, dy)
+  }
+
+  const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value))
+
+  const handlePreviewPointerDown = (event: React.PointerEvent<HTMLImageElement>) => {
+    if (!isMobileViewport) return
+    const target = event.currentTarget
+    target.setPointerCapture(event.pointerId)
+    pointersRef.current.set(event.pointerId, { x: event.clientX, y: event.clientY })
+
+    if (pointersRef.current.size === 2) {
+      const [p1, p2] = Array.from(pointersRef.current.values())
+      pinchStartRef.current.distance = getDistance(p1, p2)
+      pinchStartRef.current.scale = transformRef.current.scale
     }
-  }, [])
 
-  const warmTabOnIntent = useCallback((tab: TabKey) => {
-    preloadTabModule(tab)
-  }, [])
+    if (pointersRef.current.size === 1 && transformRef.current.scale > 1) {
+      panStartRef.current = {
+        x: event.clientX,
+        y: event.clientY,
+        originX: transformRef.current.x,
+        originY: transformRef.current.y,
+      }
+    }
+  }
+
+  const handlePreviewPointerMove = (event: React.PointerEvent<HTMLImageElement>) => {
+    if (!isMobileViewport || !pointersRef.current.has(event.pointerId)) return
+
+    pointersRef.current.set(event.pointerId, { x: event.clientX, y: event.clientY })
+
+    if (pointersRef.current.size === 2) {
+      const [p1, p2] = Array.from(pointersRef.current.values())
+      if (pinchStartRef.current.distance > 0) {
+        const nextScale = clamp(
+          (getDistance(p1, p2) / pinchStartRef.current.distance) * pinchStartRef.current.scale,
+          1,
+          4
+        )
+        transformRef.current.scale = nextScale
+        if (nextScale === 1) {
+          transformRef.current.x = 0
+          transformRef.current.y = 0
+        }
+        applyPreviewTransform()
+      }
+      return
+    }
+
+    if (pointersRef.current.size === 1 && transformRef.current.scale > 1) {
+      const dx = event.clientX - panStartRef.current.x
+      const dy = event.clientY - panStartRef.current.y
+      const panLimit = ((transformRef.current.scale - 1) * 180)
+      transformRef.current.x = clamp(panStartRef.current.originX + dx, -panLimit, panLimit)
+      transformRef.current.y = clamp(panStartRef.current.originY + dy, -panLimit, panLimit)
+      applyPreviewTransform()
+    }
+  }
+
+  const handlePreviewPointerUp = (event: React.PointerEvent<HTMLImageElement>) => {
+    if (!isMobileViewport) return
+    pointersRef.current.delete(event.pointerId)
+    if (pointersRef.current.size < 2) {
+      pinchStartRef.current.distance = 0
+      pinchStartRef.current.scale = transformRef.current.scale
+    }
+    if (pointersRef.current.size === 0 && transformRef.current.scale <= 1.01) {
+      resetPreviewTransform()
+    }
+  }
 
   const triggerLangPress = () => {
     setIsLangPressed(true)
@@ -173,30 +194,10 @@ const updateUrl = (tab: string, lang: string) => {
     window.history.replaceState(null, "", newPath)
   }
 
-const handleTabChange = (value: string) => {
-  if (!isTabKey(value)) {
+  const handleTabChange = (value: string) => {
     setActiveTab(value)
     updateUrl(value, language)
-    return
   }
-
-  prefetchTabFromValue(value)
-
-  if (isTabModuleLoaded(value)) {
-    setActiveTab(value)
-    updateUrl(value, language)
-    return
-  }
-
-  const requestId = tabSwitchRequestIdRef.current + 1
-  tabSwitchRequestIdRef.current = requestId
-
-  preloadTabModule(value).then(() => {
-    if (tabSwitchRequestIdRef.current !== requestId) return
-    setActiveTab(value)
-    updateUrl(value, language)
-  })
-}
   const handleLanguageChange = () => {
     const newLang = nextLanguage
     setLanguage(newLang)
@@ -213,22 +214,21 @@ const handleTabChange = (value: string) => {
       target.blur()
     }, 100)
   }
-const openPreview = useCallback((imageSrc: string, imageAlt: string) => {
-    setPreviewImage({ src: imageSrc, alt: imageAlt })
-  }, [])
-
-  const closePreview = useCallback(() => setPreviewImage(null), [])
-
-  // ── Efekty ──
-
   useEffect(() => {
-    if (!previewImage) return
+    if (!previewImage) {
+      return
+    }
+
     const previousOverflow = document.body.style.overflow
     document.body.style.overflow = "hidden"
+
     return () => {
       document.body.style.overflow = previousOverflow
     }
   }, [previewImage])
+
+
+
 
   // Preload dużych obrazów przy pierwszej interakcji – tylko raz
   useEffect(() => {
@@ -256,6 +256,12 @@ const openPreview = useCallback((imageSrc: string, imageAlt: string) => {
 
   useEffect(() => {
     setIsPreviewLoaded(false)
+  }, [previewImage])
+
+  useEffect(() => {
+    if (!previewImage) {
+      resetPreviewTransform()
+    }
   }, [previewImage])
 
 
@@ -291,46 +297,69 @@ const openPreview = useCallback((imageSrc: string, imageAlt: string) => {
         <ProfileHeader language={language} />
 
         {/* Navigation Tabs */}
- <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full -mt-[10px]">
-          <TabsList className="grid w-full grid-cols-3 bg-muted/50 backdrop-blur-xl border border-border">
-            <TabsTrigger value="dev" onPointerDown={() => warmTabOnIntent("dev")} onFocus={() => warmTabOnIntent("dev")} className="text-xs font-medium text-muted-foreground transition-[background-color,border-color,color,box-shadow] duration-150 data-[state=active]:bg-neon-magenta/10 data-[state=active]:text-neon-magenta data-[state=active]:shadow-none hover:data-[state=inactive]:bg-background/10 hover:data-[state=inactive]:border-border hover:data-[state=inactive]:text-muted-foreground/70">
-              <Image src="/images/dev-icon3-4.png" alt="Dev icon" width={16} height={16} className="mr-1 size-4" />
+<Tabs value={activeTab} onValueChange={handleTabChange} className="w-full -mt-[10px]">
+              <TabsList className="grid w-full grid-cols-3 bg-muted/50 backdrop-blur-xl border border-border">
+            <TabsTrigger
+              value="dev"
+              className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-neon-magenta/10 data-[state=active]:text-neon-magenta data-[state=active]:shadow-none [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:bg-background/10 [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:border-border [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:text-muted-foreground/70 data-[state=inactive]:active:bg-background/10 data-[state=inactive]:active:border-border data-[state=inactive]:active:text-muted-foreground/70"
+            >
+              <Image
+                src="/images/dev-icon3-4.png"
+                alt="Dev icon"
+                width={16}
+                height={16}
+                className="mr-1 size-4"
+              />
               {text.tabs.dev}
             </TabsTrigger>
-            <TabsTrigger value="about" onPointerDown={() => warmTabOnIntent("about")} onFocus={() => warmTabOnIntent("about")} className="text-xs font-medium text-muted-foreground transition-[background-color,border-color,color,box-shadow] duration-150 data-[state=active]:bg-foreground/10 data-[state=active]:text-foreground data-[state=active]:shadow-none hover:data-[state=inactive]:bg-background/10 hover:data-[state=inactive]:border-border hover:data-[state=inactive]:text-muted-foreground/70">
-              <Image src="/images/about-icon5.png" alt="About icon" width={16} height={16} className="mr-1 size-4" />
+            <TabsTrigger
+              value="about"
+              className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-foreground/10 data-[state=active]:text-foreground data-[state=active]:shadow-none [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:bg-background/10 [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:border-border [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:text-muted-foreground/70 data-[state=inactive]:active:bg-background/10 data-[state=inactive]:active:border-border data-[state=inactive]:active:text-muted-foreground/70"
+            >
+              <Image
+                src="/images/about-icon5.png"
+                alt="About icon"
+                width={16}
+                height={16}
+                className="mr-1 size-4"
+              />
               {text.tabs.about}
             </TabsTrigger>
-            <TabsTrigger value="music" onPointerDown={() => warmTabOnIntent("music")} onFocus={() => warmTabOnIntent("music")} className="text-xs font-medium text-muted-foreground transition-[background-color,border-color,color,box-shadow] duration-150 data-[state=active]:bg-[#b817e4]/10 data-[state=active]:text-[#b817e4] data-[state=active]:shadow-none hover:data-[state=inactive]:bg-background/10 hover:data-[state=inactive]:border-border hover:data-[state=inactive]:text-muted-foreground/70">
-              <Image src="/images/music-icon2.png" alt="Music note" width={16} height={16} className="mr-1 size-4" />
+            <TabsTrigger
+              value="music"
+              className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-[#b817e4]/10 data-[state=active]:text-[#b817e4] data-[state=active]:shadow-none [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:bg-background/10 [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:border-border [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:text-muted-foreground/70 data-[state=inactive]:active:bg-background/10 data-[state=inactive]:active:border-border data-[state=inactive]:active:text-muted-foreground/70"
+            >
+              <Image
+                src="/images/music-icon2.png"
+                alt="Music note"
+                width={16}
+                height={16}
+                className="mr-1 size-4"
+              />
               {text.tabs.music}
             </TabsTrigger>
           </TabsList>
 
-          {/* Renderowanie warunkowe - to klucz do niskiego TBT */}
           <TabsContent value="dev" className="mt-1">
-            {activeTab === "dev" && (
-              <TabDev
-                language={language}
-                onOpenImagePreview={openPreview}
-              />
-            )}
+            <TabDev
+              language={language}
+              onOpenImagePreview={(imageSrc, imageAlt) =>
+                setPreviewImage({ src: imageSrc, alt: imageAlt })
+              }
+            />
           </TabsContent>
-
           <TabsContent value="about" className="mt-1">
-            {activeTab === "about" && (
-              <TabAbout
-                language={language}
-                onOpenImagePreview={openPreview}
-              />
-            )}
+            <TabAbout
+              language={language}
+              onOpenImagePreview={(imageSrc, imageAlt) =>
+                setPreviewImage({ src: imageSrc, alt: imageAlt })
+              }
+            />
           </TabsContent>
-
           <TabsContent value="music" className="mt-1">
-            {activeTab === "music" && <TabMusic language={language} />}
+            <TabMusic language={language} />
           </TabsContent>
         </Tabs>
-
 
         {/* Contact Button */}
         <Button
@@ -421,13 +450,13 @@ const openPreview = useCallback((imageSrc: string, imageAlt: string) => {
         />
       </button>
 
-        {previewImage && (
+      {previewImage && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 md:bg-black/70 p-4"
           role="dialog"
           aria-modal="true"
           aria-label={text.previewDialogLabel}
-          onClick={closePreview}
+          onClick={() => setPreviewImage(null)}
           style={{ touchAction: "pinch-zoom" }}
         >
           <div
@@ -437,26 +466,33 @@ const openPreview = useCallback((imageSrc: string, imageAlt: string) => {
           >
             <button
               type="button"
-              onClick={closePreview}
+              onClick={() => setPreviewImage(null)}
               aria-label={text.previewCloseLabel}
-              className={`absolute right-2 top-2 z-10 inline-flex size-8 items-center justify-center rounded-full border border-border/70 bg-background/80 text-foreground transition-[opacity,transform] duration-150 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-background active:bg-background ${
-                isPreviewLoaded ? "opacity-100" : "pointer-events-none opacity-0"
-              }`}
+              className="absolute right-2 top-2 z-10 inline-flex size-8 items-center justify-center rounded-full border border-border/70 bg-background/80 text-foreground transition-colors [@media(hover:hover)_and_(pointer:fine)]:hover:bg-background active:bg-background"
             >
               <X className="size-4" />
             </button>
 
             <img
+              ref={previewImageRef}
               src={previewImage.src}
               alt={previewImage.alt}
-              loading="eager"
-              fetchPriority="high"
-              onLoad={() => setIsPreviewLoaded(true)}
-              onError={() => setIsPreviewLoaded(true)}
               className={`w-auto max-w-[95vw] rounded-xl object-contain ${
-                isTripifyMapPreview ? "max-h-[90vh] md:max-h-[96vh]" : "max-h-[90vh]"
-              } ${isPreviewLoaded ? "opacity-100" : "opacity-0"}`}
-              style={{ touchAction: "pinch-zoom" }}
+                isTripifyMapPreview
+                  ? "max-h-[90vh] md:max-h-[96vh]"
+                  : "max-h-[90vh]"
+              }`}
+              style={{
+                touchAction: isMobileViewport ? "none" : "pinch-zoom",
+                transform: "translate3d(0, 0, 0) scale(1)",
+                transformOrigin: "center center",
+                willChange: isMobileViewport ? "transform" : "auto",
+                transition: isMobileViewport ? "transform 80ms linear" : "none",
+              }}
+              onPointerDown={handlePreviewPointerDown}
+              onPointerMove={handlePreviewPointerMove}
+              onPointerUp={handlePreviewPointerUp}
+              onPointerCancel={handlePreviewPointerUp}
             />
           </div>
         </div>
