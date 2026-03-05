@@ -24,7 +24,7 @@ export function ProfileHeader({ language }: ProfileHeaderProps) {
             className="w-full h-full object-cover rounded-full border-4 border-white dark:border-slate-950"
             priority={true}
             quality={95}
-            sizes="450px"
+            sizes="(max-width: 768px) 370px, 400px"
             placeholder="blur"
           />
         </div>

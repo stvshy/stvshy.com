@@ -13,10 +13,49 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import dynamic from "next/dynamic"
 
+type TabKey = "about" | "dev" | "music"
+
+const TAB_IMPORTERS = {
+  about: () => import("@/components/tab-about"),
+  dev: () => import("@/components/tab-dev"),
+  music: () => import("@/components/tab-music"),
+}
+
+let aboutModulePromise: ReturnType<typeof TAB_IMPORTERS.about> | null = null
+let devModulePromise: ReturnType<typeof TAB_IMPORTERS.dev> | null = null
+let musicModulePromise: ReturnType<typeof TAB_IMPORTERS.music> | null = null
+
+const preloadAboutModule = () => {
+  if (!aboutModulePromise) {
+    aboutModulePromise = TAB_IMPORTERS.about()
+  }
+  return aboutModulePromise
+}
+
+const preloadDevModule = () => {
+  if (!devModulePromise) {
+    devModulePromise = TAB_IMPORTERS.dev()
+  }
+  return devModulePromise
+}
+
+const preloadMusicModule = () => {
+  if (!musicModulePromise) {
+    musicModulePromise = TAB_IMPORTERS.music()
+  }
+  return musicModulePromise
+}
+
+const preloadTabModule = (tab: TabKey) => {
+  if (tab === "about") return preloadAboutModule()
+  if (tab === "dev") return preloadDevModule()
+  return preloadMusicModule()
+}
+
 // Importujemy z zachowaniem SSR
-const TabAbout = dynamic(() => import("@/components/tab-about").then((mod) => mod.TabAbout))
-const TabDev = dynamic(() => import("@/components/tab-dev").then((mod) => mod.TabDev))
-const TabMusic = dynamic(() => import("@/components/tab-music").then((mod) => mod.TabMusic))
+const TabAbout = dynamic(() => preloadAboutModule().then((mod) => mod.TabAbout))
+const TabDev = dynamic(() => preloadDevModule().then((mod) => mod.TabDev))
+const TabMusic = dynamic(() => preloadMusicModule().then((mod) => mod.TabMusic))
 
 const MeshGradient = dynamic(
   () => import("@/components/mesh-gradient").then((mod) => mod.MeshGradient),
@@ -81,22 +120,85 @@ export default function ClientPage({ initialSection, initialLang }: ClientPagePr
   const [isLangPressed, setIsLangPressed] = useState(false)
   const langPressTimeoutRef = useRef<number | null>(null)
   const isTripifyMapPreview = previewImage?.src.includes("tripify-map")
+  const initialTabForPrefetch: TabKey =
+    initialSection === "dev" || initialSection === "music" ? initialSection : "about"
   const text = pageText[language]
-  
-  // 1. Dodajemy stan śledzący załadowane zakładki
-  const [mountedTabs, setMountedTabs] = useState<string[]>([initialSection || "about"])
 
-  // 2. Po 500ms cicho doładowujemy resztę do drzewa DOM (Lighthouse zdąży ocenić stronę)
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setMountedTabs((prev) => {
-        const allTabs = ["about", "dev", "music"]
-        const newTabs = allTabs.filter(tab => !prev.includes(tab))
-        return [...prev, ...newTabs]
-      })
-    }, 500)
-    return () => clearTimeout(timer)
+  const prefetchTabs = useCallback((tabs?: TabKey[]) => {
+    if (tabs) {
+      tabs.forEach(preloadTabModule)
+      return
+    }
+    preloadTabModule("about")
+    preloadTabModule("dev")
+    preloadTabModule("music")
   }, [])
+
+  const getRemainingTabs = useCallback((currentTab: TabKey): TabKey[] => {
+    if (currentTab === "about") return ["dev", "music"]
+    if (currentTab === "dev") return ["about", "music"]
+    return ["about", "dev"]
+  }, [])
+
+  const prefetchTabFromValue = useCallback((value: string) => {
+    if (value === "about" || value === "dev" || value === "music") {
+      preloadTabModule(value)
+      prefetchTabs(getRemainingTabs(value))
+    }
+  }, [getRemainingTabs, prefetchTabs])
+
+  const warmTabOnIntent = useCallback((tab: TabKey) => {
+    preloadTabModule(tab)
+  }, [])
+
+  // Prefetch uruchamiany zaraz po pierwszym paint, żeby pierwszy switch był natychmiastowy.
+  useEffect(() => {
+    const prioritizedTabs = getRemainingTabs(initialTabForPrefetch)
+    const connection = (navigator as Navigator & {
+      connection?: { saveData?: boolean; effectiveType?: string }
+    }).connection
+    const isConstrainedConnection =
+      connection?.saveData || /(^|-)2g$/.test(connection?.effectiveType ?? "")
+
+    let isCancelled = false
+    let firstRaf: number | null = null
+    let secondRaf: number | null = null
+    const staggeredTimeouts: number[] = []
+
+    const runStaggeredPrefetch = (stepMs: number) => {
+      prioritizedTabs.forEach((tab, index) => {
+        const timeoutId = window.setTimeout(() => {
+          if (!isCancelled) {
+            preloadTabModule(tab)
+          }
+        }, index * stepMs)
+        staggeredTimeouts.push(timeoutId)
+      })
+    }
+
+    if (isConstrainedConnection) {
+      runStaggeredPrefetch(220)
+    } else {
+      // Double RAF: startujemy po pierwszym renderze, ale bez widocznej zwłoki dla użytkownika.
+      firstRaf = window.requestAnimationFrame(() => {
+        secondRaf = window.requestAnimationFrame(() => {
+          runStaggeredPrefetch(80)
+        })
+      })
+    }
+
+    return () => {
+      isCancelled = true
+      if (firstRaf !== null) {
+        window.cancelAnimationFrame(firstRaf)
+      }
+      if (secondRaf !== null) {
+        window.cancelAnimationFrame(secondRaf)
+      }
+      staggeredTimeouts.forEach((timeoutId) => window.clearTimeout(timeoutId))
+    }
+  }, [getRemainingTabs, initialTabForPrefetch])
+
   const triggerLangPress = () => {
     setIsLangPressed(true)
     if (langPressTimeoutRef.current !== null) {
@@ -116,11 +218,8 @@ const updateUrl = (tab: string, lang: string) => {
   }
 
 const handleTabChange = (value: string) => {
+  prefetchTabFromValue(value)
     setActiveTab(value)
-    // Awaryjnie: jeśli ktoś kliknie w ułamek sekundy przed upływem 500ms, ładujemy natychmiast
-    if (!mountedTabs.includes(value)) {
-      setMountedTabs(prev => [...prev, value])
-    }
     updateUrl(value, language)
   }
   const handleLanguageChange = () => {
@@ -217,87 +316,50 @@ const openPreview = useCallback((imageSrc: string, imageAlt: string) => {
         <ProfileHeader language={language} />
 
         {/* Navigation Tabs */}
-<Tabs value={activeTab} onValueChange={handleTabChange} className="w-full -mt-[10px]">
-              <TabsList className="grid w-full grid-cols-3 bg-muted/50 backdrop-blur-xl border border-border">
-            <TabsTrigger
-              value="dev"
-              className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-neon-magenta/10 data-[state=active]:text-neon-magenta data-[state=active]:shadow-none [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:bg-background/10 [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:border-border [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:text-muted-foreground/70 data-[state=inactive]:active:bg-background/10 data-[state=inactive]:active:border-border data-[state=inactive]:active:text-muted-foreground/70"
-            >
-              <Image
-                src="/images/dev-icon3-4.png"
-                alt="Dev icon"
-                width={16}
-                height={16}
-                className="mr-1 size-4"
-              />
+ <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full -mt-[10px]">
+          <TabsList 
+            onMouseEnter={() => prefetchTabs()}
+            onTouchStart={() => prefetchTabs()}
+            className="grid w-full grid-cols-3 bg-muted/50 backdrop-blur-xl border border-border"
+          >
+            <TabsTrigger value="dev" onPointerEnter={() => warmTabOnIntent("dev")} onPointerDown={() => warmTabOnIntent("dev")} onFocus={() => warmTabOnIntent("dev")} className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-neon-magenta/10 data-[state=active]:text-neon-magenta data-[state=active]:shadow-none hover:data-[state=inactive]:bg-background/10 hover:data-[state=inactive]:border-border hover:data-[state=inactive]:text-muted-foreground/70">
+              <Image src="/images/dev-icon3-4.png" alt="Dev icon" width={16} height={16} className="mr-1 size-4" />
               {text.tabs.dev}
             </TabsTrigger>
-            <TabsTrigger
-              value="about"
-              className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-foreground/10 data-[state=active]:text-foreground data-[state=active]:shadow-none [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:bg-background/10 [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:border-border [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:text-muted-foreground/70 data-[state=inactive]:active:bg-background/10 data-[state=inactive]:active:border-border data-[state=inactive]:active:text-muted-foreground/70"
-            >
-              <Image
-                src="/images/about-icon5.png"
-                alt="About icon"
-                width={16}
-                height={16}
-                className="mr-1 size-4"
-              />
+            <TabsTrigger value="about" onPointerEnter={() => warmTabOnIntent("about")} onPointerDown={() => warmTabOnIntent("about")} onFocus={() => warmTabOnIntent("about")} className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-foreground/10 data-[state=active]:text-foreground data-[state=active]:shadow-none hover:data-[state=inactive]:bg-background/10 hover:data-[state=inactive]:border-border hover:data-[state=inactive]:text-muted-foreground/70">
+              <Image src="/images/about-icon5.png" alt="About icon" width={16} height={16} className="mr-1 size-4" />
               {text.tabs.about}
             </TabsTrigger>
-            <TabsTrigger
-              value="music"
-              className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-[#b817e4]/10 data-[state=active]:text-[#b817e4] data-[state=active]:shadow-none [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:bg-background/10 [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:border-border [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:text-muted-foreground/70 data-[state=inactive]:active:bg-background/10 data-[state=inactive]:active:border-border data-[state=inactive]:active:text-muted-foreground/70"
-            >
-              <Image
-                src="/images/music-icon2.png"
-                alt="Music note"
-                width={16}
-                height={16}
-                className="mr-1 size-4"
-              />
+            <TabsTrigger value="music" onPointerEnter={() => warmTabOnIntent("music")} onPointerDown={() => warmTabOnIntent("music")} onFocus={() => warmTabOnIntent("music")} className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-[#b817e4]/10 data-[state=active]:text-[#b817e4] data-[state=active]:shadow-none hover:data-[state=inactive]:bg-background/10 hover:data-[state=inactive]:border-border hover:data-[state=inactive]:text-muted-foreground/70">
+              <Image src="/images/music-icon2.png" alt="Music note" width={16} height={16} className="mr-1 size-4" />
               {text.tabs.music}
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent 
-            value="dev" 
-            className={activeTab === "dev" ? "mt-1" : "hidden"}
-            forceMount={mountedTabs.includes("dev") ? true : undefined}
-          >
-            {mountedTabs.includes("dev") && (
+          {/* Renderowanie warunkowe - to klucz do niskiego TBT */}
+          <TabsContent value="dev" className="mt-1">
+            {activeTab === "dev" && (
               <TabDev
                 language={language}
-                onOpenImagePreview={(imageSrc, imageAlt) =>
-                  setPreviewImage({ src: imageSrc, alt: imageAlt })
-                }
+                onOpenImagePreview={openPreview}
               />
             )}
           </TabsContent>
 
-          <TabsContent 
-            value="about" 
-            className={activeTab === "about" ? "mt-1" : "hidden"}
-            forceMount={mountedTabs.includes("about") ? true : undefined}
-          >
-            {mountedTabs.includes("about") && (
+          <TabsContent value="about" className="mt-1">
+            {activeTab === "about" && (
               <TabAbout
                 language={language}
-                onOpenImagePreview={(imageSrc, imageAlt) =>
-                  setPreviewImage({ src: imageSrc, alt: imageAlt })
-                }
+                onOpenImagePreview={openPreview}
               />
             )}
           </TabsContent>
 
-          <TabsContent 
-            value="music" 
-            className={activeTab === "music" ? "mt-1" : "hidden"}
-            forceMount={mountedTabs.includes("music") ? true : undefined}
-          >
-            {mountedTabs.includes("music") && <TabMusic language={language} />}
+          <TabsContent value="music" className="mt-1">
+            {activeTab === "music" && <TabMusic language={language} />}
           </TabsContent>
         </Tabs>
+
 
         {/* Contact Button */}
         <Button

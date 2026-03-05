@@ -9,7 +9,7 @@ export function Logo() {
       height={496} // Wpisz tu oryginalną wysokość pliku PNG w pikselach
       className="mx-auto h-9 w-auto -mt-8"
       quality={95}
-      sizes="450px"
+      sizes="(max-width: 768px) 250px, 300px"
       priority={true} // Ponieważ to logo na górze strony, ładujemy je priorytetowo
     />
   )
