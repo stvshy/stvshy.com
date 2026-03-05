@@ -24,6 +24,7 @@ const monorale = localFont({
   ],
   variable: '--font-monorale',
   display: 'swap',
+  preload: false,
 })
 
 export const metadata: Metadata = {
@@ -103,20 +104,6 @@ export default function RootLayout({
   }
   return (
     <html lang="en" className="dark">
-       <head>
-        <style dangerouslySetInnerHTML={{ __html: `
-          /* Główny kursor na stronie */
-          body {
-    cursor: url('/cursors/cursor10.png') 0 0, auto !important;
-          }
-          
-          /* Kursor w kształcie łapki/pointera dla klikalnych elementów */
-          a, button, [role="button"], label, select,
-          a *, button *, [role="button"] *, label *, select * {
-cursor: url('/cursors/cursor10.png') 0 0, pointer !important;  }
-        `}} />
-
-      </head>
       <body className={`${montserrat.variable} ${monorale.variable} font-sans antialiased`}>
         <script
           type="application/ld+json"

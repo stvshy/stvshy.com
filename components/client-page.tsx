@@ -20,6 +20,7 @@ const MeshGradient = dynamic(
   }
 )
 
+
 type Language = "en" | "pl"
 
 interface ClientPageProps {
@@ -27,7 +28,7 @@ interface ClientPageProps {
   initialLang: Language
 }
 
-const FONT_STACK = 'Montserrat, MontserratCustom, var(--font-sans), system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial'
+const FONT_STACK = 'Montserrat, var(--font-sans), system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial'
 
 // Stałe wyciągnięte poza komponent – nigdy się nie zmieniają, zero alokacji
 const PREVIEW_IMAGE_SOURCES = [
