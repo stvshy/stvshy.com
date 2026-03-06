@@ -244,7 +244,7 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
               fontVariationSettings: "'wght' 550",
             }}
           >
-            30
+            31
           </span>
           <p className="mt-1 text-[11.43px] text-muted-foreground" style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>{text.perfumesOwned}</p>
         </a>
