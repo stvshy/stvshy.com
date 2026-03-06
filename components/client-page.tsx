@@ -401,7 +401,7 @@ const updateUrl = (tab: string, lang: string) => {
             <TransformWrapper
               key={previewImage.src}
               minScale={1}
-              maxScale={4}
+              maxScale={5}
               centerOnInit
               limitToBounds={false}
               wheel={{ disabled: true }}
@@ -410,8 +410,8 @@ const updateUrl = (tab: string, lang: string) => {
               doubleClick={{ mode: "reset", animationTime: 260, animationType: "easeOut" }}
             >
               <TransformComponent
-                wrapperClass="!w-auto !h-auto"
-                contentClass="!w-auto !h-auto"
+                wrapperClass="!w-[100vw] !h-[100vh]"
+                contentClass="!w-full !h-full !flex !items-center !justify-center"
                 wrapperStyle={{ touchAction: "none" }}
                 contentStyle={{ touchAction: "none" }}
               >
