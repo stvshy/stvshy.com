@@ -578,7 +578,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                 className="absolute right-[22px] inset-y-0 my-auto inline-flex h-[19.85px] items-center justify-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 text-[9.5px] font-semibold leading-none tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)] w-[74px] text-center"
                 style={{ fontFamily: 'Montserrat, MontserratCustom, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
               >
-                2018 - 2021
+                <span className="year-pill-label">2018 - 2021</span>
               </p>
               <p className="text-[11.45px] text-foreground" style={{ letterSpacing: '-0.055em', marginBottom: '2.4px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
                 <span className="sm:hidden">{highSchoolName.short}</span>
@@ -609,10 +609,10 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
               <div className="mt-2 space-y-2">
                   <div className="relative rounded-md border border-border/60 bg-card px-2.5 py-2 pr-24">
                     <p
-                      className="absolute right-2.5 top-1/2 inline-flex -translate-y-1/2 items-center justify-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 py-0.5 text-[9.5px] font-semibold tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)] w-[74px] text-center"
+                      className="absolute right-2.5 inset-y-0 my-auto inline-flex h-[19.85px] items-center justify-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 text-[9.5px] font-semibold leading-none tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)] w-[74px] text-center"
                       style={{ fontFamily: 'Montserrat, MontserratCustom, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
                     >
-                      2021 - 2025
+                      <span className="year-pill-label">2021 - 2025</span>
                     </p>
        
                   <p className="text-[11.6px] text-foreground" style={{ letterSpacing: '-0.054em', marginBottom: '1.3px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
@@ -624,10 +624,10 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                 </div>
                 <div className="relative rounded-md border border-border/60 bg-card px-2.5 py-2 pr-24">
                   <p
-                    className="absolute right-2.5 top-1/2 inline-flex -translate-y-1/2 items-center justify-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 py-0.5 text-[9.5px] font-semibold tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)] w-[74px] text-center"
+                    className="absolute right-2.5 inset-y-0 my-auto inline-flex h-[19.85px] items-center justify-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 text-[9.5px] font-semibold leading-none tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)] w-[74px] text-center"
                     style={{ fontFamily: 'Montserrat, MontserratCustom, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
                   >
-                    2025 - 2026
+                    <span className="year-pill-label">2025 - 2026</span>
                   </p>
                   <p className="text-[11.6px] text-foreground" style={{ letterSpacing: '-0.054em', marginBottom: '1.3px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
                     {appliedComputerScienceLabel}

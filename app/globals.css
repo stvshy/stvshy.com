@@ -186,3 +186,10 @@
     transform-origin: top center;
   }
 }
+
+@media (min-aspect-ratio: 21/9) {
+  .year-pill-label {
+    position: relative;
+    top: 0.35px;
+  }
+}
