@@ -77,6 +77,7 @@ export default function ClientPage({ initialSection, initialLang }: ClientPagePr
   const isTripifyMapPreview = previewImage?.src.includes("tripify-map")
   const text = pageText[language]
   const [isPreviewLoaded, setIsPreviewLoaded] = useState(false)
+  const [isPreviewZoomed, setIsPreviewZoomed] = useState(false)
 
   const triggerLangPress = () => {
     setIsLangPressed(true)
@@ -196,6 +197,7 @@ const updateUrl = (tab: string, lang: string) => {
 
   useEffect(() => {
     setIsPreviewLoaded(false)
+    setIsPreviewZoomed(false)
   }, [previewImage])
 
 
@@ -403,11 +405,16 @@ const updateUrl = (tab: string, lang: string) => {
               minScale={1}
               maxScale={5}
               centerOnInit
-              limitToBounds={false}
+              centerZoomedOut
+              limitToBounds
+              disablePadding
               wheel={{ disabled: true }}
               pinch={{ step: 0.6 }}
-              panning={{ excluded: ["preview-close-btn"] }}
+              panning={{ disabled: !isPreviewZoomed, excluded: ["preview-close-btn"] }}
               doubleClick={{ mode: "reset", animationTime: 260, animationType: "easeOut" }}
+              onTransformed={(_, state) => {
+                setIsPreviewZoomed(state.scale > 1.01)
+              }}
             >
               <TransformComponent
                 wrapperClass="!w-[100vw] !h-[100vh]"
