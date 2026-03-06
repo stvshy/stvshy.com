@@ -575,7 +575,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
           <div className="space-y-3">
             <div className="relative rounded-lg border border-border/70 bg-card/42 px-2.5 py-2 pr-24">
               <p
-                className="absolute right-[22px] top-1/2 inline-flex -translate-y-1/2 items-center justify-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 py-0.5 text-[9.5px] font-semibold tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)] w-[74px] text-center"
+                className="absolute right-[22px] inset-y-0 my-auto inline-flex h-[19.85px] items-center justify-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 text-[9.5px] font-semibold leading-none tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)] w-[74px] text-center"
                 style={{ fontFamily: 'Montserrat, MontserratCustom, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
               >
                 2018 - 2021
