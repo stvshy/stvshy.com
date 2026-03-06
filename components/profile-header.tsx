@@ -40,8 +40,8 @@ export function ProfileHeader({ language }: ProfileHeaderProps) {
         >
           {roleText} <span className="text-slate-400 dark:text-slate-400 mx-2">x</span> {producerText}
         </p>
-        <div className="flex items-center justify-center mt-[5.5px] text-[14.4px] text-slate-500 dark:text-slate-400 location-sans">
-          <HiLocationMarker className="mr-2 mb-[1px] text-[7.9px] shrink-0 translate-y-[0.4px]" aria-hidden="true" />
+        <div className="flex items-center justify-center mt-[5.8px] text-[14.4px] text-slate-500 dark:text-slate-400 location-sans">
+          <HiLocationMarker className="mr-2 mb-[1.183px] text-[7.9px] shrink-0 translate-y-[0.4px]" aria-hidden="true" />
           WROCŁAW, PL
         </div>
       </div>

@@ -155,10 +155,10 @@
 }
 
 .location-sans {
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Montserrat', 'MontserratCustom', var(--font-sans), system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   text-transform: uppercase;
-  letter-spacing: 0.19em;
-  font-size: 8.4px;
+  letter-spacing: 0.068em;
+  font-size: 8.2px;
 }
 
 .role-smaller {
