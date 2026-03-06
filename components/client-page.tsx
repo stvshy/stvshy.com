@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useMemo, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Mail, X } from "lucide-react"
 import { BsInstagram } from "react-icons/bs"
 // import { MeshGradient } from "@/components/mesh-gradient"
@@ -12,6 +12,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import dynamic from "next/dynamic"
+import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch"
 
 const MeshGradient = dynamic(
   () => import("@/components/mesh-gradient").then((mod) => mod.MeshGradient),
@@ -76,146 +77,6 @@ export default function ClientPage({ initialSection, initialLang }: ClientPagePr
   const isTripifyMapPreview = previewImage?.src.includes("tripify-map")
   const text = pageText[language]
   const [isPreviewLoaded, setIsPreviewLoaded] = useState(false)
-  const isMobileViewport = useMemo(
-    () => typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches,
-    []
-  )
-  const previewImageRef = useRef<HTMLImageElement | null>(null)
-  const pointersRef = useRef(new Map<number, { x: number; y: number }>())
-  const pointerStartRef = useRef(new Map<number, { x: number; y: number; time: number }>())
-  const lastTapRef = useRef<{ x: number; y: number; time: number } | null>(null)
-  const transformRef = useRef({ scale: 1, x: 0, y: 0 })
-  const pinchStartRef = useRef({ distance: 0, scale: 1 })
-  const panStartRef = useRef({ x: 0, y: 0, originX: 0, originY: 0 })
-  const DOUBLE_TAP_DELAY_MS = 280
-  const DOUBLE_TAP_RADIUS_PX = 24
-  const TAP_MOVE_TOLERANCE_PX = 10
-
-  const applyPreviewTransform = () => {
-    const img = previewImageRef.current
-    if (!img) return
-    const { scale, x, y } = transformRef.current
-    img.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${scale})`
-  }
-
-  const resetPreviewTransform = () => {
-    transformRef.current = { scale: 1, x: 0, y: 0 }
-    pinchStartRef.current = { distance: 0, scale: 1 }
-    panStartRef.current = { x: 0, y: 0, originX: 0, originY: 0 }
-    pointersRef.current.clear()
-    pointerStartRef.current.clear()
-    lastTapRef.current = null
-    applyPreviewTransform()
-  }
-
-  const getDistance = (a: { x: number; y: number }, b: { x: number; y: number }) => {
-    const dx = a.x - b.x
-    const dy = a.y - b.y
-    return Math.hypot(dx, dy)
-  }
-
-  const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value))
-
-  const handlePreviewPointerDown = (event: React.PointerEvent<HTMLImageElement>) => {
-    if (!isMobileViewport) return
-    const target = event.currentTarget
-    target.setPointerCapture(event.pointerId)
-    pointersRef.current.set(event.pointerId, { x: event.clientX, y: event.clientY })
-    pointerStartRef.current.set(event.pointerId, {
-      x: event.clientX,
-      y: event.clientY,
-      time: event.timeStamp,
-    })
-
-    if (pointersRef.current.size === 2) {
-      const [p1, p2] = Array.from(pointersRef.current.values())
-      pinchStartRef.current.distance = getDistance(p1, p2)
-      pinchStartRef.current.scale = transformRef.current.scale
-    }
-
-    if (pointersRef.current.size === 1 && transformRef.current.scale > 1) {
-      panStartRef.current = {
-        x: event.clientX,
-        y: event.clientY,
-        originX: transformRef.current.x,
-        originY: transformRef.current.y,
-      }
-    }
-  }
-
-  const handlePreviewPointerMove = (event: React.PointerEvent<HTMLImageElement>) => {
-    if (!isMobileViewport || !pointersRef.current.has(event.pointerId)) return
-
-    pointersRef.current.set(event.pointerId, { x: event.clientX, y: event.clientY })
-
-    if (pointersRef.current.size === 2) {
-      const [p1, p2] = Array.from(pointersRef.current.values())
-      if (pinchStartRef.current.distance > 0) {
-        const nextScale = clamp(
-          (getDistance(p1, p2) / pinchStartRef.current.distance) * pinchStartRef.current.scale,
-          1,
-          4
-        )
-        transformRef.current.scale = nextScale
-        if (nextScale === 1) {
-          transformRef.current.x = 0
-          transformRef.current.y = 0
-        }
-        applyPreviewTransform()
-      }
-      return
-    }
-
-    if (pointersRef.current.size === 1 && transformRef.current.scale > 1) {
-      const dx = event.clientX - panStartRef.current.x
-      const dy = event.clientY - panStartRef.current.y
-      const panLimit = ((transformRef.current.scale - 1) * 180)
-      transformRef.current.x = clamp(panStartRef.current.originX + dx, -panLimit, panLimit)
-      transformRef.current.y = clamp(panStartRef.current.originY + dy, -panLimit, panLimit)
-      applyPreviewTransform()
-    }
-  }
-
-  const handlePreviewPointerUp = (event: React.PointerEvent<HTMLImageElement>) => {
-    if (!isMobileViewport) return
-    const startPoint = pointerStartRef.current.get(event.pointerId)
-    pointerStartRef.current.delete(event.pointerId)
-    pointersRef.current.delete(event.pointerId)
-
-    if (event.pointerType === "touch" && startPoint && pointersRef.current.size === 0) {
-      const movedDistance = getDistance(startPoint, { x: event.clientX, y: event.clientY })
-      const isTap = movedDistance <= TAP_MOVE_TOLERANCE_PX
-
-      if (isTap && transformRef.current.scale > 1.01) {
-        const lastTap = lastTapRef.current
-        const isDoubleTap =
-          !!lastTap &&
-          event.timeStamp - lastTap.time <= DOUBLE_TAP_DELAY_MS &&
-          getDistance(lastTap, { x: event.clientX, y: event.clientY }) <= DOUBLE_TAP_RADIUS_PX
-
-        if (isDoubleTap) {
-          resetPreviewTransform()
-          return
-        }
-
-        lastTapRef.current = {
-          x: event.clientX,
-          y: event.clientY,
-          time: event.timeStamp,
-        }
-      } else if (!isTap) {
-        lastTapRef.current = null
-      }
-    }
-
-    if (pointersRef.current.size < 2) {
-      pinchStartRef.current.distance = 0
-      pinchStartRef.current.scale = transformRef.current.scale
-    }
-    if (pointersRef.current.size === 0 && transformRef.current.scale <= 1.01) {
-      resetPreviewTransform()
-    }
-  }
 
   const triggerLangPress = () => {
     setIsLangPressed(true)
@@ -335,12 +196,6 @@ const updateUrl = (tab: string, lang: string) => {
 
   useEffect(() => {
     setIsPreviewLoaded(false)
-  }, [previewImage])
-
-  useEffect(() => {
-    if (!previewImage) {
-      resetPreviewTransform()
-    }
   }, [previewImage])
 
 
@@ -541,45 +396,55 @@ const updateUrl = (tab: string, lang: string) => {
           <div
             className="relative inline-flex items-center justify-center"
             onClick={(event) => event.stopPropagation()}
-            style={{ touchAction: "pinch-zoom" }}
+            style={{ touchAction: "none" }}
           >
-            {isPreviewLoaded && (
-              <button
-                type="button"
-                onClick={() => setPreviewImage(null)}
-                aria-label={text.previewCloseLabel}
-                className="absolute right-2 top-2 z-10 inline-flex size-8 items-center justify-center rounded-full border border-border/70 bg-background/80 text-foreground transition-colors [@media(hover:hover)_and_(pointer:fine)]:hover:bg-background active:bg-background"
+            <TransformWrapper
+              key={previewImage.src}
+              minScale={1}
+              maxScale={4}
+              centerOnInit
+              limitToBounds={false}
+              wheel={{ disabled: true }}
+              pinch={{ step: 0.6 }}
+              panning={{ excluded: ["preview-close-btn"] }}
+              doubleClick={{ mode: "reset", animationTime: 260, animationType: "easeOut" }}
+            >
+              <TransformComponent
+                wrapperClass="!w-auto !h-auto"
+                contentClass="!w-auto !h-auto"
+                wrapperStyle={{ touchAction: "none" }}
+                contentStyle={{ touchAction: "none" }}
               >
-                <X className="size-4" />
-              </button>
-            )}
+                <div className="relative inline-flex items-start justify-start">
+                  {isPreviewLoaded && (
+                    <button
+                      type="button"
+                      onClick={() => setPreviewImage(null)}
+                      aria-label={text.previewCloseLabel}
+                      className="preview-close-btn absolute right-2 top-2 z-10 inline-flex size-8 items-center justify-center rounded-full border border-border/70 bg-background/80 text-foreground transition-colors [@media(hover:hover)_and_(pointer:fine)]:hover:bg-background active:bg-background"
+                    >
+                      <X className="size-4" />
+                    </button>
+                  )}
 
-            <img
-              ref={previewImageRef}
-              src={previewImage.src}
-              alt={previewImage.alt}
-              loading="eager"
-              fetchPriority="high"
-              decoding="async"
-              className={`w-auto max-w-[95vw] rounded-xl object-contain ${
-                isTripifyMapPreview
-                  ? "max-h-[90vh] md:max-h-[96vh]"
-                  : "max-h-[90vh]"
-              }`}
-              style={{
-                touchAction: isMobileViewport ? "none" : "pinch-zoom",
-                transform: "translate3d(0, 0, 0) scale(1)",
-                transformOrigin: "center center",
-                willChange: isMobileViewport ? "transform" : "auto",
-                transition: isMobileViewport ? "transform 80ms linear" : "none",
-              }}
-              onPointerDown={handlePreviewPointerDown}
-              onPointerMove={handlePreviewPointerMove}
-              onPointerUp={handlePreviewPointerUp}
-              onPointerCancel={handlePreviewPointerUp}
-              onLoad={() => setIsPreviewLoaded(true)}
-              onError={() => setIsPreviewLoaded(true)}
-            />
+                  <img
+                    src={previewImage.src}
+                    alt={previewImage.alt}
+                    loading="eager"
+                    fetchPriority="high"
+                    decoding="async"
+                    className={`w-auto max-w-[95vw] rounded-xl object-contain ${
+                      isTripifyMapPreview
+                        ? "max-h-[90vh] md:max-h-[96vh]"
+                        : "max-h-[90vh]"
+                    }`}
+                    style={{ touchAction: "none", willChange: "transform" }}
+                    onLoad={() => setIsPreviewLoaded(true)}
+                    onError={() => setIsPreviewLoaded(true)}
+                  />
+                </div>
+              </TransformComponent>
+            </TransformWrapper>
           </div>
         </div>
       )}
