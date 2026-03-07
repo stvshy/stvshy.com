@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   
   // Słownik tytułów
   const titles: Record<string, string> = {
-    home: 'stvshy | Mateusz Staszków',
+    home: 'Stvshy / Mateusz Staszków',
     about: isPl ? 'stvshy | O mnie ' : 'stvshy | About Me',
     dev: isPl ? 'Mateusz Staszków | Dev' : 'Mateusz Staszków | Dev',
     music: isPl ? 'stvshy | Muzyka' : 'stvshy | Music',

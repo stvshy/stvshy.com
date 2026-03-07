@@ -37,8 +37,13 @@ description: 'Mateusz Staszków (stvshy) - Developer & Producer. Discover my mus
 keywords: ['Mateusz Staszków', 'stvshy', 'Developer', 'Music Producer', 'Wrocław', 'Development', 'Sound Engineering'],
 generator: 'v0.app',
   icons: {
-    icon: '/images/stvshy-s4.png',
-    shortcut: '/images/stvshy-s2.png',
+    icon: [
+      {
+        url: '/images/stvshy-s5.png',
+        type: 'image/png',
+      },
+    ],
+    shortcut: '/images/stvshy-s5.png',
     apple: '/images/stvshy-s-mobile.png',
   },
 openGraph: {
