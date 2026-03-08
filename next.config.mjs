@@ -1,7 +1,7 @@
 import withPWAInit from "@ducanh2912/next-pwa";
 import withBundleAnalyzer from "@next/bundle-analyzer";
 
-// 1. Konfiguracja PWA
+// Konfiguracja PWA
 const withPWA = withPWAInit({
   dest: "public",
   cacheOnFrontEndNav: true,
@@ -14,7 +14,7 @@ const withPWA = withPWAInit({
   },
 });
 
-// 2. Konfiguracja Analyzera
+// Konfiguracja Analyzera
 const analyzer = withBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 });
@@ -30,11 +30,9 @@ const nextConfig = {
   turbopack: {
 
   },
-  // Tu dodajemy domyślną optymalizację ikon Lucide (dla nowszych wersji Next.js)
   experimental: {
     optimizePackageImports: ['lucide-react', 'react-icons'], 
   },
 };
 
-// 3. Eksportujemy połączoną konfigurację (Analyzer owija PWA, PWA owija nextConfig)
 export default analyzer(withPWA(nextConfig));

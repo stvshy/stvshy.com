@@ -1,7 +1,7 @@
 import { Logo } from "@/components/logo"
 import { HiLocationMarker } from "react-icons/hi"
-import Image from "next/image" // 1. IMPORT KOMPONENTU IMAGE
-import avatarImg from "@/public/images/avatar9.jpeg" // 2. STATYCZNY IMPORT OBRAZKA (jeśli wywali błąd ścieżki, użyj: "../public/images/avatar8.jpeg")
+import Image from "next/image" 
+import avatarImg from "@/public/images/avatar9.jpeg" 
 
 type ProfileHeaderProps = {
   language: "en" | "pl"

@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react"
 import { Mail, X } from "lucide-react"
 import { BsInstagram } from "react-icons/bs"
-// import { MeshGradient } from "@/components/mesh-gradient"
 import { ProfileHeader } from "@/components/profile-header"
 import { TabMusic } from "@/components/tab-music"
 import { TabDev } from "@/components/tab-dev"
@@ -91,7 +90,7 @@ export default function ClientPage({ initialSection, initialLang }: ClientPagePr
   }
   const nextLanguage: Language = language === "en" ? "pl" : "en"
 const updateUrl = (tab: string, lang: string) => {
-    const tabPart = tab === "about" ? "" : `/${tab}` // "about" to strona główna
+    const tabPart = tab === "about" ? "" : `/${tab}` 
     const langPart = lang === "pl" ? "/pl" : ""     // "en" jest domyślny, więc go nie pokazujemy
     const newPath = `${tabPart}${langPart}` || "/"
     window.history.replaceState(null, "", newPath)
@@ -233,8 +232,8 @@ const updateUrl = (tab: string, lang: string) => {
         <ProfileHeader language={language} />
 
         {/* Navigation Tabs */}
-<Tabs value={activeTab} onValueChange={handleTabChange} className="w-full -mt-[10px]">
-              <TabsList className="grid w-full grid-cols-3 bg-muted/50 backdrop-blur-xl border border-border">
+        <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full -mt-[10px]">
+          <TabsList className="grid w-full grid-cols-3 bg-muted/50 backdrop-blur-xl border border-border">
             <TabsTrigger
               value="dev"
               className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-neon-magenta/10 data-[state=active]:text-neon-magenta data-[state=active]:shadow-none [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:bg-background/10 [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:border-border [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:text-muted-foreground/70 data-[state=inactive]:active:bg-background/10 data-[state=inactive]:active:border-border data-[state=inactive]:active:text-muted-foreground/70"

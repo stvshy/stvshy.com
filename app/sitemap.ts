@@ -5,7 +5,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
 return [
     {
-      url: baseUrl, // To jest Twoja główna strona (dawne /about)
+      url: baseUrl, 
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 1,
@@ -35,7 +35,7 @@ return [
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/music/pl`, // Dodałem brakującą wersję PL dla muzyki
+      url: `${baseUrl}/music/pl`, 
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,

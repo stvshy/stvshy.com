@@ -4,8 +4,7 @@ import { FaDeezer } from "react-icons/fa"
 import { PiSoundcloudLogoFill } from "react-icons/pi"
 import { SiAmazonmusic, SiApplemusic, SiTidal, SiYoutubemusic } from "react-icons/si"
 import Image from "next/image"
-import fantasiaImg from "@/public/images/fantasia.jpg" // lub względna ścieżka np. "../public/images/fantasia.png"
-
+import fantasiaImg from "@/public/images/fantasia.jpg" 
 const MUSIC_ACCENT = "#b817e4"
 
 function hexToRgbChannels(hex: string) {

@@ -37,7 +37,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   // Wybór odpowiedniego tytułu i opisu
-  // Wybór odpowiedniego tytułu i opisu
   const title = titles[sectionRaw] || titles.home
   const description = descriptions[sectionRaw] || descriptions.default
 
@@ -80,7 +79,7 @@ export default async function Page({ params }: Props) {  // Odbieramy parametry 
   // Dla pustego slug zostawiamy undefined, żeby ClientPage użył swojego domyślnego zachowania
   const section = isLangFirst ? secondSegment || "about" : firstSegment || undefined
   
-  // Język może być pierwszym członem (/pl) albo drugim (/about/pl)
+  // Określamy język na podstawie obecności "pl" w pierwszym lub drugim segmencie
   const lang = firstSegment === "pl" || secondSegment === "pl" ? "pl" : "en"
 
   return (

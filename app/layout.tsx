@@ -112,13 +112,13 @@ export default function RootLayout({
         <style dangerouslySetInnerHTML={{ __html: `
           /* Główny kursor na stronie */
           body {
-    cursor: url('/cursors/cursor10.png') 0 0, auto !important;
+            cursor: url('/cursors/cursor10.png') 0 0, auto !important;
           }
           
           /* Kursor w kształcie łapki/pointera dla klikalnych elementów */
           a, button, [role="button"], label, select,
           a *, button *, [role="button"] *, label *, select * {
-cursor: url('/cursors/cursor10.png') 0 0, pointer !important;  }
+            cursor: url('/cursors/cursor10.png') 0 0, pointer !important;  }
         `}} />
 
       </head>

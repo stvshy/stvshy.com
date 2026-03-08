@@ -5,12 +5,12 @@ export function Logo() {
     <Image
       src="/images/stvshy-przezroczyste1.png"
       alt="stvshy logo"
-      width={1138} // Wpisz tu oryginalną szerokość pliku PNG w pikselach
-      height={496} // Wpisz tu oryginalną wysokość pliku PNG w pikselach
+      width={1138} 
+      height={496} 
       className="mx-auto h-9 w-auto -mt-8"
       quality={95}
       sizes="(max-width: 768px) 250px, 300px"
-      priority={true} // Ponieważ to logo na górze strony, ładujemy je priorytetowo
+      priority={true} 
     />
   )
 }
