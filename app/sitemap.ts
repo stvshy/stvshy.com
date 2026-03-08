@@ -3,21 +3,27 @@ import { MetadataRoute } from 'next'
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://stvshy.com'
 
-  return [
+return [
     {
-      url: baseUrl,
+      url: baseUrl, // To jest Twoja główna strona (dawne /about)
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 1,
     },
     {
-      url: `${baseUrl}/about`,
+      url: `${baseUrl}/pl`, // Polska wersja strony głównej
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 1,
+    },
+    {
+      url: `${baseUrl}/dev`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/dev`,
+      url: `${baseUrl}/dev/pl`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
@@ -28,18 +34,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
-    // Wersje polskie
     {
-      url: `${baseUrl}/about/pl`,
+      url: `${baseUrl}/music/pl`, // Dodałem brakującą wersję PL dla muzyki
       lastModified: new Date(),
       changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/dev/pl`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
+      priority: 0.8,
     },
   ]
 }

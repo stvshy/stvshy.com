@@ -37,19 +37,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   // Wybór odpowiedniego tytułu i opisu
+  // Wybór odpowiedniego tytułu i opisu
   const title = titles[sectionRaw] || titles.home
   const description = descriptions[sectionRaw] || descriptions.default
+
+  // Tworzymy czysty URL bez członu "about", aby zapobiec duplikatom
+  const cleanSlug = slug.filter(s => s !== "about")
+  const canonicalUrl = `https://stvshy.com${cleanSlug.length > 0 ? '/' + cleanSlug.join('/') : ''}`
 
   return {
     title: {
       absolute: title,
     },
     description: description,
+    alternates: {
+      canonical: canonicalUrl, // Informacja dla Google o głównym adresie
+    },
     openGraph: {
       title: title,
       description: description,
       locale: isPl ? 'pl_PL' : 'en_US',
-      url: `https://stvshy.com/${slug.join('/')}`,
+      url: canonicalUrl, // Podmienione, aby nie używało "about" w Open Graph
       images: [
         {
           url: '/images/stvshy-open.png',
@@ -61,7 +69,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
   }
 }
-
 export default async function Page({ params }: Props) {  // Odbieramy parametry z adresu URL
   const resolvedParams = await params
   const slug = resolvedParams.slug || []
@@ -96,7 +103,5 @@ export function generateStaticParams() {
     { slug: ["music"] },
     { slug: ["music", "pl"] },
     { slug: ["music", "en"] },
-    { slug: ["about"] }, // Opcjonalnie, dla pewności
-    { slug: ["about", "pl"] },
   ]
 }

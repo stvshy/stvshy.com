@@ -151,6 +151,7 @@ public/images/avatar5.jpg
 public/images/avatar6.jpg
 public/images/avatar7.jpg
 public/images/avatar8.jpeg
+public/images/avatar9.jpeg
 public/images/ccna.png
 public/images/ccna2.jpg
 public/images/cisco.png
@@ -163,6 +164,7 @@ public/images/dev-icon3-4.png
 public/images/dev-icon3.png
 public/images/english1.png
 public/images/english2.png
+public/images/fantasia.jpg
 public/images/fantasia.png
 public/images/meta1.png
 public/images/meta2.png
@@ -177,6 +179,7 @@ public/images/stvshy-s-mobile.png
 public/images/stvshy-s2.png
 public/images/stvshy-s3.png
 public/images/stvshy-s4.png
+public/images/stvshy-s5.png
 public/images/tripify-map.jpg
 tsconfig.json
 
@@ -240,69 +243,6 @@ function CollapsibleContent({
   )
 }
 export { Collapsible, CollapsibleTrigger, CollapsibleContent }
-
-================
-File: components/ui/tabs.tsx
-================
-'use client'
-import * as React from 'react'
-import * as TabsPrimitive from '@radix-ui/react-tabs'
-import { cn } from '@/lib/utils'
-function Tabs({
-  className,
-  ...props
-}: React.ComponentProps<typeof TabsPrimitive.Root>) {
-  return (
-    <TabsPrimitive.Root
-      data-slot="tabs"
-      className={cn('flex flex-col gap-2', className)}
-      {...props}
-    />
-  )
-}
-function TabsList({
-  className,
-  ...props
-}: React.ComponentProps<typeof TabsPrimitive.List>) {
-  return (
-    <TabsPrimitive.List
-      data-slot="tabs-list"
-      className={cn(
-        'bg-muted text-muted-foreground inline-flex h-9 w-fit items-center justify-center rounded-lg p-[3px]',
-        className,
-      )}
-      {...props}
-    />
-  )
-}
-function TabsTrigger({
-  className,
-  ...props
-}: React.ComponentProps<typeof TabsPrimitive.Trigger>) {
-  return (
-    <TabsPrimitive.Trigger
-      data-slot="tabs-trigger"
-      className={cn(
-        "data-[state=active]:bg-background dark:data-[state=active]:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 text-foreground dark:text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-        className,
-      )}
-      {...props}
-    />
-  )
-}
-function TabsContent({
-  className,
-  ...props
-}: React.ComponentProps<typeof TabsPrimitive.Content>) {
-  return (
-    <TabsPrimitive.Content
-      data-slot="tabs-content"
-      className={cn('flex-1 outline-none', className)}
-      {...props}
-    />
-  )
-}
-export { Tabs, TabsList, TabsTrigger, TabsContent }
 
 ================
 File: lib/utils.ts
@@ -429,6 +369,69 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 }
+
+================
+File: components/ui/tabs.tsx
+================
+'use client'
+import * as React from 'react'
+import * as TabsPrimitive from '@radix-ui/react-tabs'
+import { cn } from '@/lib/utils'
+function Tabs({
+  className,
+  ...props
+}: React.ComponentProps<typeof TabsPrimitive.Root>) {
+  return (
+    <TabsPrimitive.Root
+      data-slot="tabs"
+      className={cn('flex flex-col gap-2', className)}
+      {...props}
+    />
+  )
+}
+function TabsList({
+  className,
+  ...props
+}: React.ComponentProps<typeof TabsPrimitive.List>) {
+  return (
+    <TabsPrimitive.List
+      data-slot="tabs-list"
+      className={cn(
+        'bg-muted text-muted-foreground inline-flex h-9 w-fit items-center justify-center rounded-lg p-[3px]',
+        className,
+      )}
+      {...props}
+    />
+  )
+}
+function TabsTrigger({
+  className,
+  ...props
+}: React.ComponentProps<typeof TabsPrimitive.Trigger>) {
+  return (
+    <TabsPrimitive.Trigger
+      data-slot="tabs-trigger"
+      className={cn(
+        "data-[state=active]:bg-background dark:data-[state=active]:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 text-foreground dark:text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-[background-color,border-color,color,box-shadow] duration-150 focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        className,
+      )}
+      {...props}
+    />
+  )
+}
+function TabsContent({
+  className,
+  ...props
+}: React.ComponentProps<typeof TabsPrimitive.Content>) {
+  return (
+    <TabsPrimitive.Content
+      data-slot="tabs-content"
+      className={cn('flex-1 outline-none', className)}
+      {...props}
+    />
+  )
+}
+export { Tabs, TabsList, TabsTrigger, TabsContent }
 
 ================
 File: public/fonts/Figtree/OFL.txt
@@ -813,53 +816,6 @@ repomix-output.txt
 repomix-output.txt
 
 ================
-File: app/manifest.ts
-================
-import type { MetadataRoute } from 'next'
-export default function manifest(): MetadataRoute.Manifest {
-  return {
-    name: 'stvshy',
-    short_name: 'stvshy',
-    description: 'Mateusz Staszków - Developer & Producer. Discover my music, projects, and more.',
-    start_url: '/',
-    display: 'standalone',
-    background_color: '#0a0a0a',
-    theme_color: '#0a0a0a',
-    icons: [
-      {
-        src: '/images/stvshy-s-mobile.png',
-        sizes: '192x192',
-        type: 'image/png',
-        purpose: 'any maskable' as any
-      },
-      {
-        src: '/images/stvshy-s-mobile.png',
-        sizes: '512x512',
-        type: 'image/png',
-        purpose: 'any maskable' as any,
-      },
-    ],
-  }
-}
-
-================
-File: components/logo.tsx
-================
-import Image from 'next/image'
-export function Logo() {
-  return (
-    <Image
-      src="/images/stvshy-przezroczyste1.png"
-      alt="stvshy logo"
-      width={1138}
-      height={496}
-      className="mx-auto h-9 w-auto -mt-8"
-      priority={true}
-    />
-  )
-}
-
-================
 File: components/ui/button.tsx
 ================
 import * as React from 'react'
@@ -919,126 +875,52 @@ function Button({
 export { Button, buttonVariants }
 
 ================
-File: package.json
+File: app/manifest.ts
 ================
-{
-  "name": "my-project",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint ."
-  },
-  "dependencies": {
-    "@ducanh2912/next-pwa": "^10.2.9",
-    "@next/bundle-analyzer": "^16.1.6",
-    "@radix-ui/react-collapsible": "1.1.12",
-    "@radix-ui/react-slot": "1.2.4",
-    "@radix-ui/react-tabs": "1.1.13",
-    "@vercel/analytics": "1.6.1",
-    "autoprefixer": "^10.4.20",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "hyphen": "^1.14.1",
-    "lucide-react": "^0.564.0",
-    "next": "16.1.6",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "react-icons": "^5.5.0",
-    "tailwind-merge": "^3.3.1"
-  },
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.13",
-    "@types/hyphen": "^1.14.0",
-    "@types/node": "^22",
-    "@types/react": "19.2.14",
-    "@types/react-dom": "19.2.3",
-    "postcss": "^8.5",
-    "tailwindcss": "^4.1.9",
-    "tw-animate-css": "1.3.3",
-    "typescript": "5.7.3"
+import type { MetadataRoute } from 'next'
+export default function manifest(): MetadataRoute.Manifest {
+  return {
+    name: 'stvshy',
+    short_name: 'stvshy',
+    description: 'Mateusz Staszków - Developer & Producer. Discover my music, projects, and more.',
+    start_url: '/',
+    display: 'standalone',
+    background_color: '#0a0a0a',
+    theme_color: '#0a0a0a',
+    icons: [
+      {
+        src: '/images/stvshy-s4.png',
+        sizes: '192x192',
+        type: 'image/png',
+        purpose: 'any maskable' as any,
+      },
+      {
+        src: '/images/stvshy-s4.png',
+        sizes: '512x512',
+        type: 'image/png',
+        purpose: 'any maskable' as any,
+      },
+    ],
   }
 }
 
 ================
-File: app/[[...slug]]/page.tsx
+File: components/logo.tsx
 ================
-import ClientPage from "@/components/client-page"
-import { Metadata } from "next"
-type Props = {
-  params: Promise<{ slug?: string[] }>
-}
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const resolvedParams = await params
-  const slug = resolvedParams.slug || []
-  const sectionRaw = slug[0] || 'home'
-  const isPl = slug[1] === 'pl' || slug.includes('pl')
-  const titles: Record<string, string> = {
-    home: 'stvshy | Mateusz Staszków',
-    about: isPl ? 'stvshy | O mnie ' : 'stvshy | About Me',
-    dev: isPl ? 'Mateusz Staszków | Dev' : 'Mateusz Staszków | Dev',
-    music: isPl ? 'stvshy | Muzyka' : 'stvshy | Music',
-  }
-  const descriptions: Record<string, string> = {
-    default: isPl
-      ? 'Programista Full-stack i Producent Muzyczny z Wrocławia. Sprawdź moje projekty i muzykę.'
-      : 'Full-stack developer and music producer based in Wrocław. Check out my coding projects and music releases.',
-    music: isPl
-      ? 'Posłuchaj najnowszych utworów stvshy. Dostępne na Spotify, Apple Music i wielu innych platformach.'
-      : 'Listen to the latest tracks by stvshy. Available on Spotify, Apple Music, and more.',
-    dev: isPl
-      ? 'Projekty programistyczne. Zobacz moje portfolio developera.'
-      : 'Coding projects. Check out my developer portfolio.',
-  }
-  const title = titles[sectionRaw] || titles.home
-  const description = descriptions[sectionRaw] || descriptions.default
-  return {
-    title: {
-      absolute: title,
-    },
-    description: description,
-    openGraph: {
-      title: title,
-      description: description,
-      locale: isPl ? 'pl_PL' : 'en_US',
-      url: `https://stvshy.com/${slug.join('/')}`,
-      images: [
-        {
-          url: '/images/stvshy-open.png',
-          width: 1200,
-          height: 630,
-          alt: title,
-        },
-      ],
-    },
-  }
-}
-export default async function Page({ params }: Props) {
-  const resolvedParams = await params
-  const slug = resolvedParams.slug || []
-  const section = slug[0] || undefined
-  const lang = slug[1] === "pl" ? "pl" : "en"
+import Image from 'next/image'
+export function Logo() {
   return (
-    <ClientPage
-      initialSection={section}
-      initialLang={lang}
+    <Image
+      src="/images/stvshy-przezroczyste1.png"
+      alt="stvshy logo"
+      width={1138}
+      height={496}
+      className="mx-auto h-9 w-auto -mt-8"
+      quality={95}
+      sizes="(max-width: 768px) 250px, 300px"
+      priority={true}
     />
   )
-}
-export function generateStaticParams() {
-  return [
-    { slug: [] },
-    { slug: ["dev"] },
-    { slug: ["dev", "pl"] },
-    { slug: ["dev", "en"] },
-    { slug: ["music"] },
-    { slug: ["music", "pl"] },
-    { slug: ["music", "en"] },
-    { slug: ["about"] },
-    { slug: ["about", "pl"] },
-  ]
 }
 
 ================
@@ -1086,9 +968,146 @@ const nextConfig = {
 export default analyzer(withPWA(nextConfig));
 
 ================
+File: package.json
+================
+{
+  "name": "my-project",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@ducanh2912/next-pwa": "^10.2.9",
+    "@next/bundle-analyzer": "^16.1.6",
+    "@radix-ui/react-collapsible": "1.1.12",
+    "@radix-ui/react-slot": "1.2.4",
+    "@radix-ui/react-tabs": "1.1.13",
+    "@vercel/analytics": "1.6.1",
+    "autoprefixer": "^10.4.20",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "hyphen": "^1.14.1",
+    "lucide-react": "^0.564.0",
+    "next": "16.1.6",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "react-icons": "^5.5.0",
+    "react-zoom-pan-pinch": "^3.7.0",
+    "tailwind-merge": "^3.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.13",
+    "@types/hyphen": "^1.14.0",
+    "@types/node": "^22",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "postcss": "^8.5",
+    "tailwindcss": "^4.1.9",
+    "tw-animate-css": "1.3.3",
+    "typescript": "5.7.3"
+  },
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "not op_mini all"
+  ]
+}
+
+================
+File: app/[[...slug]]/page.tsx
+================
+import ClientPage from "@/components/client-page"
+import { Metadata } from "next"
+type Props = {
+  params: Promise<{ slug?: string[] }>
+}
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const resolvedParams = await params
+  const slug = resolvedParams.slug || []
+  const firstSegment = slug[0]
+  const secondSegment = slug[1]
+  const isLangFirst = firstSegment === "pl" || firstSegment === "en"
+  const isPl = firstSegment === "pl" || secondSegment === "pl"
+  const sectionRaw = isLangFirst ? secondSegment || "about" : firstSegment || "home"
+  const titles: Record<string, string> = {
+    home: 'Stvshy / Mateusz Staszków',
+    about: isPl ? 'stvshy | O mnie ' : 'stvshy | About Me',
+    dev: isPl ? 'Mateusz Staszków | Dev' : 'Mateusz Staszków | Dev',
+    music: isPl ? 'stvshy | Muzyka' : 'stvshy | Music',
+  }
+  const descriptions: Record<string, string> = {
+    default: isPl
+      ? 'Programista Full-stack i Producent Muzyczny z Wrocławia. Sprawdź moje projekty i muzykę.'
+      : 'Full-stack developer and music producer based in Wrocław. Check out my coding projects and music releases.',
+    music: isPl
+      ? 'Posłuchaj najnowszych utworów stvshy. Dostępne na Spotify, Apple Music i wielu innych platformach.'
+      : 'Listen to the latest tracks by stvshy. Available on Spotify, Apple Music, and more.',
+    dev: isPl
+      ? 'Projekty programistyczne. Zobacz moje portfolio developera.'
+      : 'Coding projects. Check out my developer portfolio.',
+  }
+  const title = titles[sectionRaw] || titles.home
+  const description = descriptions[sectionRaw] || descriptions.default
+  return {
+    title: {
+      absolute: title,
+    },
+    description: description,
+    openGraph: {
+      title: title,
+      description: description,
+      locale: isPl ? 'pl_PL' : 'en_US',
+      url: `https://stvshy.com/${slug.join('/')}`,
+      images: [
+        {
+          url: '/images/stvshy-open.png',
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+  }
+}
+export default async function Page({ params }: Props) {
+  const resolvedParams = await params
+  const slug = resolvedParams.slug || []
+  const firstSegment = slug[0]
+  const secondSegment = slug[1]
+  const isLangFirst = firstSegment === "pl" || firstSegment === "en"
+  const section = isLangFirst ? secondSegment || "about" : firstSegment || undefined
+  const lang = firstSegment === "pl" || secondSegment === "pl" ? "pl" : "en"
+  return (
+    <ClientPage
+      initialSection={section}
+      initialLang={lang}
+    />
+  )
+}
+export function generateStaticParams() {
+  return [
+    { slug: [] },
+    { slug: ["pl"] },
+    { slug: ["en"] },
+    { slug: ["dev"] },
+    { slug: ["dev", "pl"] },
+    { slug: ["dev", "en"] },
+    { slug: ["music"] },
+    { slug: ["music", "pl"] },
+    { slug: ["music", "en"] },
+    { slug: ["about"] },
+    { slug: ["about", "pl"] },
+  ]
+}
+
+================
 File: next-env.d.ts
 ================
-import "./.next/dev/types/routes.d.ts";
+import "./.next/types/routes.d.ts";
 
 ================
 File: components/mesh-gradient.tsx
@@ -1102,40 +1121,50 @@ export function MeshGradient() {
     if (!canvas) return
     const ctx = canvas.getContext("2d")
     if (!ctx) return
-    let animationId: number
+    let animationId: number | undefined
+    let startAnimationTimeoutId: number | undefined
     let time = 0
     let width = 0
     let height = 0
-    let lastTime = 0;
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-    const targetFps = isMobile ? 30 : 60;
-    const fpsInterval = 1000 / targetFps;
+    let isAnimating = false
+    let lastTime = 0
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+     const targetFps = prefersReducedMotion ? 0 : 30
+    const fpsInterval = targetFps > 0 ? 1000 / targetFps : Number.POSITIVE_INFINITY
     const resize = () => {
       const nextWidth = window.innerWidth
       const nextHeight = window.innerHeight
       width = nextWidth
       height = nextHeight
-      const dpr = Math.min(window.devicePixelRatio || 1, 2)
-      canvas.width = Math.floor(nextWidth * dpr)
-      canvas.height = Math.floor(nextHeight * dpr)
+      const isMobileViewport = nextWidth <= 767
+      if (isMobileViewport) {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2)
+        canvas.width = Math.floor(nextWidth * dpr)
+        canvas.height = Math.floor(nextHeight * dpr)
+        canvas.style.filter = "none"
+        canvas.style.width = `${nextWidth}px`
+        canvas.style.height = `${nextHeight}px`
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+        return
+      }
+      const renderScale = 0.5
+      canvas.width = Math.floor(nextWidth * renderScale)
+      canvas.height = Math.floor(nextHeight * renderScale)
+      canvas.style.filter = "blur(100px)"
       canvas.style.width = `${nextWidth}px`
       canvas.style.height = `${nextHeight}px`
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+      ctx.setTransform(renderScale, 0, 0, renderScale, 0, 0)
     }
     resize()
     window.addEventListener("resize", resize)
-    const animate = (currentTime: number) => {
-      animationId = requestAnimationFrame(animate)
-      if (!lastTime) lastTime = currentTime;
-      const deltaTime = currentTime - lastTime;
-      if (deltaTime < fpsInterval) return;
-      lastTime = currentTime - (deltaTime % fpsInterval);
-      const timeMultiplier = isMobile ? (deltaTime / 16.66) : 1;
-      time = (time + 0.0025 * timeMultiplier) % 100;
+    const renderFrame = () => {
+      const isMobileViewport = width <= 767
       ctx.save()
       ctx.clearRect(0, 0, width, height)
       ctx.globalCompositeOperation = "source-over"
-      ctx.filter = "blur(120px)"
+      if (isMobileViewport) {
+        ctx.filter = "blur(120px)"
+      }
       const wash = ctx.createLinearGradient(0, height * 0.4, width, height * 0.6)
       wash.addColorStop(0, "rgba(211, 60, 225, 0.025)")
       wash.addColorStop(1, "rgba(54, 132, 233, 0.03)")
@@ -1150,7 +1179,9 @@ export function MeshGradient() {
       ctx.fillStyle = rightBias
       ctx.fillRect(0, 0, width, height)
       ctx.globalCompositeOperation = "lighter"
-      ctx.filter = "blur(80px)"
+      if (isMobileViewport) {
+        ctx.filter = "blur(80px)"
+      }
       const driftX = Math.sin(time * 0.16) * width * 0.035
       const driftY = Math.cos(time * 0.15) * height * 0.035
       const cx1 = width * 0.92 + Math.cos(time * 0.7) * width * 0.1 + driftX * 0.65
@@ -1179,17 +1210,17 @@ export function MeshGradient() {
       gradient3.addColorStop(1, "rgba(211, 60, 225, 0)")
       ctx.fillStyle = gradient3
       ctx.fillRect(0, 0, width, height)
-      ctx.filter = "none"
       ctx.globalCompositeOperation = "source-over"
-      ctx.fillStyle = "rgba(0, 0, 0, 0.34)"
+      ctx.filter = "none"
+      ctx.fillStyle = isMobileViewport ? "rgba(0, 0, 0, 0.34)" : "rgba(0, 0, 0, 0.28)"
       ctx.fillRect(0, 0, width, height)
       const vignette = ctx.createRadialGradient(
         width * 0.5, height * 0.5, Math.min(width, height) * 0.25,
         width * 0.5, height * 0.5, Math.max(width, height) * 0.75
       )
       vignette.addColorStop(0, "rgba(0, 0, 0, 0)")
-      vignette.addColorStop(0.65, "rgba(0, 0, 0, 0.03)")
-      vignette.addColorStop(1, "rgba(0, 0, 0, 0.22)")
+      vignette.addColorStop(0.65, isMobileViewport ? "rgba(0, 0, 0, 0.03)" : "rgba(0, 0, 0, 0.03)")
+      vignette.addColorStop(1, isMobileViewport ? "rgba(0, 0, 0, 0.22)" : "rgba(0, 0, 0, 0.22)")
       ctx.fillStyle = vignette
       ctx.fillRect(0, 0, width, height)
       const topShadeY = Math.min(height * 0.14, 160)
@@ -1198,17 +1229,46 @@ export function MeshGradient() {
         width * 0.5, topShadeY, 0,
         width * 0.5, topShadeY, topShadeRadius
       )
-      topShade.addColorStop(0, "rgba(0, 0, 0, 0.38)")
-      topShade.addColorStop(0.55, "rgba(0, 0, 0, 0.17)")
+      topShade.addColorStop(0, isMobileViewport ? "rgba(0, 0, 0, 0.38)" : "rgba(0, 0, 0, 0.38)")
+      topShade.addColorStop(0.55, isMobileViewport ? "rgba(0, 0, 0, 0.17)" : "rgba(0, 0, 0, 0.17)")
       topShade.addColorStop(1, "rgba(0, 0, 0, 0)")
       ctx.fillStyle = topShade
       ctx.fillRect(0, 0, width, height)
       ctx.restore()
     }
-    animationId = requestAnimationFrame(animate)
+    const animate = (currentTime: number) => {
+      if (!isAnimating) return
+      animationId = requestAnimationFrame(animate)
+      if (document.hidden || targetFps === 0) return
+      if (!lastTime) lastTime = currentTime
+      const deltaTime = currentTime - lastTime
+      if (deltaTime < fpsInterval) return
+      lastTime = currentTime - (deltaTime % fpsInterval)
+      const timeMultiplier = deltaTime / 16.66
+      time = (time + 0.0025 * timeMultiplier) % 100
+      renderFrame()
+    }
+    renderFrame()
+    if (width <= 767) {
+      isAnimating = true
+      lastTime = 0
+      animationId = requestAnimationFrame(animate)
+    } else {
+      startAnimationTimeoutId = window.setTimeout(() => {
+        isAnimating = true
+        lastTime = 0
+        animationId = requestAnimationFrame(animate)
+      }, 10_000)
+    }
     return () => {
+      isAnimating = false
       window.removeEventListener("resize", resize)
-      cancelAnimationFrame(animationId)
+      if (startAnimationTimeoutId !== undefined) {
+        window.clearTimeout(startAnimationTimeoutId)
+      }
+      if (animationId !== undefined) {
+        cancelAnimationFrame(animationId)
+      }
     }
   }, [])
   return (
@@ -1258,8 +1318,13 @@ description: 'Mateusz Staszków (stvshy) - Developer & Producer. Discover my mus
 keywords: ['Mateusz Staszków', 'stvshy', 'Developer', 'Music Producer', 'Wrocław', 'Development', 'Sound Engineering'],
 generator: 'v0.app',
   icons: {
-    icon: '/images/stvshy-s4.png',
-    shortcut: '/images/stvshy-s2.png',
+    icon: [
+      {
+        url: '/images/stvshy-s5.png',
+        type: 'image/png',
+      },
+    ],
+    shortcut: '/images/stvshy-s5.png',
     apple: '/images/stvshy-s-mobile.png',
   },
 openGraph: {
@@ -1344,54 +1409,6 @@ cursor: url('/cursors/cursor10.png') 0 0, pointer !important;  }
 }
 
 ================
-File: components/profile-header.tsx
-================
-import { Logo } from "@/components/logo"
-import { HiLocationMarker } from "react-icons/hi"
-import Image from "next/image"
-import avatarImg from "@/public/images/avatar8.jpeg"
-type ProfileHeaderProps = {
-  language: "en" | "pl"
-}
-export function ProfileHeader({ language }: ProfileHeaderProps) {
-  const roleText = language === "pl" ? "Developer" : "Developer"
-  const producerText = language === "pl" ? "Producent" : "Producer"
-  return (
-    <header className="flex flex-col items-center gap-2">
-      <Logo />
-      <div className="relative mb-[1px] group">
-        <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-cyan-500 to-fuchsia-500 blur-md opacity-75 [@media(hover:hover)_and_(pointer:fine)]:group-hover:opacity-100 transition-opacity duration-500"></div>
-        <div className="relative w-[143px] h-[143px] rounded-full p-1 bg-gradient-to-tr from-cyan-500 via-purple-500 to-fuchsia-500" style={{ boxShadow: '0 0 40px -10px rgba(6, 182, 212, 0.5), 0 0 40px -10px rgba(217, 70, 239, 0.5)' }}>
-          <Image
-            src={avatarImg}
-            alt="Mateusz Staszków profile photo"
-            className="w-full h-full object-cover rounded-full border-4 border-white dark:border-slate-950"
-            priority={true}
-            quality={95}
-            placeholder="blur"
-          />
-        </div>
-      </div>
-      <div className="text-center flex flex-col items-center gap-[2px]">
-        <h1 className="text-[19.46025px] custom-name tracking-tight text-slate-900 dark:text-white mb-[3px]">
-          Mateusz Staszk&oacute;w
-        </h1>
-        <p
-          className="text-xs role-smaller font-medium tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-fuchsia-500 uppercase"
-          style={{ fontFamily: 'Monorale, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
-        >
-          {roleText} <span className="text-slate-400 dark:text-slate-400 mx-2">x</span> {producerText}
-        </p>
-        <div className="flex items-center justify-center mt-[5.5px] text-[14.4px] text-slate-500 dark:text-slate-400 location-sans">
-          <HiLocationMarker className="mr-2 mb-[1px] text-[7.9px] shrink-0 translate-y-[0.4px]" aria-hidden="true" />
-          WROCŁAW, PL
-        </div>
-      </div>
-    </header>
-  )
-}
-
-================
 File: components/tab-music.tsx
 ================
 import { type CSSProperties, useEffect, useRef, useState } from "react"
@@ -1400,7 +1417,7 @@ import { FaDeezer } from "react-icons/fa"
 import { PiSoundcloudLogoFill } from "react-icons/pi"
 import { SiAmazonmusic, SiApplemusic, SiTidal, SiYoutubemusic } from "react-icons/si"
 import Image from "next/image"
-import fantasiaImg from "@/public/images/fantasia.png"
+import fantasiaImg from "@/public/images/fantasia.jpg"
 const MUSIC_ACCENT = "#b817e4"
 function hexToRgbChannels(hex: string) {
   const normalizedHex = hex.replace("#", "")
@@ -1549,9 +1566,9 @@ export function TabMusic({ language }: TabMusicProps) {
   } as CSSProperties
   const musicRgb = hexToRgbChannels(MUSIC_ACCENT).split(" ").join(", ")
   const defaultLinkClassName =
-    "group flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-3 backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[rgb(var(--music-accent-rgb)/0.3)] [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[rgb(var(--music-accent-rgb)/0.05)] active:border-[rgb(var(--music-accent-rgb)/0.3)] active:bg-[rgb(var(--music-accent-rgb)/0.05)]"
+    "group flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-3 backdrop-blur-xl transition-[background-color,border-color,color,box-shadow] duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[rgb(var(--music-accent-rgb)/0.3)] [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[rgb(var(--music-accent-rgb)/0.05)] active:border-[rgb(var(--music-accent-rgb)/0.3)] active:bg-[rgb(var(--music-accent-rgb)/0.05)]"
   const fantasiaCardClassName =
-    "group flex items-center gap-4 rounded-xl border border-[rgb(var(--music-accent-rgb)/0.35)] bg-[rgb(var(--music-accent-rgb)/0.1)] px-5 py-3 backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[rgb(var(--music-accent-rgb)/0.45)] [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[rgb(var(--music-accent-rgb)/0.15)] active:border-[rgb(var(--music-accent-rgb)/0.45)] active:bg-[rgb(var(--music-accent-rgb)/0.15)]"
+    "group flex items-center gap-4 rounded-xl border border-[rgb(var(--music-accent-rgb)/0.35)] bg-[rgb(var(--music-accent-rgb)/0.1)] px-5 py-3 backdrop-blur-xl transition-[background-color,border-color,color,box-shadow] duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[rgb(var(--music-accent-rgb)/0.45)] [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[rgb(var(--music-accent-rgb)/0.15)] active:border-[rgb(var(--music-accent-rgb)/0.45)] active:bg-[rgb(var(--music-accent-rgb)/0.15)]"
   const visibleLinks = localizedLinks.slice(0, 4)
   const hiddenLinks = localizedLinks.slice(4)
   return (
@@ -1576,8 +1593,8 @@ export function TabMusic({ language }: TabMusicProps) {
                 src={fantasiaImg}
                 alt="Fantasia cover"
                 className="size-full rounded-lg object-cover"
-                quality={82}
-                sizes="40px"
+                quality={95}
+                sizes="150px"
                 placeholder="blur"
               />
             ) : (
@@ -1618,7 +1635,7 @@ export function TabMusic({ language }: TabMusicProps) {
         onClick={() => {
           setIsMoreOpen((prev) => !prev)
         }}
-        className={`flex h-8 w-full items-center justify-center gap-2 rounded-lg border border-border/70 bg-card/70 text-[11px] font-medium uppercase tracking-wide text-muted-foreground transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[rgb(var(--music-accent-rgb)/0.3)] [@media(hover:hover)_and_(pointer:fine)]:hover:text-[rgb(var(--music-accent-rgb))] active:border-[rgb(var(--music-accent-rgb)/0.3)] active:text-[rgb(var(--music-accent-rgb))] ${
+        className={`flex h-8 w-full items-center justify-center gap-2 rounded-lg border border-border/70 bg-card/70 text-[11px] font-medium uppercase tracking-wide text-muted-foreground transition-[background-color,border-color,color,box-shadow] duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[rgb(var(--music-accent-rgb)/0.3)] [@media(hover:hover)_and_(pointer:fine)]:hover:text-[rgb(var(--music-accent-rgb))] active:border-[rgb(var(--music-accent-rgb)/0.3)] active:text-[rgb(var(--music-accent-rgb))] ${
           isMorePressed
             ? "border-[rgb(var(--music-accent-rgb)/0.3)] text-[rgb(var(--music-accent-rgb))]"
             : ""
@@ -1739,366 +1756,6 @@ export function TabMusic({ language }: TabMusicProps) {
         </div>
       </div>
     </div>
-  )
-}
-
-================
-File: components/client-page.tsx
-================
-"use client"
-import { useCallback, useEffect, useRef, useState } from "react"
-import { Mail, X } from "lucide-react"
-import { BsInstagram } from "react-icons/bs"
-import { ProfileHeader } from "@/components/profile-header"
-import { TabMusic } from "@/components/tab-music"
-import { TabDev } from "@/components/tab-dev"
-import { TabAbout } from "@/components/tab-about"
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
-import { Button } from "@/components/ui/button"
-import Image from "next/image"
-import dynamic from "next/dynamic"
-const MeshGradient = dynamic(
-  () => import("@/components/mesh-gradient").then((mod) => mod.MeshGradient),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="absolute inset-0 bg-background" />
-    )
-  }
-)
-type Language = "en" | "pl"
-interface ClientPageProps {
-  initialSection?: string
-  initialLang: Language
-}
-const PREVIEW_IMAGE_SOURCES = [
-  "/images/meta2.png",
-  "/images/meta1.png",
-  "/images/cisco.png",
-  "/images/tripify-map.jpg",
-]
-const pageText = {
-  en: {
-    tabs: {
-      dev: "Dev",
-      about: "About",
-      music: "Music",
-    },
-    contact: "Contact Me",
-    instagram: "Instagram",
-    instagramAria: "Open Instagram profile",
-    footer: "© 2026 stvshy. All rights reserved.",
-    previewDialogLabel: "Image preview",
-    previewCloseLabel: "Close image preview",
-    switchLanguageLabel: "Switch language to Polish",
-  },
-  pl: {
-    tabs: {
-      dev: "Dev",
-      about: "O mnie",
-      music: "Muzyka",
-    },
-    contact: "Skontaktuj się",
-    instagram: "Instagram",
-    instagramAria: "Otwórz profil na Instagramie",
-    footer: "© 2026 stvshy. Wszelkie prawa zastrzeżone.",
-    previewDialogLabel: "Podgląd obrazu",
-    previewCloseLabel: "Zamknij podgląd obrazu",
-    switchLanguageLabel: "Przełącz język na angielski",
-  },
-} as const
-export default function ClientPage({ initialSection, initialLang }: ClientPageProps) {
-  const [activeTab, setActiveTab] = useState(initialSection || "about")
-  const [language, setLanguage] = useState<Language>(initialLang)
-  const [isProfessionalMode] = useState(!!initialSection)
-  const [previewImage, setPreviewImage] = useState<{ src: string; alt: string } | null>(null)
-  const [isPreviewLoaded, setIsPreviewLoaded] = useState(false)
-  const [isLangPressed, setIsLangPressed] = useState(false)
-  const langPressTimeoutRef = useRef<number | null>(null)
-  const isTripifyMapPreview = previewImage?.src.includes("tripify-map")
-  const text = pageText[language]
-  const triggerLangPress = () => {
-    setIsLangPressed(true)
-    if (langPressTimeoutRef.current !== null) {
-      window.clearTimeout(langPressTimeoutRef.current)
-    }
-    langPressTimeoutRef.current = window.setTimeout(() => {
-      setIsLangPressed(false)
-      langPressTimeoutRef.current = null
-    }, 200)
-  }
-  const nextLanguage: Language = language === "en" ? "pl" : "en"
-const updateUrl = (tab: string, lang: string) => {
-    const tabPart = tab === "about" ? "" : `/${tab}` // "about" to strona główna
-    const langPart = lang === "pl" ? "/pl" : ""     // "en" jest domyślny, więc go nie pokazujemy
-    const newPath = `${tabPart}${langPart}` || "/"
-    window.history.replaceState(null, "", newPath)
-  }
-  const handleTabChange = (value: string) => {
-    setActiveTab(value)
-    updateUrl(value, language)
-  }
-  const handleLanguageChange = () => {
-    const newLang = nextLanguage
-    setLanguage(newLang)
-    updateUrl(activeTab, newLang)
-    // Zapisz też w localStorage
-    document.documentElement.lang = newLang
-    window.localStorage.setItem("language", newLang)
-  }
-  const handleTouchUnfocus = (e: React.TouchEvent<HTMLElement>) => {
-    const target = e.currentTarget
-    setTimeout(() => {
-      target.blur()
-    }, 100)
-  }
-const openPreview = useCallback((imageSrc: string, imageAlt: string) => {
-    setPreviewImage({ src: imageSrc, alt: imageAlt })
-  }, [])
-  const closePreview = useCallback(() => setPreviewImage(null), [])
-  useEffect(() => {
-    if (!previewImage) return
-    const previousOverflow = document.body.style.overflow
-    document.body.style.overflow = "hidden"
-    return () => {
-      document.body.style.overflow = previousOverflow
-    }
-  }, [previewImage])
-  useEffect(() => {
-    let done = false
-    const preload = () => {
-      if (done) return
-      done = true
-      PREVIEW_IMAGE_SOURCES.forEach((src) => {
-        const img = new window.Image()
-        img.decoding = "async"
-        img.src = src
-      })
-      cleanup()
-    }
-    const cleanup = () => {
-      window.removeEventListener("mousemove", preload)
-      window.removeEventListener("touchstart", preload)
-      window.removeEventListener("scroll", preload)
-    }
-    window.addEventListener("mousemove", preload, { once: true, passive: true })
-    window.addEventListener("touchstart", preload, { once: true, passive: true })
-    window.addEventListener("scroll", preload, { once: true, passive: true })
-    return cleanup
-  }, [])
-  useEffect(() => {
-    setIsPreviewLoaded(false)
-  }, [previewImage])
-  useEffect(() => {
-    document.documentElement.lang = language
-    window.localStorage.setItem("language", language)
-  }, [language])
-  const contactHoverClassName =
-    activeTab === "dev"
-      ? "[@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[var(--dev-accent)] [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:text-[var(--dev-accent)] active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
-      : activeTab === "music"
-        ? "[@media(hover:hover)_and_(pointer:fine)]:hover:border-[#b817e4]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[#b817e4]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[#b817e4] [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(184,23,228,0.18)] active:border-[#b817e4]/45 active:bg-[#b817e4]/10 active:text-[#b817e4] active:shadow-[0_0_20px_rgba(184,23,228,0.18)]"
-        : "[@media(hover:hover)_and_(pointer:fine)]:hover:border-foreground/30 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-foreground/10 [@media(hover:hover)_and_(pointer:fine)]:hover:text-foreground [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(240,240,240,0.08)] active:border-foreground/30 active:bg-foreground/10 active:text-foreground active:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
-  const instagramHoverClassName =
-    activeTab === "dev"
-      ? "[@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/55 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[var(--dev-accent)] [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/55 active:text-[var(--dev-accent)] active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
-      : activeTab === "music"
-        ? "[@media(hover:hover)_and_(pointer:fine)]:hover:border-[#b817e4]/55 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[#b817e4] [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(184,23,228,0.18)] active:border-[#b817e4]/55 active:text-[#b817e4] active:shadow-[0_0_20px_rgba(184,23,228,0.18)]"
-        : "[@media(hover:hover)_and_(pointer:fine)]:hover:border-foreground/45 [@media(hover:hover)_and_(pointer:fine)]:hover:text-foreground [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(240,240,240,0.08)] active:border-foreground/45 active:text-foreground active:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
-  const mobileLangButtonClassName = `inline-flex size-5 items-center justify-center overflow-hidden rounded-full bg-card/90 text-sm shadow-[0_0_14px_rgba(0,0,0,0.28)] backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:brightness-110 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_16px_4px_rgba(255,255,255,0.28)] active:brightness-110 active:shadow-[0_0_16px_4px_rgba(255,255,255,0.28)] ${isLangPressed ? "!brightness-110 !shadow-[0_0_16px_4px_rgba(255,255,255,0.28)]" : ""}`
-  const desktopLangButtonClassName = `fixed bottom-6 right-6 z-40 hidden size-7 items-center justify-center overflow-hidden rounded-full bg-card/90 text-xl shadow-[0_0_24px_rgba(0,0,0,0.35)] backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:brightness-110 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_12px_3px_rgba(255,255,255,0.22)] active:brightness-110 active:shadow-[0_0_12px_3px_rgba(255,255,255,0.22)] md:inline-flex ${isLangPressed ? "!brightness-110 !shadow-[0_0_12px_3px_rgba(255,255,255,0.22)]" : ""}`
-  return (
-    <main className="relative flex min-h-svh flex-col items-center bg-background">
-      <MeshGradient />
-      <div className="page-scale-desktop relative z-10 flex w-full max-w-md flex-col gap-8 px-5 py-12 pb-8">
-        <ProfileHeader language={language} />
-        {}
-<Tabs value={activeTab} onValueChange={handleTabChange} className="w-full -mt-[10px]">
-              <TabsList className="grid w-full grid-cols-3 bg-muted/50 backdrop-blur-xl border border-border">
-            <TabsTrigger
-              value="dev"
-              className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-neon-magenta/10 data-[state=active]:text-neon-magenta data-[state=active]:shadow-none [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:bg-background/10 [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:border-border [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:text-muted-foreground/70 data-[state=inactive]:active:bg-background/10 data-[state=inactive]:active:border-border data-[state=inactive]:active:text-muted-foreground/70"
-            >
-              <Image
-                src="/images/dev-icon3-4.png"
-                alt="Dev icon"
-                width={16}
-                height={16}
-                className="mr-1 size-4"
-              />
-              {text.tabs.dev}
-            </TabsTrigger>
-            <TabsTrigger
-              value="about"
-              className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-foreground/10 data-[state=active]:text-foreground data-[state=active]:shadow-none [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:bg-background/10 [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:border-border [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:text-muted-foreground/70 data-[state=inactive]:active:bg-background/10 data-[state=inactive]:active:border-border data-[state=inactive]:active:text-muted-foreground/70"
-            >
-              <Image
-                src="/images/about-icon5.png"
-                alt="About icon"
-                width={16}
-                height={16}
-                className="mr-1 size-4"
-              />
-              {text.tabs.about}
-            </TabsTrigger>
-            <TabsTrigger
-              value="music"
-              className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-[#b817e4]/10 data-[state=active]:text-[#b817e4] data-[state=active]:shadow-none [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:bg-background/10 [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:border-border [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:text-muted-foreground/70 data-[state=inactive]:active:bg-background/10 data-[state=inactive]:active:border-border data-[state=inactive]:active:text-muted-foreground/70"
-            >
-              <Image
-                src="/images/music-icon2.png"
-                alt="Music note"
-                width={16}
-                height={16}
-                className="mr-1 size-4"
-              />
-              {text.tabs.music}
-            </TabsTrigger>
-          </TabsList>
-          <TabsContent value="dev" className="mt-1">
-            <TabDev
-              language={language}
-              onOpenImagePreview={(imageSrc, imageAlt) =>
-                setPreviewImage({ src: imageSrc, alt: imageAlt })
-              }
-            />
-          </TabsContent>
-          <TabsContent value="about" className="mt-1">
-            <TabAbout
-              language={language}
-              onOpenImagePreview={(imageSrc, imageAlt) =>
-                setPreviewImage({ src: imageSrc, alt: imageAlt })
-              }
-            />
-          </TabsContent>
-          <TabsContent value="music" className="mt-1">
-            <TabMusic language={language} />
-          </TabsContent>
-        </Tabs>
-        {}
-        <Button
-          asChild
-          onClick={(e) => e.currentTarget.blur()}
-          className={`w-full rounded-xl border border-border bg-card text-sm text-foreground backdrop-blur-xl transition-all duration-300 ${contactHoverClassName}`}
-          size="lg"
-        >
-          <a
-            href="mailto:matisp637@gmail.com"
-            style={{ fontFamily: 'Montserrat, MontserratCustom, var(--font-sans), system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
-          >
-            <Mail className="size-[16.5px]" />
-            {text.contact}
-          </a>
-        </Button>
-        {activeTab === "about" && !isProfessionalMode && (
-          <div className="-mt-4.5">
-            <Button
-              asChild
-              size="lg"
-              onClick={(e) => e.currentTarget.blur()}
-              className={`w-full rounded-xl border border-foreground/12 bg-transparent text-sm text-foreground shadow-none transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-transparent active:bg-transparent ${instagramHoverClassName}`}
-            >
-              <a
-                href="https://instagram.com/stvshy"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={text.instagramAria}
-                style={{ fontFamily: 'Montserrat, MontserratCustom, var(--font-sans), system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
-              >
-                <BsInstagram className="size-3.7" />
-                {text.instagram}
-              </a>
-            </Button>
-          </div>
-        )}
-        {}
-        <footer className="text-center -mt-1 -mb-1">
-            <p
-            className="text-[11.3px] text-muted-foreground/50 tracking-tight"
-            style={{ fontFamily: 'Montserrat, MontserratCustom, var(--font-sans), system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
-            >
-            {text.footer}
-            </p>
-        </footer>
-        <div className="-mt-3 flex justify-center md:hidden">
-          <button
-            type="button"
-            onTouchStart={triggerLangPress}
-            onClick={(e) => {
-                handleLanguageChange();
-                e.currentTarget.blur();
-            }}
-            aria-label={text.switchLanguageLabel}
-            className={mobileLangButtonClassName}
-          >
-            <Image
-              src={language === "en" ? "/images/polish1.png" : "/images/english2.png"}
-              alt=""
-              aria-hidden="true"
-              width={32}
-              height={32}
-              className="w-full h-full object-cover brightness-[0.87] transition-all duration-300"
-            />
-          </button>
-        </div>
-      </div>
-      <button
-        type="button"
-        onTouchStart={triggerLangPress}
-        onClick={handleLanguageChange}
-        onTouchEnd={handleTouchUnfocus}
-        aria-label={text.switchLanguageLabel}
-        className={desktopLangButtonClassName}
-      >
-        <Image
-          src={language === "en" ? "/images/polish1.png" : "/images/english2.png"}
-          alt=""
-          aria-hidden="true"
-          width={32}
-          height={32  }
-          className="w-full h-full object-cover brightness-[0.85] transition-all duration-300"
-        />
-      </button>
-        {previewImage && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 md:bg-black/70 p-4"
-          role="dialog"
-          aria-modal="true"
-          aria-label={text.previewDialogLabel}
-          onClick={closePreview}
-          style={{ touchAction: "pinch-zoom" }}
-        >
-          <div
-            className="relative flex items-center justify-center"
-            onClick={(event) => event.stopPropagation()}
-            style={{ touchAction: "pinch-zoom" }}
-          >
-            <button
-              type="button"
-              onClick={closePreview}
-              aria-label={text.previewCloseLabel}
-              className={`absolute right-2 top-2 z-10 inline-flex size-8 items-center justify-center rounded-full border border-border/70 bg-background/80 text-foreground transition-[opacity,transform] duration-150 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-background active:bg-background ${
-                isPreviewLoaded ? "opacity-100" : "pointer-events-none opacity-0"
-              }`}
-            >
-              <X className="size-4" />
-            </button>
-            <img
-              src={previewImage.src}
-              alt={previewImage.alt}
-              loading="eager"
-              fetchPriority="high"
-              onLoad={() => setIsPreviewLoaded(true)}
-              onError={() => setIsPreviewLoaded(true)}
-              className={`w-auto max-w-[95vw] rounded-xl object-contain ${
-                isTripifyMapPreview ? "max-h-[90vh] md:max-h-[96vh]" : "max-h-[90vh]"
-              } ${isPreviewLoaded ? "opacity-100" : "opacity-0"}`}
-              style={{ touchAction: "pinch-zoom" }}
-            />
-          </div>
-        </div>
-      )}
-    </main>
   )
 }
 
@@ -2295,7 +1952,7 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
         <button
           type="button"
           onClick={() => onOpenImagePreview("/images/tripify-map.jpg", "Tripify map")}
-          className="group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-foreground/30 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-foreground/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(240,240,240,0.08)] active:border-foreground/30 active:bg-foreground/10 active:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
+          className="group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-[background-color,border-color,color,box-shadow] duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-foreground/30 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-foreground/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(240,240,240,0.08)] active:border-foreground/30 active:bg-foreground/10 active:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
           aria-label={text.mapPreviewLabel}
         >
           <ChevronRight className="absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground transition-transform [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-0.5 [@media(hover:hover)_and_(pointer:fine)]:group-hover:text-foreground group-active:translate-x-0.5 group-active:text-foreground" />
@@ -2315,7 +1972,7 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
           href="https://www.fragrantica.pl/uzytkownicy/34655"
           target="_blank"
           rel="noopener noreferrer"
-          className="group relative rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-foreground/30 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-foreground/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(240,240,240,0.08)] active:border-foreground/30 active:bg-foreground/10 active:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
+          className="group relative rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl transition-[background-color,border-color,color,box-shadow] duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-foreground/30 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-foreground/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(240,240,240,0.08)] active:border-foreground/30 active:bg-foreground/10 active:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
           aria-label={text.fragranticaLabel}
         >
           <ChevronRight className="absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground transition-transform [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-0.5 [@media(hover:hover)_and_(pointer:fine)]:group-hover:text-foreground group-active:translate-x-0.5 group-active:text-foreground" />
@@ -2327,7 +1984,7 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
               fontVariationSettings: "'wght' 550",
             }}
           >
-            30
+            31
           </span>
           <p className="mt-1 text-[11.43px] text-muted-foreground" style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>{text.perfumesOwned}</p>
         </a>
@@ -2337,32 +1994,59 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
 }
 
 ================
+File: components/profile-header.tsx
+================
+import { Logo } from "@/components/logo"
+import { HiLocationMarker } from "react-icons/hi"
+import Image from "next/image"
+import avatarImg from "@/public/images/avatar9.jpeg"
+type ProfileHeaderProps = {
+  language: "en" | "pl"
+}
+export function ProfileHeader({ language }: ProfileHeaderProps) {
+  const roleText = language === "pl" ? "Developer" : "Developer"
+  const producerText = language === "pl" ? "Producent" : "Producer"
+  return (
+    <header className="flex flex-col items-center gap-2">
+      <Logo />
+      <div className="relative mb-[1px] group">
+        <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-cyan-500 to-fuchsia-500 blur-md opacity-75 [@media(hover:hover)_and_(pointer:fine)]:group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div className="relative w-[143px] h-[143px] rounded-full p-1 bg-gradient-to-tr from-cyan-500 via-purple-500 to-fuchsia-500" style={{ boxShadow: '0 0 40px -10px rgba(6, 182, 212, 0.5), 0 0 40px -10px rgba(217, 70, 239, 0.5)' }}>
+          <Image
+            src={avatarImg}
+            alt="Mateusz Staszków profile photo"
+            className="w-full h-full object-cover rounded-full border-4 border-white dark:border-slate-950"
+            priority={true}
+            quality={95}
+            sizes="(max-width: 768px) 370px, 400px"
+            placeholder="blur"
+          />
+        </div>
+      </div>
+      <div className="text-center flex flex-col items-center gap-[2px]">
+        <h1 className="text-[19.46025px] custom-name tracking-tight text-slate-900 dark:text-white mb-[3px]">
+          Mateusz Staszk&oacute;w
+        </h1>
+        <p
+          className="text-xs role-smaller font-medium tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-fuchsia-500 uppercase"
+          style={{ fontFamily: 'Monorale, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
+        >
+          {roleText} <span className="text-slate-400 dark:text-slate-400 mx-2">x</span> {producerText}
+        </p>
+        <div className="flex items-center justify-center mt-[6.2px] text-[14.45px] text-slate-500 dark:text-slate-400 location-sans">
+          <HiLocationMarker className="mr-2 mb-[1.86px] text-[7.8px] shrink-0 translate-y-[0.4px]" aria-hidden="true" />
+          WROCŁAW, PL
+        </div>
+      </div>
+    </header>
+  )
+}
+
+================
 File: app/globals.css
 ================
 @import 'tailwindcss';
-@import 'tw-animate-css';
 @custom-variant dark (&:is(.dark *));
-@font-face {
-  font-family: 'MontserratCustom';
-  src: url('/fonts/Montserrat/static/Montserrat-Thin.ttf') format('truetype');
-  font-weight: 100;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'MontserratCustom';
-  src: url('/fonts/Montserrat/static/Montserrat-ExtraLight.ttf') format('truetype');
-  font-weight: 200;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'MontserratCustom';
-  src: url('/fonts/Montserrat/static/Montserrat-Light.ttf') format('truetype');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
 @font-face {
   font-family: 'MontserratCustom';
   src: url('/fonts/Montserrat/static/Montserrat-Regular.ttf') format('truetype');
@@ -2388,20 +2072,6 @@ File: app/globals.css
   font-family: 'MontserratCustom';
   src: url('/fonts/Montserrat/static/Montserrat-Bold.ttf') format('truetype');
   font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'MontserratCustom';
-  src: url('/fonts/Montserrat/static/Montserrat-ExtraBold.ttf') format('truetype');
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'MontserratCustom';
-  src: url('/fonts/Montserrat/static/Montserrat-Black.ttf') format('truetype');
-  font-weight: 900;
   font-style: normal;
   font-display: swap;
 }
@@ -2513,69 +2183,6 @@ File: app/globals.css
     cursor: url('/cursors/cursor10.png') 0 0, pointer !important;
   }
 }
-@font-face {
-  font-family: 'Monorale';
-  src: url('/fonts/Monorale%20(Raleway)/Monorale-Thin.woff') format('woff');
-  font-weight: 100;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Monorale';
-  src: url('/fonts/Monorale%20(Raleway)/Monorale-ExtraLight.woff') format('woff');
-  font-weight: 200;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Monorale';
-  src: url('/fonts/Monorale%20(Raleway)/Monorale-Light.woff') format('woff');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Monorale';
-  src: url('/fonts/Monorale%20(Raleway)/Monorale-Regular.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Monorale';
-  src: url('/fonts/Monorale%20(Raleway)/Monorale-Medium.woff') format('woff');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Monorale';
-  src: url('/fonts/Monorale%20(Raleway)/Monorale-SemiBold.woff') format('woff');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Monorale';
-  src: url('/fonts/Monorale%20(Raleway)/Monorale-Bold.woff') format('woff');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Monorale';
-  src: url('/fonts/Monorale%20(Raleway)/Monorale-ExtraBold.woff') format('woff');
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Monorale';
-  src: url('/fonts/Monorale%20(Raleway)/Monorale-Black.woff') format('woff');
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
 .custom-name {
   font-family: 'Montserrat', 'MontserratCustom', var(--font-sans), system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
   font-weight: var(--profile-name-weight);
@@ -2583,10 +2190,10 @@ File: app/globals.css
   text-shadow: 0.25px 0 0 currentColor, -0.25px 0 0 currentColor;
 }
 .location-sans {
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Montserrat', 'MontserratCustom', var(--font-sans), system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   text-transform: uppercase;
-  letter-spacing: 0.19em;
-  font-size: 8.4px;
+  letter-spacing: 0.068em;
+  font-size: 8.2px;
 }
 .role-smaller {
   font-size: 10.7055px;
@@ -2610,6 +2217,433 @@ File: app/globals.css
     transform: scale(1.1);
     transform-origin: top center;
   }
+}
+@media (min-aspect-ratio: 21/9) {
+  .year-pill-label {
+    position: relative;
+    top: 0.35px;
+  }
+}
+
+================
+File: components/client-page.tsx
+================
+"use client"
+import { useEffect, useRef, useState } from "react"
+import { Mail, X } from "lucide-react"
+import { BsInstagram } from "react-icons/bs"
+import { ProfileHeader } from "@/components/profile-header"
+import { TabMusic } from "@/components/tab-music"
+import { TabDev } from "@/components/tab-dev"
+import { TabAbout } from "@/components/tab-about"
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
+import { Button } from "@/components/ui/button"
+import Image from "next/image"
+import dynamic from "next/dynamic"
+import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch"
+const MeshGradient = dynamic(
+  () => import("@/components/mesh-gradient").then((mod) => mod.MeshGradient),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="absolute inset-0 bg-background" />
+    )
+  }
+)
+type Language = "en" | "pl"
+interface ClientPageProps {
+  initialSection?: string
+  initialLang: Language
+}
+const PREVIEW_IMAGE_SOURCES = [
+  "/images/meta2.png",
+  "/images/meta1.png",
+  "/images/cisco.png",
+  "/images/tripify-map.jpg",
+]
+const pageText = {
+  en: {
+    tabs: {
+      dev: "Dev",
+      about: "About",
+      music: "Music",
+    },
+    contact: "Contact Me",
+    instagram: "Instagram",
+    instagramAria: "Open Instagram profile",
+    footer: "© 2026 stvshy. All rights reserved.",
+    previewDialogLabel: "Image preview",
+    previewCloseLabel: "Close image preview",
+    switchLanguageLabel: "Switch language to Polish",
+  },
+  pl: {
+    tabs: {
+      dev: "Dev",
+      about: "O mnie",
+      music: "Muzyka",
+    },
+    contact: "Skontaktuj się",
+    instagram: "Instagram",
+    instagramAria: "Otwórz profil na Instagramie",
+    footer: "© 2026 stvshy. Wszelkie prawa zastrzeżone.",
+    previewDialogLabel: "Podgląd obrazu",
+    previewCloseLabel: "Zamknij podgląd obrazu",
+    switchLanguageLabel: "Przełącz język na angielski",
+  },
+} as const
+export default function ClientPage({ initialSection, initialLang }: ClientPageProps) {
+  const [activeTab, setActiveTab] = useState(initialSection || "about")
+  const [language, setLanguage] = useState<Language>(initialLang)
+  const [isProfessionalMode] = useState(!!initialSection)
+  const [previewImage, setPreviewImage] = useState<{ src: string; alt: string } | null>(null)
+  const [isLangPressed, setIsLangPressed] = useState(false)
+  const langPressTimeoutRef = useRef<number | null>(null)
+  const isTripifyMapPreview = previewImage?.src.includes("tripify-map")
+  const text = pageText[language]
+  const [isPreviewLoaded, setIsPreviewLoaded] = useState(false)
+  const [isPreviewZoomed, setIsPreviewZoomed] = useState(false)
+  const triggerLangPress = () => {
+    setIsLangPressed(true)
+    if (langPressTimeoutRef.current !== null) {
+      window.clearTimeout(langPressTimeoutRef.current)
+    }
+    langPressTimeoutRef.current = window.setTimeout(() => {
+      setIsLangPressed(false)
+      langPressTimeoutRef.current = null
+    }, 200)
+  }
+  const nextLanguage: Language = language === "en" ? "pl" : "en"
+const updateUrl = (tab: string, lang: string) => {
+    const tabPart = tab === "about" ? "" : `/${tab}` // "about" to strona główna
+    const langPart = lang === "pl" ? "/pl" : ""     // "en" jest domyślny, więc go nie pokazujemy
+    const newPath = `${tabPart}${langPart}` || "/"
+    window.history.replaceState(null, "", newPath)
+  }
+  const handleTabChange = (value: string) => {
+    setActiveTab(value)
+    updateUrl(value, language)
+  }
+  const handleLanguageChange = () => {
+    const newLang = nextLanguage
+    setLanguage(newLang)
+    updateUrl(activeTab, newLang)
+    // Zapisz też w localStorage
+    document.documentElement.lang = newLang
+    window.localStorage.setItem("language", newLang)
+  }
+  const handleTouchUnfocus = (e: React.TouchEvent<HTMLElement>) => {
+    const target = e.currentTarget
+    setTimeout(() => {
+      target.blur()
+    }, 100)
+  }
+  useEffect(() => {
+    if (!previewImage) {
+      return
+    }
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    return () => {
+      document.body.style.overflow = previousOverflow
+    }
+  }, [previewImage])
+  useEffect(() => {
+    let done = false
+    let idleCallbackId: number | null = null
+    let fallbackTimeoutId: number | null = null
+    const preload = () => {
+      if (done) return
+      done = true
+      PREVIEW_IMAGE_SOURCES.forEach((src) => {
+        const img = new window.Image()
+        img.decoding = "async"
+        img.loading = "eager"
+        img.src = src
+        if (typeof img.decode === "function") {
+          img.decode().catch(() => {
+          })
+        }
+      })
+      cleanup()
+    }
+    const cleanup = () => {
+      if (idleCallbackId !== null && "cancelIdleCallback" in window) {
+        ;(window as Window & { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(
+          idleCallbackId
+        )
+        idleCallbackId = null
+      }
+      if (fallbackTimeoutId !== null) {
+        window.clearTimeout(fallbackTimeoutId)
+        fallbackTimeoutId = null
+      }
+      window.removeEventListener("mousemove", preload)
+      window.removeEventListener("pointerdown", preload)
+      window.removeEventListener("keydown", preload)
+      window.removeEventListener("touchstart", preload)
+      window.removeEventListener("scroll", preload)
+    }
+    const supportsIdleCallback =
+      typeof (window as Window & { requestIdleCallback?: unknown }).requestIdleCallback ===
+      "function"
+    if (supportsIdleCallback) {
+      idleCallbackId = (
+        window as Window & { requestIdleCallback: (cb: IdleRequestCallback, opts?: IdleRequestOptions) => number }
+      ).requestIdleCallback(() => preload(), { timeout: 1200 })
+    } else {
+      fallbackTimeoutId = window.setTimeout(preload, 1200)
+    }
+    window.addEventListener("mousemove", preload, { once: true, passive: true })
+    window.addEventListener("pointerdown", preload, { once: true, passive: true })
+    window.addEventListener("keydown", preload, { once: true, passive: true })
+    window.addEventListener("touchstart", preload, { once: true, passive: true })
+    window.addEventListener("scroll", preload, { once: true, passive: true })
+    return cleanup
+  }, [])
+  useEffect(() => {
+    setIsPreviewLoaded(false)
+    setIsPreviewZoomed(false)
+  }, [previewImage])
+  useEffect(() => {
+    document.documentElement.lang = language
+    window.localStorage.setItem("language", language)
+  }, [language])
+  const contactHoverClassName =
+    activeTab === "dev"
+      ? "[@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[var(--dev-accent)] [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:text-[var(--dev-accent)] active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+      : activeTab === "music"
+        ? "[@media(hover:hover)_and_(pointer:fine)]:hover:border-[#b817e4]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[#b817e4]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[#b817e4] [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(184,23,228,0.18)] active:border-[#b817e4]/45 active:bg-[#b817e4]/10 active:text-[#b817e4] active:shadow-[0_0_20px_rgba(184,23,228,0.18)]"
+        : "[@media(hover:hover)_and_(pointer:fine)]:hover:border-foreground/30 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-foreground/10 [@media(hover:hover)_and_(pointer:fine)]:hover:text-foreground [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(240,240,240,0.08)] active:border-foreground/30 active:bg-foreground/10 active:text-foreground active:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
+  const instagramHoverClassName =
+    activeTab === "dev"
+      ? "[@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/55 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[var(--dev-accent)] [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/55 active:text-[var(--dev-accent)] active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
+      : activeTab === "music"
+        ? "[@media(hover:hover)_and_(pointer:fine)]:hover:border-[#b817e4]/55 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[#b817e4] [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(184,23,228,0.18)] active:border-[#b817e4]/55 active:text-[#b817e4] active:shadow-[0_0_20px_rgba(184,23,228,0.18)]"
+        : "[@media(hover:hover)_and_(pointer:fine)]:hover:border-foreground/45 [@media(hover:hover)_and_(pointer:fine)]:hover:text-foreground [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(240,240,240,0.08)] active:border-foreground/45 active:text-foreground active:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
+  const mobileLangButtonClassName = `inline-flex size-5 items-center justify-center overflow-hidden rounded-full bg-card/90 text-sm shadow-[0_0_14px_rgba(0,0,0,0.28)] backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:brightness-110 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_16px_4px_rgba(255,255,255,0.28)] active:brightness-110 active:shadow-[0_0_16px_4px_rgba(255,255,255,0.28)] ${isLangPressed ? "!brightness-110 !shadow-[0_0_16px_4px_rgba(255,255,255,0.28)]" : ""}`
+  const desktopLangButtonClassName = `fixed bottom-6 right-6 z-40 hidden size-7 items-center justify-center overflow-hidden rounded-full bg-card/90 text-xl shadow-[0_0_24px_rgba(0,0,0,0.35)] backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:brightness-110 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_12px_3px_rgba(255,255,255,0.22)] active:brightness-110 active:shadow-[0_0_12px_3px_rgba(255,255,255,0.22)] md:inline-flex ${isLangPressed ? "!brightness-110 !shadow-[0_0_12px_3px_rgba(255,255,255,0.22)]" : ""}`
+  return (
+    <main className="relative flex min-h-svh flex-col items-center bg-background">
+      <MeshGradient />
+      <div className="page-scale-desktop relative z-10 flex w-full max-w-md flex-col gap-8 px-5 py-12 pb-8">
+        <ProfileHeader language={language} />
+        {}
+<Tabs value={activeTab} onValueChange={handleTabChange} className="w-full -mt-[10px]">
+              <TabsList className="grid w-full grid-cols-3 bg-muted/50 backdrop-blur-xl border border-border">
+            <TabsTrigger
+              value="dev"
+              className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-neon-magenta/10 data-[state=active]:text-neon-magenta data-[state=active]:shadow-none [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:bg-background/10 [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:border-border [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:text-muted-foreground/70 data-[state=inactive]:active:bg-background/10 data-[state=inactive]:active:border-border data-[state=inactive]:active:text-muted-foreground/70"
+            >
+              <Image
+                src="/images/dev-icon3-4.png"
+                alt="Dev icon"
+                width={16}
+                height={16}
+                className="mr-1 size-4"
+              />
+              {text.tabs.dev}
+            </TabsTrigger>
+            <TabsTrigger
+              value="about"
+              className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-foreground/10 data-[state=active]:text-foreground data-[state=active]:shadow-none [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:bg-background/10 [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:border-border [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:text-muted-foreground/70 data-[state=inactive]:active:bg-background/10 data-[state=inactive]:active:border-border data-[state=inactive]:active:text-muted-foreground/70"
+            >
+              <Image
+                src="/images/about-icon5.png"
+                alt="About icon"
+                width={16}
+                height={16}
+                className="mr-1 size-4"
+              />
+              {text.tabs.about}
+            </TabsTrigger>
+            <TabsTrigger
+              value="music"
+              className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-[#b817e4]/10 data-[state=active]:text-[#b817e4] data-[state=active]:shadow-none [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:bg-background/10 [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:border-border [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:text-muted-foreground/70 data-[state=inactive]:active:bg-background/10 data-[state=inactive]:active:border-border data-[state=inactive]:active:text-muted-foreground/70"
+            >
+              <Image
+                src="/images/music-icon2.png"
+                alt="Music note"
+                width={16}
+                height={16}
+                className="mr-1 size-4"
+              />
+              {text.tabs.music}
+            </TabsTrigger>
+          </TabsList>
+          <TabsContent value="dev" className="mt-1">
+            <TabDev
+              language={language}
+              onOpenImagePreview={(imageSrc, imageAlt) =>
+                setPreviewImage({ src: imageSrc, alt: imageAlt })
+              }
+            />
+          </TabsContent>
+          <TabsContent value="about" className="mt-1">
+            <TabAbout
+              language={language}
+              onOpenImagePreview={(imageSrc, imageAlt) =>
+                setPreviewImage({ src: imageSrc, alt: imageAlt })
+              }
+            />
+          </TabsContent>
+          <TabsContent value="music" className="mt-1">
+            <TabMusic language={language} />
+          </TabsContent>
+        </Tabs>
+        {}
+        <Button
+          asChild
+          onClick={(e) => e.currentTarget.blur()}
+          className={`w-full rounded-xl border border-border bg-card text-sm text-foreground backdrop-blur-xl transition-all duration-300 ${contactHoverClassName}`}
+          size="lg"
+        >
+          <a
+            href="mailto:matisp637@gmail.com"
+            style={{ fontFamily: 'Montserrat, MontserratCustom, var(--font-sans), system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
+          >
+            <Mail className="size-[16.5px]" />
+            {text.contact}
+          </a>
+        </Button>
+        {activeTab === "about" && !isProfessionalMode && (
+          <div className="-mt-4.5">
+            <Button
+              asChild
+              size="lg"
+              onClick={(e) => e.currentTarget.blur()}
+              className={`w-full rounded-xl border border-foreground/12 bg-transparent text-sm text-foreground shadow-none transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-transparent active:bg-transparent ${instagramHoverClassName}`}
+            >
+              <a
+                href="https://instagram.com/stvshy"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={text.instagramAria}
+                style={{ fontFamily: 'Montserrat, MontserratCustom, var(--font-sans), system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
+              >
+                <BsInstagram className="size-3.7" />
+                {text.instagram}
+              </a>
+            </Button>
+          </div>
+        )}
+        {}
+        <footer className="text-center -mt-1 -mb-1">
+            <p
+            className="text-[11.3px] text-muted-foreground/50 tracking-tight"
+            style={{ fontFamily: 'Montserrat, MontserratCustom, var(--font-sans), system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
+            >
+            {text.footer}
+            </p>
+        </footer>
+        <div className="-mt-3 flex justify-center md:hidden">
+          <button
+            type="button"
+            onTouchStart={triggerLangPress}
+            onClick={(e) => {
+                handleLanguageChange();
+                e.currentTarget.blur();
+            }}
+            aria-label={text.switchLanguageLabel}
+            className={mobileLangButtonClassName}
+          >
+            <Image
+              src={language === "en" ? "/images/polish1.png" : "/images/english2.png"}
+              alt=""
+              aria-hidden="true"
+              width={32}
+              height={32}
+              className="w-full h-full object-cover brightness-[0.87] transition-all duration-300"
+            />
+          </button>
+        </div>
+      </div>
+      <button
+        type="button"
+        onTouchStart={triggerLangPress}
+        onClick={handleLanguageChange}
+        onTouchEnd={handleTouchUnfocus}
+        aria-label={text.switchLanguageLabel}
+        className={desktopLangButtonClassName}
+      >
+        <Image
+          src={language === "en" ? "/images/polish1.png" : "/images/english2.png"}
+          alt=""
+          aria-hidden="true"
+          width={32}
+          height={32  }
+          className="w-full h-full object-cover brightness-[0.85] transition-all duration-300"
+        />
+      </button>
+      {previewImage && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 md:bg-black/70 p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-label={text.previewDialogLabel}
+          onClick={() => setPreviewImage(null)}
+          style={{ touchAction: "pinch-zoom" }}
+        >
+          <div
+            className="relative inline-flex items-center justify-center"
+            onClick={(event) => event.stopPropagation()}
+            style={{ touchAction: "none" }}
+          >
+            <TransformWrapper
+              key={previewImage.src}
+              minScale={1}
+              maxScale={5}
+              centerOnInit
+              centerZoomedOut
+              limitToBounds
+              disablePadding
+              wheel={{ disabled: true }}
+              pinch={{ step: 0.6 }}
+              panning={{ disabled: !isPreviewZoomed, excluded: ["preview-close-btn"] }}
+              doubleClick={{ mode: "reset", animationTime: 260, animationType: "easeOut" }}
+              onTransformed={(_, state) => {
+                setIsPreviewZoomed(state.scale > 1.01)
+              }}
+            >
+              <TransformComponent
+                wrapperClass="!w-[100vw] !h-[100vh]"
+                contentClass="!w-full !h-full !flex !items-center !justify-center"
+                wrapperStyle={{ touchAction: "none" }}
+                contentStyle={{ touchAction: "none" }}
+              >
+                <div className="relative inline-flex items-start justify-start">
+                  {isPreviewLoaded && (
+                    <button
+                      type="button"
+                      onClick={() => setPreviewImage(null)}
+                      aria-label={text.previewCloseLabel}
+                      className="preview-close-btn absolute right-2 top-2 z-10 inline-flex size-8 items-center justify-center rounded-full border border-border/70 bg-background/80 text-foreground transition-colors [@media(hover:hover)_and_(pointer:fine)]:hover:bg-background active:bg-background"
+                    >
+                      <X className="size-4" />
+                    </button>
+                  )}
+                  <img
+                    src={previewImage.src}
+                    alt={previewImage.alt}
+                    loading="eager"
+                    fetchPriority="high"
+                    decoding="async"
+                    className={`w-auto max-w-[95vw] rounded-xl object-contain ${
+                      isTripifyMapPreview
+                        ? "max-h-[90vh] md:max-h-[96vh]"
+                        : "max-h-[90vh]"
+                    }`}
+                    style={{ touchAction: "none", willChange: "transform" }}
+                    onLoad={() => setIsPreviewLoaded(true)}
+                    onError={() => setIsPreviewLoaded(true)}
+                  />
+                </div>
+              </TransformComponent>
+            </TransformWrapper>
+          </div>
+        </div>
+      )}
+    </main>
+  )
 }
 
 ================
@@ -2803,6 +2837,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
   const yearsPressTimeoutRef = useRef<number | null>(null)
   const certificatesPressTimeoutRef = useRef<number | null>(null)
   const stackPressTimeoutRef = useRef<number | null>(null)
+  const preloadedPreviewsRef = useRef(new Set<string>())
   const text = devText[language]
   useEffect(() => {
     return () => {
@@ -2846,6 +2881,13 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
       setIsStackPressed(false)
       stackPressTimeoutRef.current = null
     }, STACK_PRESS_DURATION_MS)
+  }
+  const preloadPreviewImage = (src: string) => {
+    if (preloadedPreviewsRef.current.has(src)) return
+    preloadedPreviewsRef.current.add(src)
+    const image = new window.Image()
+    image.decoding = "async"
+    image.src = src
   }
   const stackSections = [
     {
@@ -3009,7 +3051,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
           rel={link.blocked ? undefined : "noopener noreferrer"}
           aria-disabled={link.blocked}
           onClick={(e) => e.currentTarget.blur()}
-          className={`group flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-3 backdrop-blur-xl transition-all duration-300 ${
+          className={`group flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-3 backdrop-blur-xl transition-[background-color,border-color,color,box-shadow] duration-300 ${
             link.blocked
               ? "cursor-not-allowed border-border/70 bg-muted/15 opacity-100"
               : "[@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
@@ -3074,7 +3116,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
             e.currentTarget.blur()
           }}
           aria-expanded={isYearsOpen}
-          className={`group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] ${
+          className={`group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-[background-color,border-color,color,box-shadow] duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] ${
             isYearsPressed
               ? "!border-[var(--dev-accent)]/45 !bg-[var(--dev-accent)]/10 !shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
               : ""
@@ -3106,7 +3148,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
             e.currentTarget.blur()
           }}
           aria-expanded={isCertificatesOpen}
-          className={`group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] ${
+          className={`group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-[background-color,border-color,color,box-shadow] duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] ${
             isCertificatesPressed
               ? "!border-[var(--dev-accent)]/45 !bg-[var(--dev-accent)]/10 !shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
               : ""
@@ -3161,10 +3203,10 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
           <div className="space-y-3">
             <div className="relative rounded-lg border border-border/70 bg-card/42 px-2.5 py-2 pr-24">
               <p
-                className="absolute right-[22px] top-1/2 inline-flex -translate-y-1/2 items-center justify-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 py-0.5 text-[9.5px] font-semibold tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)] w-[74px] text-center"
+                className="absolute right-[22px] inset-y-0 my-auto inline-flex h-[19.85px] items-center justify-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 text-[9.5px] font-semibold leading-none tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)] w-[74px] text-center"
                 style={{ fontFamily: 'Montserrat, MontserratCustom, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
               >
-                2018 - 2021
+                <span className="year-pill-label">2018 - 2021</span>
               </p>
               <p className="text-[11.45px] text-foreground" style={{ letterSpacing: '-0.055em', marginBottom: '2.4px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
                 <span className="sm:hidden">{highSchoolName.short}</span>
@@ -3194,10 +3236,10 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
               <div className="mt-2 space-y-2">
                   <div className="relative rounded-md border border-border/60 bg-card px-2.5 py-2 pr-24">
                     <p
-                      className="absolute right-2.5 top-1/2 inline-flex -translate-y-1/2 items-center justify-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 py-0.5 text-[9.5px] font-semibold tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)] w-[74px] text-center"
+                      className="absolute right-2.5 inset-y-0 my-auto inline-flex h-[19.85px] items-center justify-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 text-[9.5px] font-semibold leading-none tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)] w-[74px] text-center"
                       style={{ fontFamily: 'Montserrat, MontserratCustom, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
                     >
-                      2021 - 2025
+                      <span className="year-pill-label">2021 - 2025</span>
                     </p>
                   <p className="text-[11.6px] text-foreground" style={{ letterSpacing: '-0.054em', marginBottom: '1.3px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
                     {computerEngineeringLabel}
@@ -3208,10 +3250,10 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                 </div>
                 <div className="relative rounded-md border border-border/60 bg-card px-2.5 py-2 pr-24">
                   <p
-                    className="absolute right-2.5 top-1/2 inline-flex -translate-y-1/2 items-center justify-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 py-0.5 text-[9.5px] font-semibold tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)] w-[74px] text-center"
+                    className="absolute right-2.5 inset-y-0 my-auto inline-flex h-[19.85px] items-center justify-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 text-[9.5px] font-semibold leading-none tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)] w-[74px] text-center"
                     style={{ fontFamily: 'Montserrat, MontserratCustom, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
                   >
-                    2025 - 2026
+                    <span className="year-pill-label">2025 - 2026</span>
                   </p>
                   <p className="text-[11.6px] text-foreground" style={{ letterSpacing: '-0.054em', marginBottom: '1.3px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
                     {appliedComputerScienceLabel}
@@ -3282,6 +3324,9 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                     onClick={() =>
                       onOpenImagePreview(certificate.image, `${certificate.title} preview`)
                     }
+                    onPointerEnter={() => preloadPreviewImage(certificate.image)}
+                    onFocus={() => preloadPreviewImage(certificate.image)}
+                    onTouchStart={() => preloadPreviewImage(certificate.image)}
                     aria-label={`${text.previewPrefix} ${certificate.title}`}
                     className="relative group inline-flex h-7.5 w-11 overflow-hidden rounded-md border border-border/70"
                   >
@@ -3304,7 +3349,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
         </div>
       </div>
       <div
-        className={`border bg-card backdrop-blur-xl transition-all duration-300 ${
+        className={`border bg-card backdrop-blur-xl transition-[background-color,border-color,color,box-shadow] duration-300 ${
           isStackOpen
             ? "rounded-xl border-border"
             : "rounded-xl border-border [@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
@@ -3321,7 +3366,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
             setIsStackOpen((prev) => !prev)
             e.currentTarget.blur()
           }}
-          className={`group flex w-full items-center gap-4 px-5 py-3 text-left transition-all duration-300 ${
+          className={`group flex w-full items-center gap-4 px-5 py-3 text-left transition-[background-color,border-color,color,box-shadow] duration-300 ${
             isStackOpen
               ? "rounded-t-xl [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:bg-[var(--dev-accent)]/10 active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
               : "rounded-xl"

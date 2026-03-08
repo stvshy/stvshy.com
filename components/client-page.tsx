@@ -434,7 +434,7 @@ const updateUrl = (tab: string, lang: string) => {
                     </button>
                   )}
 
-                  <img
+                 <img
                     src={previewImage.src}
                     alt={previewImage.alt}
                     loading="eager"
@@ -455,6 +455,19 @@ const updateUrl = (tab: string, lang: string) => {
           </div>
         </div>
       )}
+      
+      {/* Ukryte linki dla robotów SEO (niewidoczne dla użytkowników) */}
+      <nav className="sr-only" aria-label="SEO Navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/pl">Home (PL)</a></li>
+          <li><a href="/dev">Dev</a></li>
+          <li><a href="/dev/pl">Dev (PL)</a></li>
+          <li><a href="/music">Music</a></li>
+          <li><a href="/music/pl">Music (PL)</a></li>
+        </ul>
+      </nav>
+      
     </main>
   )
 }
