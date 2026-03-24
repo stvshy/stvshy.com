@@ -43,7 +43,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // Tworzymy czysty URL bez członu "about", aby zapobiec duplikatom
   const cleanSlug = slug.filter(s => s !== "about")
   const canonicalUrl = `https://stvshy.com${cleanSlug.length > 0 ? '/' + cleanSlug.join('/') : ''}`
-
+  const enUrl = `https://stvshy.com${sectionRaw === 'home' ? '' : '/' + sectionRaw}`
+  const plUrl = `https://stvshy.com${sectionRaw === 'home' ? '/pl' : '/' + sectionRaw + '/pl'}`
   return {
     title: {
       absolute: title,
@@ -51,6 +52,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: description,
     alternates: {
       canonical: canonicalUrl, // Informacja dla Google o głównym adresie
+      languages: {
+        'x-default': enUrl, // Reszta świata dostaje angielski
+        'en': enUrl,        // Angielski to angielski
+        'pl': plUrl,        // Polacy dostają wersję PL
+      },
     },
     openGraph: {
       title: title,
