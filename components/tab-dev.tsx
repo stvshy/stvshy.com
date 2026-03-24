@@ -87,17 +87,17 @@ const links = [
     blocked: false,
   },
   {
-    label: "Hollow Depths",
-    description: "Godot game project",
-    href: "https://konrad-skowron.itch.io/hollow-depths",
-    icon: IoGameController,
-    blocked: false,
-  },
-  {
     label: "Renovation System",
     description: "Workflow management platform",
     href: "https://stvshy.github.io/renovation-system/#/register",
     icon: IoConstruct,
+    blocked: false,
+  },
+  {
+    label: "Hollow Depths",
+    description: "Game for desktop web",
+    href: "https://konrad-skowron.itch.io/hollow-depths",
+    icon: IoGameController,
     blocked: false,
   },
   {
@@ -120,7 +120,7 @@ const devText = {
       github: "Projects & contributions",
       linkedin: "Profile & networking",
       travelAssistant: "AI trip planning assistant",
-      hollowDepths: "Godot game project",
+      hollowDepths: "Game for desktop web",
       renovationSystem: "Workflow management platform",
       tripify: "Mobile app — work in progress",
     },
@@ -152,7 +152,7 @@ const devText = {
       github: "Projekty i wkład",
       linkedin: "Profil i networking",
       travelAssistant: "AI asystent do planowania podróży",
-      hollowDepths: "Projekt gry w Godot",
+      hollowDepths: "Gra przeglądarkowa na komputery",
       renovationSystem: "Platforma do zarządzania procesem",
       tripify: "Aplikacja mobilna — już wkrótce",
     },
@@ -427,8 +427,8 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
       GitHub: text.linkDescriptions.github,
       LinkedIn: text.linkDescriptions.linkedin,
       "Travel Assistant": text.linkDescriptions.travelAssistant,
-      "Hollow Depths": text.linkDescriptions.hollowDepths,
       "Renovation System": text.linkDescriptions.renovationSystem,
+      "Hollow Depths": text.linkDescriptions.hollowDepths,
       Tripify: text.linkDescriptions.tripify,
     } as const
 
