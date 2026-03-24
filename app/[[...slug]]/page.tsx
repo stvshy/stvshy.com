@@ -87,12 +87,36 @@ export default async function Page({ params }: Props) {  // Odbieramy parametry 
   
   // Określamy język na podstawie obecności "pl" w pierwszym lub drugim segmencie
   const lang = firstSegment === "pl" || secondSegment === "pl" ? "pl" : "en"
+  // 1. Definiujemy dane dla Google
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Mateusz Staszków",
+    "alternateName": "stvshy",
+    "url": "https://stvshy.com",
+    "image": "https://stvshy.com/images/avatar9.jpeg", 
+    "jobTitle": "Full-stack Developer & Music Producer",
+    "description": "Programista Full-stack i Producent Muzyczny z Wrocławia.",
+    "sameAs": [
+      "https://github.com/stvshy",        // <- podmień na swoje linki
+      "https://www.linkedin.com/in/mateusz-staszk%C3%B3w/",
+      "https://instagram.com/stvshy",
+      "https://open.spotify.com/artist/20jL6FuQUNHnlP3ApdjBbI?si=fvGq0tvJRXmhMa5_KKnAXg" 
+    ]
+  }
 
   return (
+    <>
+      {/* 2. Wrzucamy skrypt JSON-LD do sekcji head */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     <ClientPage 
       initialSection={section} 
       initialLang={lang} 
     />
+    </>
   )
 }
 
