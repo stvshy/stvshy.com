@@ -269,7 +269,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
       renderAsMask: true,
       className: "size-[16.2px] scale-[1.2]",
     },
-    FitNesse: { src: "/images/fitnesse1.svg", renderAsMask: true, className: "size-[12.5px]" },
+    FitNesse: { src: "/images/fitnesse1.svg", renderAsMask: false, className: "size-[12.5px]" },
     "Visual Paradigm": {
       src: "/images/visual-paradigme.svg",
       renderAsMask: true,
