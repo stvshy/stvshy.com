@@ -44,6 +44,7 @@ import {
   SiMongodb,
   SiNintendogamecube,
   SiGithubactions,
+  SiGithubcopilot,
   SiPython,
   SiReact,
   SiSelenium,
@@ -359,7 +360,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
         { label: "Godot Engine", icon: SiGodotengine },
         { label: "Xilinx", icon: FaMicrochip },
         { label: "Cursor", icon: SiNintendogamecube },
-        { label: "GitHub Copilot", icon: IoLogoGithub },
+        { label: "GitHub Copilot", icon: SiGithubcopilot },
       ],
     },
     {
@@ -869,7 +870,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                                 "Visual Studio"
                               ].includes(item.label)
                                 ? item.label === "GitHub Copilot"
-                                  ? "size-[14.4px]"
+                                  ? "size-[13px]"
                                   : item.label === "Visual Studio"
                                     ? "size-[15.4px]"
                                   : "size-[12.5px]"
@@ -880,7 +881,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                               item.label === "Godot Engine"
                                 ? "-translate-y-[0.5px]"
                                 : item.label === "GitHub Copilot"
-                                  ? "-translate-y-[0.75px]"
+                                  ? "-translate-y-[0.38px]"
                                   : ""
                             }`}
                           />
