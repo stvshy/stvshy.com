@@ -7,12 +7,13 @@ import { MdLocalAirport, MdLock, MdOutlineLayers } from "react-icons/md"
 import { ImLinkedin2 } from "react-icons/im"
 import { IoLogoGithub } from "react-icons/io"
 import { IoConstruct, IoGameController } from "react-icons/io5"
-import { RiChatVoiceAiFill } from "react-icons/ri"
+import { RiChatVoiceAiFill, RiTailwindCssFill } from "react-icons/ri"
 import { FaMeta } from "react-icons/fa6"
 import { SiCisco } from "react-icons/si"
 import {
   SiAdobelightroom,
   SiAdobephotoshop,
+  SiAndroidstudio,
   SiAmazonwebservices,
   SiAssemblyscript,
   SiC,
@@ -283,7 +284,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
         { label: "OpenGL", icon: SiOpengl },
         { label: "Flask", icon: SiFlask },
         { label: "LLM APIs", icon: RiChatVoiceAiFill },
-        { label: "TailwindCSS", icon: SiCss3 },
+        { label: "TailwindCSS", icon: RiTailwindCssFill },
       ],
     },
     {
@@ -292,7 +293,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
       items: [
         { label: "React Native", icon: TbBrandReactNative },
         { label: "Expo", icon: SiExpo },
-        { label: "Android Studio", icon: SiIntellijidea },
+        { label: "Android Studio", icon: SiAndroidstudio },
       ],
     },
     {
