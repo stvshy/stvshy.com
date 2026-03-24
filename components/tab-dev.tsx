@@ -251,6 +251,30 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
     image.src = src
   }
 
+  const stackSvgIconByLabel: Record<
+    string,
+    { src: string; renderAsMask: boolean; className?: string }
+  > = {
+    "C++": { src: "/images/cpp.svg", renderAsMask: false, className: "size-[12.5px]" },
+    C: { src: "/images/c.svg", renderAsMask: false, className: "size-[12.5px]" },
+    "C#": { src: "/images/csharp.svg", renderAsMask: false, className: "size-[12.5px]" },
+    Xilinx: {
+      src: "/images/xilinx.svg",
+      renderAsMask: true,
+      className: "size-[14.5px] -translate-y-[1px]",
+    },
+    Cursor: { src: "/images/cursor.svg", renderAsMask: false, className: "size-[13.7px]" },
+    Weka: { src: "/images/weka3.svg", renderAsMask: true, className: "size-[14.8px]" },
+    FitNesse: { src: "/images/fitnesse1.svg", renderAsMask: true, className: "size-[12.5px]" },
+    "Visual Paradigm": {
+      src: "/images/visual-paradigme.svg",
+      renderAsMask: true,
+      className: "size-[12.5px]",
+    },
+    MATLAB: { src: "/images/matlab.svg", renderAsMask: false, className: "size-[13.8px]" },
+    Vercel: { src: "/images/vercel.svg", renderAsMask: true, className: "size-[12.5px]" },
+  }
+
 
 
   const stackSections = [
@@ -309,6 +333,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
         { label: "Git", icon: SiGit },
         { label: "Supabase", icon: SiSupabase },
         { label: "MongoDB", icon: SiMongodb },
+        { label: "Vercel", icon: SiVite },
         { label: "GitHub Actions", icon: SiGithubactions },
       ],
     },
@@ -785,15 +810,39 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                         className="inline-flex items-center gap-1.5 rounded-lg border border-border px-2.5 py-1 text-[10.7px] text-foreground"
                         style={{ letterSpacing: '-0.01em' }}
                       >
+                        {stackSvgIconByLabel[item.label] ? (
+                          stackSvgIconByLabel[item.label].renderAsMask ? (
+                            <span
+                              aria-hidden="true"
+                              className={`inline-block bg-muted-foreground ${stackSvgIconByLabel[item.label].className ?? "size-[12.5px]"}`}
+                              style={{
+                                maskImage: `url(${stackSvgIconByLabel[item.label].src})`,
+                                maskRepeat: "no-repeat",
+                                maskPosition: "center",
+                                maskSize: "contain",
+                                WebkitMaskImage: `url(${stackSvgIconByLabel[item.label].src})`,
+                                WebkitMaskRepeat: "no-repeat",
+                                WebkitMaskPosition: "center",
+                                WebkitMaskSize: "contain",
+                              }}
+                            />
+                          ) : (
+                            <Image
+                              src={stackSvgIconByLabel[item.label].src}
+                              alt=""
+                              aria-hidden="true"
+                              width={14}
+                              height={14}
+                              className={stackSvgIconByLabel[item.label].className ?? "size-[12.5px]"}
+                            />
+                          )
+                        ) : (
                           <item.icon
                             className={`text-muted-foreground ${
                               [
-                                "C++",
-                                "C#",
                                 "JavaScript",
                                 "TypeScript",
                                 "Python",
-                                "C",
                                 "HTML5",
                                 "Assembly",
                                 "CSS3",
@@ -806,15 +855,17 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                                 "IntelliJ IDEA",
                                 "PyCharm",
                                 "CLion",
-                                "Xilinx",
                                 "JUnit",
                                 "VirtualBox",
                                 "GitHub Copilot"
                               ].includes(item.label)
-                                ? "size-[12.5px]"
+                                ? item.label === "GitHub Copilot"
+                                  ? "size-[13.8px]"
+                                  : "size-[12.5px]"
                                 : "size-3.5"
-                            }`}
+                            } ${item.label === "Godot Engine" ? "-translate-y-[0.5px]" : ""}`}
                           />
+                        )}
                         {item.label}
                       </span>
                     ))}
