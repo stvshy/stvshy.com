@@ -261,10 +261,14 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
     Xilinx: {
       src: "/images/xilinx.svg",
       renderAsMask: true,
-      className: "size-[14.5px] -translate-y-[1px]",
+      className: "size-[14.5px] -translate-y-[0.2px]",
     },
-    Cursor: { src: "/images/cursor.svg", renderAsMask: false, className: "size-[13.7px]" },
-    Weka: { src: "/images/weka3.svg", renderAsMask: true, className: "size-[14.8px]" },
+    Cursor: { src: "/images/cursor.svg", renderAsMask: false, className: "size-[14.9px]" },
+    Weka: {
+      src: "/images/weka3.svg",
+      renderAsMask: true,
+      className: "size-[16.2px] scale-[1.2]",
+    },
     FitNesse: { src: "/images/fitnesse1.svg", renderAsMask: true, className: "size-[12.5px]" },
     "Visual Paradigm": {
       src: "/images/visual-paradigme.svg",
@@ -272,7 +276,11 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
       className: "size-[12.5px]",
     },
     MATLAB: { src: "/images/matlab.svg", renderAsMask: false, className: "size-[13.8px]" },
-    Vercel: { src: "/images/vercel.svg", renderAsMask: true, className: "size-[12.5px]" },
+    Vercel: {
+      src: "/images/vercel.svg",
+      renderAsMask: true,
+      className: "size-[12.5px] -translate-y-[0.95px]",
+    },
   }
 
 
@@ -857,13 +865,24 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                                 "CLion",
                                 "JUnit",
                                 "VirtualBox",
-                                "GitHub Copilot"
+                                "GitHub Copilot",
+                                "Visual Studio"
                               ].includes(item.label)
                                 ? item.label === "GitHub Copilot"
-                                  ? "size-[13.8px]"
+                                  ? "size-[14.4px]"
+                                  : item.label === "Visual Studio"
+                                    ? "size-[15.4px]"
                                   : "size-[12.5px]"
-                                : "size-3.5"
-                            } ${item.label === "Godot Engine" ? "-translate-y-[0.5px]" : ""}`}
+                                : ["Selenium", "Godot Engine"].includes(item.label)
+                                  ? "size-[13.2px]"
+                                  : "size-3.5"
+                            } ${
+                              item.label === "Godot Engine"
+                                ? "-translate-y-[0.5px]"
+                                : item.label === "GitHub Copilot"
+                                  ? "-translate-y-[0.75px]"
+                                  : ""
+                            }`}
                           />
                         )}
                         {item.label}
