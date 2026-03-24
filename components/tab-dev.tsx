@@ -30,6 +30,7 @@ import {
   SiGodotengine,
   SiGnubash,
   SiHtml5,
+  SiHuggingface,
   SiIntellijidea,
   SiJavascript,
   SiJunit5,
@@ -282,6 +283,11 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
       renderAsMask: true,
       className: "size-[12.5px] -translate-y-[0.95px]",
     },
+    "Hugging Face": {
+      src: "/images/hugging-face.svg",
+      renderAsMask: false,
+      className: "size-[12.5px]",
+    },
   }
 
 
@@ -343,6 +349,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
         { label: "Supabase", icon: SiSupabase },
         { label: "MongoDB", icon: SiMongodb },
         { label: "Vercel", icon: SiVite },
+        { label: "Hugging Face", icon: SiHuggingface },
         { label: "GitHub Actions", icon: SiGithubactions },
       ],
     },
