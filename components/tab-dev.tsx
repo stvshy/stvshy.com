@@ -89,7 +89,7 @@ const links = [
   {
     label: "Renovation System",
     description: "Workflow management platform",
-    href: "https://stvshy.github.io/renovation-system/#/register",
+    href: "https://stvshy.github.io/renovation-system",
     icon: IoConstruct,
     blocked: false,
   },
