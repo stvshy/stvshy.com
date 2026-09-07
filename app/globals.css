@@ -195,33 +195,34 @@
 .space-readability-shade {
   background: linear-gradient(90deg,
     transparent 0%,
-    rgb(5 7 17 / 25%) 32%,
-    rgb(5 7 17 / 25%) 68%,
+    rgb(5 7 17 / 25%) 26%,
+    rgb(5 7 17 / 25%) 74%,
     transparent 100%);
 }
 
 .space-center-shade {
   background: linear-gradient(90deg,
     transparent 0%,
-    rgb(10 10 10 / 18%) 15%,
-    rgb(10 10 10 / 58%) 32%,
-    rgb(10 10 10 / 72%) 44%,
-    rgb(10 10 10 / 72%) 56%,
-    rgb(10 10 10 / 58%) 68%,
-    rgb(10 10 10 / 18%) 85%,
+    rgb(10 10 10 / 18%) 10%,
+    rgb(10 10 10 / 58%) 26%,
+    rgb(10 10 10 / 72%) 37%,
+    rgb(10 10 10 / 72%) 63%,
+    rgb(10 10 10 / 58%) 74%,
+    rgb(10 10 10 / 18%) 90%,
     transparent 100%);
 }
 
 @keyframes space-star-twinkle {
-  0%, 100% { opacity: calc(var(--star-opacity) * 0.12); }
-  38% { opacity: var(--star-opacity); }
-  62% { opacity: calc(var(--star-opacity) * 0.5); }
-  78% { opacity: calc(var(--star-opacity) * 0.85); }
+  0%, 100% { opacity: calc(var(--star-peak-opacity) * 0.3); }
+  38% { opacity: var(--star-peak-opacity); }
+  62% { opacity: calc(var(--star-peak-opacity) * 0.6); }
+  78% { opacity: calc(var(--star-peak-opacity) * 0.9); }
 }
 
 .animate-star {
-  opacity: var(--star-opacity);
-  box-shadow: 0 0 4px 1px rgb(220 235 255 / 40%);
+  --star-peak-opacity: min(1, calc(var(--star-opacity) * 1.65));
+  opacity: var(--star-peak-opacity);
+  box-shadow: 0 0 3px 1px rgb(240 247 255 / 85%), 0 0 8px 2px rgb(220 235 255 / 55%);
   animation: space-star-twinkle 5s ease-in-out infinite;
 }
 
