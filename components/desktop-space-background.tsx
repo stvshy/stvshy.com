@@ -33,20 +33,23 @@ const starsMid: Star[] = [
   { left: "62%", top: "36%", size: 1.5, opacity: 0.48, delay: -29 },
   { left: "79%", top: "54%", size: 1.5, opacity: 0.42, delay: -15 },
   { left: "88%", top: "87%", size: 1.5, opacity: 0.48, delay: -8 },
+  { left: "8%", top: "24%", size: 2, opacity: 0.85, delay: -2 },
+  { left: "26%", top: "58%", size: 2, opacity: 0.75, delay: -5 },
+  { left: "72%", top: "23%", size: 2, opacity: 0.80, delay: -3 },
+  { left: "85%", top: "39%", size: 2, opacity: 0.90, delay: -6 },
+  { left: "94%", top: "74%", size: 2, opacity: 0.75, delay: -1 },
+  { left: "4%", top: "51%", size: 2, opacity: 0.95, delay: -4 },
+  { left: "16%", top: "18%", size: 2.5, opacity: 0.90, delay: -9 },
+  { left: "22%", top: "76%", size: 2, opacity: 0.85, delay: -7 },
+  { left: "78%", top: "68%", size: 2, opacity: 0.90, delay: -2 },
+  { left: "90%", top: "12%", size: 2.5, opacity: 0.95, delay: -5 },
+  { left: "97%", top: "46%", size: 2, opacity: 0.85, delay: -8 },
 ]
 
-function StarLayer({
-  stars,
-  duration,
-  className = "",
-}: {
-  stars: Star[]
-  duration: number
-  className?: string
-}) {
+function StarLayer({ stars }: { stars: Star[] }) {
   return (
     <div
-      className={`absolute inset-0 ${className}`}
+      className="absolute inset-0"
       aria-hidden="true"
     >
       {stars.map((star, index) => (
@@ -58,11 +61,9 @@ function StarLayer({
             top: star.top,
             width: `${star.size}px`,
             height: `${star.size}px`,
-            opacity: star.opacity,
-            animationDuration: `${duration + (index % 5) * 4}s`,
+            ["--star-opacity" as string]: star.opacity,
+            animationDuration: `${3.2 + (index % 7) * 0.65}s`,
             animationDelay: `${star.delay}s`,
-            ["--x" as string]: `${((index % 3) - 1) * 1}px`,
-            ["--y" as string]: `${((index % 4) - 2) * 1}px`,
           }}
         />
       ))}
@@ -126,28 +127,20 @@ export function DesktopSpaceBackground() {
         />
       </picture>
 
-      {/* Very subtle darkening layer for UI readability */}
       <div
-        className="
-          absolute
-          inset-0
-          bg-[#050711]/25
-        "
+        className="space-readability-shade absolute inset-y-0 left-1/2 w-full max-w-[1100px] -translate-x-1/2"
       />
 
       {/* Far stars */}
-      <StarLayer
-        stars={starsFar}
-        duration={90}
-        className="animate-star-drift-slow"
-      />
+      <StarLayer stars={starsFar} />
 
       {/* Mid stars */}
-      <StarLayer
-        stars={starsMid}
-        duration={55}
-        className="animate-star-drift"
-      />
+      <StarLayer stars={starsMid} />
+      <div className="absolute inset-0">
+        <span className="space-meteor space-meteor-first" />
+        <span className="space-meteor space-meteor-second" />
+      </div>
+      <div className="space-center-shade absolute inset-y-0 left-1/2 w-full max-w-[1100px] -translate-x-1/2" />
     </div>
   )
 }

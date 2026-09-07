@@ -192,51 +192,82 @@
     top: 0.35px;
   }
 }
-@keyframes star-drift-slow {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-
-  50% {
-    transform: translate3d(18px, -10px, 0);
-  }
-
-  100% {
-    transform: translate3d(-12px, 14px, 0);
-  }
+.space-readability-shade {
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgb(5 7 17 / 25%) 32%,
+    rgb(5 7 17 / 25%) 68%,
+    transparent 100%);
 }
-@keyframes star-drift {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
 
-  25% {
-    transform: translate3d(18px, -10px, 0);
-  }
+.space-center-shade {
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgb(10 10 10 / 18%) 15%,
+    rgb(10 10 10 / 58%) 32%,
+    rgb(10 10 10 / 72%) 44%,
+    rgb(10 10 10 / 72%) 56%,
+    rgb(10 10 10 / 58%) 68%,
+    rgb(10 10 10 / 18%) 85%,
+    transparent 100%);
+}
 
-  50% {
-    transform: translate3d(34px, 6px, 0);
-  }
-
-  75% {
-    transform: translate3d(14px, 22px, 0);
-  }
-
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
+@keyframes space-star-twinkle {
+  0%, 100% { opacity: calc(var(--star-opacity) * 0.12); }
+  38% { opacity: var(--star-opacity); }
+  62% { opacity: calc(var(--star-opacity) * 0.5); }
+  78% { opacity: calc(var(--star-opacity) * 0.85); }
 }
 
 .animate-star {
-  animation-name: star-drift;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  will-change: transform;
+  opacity: var(--star-opacity);
+  box-shadow: 0 0 4px 1px rgb(220 235 255 / 40%);
+  animation: space-star-twinkle 5s ease-in-out infinite;
+}
+
+@keyframes space-meteor-flight {
+  0% {
+    opacity: 0;
+    transform: rotate(-35deg) translateX(0);
+  }
+  0.5% { opacity: 0.75; }
+  2.5% {
+    opacity: 0;
+    transform: rotate(-35deg) translateX(-340px);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(-35deg) translateX(-340px);
+  }
+}
+
+.space-meteor {
+  position: absolute;
+  width: 130px;
+  height: 1.5px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #f5faff, rgb(200 225 255 / 50%) 12%, transparent);
+  opacity: 0;
+  transform-origin: left center;
+  animation: space-meteor-flight 29s linear infinite;
+}
+
+.space-meteor-first {
+  left: 28%;
+  top: 16%;
+  animation-delay: 4s;
+}
+
+.space-meteor-second {
+  left: 94%;
+  top: 38%;
+  animation-duration: 43s;
+  animation-delay: 17s;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-star-drift-slow,
-  .animate-star-drift {
+  .animate-star,
+  .space-meteor {
     animation: none;
   }
 }
