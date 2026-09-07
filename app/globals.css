@@ -33,7 +33,7 @@
 :root {
   --background: #0a0a0a;
   --foreground: #f0f0f0;
-  --card: rgba(255, 255, 255, 0.04);
+  --card: rgba(255, 255, 255, 0.03);
   --card-foreground: #f0f0f0;
   --popover: #111111;
   --popover-foreground: #f0f0f0;
