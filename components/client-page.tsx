@@ -13,13 +13,25 @@ import Image from "next/image"
 import dynamic from "next/dynamic"
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch"
 
+
+
 const MeshGradient = dynamic(
-  () => import("@/components/mesh-gradient").then((mod) => mod.MeshGradient),
-  { 
+  () =>
+    import("@/components/mesh-gradient").then(
+      (mod) => mod.MeshGradient
+    ),
+  {
     ssr: false,
-    loading: () => (
-      <div className="absolute inset-0 bg-background" /> 
-    )
+  }
+)
+
+const DesktopSpaceBackground = dynamic(
+  () =>
+    import("@/components/desktop-space-background").then(
+      (mod) => mod.DesktopSpaceBackground
+    ),
+  {
+    ssr: false,
   }
 )
 
@@ -226,9 +238,10 @@ const updateUrl = (tab: string, lang: string) => {
 
   return (
     <main className="relative flex min-h-svh flex-col items-center bg-background">
-      <MeshGradient />
+  <MeshGradient />
+  <DesktopSpaceBackground />
 
-      <div className="page-scale-desktop relative z-10 flex w-full max-w-md flex-col gap-8 px-5 py-12 pb-8">
+  <div className="page-scale-desktop relative z-10 flex w-full max-w-md flex-col gap-8 px-5 py-12 pb-8">
         <ProfileHeader language={language} />
 
         {/* Navigation Tabs */}

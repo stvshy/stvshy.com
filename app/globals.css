@@ -192,3 +192,51 @@
     top: 0.35px;
   }
 }
+@keyframes star-drift-slow {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(18px, -10px, 0);
+  }
+
+  100% {
+    transform: translate3d(-12px, 14px, 0);
+  }
+}
+@keyframes star-drift {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  25% {
+    transform: translate3d(18px, -10px, 0);
+  }
+
+  50% {
+    transform: translate3d(34px, 6px, 0);
+  }
+
+  75% {
+    transform: translate3d(14px, 22px, 0);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-star {
+  animation-name: star-drift;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-star-drift-slow,
+  .animate-star-drift {
+    animation: none;
+  }
+}
