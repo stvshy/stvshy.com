@@ -198,8 +198,7 @@ export function TabMusic({ language }: TabMusicProps) {
                 src={fantasiaImg} 
                 alt="Fantasia cover"  
                 className="size-full rounded-lg object-cover" 
-                quality={95}
-                sizes="150px"
+                sizes="(min-width: 1024px) 44px, 40px"
                 placeholder="blur"
               />
             ) : (

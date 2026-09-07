@@ -1,39 +1,21 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { Mail, X } from "lucide-react"
+import { Mail } from "lucide-react"
 import { BsInstagram } from "react-icons/bs"
 import { ProfileHeader } from "@/components/profile-header"
-import { TabMusic } from "@/components/tab-music"
-import { TabDev } from "@/components/tab-dev"
-import { TabAbout } from "@/components/tab-about"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
+import { ResponsiveBackground } from "@/components/responsive-background"
+import { TabMusic } from "@/components/tab-music"
+import { TabDev } from "@/components/tab-dev"
+import { TabAbout } from "@/components/tab-about"
 import dynamic from "next/dynamic"
-import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch"
 
-
-
-const MeshGradient = dynamic(
-  () =>
-    import("@/components/mesh-gradient").then(
-      (mod) => mod.MeshGradient
-    ),
-  {
-    ssr: false,
-  }
-)
-
-const DesktopSpaceBackground = dynamic(
-  () =>
-    import("@/components/desktop-space-background").then(
-      (mod) => mod.DesktopSpaceBackground
-    ),
-  {
-    ssr: false,
-  }
-)
+const ImagePreview = dynamic(() => import("@/components/image-preview"), {
+  ssr: false,
+})
 
 type Language = "en" | "pl"
 
@@ -41,12 +23,6 @@ interface ClientPageProps {
   initialSection?: string
   initialLang: Language
 }
-const PREVIEW_IMAGE_SOURCES = [
-  "/images/meta2.png",
-  "/images/meta1.png",
-  "/images/cisco.png",
-  "/images/tripify-map.jpg",
-]
 const pageText = {
   en: {
     tabs: {
@@ -85,10 +61,7 @@ export default function ClientPage({ initialSection, initialLang }: ClientPagePr
   const [previewImage, setPreviewImage] = useState<{ src: string; alt: string } | null>(null)
   const [isLangPressed, setIsLangPressed] = useState(false)
   const langPressTimeoutRef = useRef<number | null>(null)
-  const isTripifyMapPreview = previewImage?.src.includes("tripify-map")
   const text = pageText[language]
-  const [isPreviewLoaded, setIsPreviewLoaded] = useState(false)
-  const [isPreviewZoomed, setIsPreviewZoomed] = useState(false)
 
   const triggerLangPress = () => {
     setIsLangPressed(true)
@@ -109,17 +82,14 @@ const updateUrl = (tab: string, lang: string) => {
   }
 
   const handleTabChange = (value: string) => {
-    setActiveTab(value)
-    updateUrl(value, language)
-  }
+  setActiveTab(value)
+  updateUrl(value, language)
+}
   const handleLanguageChange = () => {
     const newLang = nextLanguage
     setLanguage(newLang)
     updateUrl(activeTab, newLang)
     
-    // Zapisz też w localStorage 
-    document.documentElement.lang = newLang
-    window.localStorage.setItem("language", newLang)
   }
   // Ta funkcja zdejmuje focus z opóźnieniem, żeby "przebić" systemowe kliknięcie
   const handleTouchUnfocus = (e: React.TouchEvent<HTMLElement>) => {
@@ -129,87 +99,10 @@ const updateUrl = (tab: string, lang: string) => {
     }, 100)
   }
   useEffect(() => {
-    if (!previewImage) {
-      return
-    }
-
-    const previousOverflow = document.body.style.overflow
-    document.body.style.overflow = "hidden"
-
     return () => {
-      document.body.style.overflow = previousOverflow
+      if (langPressTimeoutRef.current !== null) window.clearTimeout(langPressTimeoutRef.current)
     }
-  }, [previewImage])
-
-
-
-
-  // Preload podglądów: w idle albo przy pierwszej interakcji (co nastąpi szybciej)
-  useEffect(() => {
-    let done = false
-    let idleCallbackId: number | null = null
-    let fallbackTimeoutId: number | null = null
-
-    const preload = () => {
-      if (done) return
-      done = true
-      PREVIEW_IMAGE_SOURCES.forEach((src) => {
-        const img = new window.Image()
-        img.decoding = "async"
-        img.loading = "eager"
-        img.src = src
-        if (typeof img.decode === "function") {
-          img.decode().catch(() => {
-            // decode może odrzucić przy szybkim unmount/missing cache; obraz i tak się ładuje.
-          })
-        }
-      })
-      cleanup()
-    }
-
-    const cleanup = () => {
-      if (idleCallbackId !== null && "cancelIdleCallback" in window) {
-        ;(window as Window & { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(
-          idleCallbackId
-        )
-        idleCallbackId = null
-      }
-      if (fallbackTimeoutId !== null) {
-        window.clearTimeout(fallbackTimeoutId)
-        fallbackTimeoutId = null
-      }
-
-      window.removeEventListener("mousemove", preload)
-      window.removeEventListener("pointerdown", preload)
-      window.removeEventListener("keydown", preload)
-      window.removeEventListener("touchstart", preload)
-      window.removeEventListener("scroll", preload)
-    }
-
-    const supportsIdleCallback =
-      typeof (window as Window & { requestIdleCallback?: unknown }).requestIdleCallback ===
-      "function"
-
-    if (supportsIdleCallback) {
-      idleCallbackId = (
-        window as Window & { requestIdleCallback: (cb: IdleRequestCallback, opts?: IdleRequestOptions) => number }
-      ).requestIdleCallback(() => preload(), { timeout: 1200 })
-    } else {
-      fallbackTimeoutId = window.setTimeout(preload, 1200)
-    }
-
-    window.addEventListener("mousemove", preload, { once: true, passive: true })
-    window.addEventListener("pointerdown", preload, { once: true, passive: true })
-    window.addEventListener("keydown", preload, { once: true, passive: true })
-    window.addEventListener("touchstart", preload, { once: true, passive: true })
-    window.addEventListener("scroll", preload, { once: true, passive: true })
-    return cleanup
   }, [])
-
-  useEffect(() => {
-    setIsPreviewLoaded(false)
-    setIsPreviewZoomed(false)
-  }, [previewImage])
 
 
 
@@ -238,8 +131,7 @@ const updateUrl = (tab: string, lang: string) => {
 
   return (
     <main className="relative flex min-h-svh flex-col items-center bg-background">
-  <MeshGradient />
-  <DesktopSpaceBackground />
+  <ResponsiveBackground />
 
   <div className="page-scale-desktop relative z-10 flex w-full max-w-md flex-col gap-8 px-5 py-12 pb-8">
         <ProfileHeader language={language} />
@@ -399,73 +291,13 @@ const updateUrl = (tab: string, lang: string) => {
       </button>
 
       {previewImage && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 md:bg-black/70 p-4"
-          role="dialog"
-          aria-modal="true"
-          aria-label={text.previewDialogLabel}
-          onClick={() => setPreviewImage(null)}
-          style={{ touchAction: "pinch-zoom" }}
-        >
-          <div
-            className="relative inline-flex items-center justify-center"
-            onClick={(event) => event.stopPropagation()}
-            style={{ touchAction: "none" }}
-          >
-            <TransformWrapper
-              key={previewImage.src}
-              minScale={1}
-              maxScale={5}
-              centerOnInit
-              centerZoomedOut
-              limitToBounds
-              disablePadding
-              wheel={{ disabled: true }}
-              pinch={{ step: 0.6 }}
-              panning={{ disabled: !isPreviewZoomed, excluded: ["preview-close-btn"] }}
-              doubleClick={{ mode: "reset", animationTime: 260, animationType: "easeOut" }}
-              onTransformed={(_, state) => {
-                setIsPreviewZoomed(state.scale > 1.01)
-              }}
-            >
-              <TransformComponent
-                wrapperClass="!w-[100vw] !h-[100vh]"
-                contentClass="!w-full !h-full !flex !items-center !justify-center"
-                wrapperStyle={{ touchAction: "none" }}
-                contentStyle={{ touchAction: "none" }}
-              >
-                <div className="relative inline-flex items-start justify-start">
-                  {isPreviewLoaded && (
-                    <button
-                      type="button"
-                      onClick={() => setPreviewImage(null)}
-                      aria-label={text.previewCloseLabel}
-                      className="preview-close-btn absolute right-2 top-2 z-10 inline-flex size-8 items-center justify-center rounded-full border border-border/70 bg-background/80 text-foreground transition-colors [@media(hover:hover)_and_(pointer:fine)]:hover:bg-background active:bg-background"
-                    >
-                      <X className="size-4" />
-                    </button>
-                  )}
-
-                 <img
-                    src={previewImage.src}
-                    alt={previewImage.alt}
-                    loading="eager"
-                    fetchPriority="high"
-                    decoding="async"
-                    className={`w-auto max-w-[95vw] rounded-xl object-contain ${
-                      isTripifyMapPreview
-                        ? "max-h-[90vh] md:max-h-[96vh]"
-                        : "max-h-[90vh]"
-                    }`}
-                    style={{ touchAction: "none", willChange: "transform" }}
-                    onLoad={() => setIsPreviewLoaded(true)}
-                    onError={() => setIsPreviewLoaded(true)}
-                  />
-                </div>
-              </TransformComponent>
-            </TransformWrapper>
-          </div>
-        </div>
+        <ImagePreview
+          key={previewImage.src}
+          image={previewImage}
+          dialogLabel={text.previewDialogLabel}
+          closeLabel={text.previewCloseLabel}
+          onClose={() => setPreviewImage(null)}
+        />
       )}
       
       {/* Ukryte linki dla robotów SEO (niewidoczne dla użytkowników) */}

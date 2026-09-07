@@ -1,6 +1,7 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import Image from "next/image"
+import spaceBackground from "@/public/images/space-bg.webp"
 
 type Star = {
   left: string
@@ -72,60 +73,21 @@ function StarLayer({ stars }: { stars: Star[] }) {
 }
 
 export function DesktopSpaceBackground() {
-  const [enabled, setEnabled] = useState(false)
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 768px)")
-
-    const update = () => {
-      setEnabled(mediaQuery.matches)
-    }
-
-    update()
-
-    mediaQuery.addEventListener("change", update)
-
-    return () => {
-      mediaQuery.removeEventListener("change", update)
-    }
-  }, [])
-
-  if (!enabled) {
-    return null
-  }
-
   return (
     <div
       className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
       aria-hidden="true"
     >
-      {/* Static high-quality background */}
-      <picture>
-        <source
-          srcSet="/images/space-bg.avif"
-          type="image/avif"
-        />
-
-        <source
-          srcSet="/images/space-bg.webp"
-          type="image/webp"
-        />
-
-        <img
-          src="/images/space-bg.webp"
-          alt=""
-          className="
-            absolute
-            inset-0
-            h-full
-            w-full
-            object-cover
-            object-center
-            select-none
-          "
-          draggable={false}
-        />
-      </picture>
+      <Image
+        src={spaceBackground}
+        alt=""
+        fill
+        sizes="(max-aspect-ratio: 183/100) 183vh, 100vw"
+        loading="eager"
+        fetchPriority="low"
+        className="object-cover object-center select-none"
+        draggable={false}
+      />
 
       <div
         className="space-readability-shade absolute inset-y-0 left-1/2 w-full max-w-[1100px] -translate-x-1/2"

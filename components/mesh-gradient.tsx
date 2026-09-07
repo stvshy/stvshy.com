@@ -13,46 +13,27 @@ export function MeshGradient() {
     if (!ctx) return
 
     let animationId: number | undefined
-    let startAnimationTimeoutId: number | undefined
     let time = 0
     let width = 0
     let height = 0
-    let isAnimating = false
-
     let lastTime = 0
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-     const targetFps = prefersReducedMotion ? 0 : 30
-    const fpsInterval = targetFps > 0 ? 1000 / targetFps : Number.POSITIVE_INFINITY
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)")
+    const fpsInterval = 1000 / 30
+    const renderScale = 0.5
 
     const resize = () => {
       const nextWidth = window.innerWidth
       const nextHeight = window.innerHeight
+      if (width === nextWidth && height === nextHeight) return
       width = nextWidth
       height = nextHeight
-      const isMobileViewport = nextWidth <= 767
-
-      if (isMobileViewport) {
-        const dpr = Math.min(window.devicePixelRatio || 1, 2)
-        canvas.width = Math.floor(nextWidth * dpr)
-        canvas.height = Math.floor(nextHeight * dpr)
-        canvas.style.filter = "none"
-        canvas.style.width = `${nextWidth}px`
-        canvas.style.height = `${nextHeight}px`
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-        return
-      }
-
-      const renderScale = 0.5
       canvas.width = Math.floor(nextWidth * renderScale)
       canvas.height = Math.floor(nextHeight * renderScale)
-      canvas.style.filter = "blur(100px)"
       canvas.style.width = `${nextWidth}px`
       canvas.style.height = `${nextHeight}px`
       ctx.setTransform(renderScale, 0, 0, renderScale, 0, 0)
+      renderFrame()
     }
-
-    resize()
-    window.addEventListener("resize", resize)
 
     const renderFrame = () => {
       const isMobileViewport = width <= 767
@@ -62,7 +43,7 @@ export function MeshGradient() {
       
       ctx.globalCompositeOperation = "source-over"
       if (isMobileViewport) {
-        ctx.filter = "blur(120px)"
+        ctx.filter = `blur(${120 * renderScale}px)`
       }
 
       const wash = ctx.createLinearGradient(0, height * 0.4, width, height * 0.6)
@@ -82,7 +63,7 @@ export function MeshGradient() {
 
       ctx.globalCompositeOperation = "lighter"
       if (isMobileViewport) {
-        ctx.filter = "blur(80px)"
+        ctx.filter = `blur(${80 * renderScale}px)`
       }
 
       const driftX = Math.sin(time * 0.16) * width * 0.035
@@ -148,43 +129,39 @@ export function MeshGradient() {
     }
 
     const animate = (currentTime: number) => {
-      if (!isAnimating) return
       animationId = requestAnimationFrame(animate)
-
-      if (document.hidden || targetFps === 0) return
-
       if (!lastTime) lastTime = currentTime
       const deltaTime = currentTime - lastTime
 
       if (deltaTime < fpsInterval) return
       lastTime = currentTime - (deltaTime % fpsInterval)
 
-      const timeMultiplier = deltaTime / 16.66
-      time = (time + 0.0025 * timeMultiplier) % 100
+      time += Math.min(deltaTime, 100) * 0.00015
 
       renderFrame()
     }
 
-    renderFrame()
-
-    if (width <= 767) {
-      isAnimating = true
+    const updateAnimation = () => {
+      if (animationId !== undefined) {
+        cancelAnimationFrame(animationId)
+        animationId = undefined
+      }
       lastTime = 0
-      animationId = requestAnimationFrame(animate)
-    } else {
-      startAnimationTimeoutId = window.setTimeout(() => {
-        isAnimating = true
-        lastTime = 0
+      if (!document.hidden && !motionQuery.matches) {
         animationId = requestAnimationFrame(animate)
-      }, 10_000)
+      }
     }
 
+    resize()
+    updateAnimation()
+    window.addEventListener("resize", resize, { passive: true })
+    document.addEventListener("visibilitychange", updateAnimation)
+    motionQuery.addEventListener("change", updateAnimation)
+
     return () => {
-      isAnimating = false
       window.removeEventListener("resize", resize)
-      if (startAnimationTimeoutId !== undefined) {
-        window.clearTimeout(startAnimationTimeoutId)
-      }
+      document.removeEventListener("visibilitychange", updateAnimation)
+      motionQuery.removeEventListener("change", updateAnimation)
       if (animationId !== undefined) {
         cancelAnimationFrame(animationId)
       }
