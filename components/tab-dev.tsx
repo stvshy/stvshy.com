@@ -3,6 +3,10 @@
 import Image from "next/image"
 import { useEffect, useRef, useState } from "react"
 import { ChevronDown, ExternalLink, Layers, X, Eye } from "lucide-react"
+import { RiEyeLine } from "react-icons/ri";
+
+import { AiOutlineEye } from "react-icons/ai";
+
 import { MdLocalAirport, MdLock, MdOutlineLayers } from "react-icons/md"
 import { ImLinkedin2 } from "react-icons/im"
 import { IoLogoGithub } from "react-icons/io"
@@ -632,7 +636,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                   {language === "pl" ? "Politechnika Wrocławska" : "Wrocław University of Science and Technology"}
                 </span>              </p>
               <div className="mt-2 space-y-2">
-                <div className="relative rounded-md border border-border/60 bg-card px-2.5 py-2 pr-[112px]">
+                <div className="relative rounded-md border border-border/60 bg-card px-2.5 py-2 pr-[86px] sm:pr-[112px]">
                   <div className="absolute right-2.5 inset-y-0 my-auto flex h-[19.85px] items-center gap-1.5">
                     <button
                       type="button"
@@ -652,9 +656,9 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                         preloadPreviewImage(language === "pl" ? "/images/dyplom-mgr-pl.jpg" : "/images/dyplom-mgr-eng.jpg")
                       }
                       aria-label={`${text.previewPrefix} ${appliedComputerScienceLabel} diploma`}
-                      className="inline-flex h-[19.5px] w-[21.5px] shrink-0 items-center justify-center rounded-full border border-border/60 bg-card text-muted-foreground transition-colors sm:h-5 sm:w-6 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[var(--dev-accent)] active:text-[var(--dev-accent)]"
+                      className="hidden h-[19.5px] w-[21.5px] shrink-0 items-center justify-center rounded-full border border-border/60 bg-card text-muted-foreground transition-colors sm:inline-flex sm:h-5 sm:w-6 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[var(--dev-accent)] active:text-[var(--dev-accent)]"
                     >
-                      <Eye className="size-[13px] sm:size-3.5" />
+                      <Eye className="size-3.5" />
                     </button>
                     <p
                       className="inline-flex h-[19.85px] items-center justify-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 text-[9.5px] font-semibold leading-none tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)] w-[74px] text-center"
@@ -666,9 +670,32 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                   <p className="text-[11.6px] text-foreground" style={{ letterSpacing: '-0.054em', marginBottom: '1.3px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
                     {appliedComputerScienceLabel}
                   </p>
-                  <p className="text-[11.0px] text-muted-foreground" style={{ letterSpacing: '-0.039em' }}>{text.master}</p>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      onOpenImagePreview(
+                        language === "pl" ? "/images/dyplom-mgr-pl.jpg" : "/images/dyplom-mgr-eng.jpg",
+                        `${appliedComputerScienceLabel} ${text.master} diploma`
+                      )
+                    }
+                    onPointerEnter={() =>
+                      preloadPreviewImage(language === "pl" ? "/images/dyplom-mgr-pl.jpg" : "/images/dyplom-mgr-eng.jpg")
+                    }
+                    onFocus={() =>
+                      preloadPreviewImage(language === "pl" ? "/images/dyplom-mgr-pl.jpg" : "/images/dyplom-mgr-eng.jpg")
+                    }
+                    onTouchStart={() =>
+                      preloadPreviewImage(language === "pl" ? "/images/dyplom-mgr-pl.jpg" : "/images/dyplom-mgr-eng.jpg")
+                    }
+                    aria-label={`${text.previewPrefix} ${appliedComputerScienceLabel} diploma`}
+                    className="inline-flex items-center gap-1.5 text-left sm:hidden"
+                  >
+                    <span className="text-[11.0px] text-muted-foreground" style={{ letterSpacing: '-0.039em' }}>{text.master}</span>
+                    <RiEyeLine className="size-[10px] shrink-0 text-muted-foreground" />
+                  </button>
+                  <p className="hidden text-[11.0px] text-muted-foreground sm:block" style={{ letterSpacing: '-0.039em' }}>{text.master}</p>
                 </div>
-                <div className="relative rounded-md border border-border/60 bg-card px-2.5 py-2 pr-[112px]">
+                <div className="relative rounded-md border border-border/60 bg-card px-2.5 py-2 pr-[86px] sm:pr-[112px]">
                   <div className="absolute right-2.5 inset-y-0 my-auto flex h-[19.85px] items-center gap-1.5">
                     <button
                       type="button"
@@ -688,9 +715,9 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                         preloadPreviewImage(language === "pl" ? "/images/dyplom-inz-pl.jpg" : "/images/dyplom-inz-eng.jpg")
                       }
                       aria-label={`${text.previewPrefix} ${computerEngineeringLabel} diploma`}
-                      className="inline-flex h-[19.5px] w-[21.5px] shrink-0 items-center justify-center rounded-full border border-border/60 bg-card text-muted-foreground transition-colors sm:h-5 sm:w-6 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[var(--dev-accent)] active:text-[var(--dev-accent)]"
+                      className="hidden h-[19.5px] w-[21.5px] shrink-0 items-center justify-center rounded-full border border-border/60 bg-card text-muted-foreground transition-colors sm:inline-flex sm:h-5 sm:w-6 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[var(--dev-accent)] active:text-[var(--dev-accent)]"
                     >
-                      <Eye className="size-[13px] sm:size-3.5" />
+                      <Eye className="size-3.5" />
                     </button>
                     <p
                       className="inline-flex h-[19.85px] items-center justify-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 text-[9.5px] font-semibold leading-none tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)] w-[74px] text-center"
@@ -702,7 +729,30 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                   <p className="text-[11.45px] text-foreground" style={{ letterSpacing: '-0.055em', marginBottom: '2.4px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
                     {computerEngineeringLabel}
                   </p>
-                  <p className="text-[11.0px] text-muted-foreground" style={{ letterSpacing: '-0.039em' }}>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      onOpenImagePreview(
+                        language === "pl" ? "/images/dyplom-inz-pl.jpg" : "/images/dyplom-inz-eng.jpg",
+                        `${computerEngineeringLabel} ${text.bachelor} diploma`
+                      )
+                    }
+                    onPointerEnter={() =>
+                      preloadPreviewImage(language === "pl" ? "/images/dyplom-inz-pl.jpg" : "/images/dyplom-inz-eng.jpg")
+                    }
+                    onFocus={() =>
+                      preloadPreviewImage(language === "pl" ? "/images/dyplom-inz-pl.jpg" : "/images/dyplom-inz-eng.jpg")
+                    }
+                    onTouchStart={() =>
+                      preloadPreviewImage(language === "pl" ? "/images/dyplom-inz-pl.jpg" : "/images/dyplom-inz-eng.jpg")
+                    }
+                    aria-label={`${text.previewPrefix} ${computerEngineeringLabel} diploma`}
+                    className="inline-flex items-center gap-1.5 text-left sm:hidden"
+                  >
+                    <span className="text-[11.0px] text-muted-foreground" style={{ letterSpacing: '-0.039em' }}>{text.bachelor}</span>
+                    <RiEyeLine className="size-[10px] shrink-0 text-muted-foreground" />
+                  </button>
+                  <p className="hidden text-[11.0px] text-muted-foreground sm:block" style={{ letterSpacing: '-0.039em' }}>
                     {text.bachelor}
                   </p>
                 </div>
