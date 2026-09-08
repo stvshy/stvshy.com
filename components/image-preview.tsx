@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { X } from "lucide-react"
+import { BsChevronExpand } from "react-icons/bs"
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch"
 
 type ImagePreviewProps = {
@@ -30,7 +31,7 @@ export default function ImagePreview({ image, dialogLabel, closeLabel, onClose }
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 md:bg-black/70 p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 md:bg-black/70"
       role="dialog"
       aria-modal="true"
       aria-label={dialogLabel}
@@ -57,40 +58,72 @@ export default function ImagePreview({ image, dialogLabel, closeLabel, onClose }
         doubleClick={{ mode: "reset", animationTime: 260, animationType: "easeOut" }}
         onTransformed={(_, state) => setIsZoomed(state.scale > 1.01)}
       >
-        <TransformComponent
-          wrapperClass="!w-[100vw] !h-[100dvh]"
-          contentClass="!w-full !h-full !flex !items-center !justify-center"
-          wrapperStyle={{ touchAction: "none" }}
-          contentStyle={{ touchAction: "none" }}
-        >
-          <div className="relative inline-flex items-start justify-start" onClick={(event) => event.stopPropagation()}>
-            <img
-              src={image.src}
-              alt={image.alt}
-              loading="eager"
-              fetchPriority="high"
-              decoding="async"
-              className={`w-auto max-w-[95vw] rounded-xl object-contain ${
-                isDiploma
-                  ? "max-h-[94dvh] md:max-h-[96dvh]"
-                  : isTripifyMap
-                    ? "max-h-[90dvh] md:max-h-[96dvh]"
-                    : "max-h-[90dvh]"
-              }`}
-              style={{ touchAction: "none" }}
-            />
-          </div>
-        </TransformComponent>
+        {(controls) => (
+          <>
+            <TransformComponent
+              wrapperClass="!w-[100vw] !h-[100dvh]"
+              contentClass="!w-full !h-full !flex !items-center !justify-center"
+              wrapperStyle={{ touchAction: "none" }}
+              contentStyle={{ touchAction: "none" }}
+            >
+              <div className="relative inline-flex items-start justify-start" onClick={(event) => event.stopPropagation()}>
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
+                  className={`w-auto max-w-[calc(100vw-2rem)] rounded-xl object-contain ${
+                    isDiploma
+                      ? "max-h-[94dvh] md:max-h-[96dvh]"
+                      : isTripifyMap
+                        ? "max-h-[90dvh] md:max-h-[96dvh]"
+                        : "max-h-[90dvh]"
+                  }`}
+                  style={{ touchAction: "none" }}
+                />
+                {!isZoomed && (
+                  <button
+                    ref={closeRef}
+                    type="button"
+                    onClick={onClose}
+                    aria-label={closeLabel}
+                    className="preview-close-btn absolute right-2 top-2 z-10 inline-flex size-8 items-center justify-center rounded-full border border-border/70 bg-background/80 text-foreground transition-colors hover:bg-background"
+                  >
+                    <X className="size-4" />
+                  </button>
+                )}
+              </div>
+            </TransformComponent>
+            {isZoomed && (
+              <div className="fixed bottom-5 left-1/2 z-10 flex -translate-x-1/2 gap-2 md:hidden">
+                <button
+                  type="button"
+                  onClick={(event) => {
+                    event.stopPropagation()
+                    controls.resetTransform(260, "easeOut")
+                  }}
+                  aria-label="Zoom out"
+                  className="preview-close-btn inline-flex size-10 items-center justify-center rounded-full border border-border/70 bg-background/90 text-foreground shadow-lg transition-colors hover:bg-background"
+                >
+                  <BsChevronExpand className="size-5 rotate-45" />
+                </button>
+                <button
+                  type="button"
+                  onClick={(event) => {
+                    event.stopPropagation()
+                    onClose()
+                  }}
+                  aria-label={closeLabel}
+                  className="preview-close-btn inline-flex size-10 items-center justify-center rounded-full border border-border/70 bg-background/90 text-foreground shadow-lg transition-colors hover:bg-background"
+                >
+                  <X className="size-5" />
+                </button>
+              </div>
+            )}
+          </>
+        )}
       </TransformWrapper>
-      <button
-        ref={closeRef}
-        type="button"
-        onClick={onClose}
-        aria-label={closeLabel}
-        className="preview-close-btn absolute right-4 top-4 z-10 inline-flex size-8 items-center justify-center rounded-full border border-border/70 bg-background/80 text-foreground transition-colors hover:bg-background"
-      >
-        <X className="size-4" />
-      </button>
     </div>
   )
 }
