@@ -15,6 +15,7 @@ export default function ImagePreview({ image, dialogLabel, closeLabel, onClose }
   const [isZoomed, setIsZoomed] = useState(false)
   const closeRef = useRef<HTMLButtonElement>(null)
   const isTripifyMap = image.src.includes("tripify-map")
+  const isDiploma = image.src.includes("dyplom")
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow
@@ -70,7 +71,11 @@ export default function ImagePreview({ image, dialogLabel, closeLabel, onClose }
               fetchPriority="high"
               decoding="async"
               className={`w-auto max-w-[95vw] rounded-xl object-contain ${
-                isTripifyMap ? "max-h-[90dvh] md:max-h-[96dvh]" : "max-h-[90dvh]"
+                isDiploma
+                  ? "max-h-[94dvh] md:max-h-[96dvh]"
+                  : isTripifyMap
+                    ? "max-h-[90dvh] md:max-h-[96dvh]"
+                    : "max-h-[90dvh]"
               }`}
               style={{ touchAction: "none" }}
             />
