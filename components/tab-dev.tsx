@@ -691,7 +691,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                     className="inline-flex items-center gap-1.5 text-left sm:hidden"
                   >
                     <span className="text-[11.0px] text-muted-foreground" style={{ letterSpacing: '-0.039em' }}>{text.master}</span>
-                    <RiEyeLine className="size-[10px] shrink-0 text-muted-foreground" />
+                    <RiEyeLine className="eye-icon-glow size-[10px] shrink-0 text-muted-foreground" />
                   </button>
                   <p className="hidden text-[11.0px] text-muted-foreground sm:block" style={{ letterSpacing: '-0.039em' }}>{text.master}</p>
                 </div>
@@ -750,7 +750,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                     className="inline-flex items-center gap-1.5 text-left sm:hidden"
                   >
                     <span className="text-[11.0px] text-muted-foreground" style={{ letterSpacing: '-0.039em' }}>{text.bachelor}</span>
-                    <RiEyeLine className="size-[10px] shrink-0 text-muted-foreground" />
+                    <RiEyeLine className="eye-icon-glow size-[10px] shrink-0 text-muted-foreground" />
                   </button>
                   <p className="hidden text-[11.0px] text-muted-foreground sm:block" style={{ letterSpacing: '-0.039em' }}>
                     {text.bachelor}

@@ -266,9 +266,26 @@
   animation-delay: 17s;
 }
 
+@keyframes eye-icon-shimmer {
+  0%, 100% {
+    opacity: 0.82;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35)) drop-shadow(0 0 2px rgba(var(--dev-accent-rgb), 0.3));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 1.5px 2px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 6px rgba(var(--dev-accent-rgb), 0.85));
+  }
+}
+
+.eye-icon-glow {
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35)) drop-shadow(0 0 2px rgba(var(--dev-accent-rgb), 0.3));
+  animation: eye-icon-shimmer 2.6s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-star,
-  .space-meteor {
+  .space-meteor,
+  .eye-icon-glow {
     animation: none;
   }
 }
