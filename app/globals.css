@@ -183,7 +183,7 @@
 /* Laptop / zwykły desktop */
 @media (min-width: 1024px) {
   body {
-    zoom: 1.015;
+    zoom: 1.003;
   }
 }
 
