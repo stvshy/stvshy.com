@@ -179,7 +179,20 @@
   letter-spacing: var(--tabbar-letter-spacing) !important;
   gap: var(--tabbar-gap) !important;
 }
+
+/* Laptop / zwykły desktop */
 @media (min-width: 1024px) {
+  body {
+    zoom: 1.015;
+  }
+}
+
+/* Bardzo szerokie ekrany 21:9+ */
+@media (min-width: 1024px) and (min-aspect-ratio: 21/9) {
+  body {
+    zoom: 1.04;
+  }
+
   .page-scale-desktop {
     transform: scale(1.1);
     transform-origin: top center;

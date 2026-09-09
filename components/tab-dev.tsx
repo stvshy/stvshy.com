@@ -8,7 +8,7 @@ import { RiEyeLine } from "react-icons/ri";
 import {AiOutlineEye } from "react-icons/ai";
 import {BsFire} from "react-icons/bs";
 
-import { MdLocalAirport, MdLock, MdOutlineLayers } from "react-icons/md"
+import { MdLocalAirport, MdLock, MdOutlineLayers, MdOutlineTravelExplore } from "react-icons/md"
 import { ImLinkedin2 } from "react-icons/im"
 import { IoLogoGithub } from "react-icons/io"
 import { IoConstruct, IoGameController } from "react-icons/io5"
@@ -99,6 +99,13 @@ const links = [
     blocked: false,
   },
   {
+    label: "Travel Recommender",
+    description: "Personalized destination ranking engine",
+    href: "https://ankieta.stvshy.com",
+    icon: MdOutlineTravelExplore,
+    blocked: false,
+  },
+  {
     label: "EvilChat",
     description: "Toxic & offensive AI chat",
     href: "https://evilchat.stvshy.com",
@@ -132,6 +139,7 @@ const devText = {
       github: "Projects & contributions",
       linkedin: "Profile & networking",
       travelAssistant: "AI trip planning assistant",
+      travelRecommender: "Personalized recommendation engine",
       evilChat: "Toxic & offensive AI chat",
       hollowDepths: "Game for desktop web",
       renovationSystem: "Workflow management platform",
@@ -165,6 +173,7 @@ const devText = {
       github: "Projekty i wkład",
       linkedin: "Profil i networking",
       travelAssistant: "AI asystent do planowania podróży",
+      travelRecommender: "Spersonalizowany silnik rekomendacji",
       evilChat: "Toksyczny i obraźliwy czat AI",
       hollowDepths: "Gra przeglądarkowa na komputery",
       renovationSystem: "Platforma do zarządzania procesem",
@@ -441,6 +450,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
       GitHub: text.linkDescriptions.github,
       LinkedIn: text.linkDescriptions.linkedin,
       "Travel Assistant": text.linkDescriptions.travelAssistant,
+      "Travel Recommender": text.linkDescriptions.travelRecommender,
       EvilChat: text.linkDescriptions.evilChat,
       "Renovation System": text.linkDescriptions.renovationSystem,
       "Hollow Depths": text.linkDescriptions.hollowDepths,
