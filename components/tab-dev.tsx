@@ -5,7 +5,8 @@ import { useEffect, useRef, useState } from "react"
 import { ChevronDown, ExternalLink, Layers, X, Eye } from "lucide-react"
 import { RiEyeLine } from "react-icons/ri";
 
-import { AiOutlineEye } from "react-icons/ai";
+import {AiOutlineEye } from "react-icons/ai";
+import {BsFire} from "react-icons/bs";
 
 import { MdLocalAirport, MdLock, MdOutlineLayers } from "react-icons/md"
 import { ImLinkedin2 } from "react-icons/im"
@@ -79,28 +80,35 @@ const links = [
   {
     label: "LinkedIn",
     description: "Profile & networking",
-    href: "https://www.linkedin.com/in/mateusz-staszk%C3%B3w/",
+    href: "https://www.linkedin.com/in/mateusz-staszkow/",
     icon: ImLinkedin2,
-    blocked: false,
-  },
-  {
-    label: "Travel Assistant",
-    description: "AI trip planning assistant",
-    href: "https://empathetic-ai-travel-assistant.vercel.app",
-    icon: RiChatVoiceAiFill,
     blocked: false,
   },
   {
     label: "Renovation System",
     description: "Workflow management platform",
-    href: "https://stvshy.github.io/renovation-system",
+    href: "https://renovation.stvshy.com",
     icon: IoConstruct,
+    blocked: false,
+  },
+  {
+    label: "Travel Assistant",
+    description: "AI trip planning assistant",
+    href: "https://travel-ai.stvshy.com",
+    icon: RiChatVoiceAiFill,
+    blocked: false,
+  },
+  {
+    label: "EvilChat",
+    description: "Toxic & offensive AI chat",
+    href: "https://evilchat.stvshy.com",
+    icon: BsFire,
     blocked: false,
   },
   {
     label: "Hollow Depths",
     description: "Game for desktop web",
-    href: "https://konrad-skowron.itch.io/hollow-depths",
+    href: "https://stvshy.short.gy/game2D",
     icon: IoGameController,
     blocked: false,
   },
@@ -124,6 +132,7 @@ const devText = {
       github: "Projects & contributions",
       linkedin: "Profile & networking",
       travelAssistant: "AI trip planning assistant",
+      evilChat: "Toxic & offensive AI chat",
       hollowDepths: "Game for desktop web",
       renovationSystem: "Workflow management platform",
       tripify: "Mobile app — work in progress",
@@ -156,6 +165,7 @@ const devText = {
       github: "Projekty i wkład",
       linkedin: "Profil i networking",
       travelAssistant: "AI asystent do planowania podróży",
+      evilChat: "Toksyczny i obraźliwy czat AI",
       hollowDepths: "Gra przeglądarkowa na komputery",
       renovationSystem: "Platforma do zarządzania procesem",
       tripify: "Aplikacja mobilna — już wkrótce",
@@ -431,6 +441,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
       GitHub: text.linkDescriptions.github,
       LinkedIn: text.linkDescriptions.linkedin,
       "Travel Assistant": text.linkDescriptions.travelAssistant,
+      EvilChat: text.linkDescriptions.evilChat,
       "Renovation System": text.linkDescriptions.renovationSystem,
       "Hollow Depths": text.linkDescriptions.hollowDepths,
       Tripify: text.linkDescriptions.tripify,
