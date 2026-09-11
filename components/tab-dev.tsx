@@ -7,6 +7,7 @@ import { RiEyeLine } from "react-icons/ri";
 
 import {AiOutlineEye } from "react-icons/ai";
 import {BsFire} from "react-icons/bs";
+import { TbWorldSearch } from "react-icons/tb";
 
 import { MdLocalAirport, MdLock, MdOutlineLayers, MdOutlineTravelExplore } from "react-icons/md"
 import { ImLinkedin2 } from "react-icons/im"
@@ -102,7 +103,7 @@ const links = [
     label: "Travel Recommender",
     description: "Personalized destination ranking engine",
     href: "https://ankieta.stvshy.com",
-    icon: MdOutlineTravelExplore,
+    icon: TbWorldSearch,
     blocked: false,
   },
   {
@@ -500,7 +501,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                 : "bg-[var(--dev-accent)]/15 text-[var(--dev-accent)] [@media(hover:hover)_and_(pointer:fine)]:group-hover:bg-[var(--dev-accent)]/25 group-active:bg-[var(--dev-accent)]/25"
             }`}
           >
-            <link.icon className={link.label === "GitHub" ? "size-6" : "size-5"} />
+            <link.icon className={link.label === "GitHub" ? "size-6" : link.label === "Travel Recommender" ? "size-[20.6px]" : "size-5"} />
           </div>
           <div className="flex flex-col gap-0.5">
             <span
