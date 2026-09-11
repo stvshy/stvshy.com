@@ -101,7 +101,7 @@ const links = [
   },
   {
     label: "Travel Recommender",
-    description: "Personalized destination ranking engine",
+    description: "Personalized destination ranking",
     href: "https://ankieta.stvshy.com",
     icon: TbWorldSearch,
     blocked: false,
@@ -140,7 +140,7 @@ const devText = {
       github: "Projects & contributions",
       linkedin: "Profile & networking",
       travelAssistant: "AI trip planning assistant",
-      travelRecommender: "Personalized recommendation engine",
+      travelRecommender: "Personalized destination ranking",
       evilChat: "Toxic & offensive AI chat",
       hollowDepths: "Game for desktop web",
       renovationSystem: "Workflow management platform",
@@ -174,7 +174,7 @@ const devText = {
       github: "Projekty i wkład",
       linkedin: "Profil i networking",
       travelAssistant: "AI asystent do planowania podróży",
-      travelRecommender: "Spersonalizowany silnik rekomendacji",
+      travelRecommender: "Spersonalizowany ranking destynacji",
       evilChat: "Toksyczny i obraźliwy czat AI",
       hollowDepths: "Gra przeglądarkowa na komputery",
       renovationSystem: "Platforma do zarządzania procesem",
@@ -501,7 +501,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                 : "bg-[var(--dev-accent)]/15 text-[var(--dev-accent)] [@media(hover:hover)_and_(pointer:fine)]:group-hover:bg-[var(--dev-accent)]/25 group-active:bg-[var(--dev-accent)]/25"
             }`}
           >
-            <link.icon className={link.label === "GitHub" ? "size-6" : link.label === "Travel Recommender" ? "size-[20.6px]" : "size-5"} />
+            <link.icon className={link.label === "GitHub" ? "size-6" : link.label === "Travel Recommender" ? "size-[20.6px]" : link.label === "EvilChat" ? "size-[19.7px]" : "size-5"} />
           </div>
           <div className="flex flex-col gap-0.5">
             <span
