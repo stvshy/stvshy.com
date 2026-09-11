@@ -83,7 +83,8 @@ export default async function Page({ params }: Props) {  // Odbieramy parametry 
 
   // Dla /pl i /en ustawiamy domyślnie sekcję "about"
   // Dla pustego slug zostawiamy undefined, żeby ClientPage użył swojego domyślnego zachowania
-  const section = isLangFirst ? secondSegment || "about" : firstSegment || undefined
+  const requestedSection = isLangFirst ? secondSegment || "about" : firstSegment || undefined
+  const isDevRoute = requestedSection === "dev"
   
   // Określamy język na podstawie obecności "pl" w pierwszym lub drugim segmencie
   const lang = firstSegment === "pl" || secondSegment === "pl" ? "pl" : "en"
@@ -113,8 +114,9 @@ export default async function Page({ params }: Props) {  // Odbieramy parametry 
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
     <ClientPage 
-      initialSection={section} 
+      initialSection={requestedSection} 
       initialLang={lang} 
+      compactDevMode={isDevRoute}
     />
     </>
   )

@@ -22,6 +22,7 @@ type Language = "en" | "pl"
 interface ClientPageProps {
   initialSection?: string
   initialLang: Language
+  compactDevMode?: boolean
 }
 const pageText = {
   en: {
@@ -54,8 +55,8 @@ const pageText = {
   },
 } as const
 
-export default function ClientPage({ initialSection, initialLang }: ClientPageProps) {
-  const [activeTab, setActiveTab] = useState(initialSection || "about")
+export default function ClientPage({ initialSection, initialLang, compactDevMode = false }: ClientPageProps) {
+  const [activeTab, setActiveTab] = useState(initialSection || (compactDevMode ? "dev" : "about"))
   const [language, setLanguage] = useState<Language>(initialLang)
   const [isProfessionalMode] = useState(!!initialSection)
   const [previewImage, setPreviewImage] = useState<{ src: string; alt: string } | null>(null)
@@ -82,6 +83,7 @@ const updateUrl = (tab: string, lang: string) => {
   }
 
   const handleTabChange = (value: string) => {
+  if (compactDevMode && value === "music") return
   setActiveTab(value)
   updateUrl(value, language)
 }
@@ -138,7 +140,7 @@ const updateUrl = (tab: string, lang: string) => {
 
         {/* Navigation Tabs */}
         <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full -mt-[10px]">
-          <TabsList className="grid w-full grid-cols-3 bg-muted/50 backdrop-blur-xl border border-border">
+          <TabsList className={`grid w-full bg-muted/50 backdrop-blur-xl border border-border ${compactDevMode ? "grid-cols-2" : "grid-cols-3"}`}>
             <TabsTrigger
               value="dev"
               className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-neon-magenta/10 data-[state=active]:text-neon-magenta data-[state=active]:shadow-none [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:bg-background/10 [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:border-border [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:text-muted-foreground/70 data-[state=inactive]:active:bg-background/10 data-[state=inactive]:active:border-border data-[state=inactive]:active:text-muted-foreground/70"
@@ -150,7 +152,7 @@ const updateUrl = (tab: string, lang: string) => {
                 height={16}
                 className="mr-1 size-4"
               />
-              {text.tabs.dev}
+              {compactDevMode ? "Developement" : text.tabs.dev}
             </TabsTrigger>
             <TabsTrigger
               value="about"
@@ -163,9 +165,9 @@ const updateUrl = (tab: string, lang: string) => {
                 height={16}
                 className="mr-1 size-4"
               />
-              {text.tabs.about}
+              {compactDevMode ? "About me" : text.tabs.about}
             </TabsTrigger>
-            <TabsTrigger
+            {!compactDevMode && <TabsTrigger
               value="music"
               className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-[#b817e4]/10 data-[state=active]:text-[#b817e4] data-[state=active]:shadow-none [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:bg-background/10 [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:border-border [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:text-muted-foreground/70 data-[state=inactive]:active:bg-background/10 data-[state=inactive]:active:border-border data-[state=inactive]:active:text-muted-foreground/70"
             >
@@ -177,7 +179,7 @@ const updateUrl = (tab: string, lang: string) => {
                 className="mr-1 size-4"
               />
               {text.tabs.music}
-            </TabsTrigger>
+            </TabsTrigger>}
           </TabsList>
 
           <TabsContent value="dev" className="mt-1">
@@ -194,11 +196,12 @@ const updateUrl = (tab: string, lang: string) => {
               onOpenImagePreview={(imageSrc, imageAlt) =>
                 setPreviewImage({ src: imageSrc, alt: imageAlt })
               }
+              includeMusic={compactDevMode}
             />
           </TabsContent>
-          <TabsContent value="music" className="mt-1">
+          {!compactDevMode && <TabsContent value="music" className="mt-1">
             <TabMusic language={language} />
-          </TabsContent>
+          </TabsContent>}
         </Tabs>
 
         {/* Contact Button */}

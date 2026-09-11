@@ -2,14 +2,16 @@
 
 import { useMemo, useState } from "react"
 import { BsChevronCompactDown, BsChevronCompactUp } from "react-icons/bs"
-import { ChevronRight } from "lucide-react"
+import { ChevronDown, ChevronRight, Music2 } from "lucide-react"
 import { hyphenateSync as hyphenateEn } from "hyphen/en"
 import { hyphenateSync as hyphenatePl } from "hyphen/pl"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
+import { TabMusic } from "@/components/tab-music"
 
 type TabAboutProps = {
   language: "en" | "pl"
   onOpenImagePreview: (imageSrc: string, imageAlt: string) => void
+  includeMusic?: boolean
 }
 
 const aboutText = {
@@ -47,8 +49,9 @@ const aboutText = {
   },
 } as const
 
-export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
+export function TabAbout({ language, onOpenImagePreview, includeMusic = false }: TabAboutProps) {
   const [isOpen, setIsOpen] = useState(false)
+  const [isMusicOpen, setIsMusicOpen] = useState(false)
   const text = aboutText[language]
 
   const hyphenateText = useMemo(() => {
@@ -249,6 +252,54 @@ export function TabAbout({ language, onOpenImagePreview }: TabAboutProps) {
           <p className="mt-1 text-[11.43px] text-muted-foreground" style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>{text.perfumesOwned}</p>
         </a>
       </div>
+      {includeMusic && (
+        <div
+          className={`border bg-card backdrop-blur-xl transition-[background-color,border-color,color,box-shadow] duration-300 ${
+            isMusicOpen
+              ? "rounded-xl border-border"
+              : "rounded-xl border-border [@media(hover:hover)_and_(pointer:fine)]:hover:border-[#b817e4]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[#b817e4]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(184,23,228,0.18)] active:border-[#b817e4]/45 active:bg-[#b817e4]/10 active:shadow-[0_0_20px_rgba(184,23,228,0.18)]"
+          }`}
+        >
+          <button
+            type="button"
+            onClick={() => setIsMusicOpen((previous) => !previous)}
+            aria-expanded={isMusicOpen}
+            className={`group flex w-full items-center gap-4 px-5 py-3 text-left transition-[background-color,border-color,color,box-shadow] duration-300 ${
+              isMusicOpen
+                ? "rounded-t-xl [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[#b817e4]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(184,23,228,0.18)] active:bg-[#b817e4]/10 active:shadow-[0_0_20px_rgba(184,23,228,0.18)]"
+                : "rounded-xl"
+            }`}
+          >
+            <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-[#b817e4]/10 text-[#b817e4] transition-colors [@media(hover:hover)_and_(pointer:fine)]:group-hover:bg-[#b817e4]/20 group-active:bg-[#b817e4]/20">
+              <Music2 className="size-5" />
+            </div>
+            <div className="flex flex-col gap-0.5">
+              <span
+                className="text-[13px] font-semibold text-foreground"
+                style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
+              >
+                Music
+              </span>
+              <span
+                className="text-[11px] text-muted-foreground"
+                style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
+              >
+                {language === "pl" ? "Sprawdź moje utwory" : "Check out my tracks"}
+              </span>
+            </div>
+            <ChevronDown
+              className={`ml-auto size-[18px] text-muted-foreground transition-transform ${
+                isMusicOpen ? "rotate-180" : ""
+              }`}
+            />
+          </button>
+          {isMusicOpen && (
+            <div className="border-t border-border px-5 py-4">
+              <TabMusic language={language} />
+            </div>
+          )}
+        </div>
+      )}
     </div>
   )
 }
