@@ -171,11 +171,22 @@ export function TabAbout({ language, onOpenImagePreview, includeMusic = false }:
 
       if (ranges.length === 0) return hyphText
 
-      // sort and remove overlaps (keep first occurrence)
-      ranges.sort((a, b) => a[0] - b[0] || a[1] - b[1])
+      // sortuj po indeksie początkowym, a przy remisie weź najpierw dłuższy zakres
+      ranges.sort((a, b) => a[0] - b[0] || b[1] - a[1])
       const merged: Array<[number, number]> = []
+      
       for (const r of ranges) {
-        if (merged.length === 0 || r[0] >= merged[merged.length - 1][1]) merged.push(r)
+        if (merged.length === 0) {
+          merged.push(r)
+        } else {
+          const last = merged[merged.length - 1]
+          // Jeśli zakresy się nakładają, rozszerz końcowy indeks o dłuższą wartość
+          if (r[0] <= last[1]) {
+            last[1] = Math.max(last[1], r[1])
+          } else {
+            merged.push(r)
+          }
+        }
       }
 
       // build output using posMap to slice hyphText
