@@ -407,14 +407,23 @@ export function TabAbout({ language, onOpenImagePreview, includeMusic = false }:
                 {language === "pl" ? "Sprawdź moje utwory" : "Check out my tracks"}
               </span>
             </div>
-            <div className="pointer-events-none absolute right-[50px] top-1/2 flex h-13 -translate-y-[33.5px] items-end gap-[4px] opacity-7 transition-opacity duration-300 group-hover:opacity-25">
+            <div
+              className={`pointer-events-none absolute right-[53px] top-1/2 flex h-13 -translate-y-[33.5px] items-end gap-[4px] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                isMusicOpen
+                  ? "translate-x-8 opacity-0"
+                  : "translate-x-0 opacity-7 group-hover:opacity-25"
+              }`}
+            >
               {[8, 19, 16, 25, 39, 52, 31, 46, 66, 49, 35, 57, 76, 61, 43, 29, 51, 37, 26, 18, 26, 9, 14].map((height, index) => (
                 <span
                   key={index}
-                  className="w-[3px] rounded-full"
+                  className="w-[3px] origin-bottom rounded-full transition-all duration-500"
                   style={{
                     height: `${height}%`,
                     backgroundImage: "linear-gradient(to right, var(--dev-accent) 0%, #8b60e8 40%, #8b60e8 60%, #b817e4 100%)",
+                    transform: isMusicOpen ? "scaleY(0)" : "scaleY(1)",
+                    transitionDelay: `${index * 15}ms`,
+                    transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
                   }}
                 />
               ))}
