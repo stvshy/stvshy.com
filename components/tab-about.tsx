@@ -49,10 +49,60 @@ const aboutText = {
   },
 } as const
 
+const compactAboutText = {
+  en: {
+    ...aboutText.en,
+    paragraph1:
+      "I am a Software Engineer with 9+ years of programming experience, holding a Master's degree in Applied Computer Science and a Bachelor's degree in Computer Engineering from Wrocław University of Science and Technology. I graduated with a final grade of 5.0 at both levels, including distinction for my Master's. My education gave me both a strong software engineering foundation and a solid understanding of how computers work at a lower level, including microprocessor programming, assembly language, and how computers are built.",
+    paragraph1Collapsed:
+      "I am a Software Engineer with 9+ years of programming experience, holding a Master's degree in Applied Computer Science and a Bachelor's degree in Computer Engineering from Wrocław University of Science and Technology. I graduated with a final grade of 5.0 at both levels, including distinction for my Master's.",
+    paragraph2:
+      "I specialize in building modern, user-focused applications and am comfortable working across the entire development process, from architecture and implementation to deployment. My experience covers web, mobile and desktop applications, as well as game development and embedded systems. Throughout my studies and projects, I have worked across both frontend and backend, with a strong focus on Java, C++, TypeScript and JavaScript, while continuously expanding my toolkit and deploying applications end-to-end. I also have practical experience with DevOps and cloud technologies, including AWS, containerization and deployment. In recent projects, I have increasingly focused on AI-powered solutions, working with LLMs, RAG and AI integrations.",
+    paragraph3:
+      "I approach every task with professionalism, attention to detail and a strong sense of responsibility. I tend to be a perfectionist when it comes to the quality of my work, because I believe that the smallest details can make a real difference to the end user. I also value creativity in problem-solving and enjoy finding thoughtful, practical solutions rather than simply making something work. I am committed to continuous self-improvement and try to be 1% better every day.",
+    paragraph4:
+      "Outside of software development, I am passionate about travel and have visited 30 countries, giving me the opportunity to experience different cultures and broaden my perspective. I also enjoy music production, work with Photoshop and Lightroom, and occasionally edit videos. I have a strong interest in technology and, in my spare time, I also collect perfumes.",
+  },
+  pl: {
+    ...aboutText.pl,
+    paragraph1:
+      "Jestem Software Engineerem z ponad 9-letnim doświadczeniem w programowaniu. Posiadam tytuł magistra inżyniera informatyki stosowanej oraz inżyniera informatyki technicznej uzyskane na Politechnice Wrocławskiej. Studia ukończyłem z oceną końcową 5,0 na obu poziomach, w tym studia magisterskie z wyróżnieniem. Wykształcenie dało mi zarówno solidne podstawy inżynierii oprogramowania, jak i dobre zrozumienie działania komputera na niskim poziomie, obejmujące m.in. programowanie mikroprocesorów, język assembler oraz budowę komputerów.",
+    paragraph1Collapsed:
+      "Jestem Software Engineerem z ponad 9-letnim doświadczeniem w programowaniu. Posiadam tytuł magistra inżyniera informatyki stosowanej oraz inżyniera informatyki technicznej uzyskane na Politechnice Wrocławskiej. Studia ukończyłem z oceną końcową 5,0 na obu poziomach, w tym studia magisterskie z wyróżnieniem.",
+    paragraph2:
+      "Specjalizuję się w tworzeniu nowoczesnych, intuicyjnych i użytecznych dla użytkownika aplikacji i dobrze odnajduję się w całym procesie ich tworzenia — od architektury i implementacji po końcowe wdrożenie na rynek. Mam doświadczenie w tworzeniu aplikacji webowych, mobilnych i desktopowych, a także gier komputerowych i systemów embedded. W trakcie studiów i realizacji projektów pracowałem zarówno po stronie frontendu, jak i backendu, szczególnie wykorzystując języki Java, C++, TypeScript i JavaScript, lecz nie ograniczając się jedynie do nich, a stale poszerzając swój warsztat. Mam również praktyczne doświadczenie w obszarze DevOps i technologii chmurowych, w tym z AWS, konteneryzacją i wdrażaniem aplikacji end-to-end. W ostatnich projektach coraz większą część mojej pracy stanowi tworzenie aplikacji wykorzystujących sztuczną inteligencję, w tym modele językowe, systemy RAG oraz przetwarzanie języka naturalnego i mowy.",
+    paragraph3:
+      "Do każdego zadania podchodzę profesjonalnie, z dbałością o szczegóły i poczuciem odpowiedzialności. Dużą wagę przykładam do jakości wykonywanej pracy, ponieważ wierzę, że to właśnie najmniejsze detale potrafią zrobić dużą różnicę dla użytkownika końcowego. Cenię również kreatywność w rozwiązywaniu problemów i szukam przemyślanych, praktycznych rozwiązań, zamiast ograniczać się jedynie do tego, aby coś działało. Stale pracuję nad własnym rozwojem i staram się być o 1% lepszy każdego dnia.",
+    paragraph4:
+      "Poza programowaniem moją największą pasją są podróże — odwiedziłem już 30 krajów, dzięki czemu miałem okazję poznać różne kultury i poszerzyć swoje spojrzenie na świat. Interesuję się również produkcją muzyki, okazjonalnie wcielając się w rolę grafika (Photoshop i Lightroom), a czasem także montażysty wideo. Z zaciekawieniem śledzę różne nowinki technologiczne, a w wolnym czasie kolekcjonuję również perfumy.",
+  },
+} as const
+
+const compactAboutHighlights = {
+  en: [
+    ["software engineering", "Software Engineer", "Applied Computer Science", "Computer Engineering", "5.0 at both levels", "microprocessor programming", "assembly language"],
+    ["modern, user-focused applications", "deploying applications end-to-end", "web, mobile", "desktop applications", "game development", "embedded systems", "frontend", "backend", "Java, C++, TypeScript", "JavaScript", "DevOps", "cloud technologies", "AWS, containerization", "end-to-end deployment", "AI-powered solutions", "LLMs, RAG", "AI integrations"],
+    ["professionalism", "attention to detail", "a strong sense of responsibility", "perfectionist", "quality of my work", "creativity in problem-solving", "continuous self-improvement"],
+    ["travel", "music production", "Photoshop", "Lightroom", "technology", "perfumes"],
+  ],
+  pl: [
+    ["Software Engineerem", "informatyki technicznej", "5,0 na obu poziomach", "inżynierii oprogramowania", "programowanie mikroprocesorów", "język assembler"],
+    ["nowoczesnych, intuicyjnych i użytecznych dla użytkownika aplikacji", "końcowe wdrożenie na rynek", "aplikacji webowych, mobilnych i desktopowych", "gier komputerowych i systemów embedded", "frontendu, backendu", "Java, C++, TypeScript i JavaScript", "DevOps i technologii chmurowych", "AWS, konteneryzacją i wdrażaniem aplikacji end-to-end", "tworzenie aplikacji wykorzystujących sztuczną inteligencję", "modele językowe, systemy RAG oraz przetwarzanie języka naturalnego i mowy"],
+    ["profesjonalnie", "z dbałością o szczegóły i poczuciem odpowiedzialności", "jakości wykonywanej pracy", "kreatywność w rozwiązywaniu problemów"],
+    ["podróże", "produkcją muzyki", "nowinki technologiczne", "perfumy", "Photoshop i Lightroom"],
+  ],
+} as const
+
 export function TabAbout({ language, onOpenImagePreview, includeMusic = false }: TabAboutProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [isMusicOpen, setIsMusicOpen] = useState(false)
-  const text = aboutText[language]
+  const text = (includeMusic ? compactAboutText : aboutText)[language]
+  const highlights = includeMusic ? compactAboutHighlights[language] : null
+  const paragraph1Text = includeMusic
+    ? isOpen
+      ? compactAboutText[language].paragraph1
+      : compactAboutText[language].paragraph1Collapsed
+    : aboutText[language].paragraph1
 
   const hyphenateText = useMemo(() => {
     const hyphenate = language === "pl" ? hyphenatePl : hyphenateEn
@@ -87,11 +137,11 @@ export function TabAbout({ language, onOpenImagePreview, includeMusic = false }:
     const enPara2Extra = ["travelling", "trav­el­ing"]
 
  
-    const highlightClass = "text-neutral-300"
+    const highlightClass = includeMusic ? "text-white" : "text-neutral-300"
     // Hyphenation inserts soft-hyphen chars (\u00AD) which break simple regex matches.
     // Approach: hyphenate plain text, build mapping from de-hyphenated indices to hyphenated indices,
     // find matches in de-hyphenated text, and then wrap corresponding ranges in the hyphenated string.
-    const highlightHyphenated = (hyphText: string, words: string[]) => {
+    const highlightHyphenated = (hyphText: string, words: readonly string[]) => {
       const SOFT = '\u00AD'
       const dehyph = hyphText.split(SOFT).join('')
 
@@ -142,13 +192,14 @@ export function TabAbout({ language, onOpenImagePreview, includeMusic = false }:
       return out
     }
 
+    const words = highlights ?? (language === "pl" ? [plWords, plWords, plWords, plWords] : [enCommon, enCommon.concat(enPara2Extra), enCommon, enCommon])
     return {
-      paragraph1: highlightHyphenated(hyphenate(text.paragraph1), language === 'pl' ? plWords : enCommon),
-      paragraph2: highlightHyphenated(hyphenate(text.paragraph2), language === 'pl' ? plWords : enCommon.concat(enPara2Extra)),
-      paragraph3: highlightHyphenated(hyphenate(text.paragraph3), language === 'pl' ? plWords : enCommon),
-      paragraph4: highlightHyphenated(hyphenate(text.paragraph4), language === 'pl' ? plWords : enCommon),
+      paragraph1: highlightHyphenated(hyphenate(paragraph1Text), words[0]),
+      paragraph2: highlightHyphenated(hyphenate(text.paragraph2), words[1]),
+      paragraph3: highlightHyphenated(hyphenate(text.paragraph3), words[2]),
+      paragraph4: highlightHyphenated(hyphenate(text.paragraph4), words[3]),
     }
-  }, [language, text.paragraph1, text.paragraph2, text.paragraph3, text.paragraph4])
+  }, [language, includeMusic, isOpen, paragraph1Text, text.paragraph2, text.paragraph3, text.paragraph4])
 
   const compactAboutHoverClass = includeMusic
     ? "[@media(hover:hover)_and_(pointer:fine)]:hover:border-[#b817e4]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[#b817e4]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(184,23,228,0.18)] active:border-[#b817e4]/45 active:bg-[#b817e4]/10 active:shadow-[0_0_20px_rgba(184,23,228,0.18)]"
@@ -164,7 +215,9 @@ export function TabAbout({ language, onOpenImagePreview, includeMusic = false }:
           className="text-[12px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]"
           style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial', fontFeatureSettings: '"ss01"' }}
         >
-          {language === "en" ? (
+          {language === "en" && includeMusic ? (
+            <span dangerouslySetInnerHTML={{ __html: hyphenateText.paragraph1 }} />
+          ) : language === "en" ? (
             // Use hyphenated+highlighted HTML so keywords are highlighted
             <span
               dangerouslySetInnerHTML={{
@@ -355,9 +408,7 @@ export function TabAbout({ language, onOpenImagePreview, includeMusic = false }:
                 />
               ))}
             </div>
-            <span className="relative z-10 ml-auto flex size-8 shrink-0 items-center justify-center text-foreground">
-              <ChevronRight className={`size-4 transition-transform duration-300 ${isMusicOpen ? "rotate-90" : ""}`} />
-            </span>
+            <ChevronRight className={`relative z-10 ml-auto size-4 shrink-0 text-muted-foreground transition-transform duration-300 ${isMusicOpen ? "rotate-90" : ""}`} />
           </button>
           {isMusicOpen && (
             <div className="border-t border-border px-5 py-4">
