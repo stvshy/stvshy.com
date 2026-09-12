@@ -316,7 +316,7 @@ export function TabMusic({ language }: TabMusicProps) {
               fontVariationSettings: "'wght' 510",
             }}
           >
-            1
+            3
           </span>
           <p className="mt-1 text-[11.43px] text-muted-foreground">{text.tracksReleased}</p>
         </div>
