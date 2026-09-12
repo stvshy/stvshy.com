@@ -407,7 +407,7 @@ export function TabAbout({ language, onOpenImagePreview, includeMusic = false }:
                 {language === "pl" ? "Sprawdź moje utwory" : "Check out my tracks"}
               </span>
             </div>
-            <div className="pointer-events-none absolute right-[53px] top-1/2 flex h-13 -translate-y-[33.5px] items-end gap-[4px] opacity-7 transition-opacity duration-300 group-hover:opacity-25">
+            <div className="pointer-events-none absolute right-[50px] top-1/2 flex h-13 -translate-y-[33.5px] items-end gap-[4px] opacity-7 transition-opacity duration-300 group-hover:opacity-25">
               {[8, 19, 16, 25, 39, 52, 31, 46, 66, 49, 35, 57, 76, 61, 43, 29, 51, 37, 26, 18, 26, 9, 14].map((height, index) => (
                 <span
                   key={index}
