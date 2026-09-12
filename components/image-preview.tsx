@@ -15,6 +15,7 @@ export default function ImagePreview({ image, dialogLabel, closeLabel, onClose }
   const [isZoomed, setIsZoomed] = useState(false)
   const closeRef = useRef<HTMLButtonElement>(null)
   const isTripifyMap = image.src.includes("tripify-map")
+  const isDiploma = image.src.includes("dyplom")
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow
@@ -29,7 +30,7 @@ export default function ImagePreview({ image, dialogLabel, closeLabel, onClose }
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 md:bg-black/70 p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 md:bg-black/70"
       role="dialog"
       aria-modal="true"
       aria-label={dialogLabel}
@@ -69,23 +70,37 @@ export default function ImagePreview({ image, dialogLabel, closeLabel, onClose }
               loading="eager"
               fetchPriority="high"
               decoding="async"
-              className={`w-auto max-w-[95vw] rounded-xl object-contain ${
-                isTripifyMap ? "max-h-[90dvh] md:max-h-[96dvh]" : "max-h-[90dvh]"
+              className={`w-auto max-w-[calc(100vw-2rem)] rounded-xl object-contain ${
+                isDiploma
+                  ? "max-h-[94dvh] md:max-h-[96dvh]"
+                  : isTripifyMap
+                    ? "max-h-[90dvh] md:max-h-[96dvh]"
+                    : "max-h-[90dvh]"
               }`}
               style={{ touchAction: "none" }}
             />
+            <button
+              ref={closeRef}
+              type="button"
+              onClick={onClose}
+              aria-label={closeLabel}
+              className="preview-close-btn absolute right-2 top-2 z-10 inline-flex size-8 items-center justify-center rounded-full border border-border/70 bg-background/80 text-foreground transition-colors hover:bg-background"
+            >
+              <X className="size-4" />
+            </button>
           </div>
         </TransformComponent>
       </TransformWrapper>
-      <button
-        ref={closeRef}
-        type="button"
-        onClick={onClose}
-        aria-label={closeLabel}
-        className="preview-close-btn absolute right-4 top-4 z-10 inline-flex size-8 items-center justify-center rounded-full border border-border/70 bg-background/80 text-foreground transition-colors hover:bg-background"
-      >
-        <X className="size-4" />
-      </button>
+      {isZoomed && (
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label={closeLabel}
+          className="preview-close-btn fixed bottom-5 left-1/2 z-10 inline-flex size-10 -translate-x-1/2 items-center justify-center rounded-full border border-border/70 bg-background/90 text-foreground shadow-lg transition-colors hover:bg-background md:hidden"
+        >
+          <X className="size-5" />
+        </button>
+      )}
     </div>
   )
 }

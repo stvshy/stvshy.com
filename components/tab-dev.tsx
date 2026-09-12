@@ -3,7 +3,13 @@
 import Image from "next/image"
 import { useEffect, useRef, useState } from "react"
 import { ChevronDown, ExternalLink, Layers, X, Eye } from "lucide-react"
-import { MdLocalAirport, MdLock, MdOutlineLayers } from "react-icons/md"
+import { RiEyeLine } from "react-icons/ri";
+
+import {AiOutlineEye } from "react-icons/ai";
+import {BsFire} from "react-icons/bs";
+import { TbWorldSearch } from "react-icons/tb";
+
+import { MdLocalAirport, MdLock, MdOutlineLayers, MdOutlineTravelExplore } from "react-icons/md"
 import { ImLinkedin2 } from "react-icons/im"
 import { IoLogoGithub } from "react-icons/io"
 import { IoConstruct, IoGameController } from "react-icons/io5"
@@ -75,28 +81,42 @@ const links = [
   {
     label: "LinkedIn",
     description: "Profile & networking",
-    href: "https://www.linkedin.com/in/mateusz-staszk%C3%B3w/",
+    href: "https://www.linkedin.com/in/mateusz-staszkow/",
     icon: ImLinkedin2,
-    blocked: false,
-  },
-  {
-    label: "Travel Assistant",
-    description: "AI trip planning assistant",
-    href: "https://empathetic-ai-travel-assistant.vercel.app",
-    icon: RiChatVoiceAiFill,
     blocked: false,
   },
   {
     label: "Renovation System",
     description: "Workflow management platform",
-    href: "https://stvshy.github.io/renovation-system",
+    href: "https://renovation.stvshy.com",
     icon: IoConstruct,
+    blocked: false,
+  },
+  {
+    label: "Travel Assistant",
+    description: "AI trip planning assistant",
+    href: "https://travel-ai.stvshy.com",
+    icon: RiChatVoiceAiFill,
+    blocked: false,
+  },
+  {
+    label: "Travel Recommender",
+    description: "Personalized destination ranking",
+    href: "https://ankieta.stvshy.com",
+    icon: TbWorldSearch,
+    blocked: false,
+  },
+  {
+    label: "EvilChat",
+    description: "Toxic & offensive AI chat",
+    href: "https://evilchat.stvshy.com",
+    icon: BsFire,
     blocked: false,
   },
   {
     label: "Hollow Depths",
     description: "Game for desktop web",
-    href: "https://konrad-skowron.itch.io/hollow-depths",
+    href: "https://stvshy.short.gy/game2D",
     icon: IoGameController,
     blocked: false,
   },
@@ -120,6 +140,8 @@ const devText = {
       github: "Projects & contributions",
       linkedin: "Profile & networking",
       travelAssistant: "AI trip planning assistant",
+      travelRecommender: "Personalized destination ranking",
+      evilChat: "Toxic & offensive AI chat",
       hollowDepths: "Game for desktop web",
       renovationSystem: "Workflow management platform",
       tripify: "Mobile app — work in progress",
@@ -128,8 +150,8 @@ const devText = {
     certificatesCount: "Certificates",
     education: "Education",
     closeEducation: "Close Education",
-    schoolFocus: "Focus: Mathematics & Computer Science",
-    schoolFocusShort: "Maths & Computer Science",
+    schoolFocus: "Focus: Computer Science & Mathematics",
+    schoolFocusShort: "Computer Science & Maths",
     bachelor: "Bachelor's degree",
     master: "Master's degree",
     certificates: "Certificates",
@@ -152,6 +174,8 @@ const devText = {
       github: "Projekty i wkład",
       linkedin: "Profil i networking",
       travelAssistant: "AI asystent do planowania podróży",
+      travelRecommender: "Spersonalizowany ranking destynacji",
+      evilChat: "Toksyczny i obraźliwy czat AI",
       hollowDepths: "Gra przeglądarkowa na komputery",
       renovationSystem: "Platforma do zarządzania procesem",
       tripify: "Aplikacja mobilna — już wkrótce",
@@ -160,8 +184,8 @@ const devText = {
     certificatesCount: "Certyfikaty",
     education: "Edukacja",
     closeEducation: "Zamknij edukację",
-    schoolFocus: "Profil: Matematyka & Informatyka",
-    schoolFocusShort: "Matematyka & Informatyka",
+    schoolFocus: "Profil: Informatyka & Matematyka",
+    schoolFocusShort: "Informatyka & Matematyka",
     bachelor: "Studia inżynierskie",
     master: "Studia magisterskie",
     certificates: "Certyfikaty",
@@ -427,6 +451,8 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
       GitHub: text.linkDescriptions.github,
       LinkedIn: text.linkDescriptions.linkedin,
       "Travel Assistant": text.linkDescriptions.travelAssistant,
+      "Travel Recommender": text.linkDescriptions.travelRecommender,
+      EvilChat: text.linkDescriptions.evilChat,
       "Renovation System": text.linkDescriptions.renovationSystem,
       "Hollow Depths": text.linkDescriptions.hollowDepths,
       Tripify: text.linkDescriptions.tripify,
@@ -475,7 +501,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                 : "bg-[var(--dev-accent)]/15 text-[var(--dev-accent)] [@media(hover:hover)_and_(pointer:fine)]:group-hover:bg-[var(--dev-accent)]/25 group-active:bg-[var(--dev-accent)]/25"
             }`}
           >
-            <link.icon className={link.label === "GitHub" ? "size-6" : "size-5"} />
+            <link.icon className={link.label === "GitHub" ? "size-6" : link.label === "Travel Recommender" ? "size-[20.6px]" : link.label === "EvilChat" ? "size-[19.7px]" : "size-5"} />
           </div>
           <div className="flex flex-col gap-0.5">
             <span
@@ -615,23 +641,6 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
             {text.education}
           </p>
           <div className="space-y-3">
-            <div className="relative rounded-lg border border-border/70 bg-card/42 px-2.5 py-2 pr-24">
-              <p
-                className="absolute right-[22px] inset-y-0 my-auto inline-flex h-[19.85px] items-center justify-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 text-[9.5px] font-semibold leading-none tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)] w-[74px] text-center"
-                style={{ fontFamily: 'Montserrat, MontserratCustom, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
-              >
-                <span className="year-pill-label">2018 - 2021</span>
-              </p>
-              <p className="text-[11.45px] text-foreground" style={{ letterSpacing: '-0.055em', marginBottom: '2.4px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
-                <span className="sm:hidden">{highSchoolName.short}</span>
-                <span className="hidden sm:inline">{highSchoolName.long}</span>
-              </p>
-              <p className="text-[10.95px] text-muted-foreground" style={{ letterSpacing: '-0.039em' }}>
-                <span className="sm:hidden">{text.schoolFocusShort}</span>
-                <span className="hidden sm:inline">{text.schoolFocus}</span>
-              </p>
-            </div>
-
             <div className="rounded-lg border border-border/70 bg-card/42 px-3 py-3">
               <p
                 className={
@@ -649,34 +658,144 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                   {language === "pl" ? "Politechnika Wrocławska" : "Wrocław University of Science and Technology"}
                 </span>              </p>
               <div className="mt-2 space-y-2">
-                  <div className="relative rounded-md border border-border/60 bg-card px-2.5 py-2 pr-24">
+                <div className="relative rounded-md border border-border/60 bg-card px-2.5 py-2 pr-[86px] sm:pr-[112px]">
+                  <div className="absolute right-2.5 inset-y-0 my-auto flex h-[19.85px] items-center gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        onOpenImagePreview(
+                          language === "pl" ? "/images/dyplom-mgr-pl.jpg" : "/images/dyplom-mgr-eng.jpg",
+                          `${appliedComputerScienceLabel} ${text.master} diploma`
+                        )
+                      }
+                      onPointerEnter={() =>
+                        preloadPreviewImage(language === "pl" ? "/images/dyplom-mgr-pl.jpg" : "/images/dyplom-mgr-eng.jpg")
+                      }
+                      onFocus={() =>
+                        preloadPreviewImage(language === "pl" ? "/images/dyplom-mgr-pl.jpg" : "/images/dyplom-mgr-eng.jpg")
+                      }
+                      onTouchStart={() =>
+                        preloadPreviewImage(language === "pl" ? "/images/dyplom-mgr-pl.jpg" : "/images/dyplom-mgr-eng.jpg")
+                      }
+                      aria-label={`${text.previewPrefix} ${appliedComputerScienceLabel} diploma`}
+                      className="hidden h-[19.5px] w-[21.5px] shrink-0 items-center justify-center rounded-full border border-border/60 bg-card text-muted-foreground transition-colors sm:inline-flex sm:h-5 sm:w-6 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[var(--dev-accent)] active:text-[var(--dev-accent)]"
+                    >
+                      <Eye className="size-3.5" />
+                    </button>
                     <p
-                      className="absolute right-2.5 inset-y-0 my-auto inline-flex h-[19.85px] items-center justify-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 text-[9.5px] font-semibold leading-none tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)] w-[74px] text-center"
+                      className="inline-flex h-[19.85px] items-center justify-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 text-[9.5px] font-semibold leading-none tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)] w-[74px] text-center"
+                      style={{ fontFamily: 'Montserrat, MontserratCustom, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
+                    >
+                      <span className="year-pill-label">2025 - 2026</span>
+                    </p>
+                  </div>
+                  <p className="text-[11.6px] text-foreground" style={{ letterSpacing: '-0.054em', marginBottom: '1.3px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
+                    {appliedComputerScienceLabel}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      onOpenImagePreview(
+                        language === "pl" ? "/images/dyplom-mgr-pl.jpg" : "/images/dyplom-mgr-eng.jpg",
+                        `${appliedComputerScienceLabel} ${text.master} diploma`
+                      )
+                    }
+                    onPointerEnter={() =>
+                      preloadPreviewImage(language === "pl" ? "/images/dyplom-mgr-pl.jpg" : "/images/dyplom-mgr-eng.jpg")
+                    }
+                    onFocus={() =>
+                      preloadPreviewImage(language === "pl" ? "/images/dyplom-mgr-pl.jpg" : "/images/dyplom-mgr-eng.jpg")
+                    }
+                    onTouchStart={() =>
+                      preloadPreviewImage(language === "pl" ? "/images/dyplom-mgr-pl.jpg" : "/images/dyplom-mgr-eng.jpg")
+                    }
+                    aria-label={`${text.previewPrefix} ${appliedComputerScienceLabel} diploma`}
+                    className="inline-flex items-center gap-1.5 text-left sm:hidden"
+                  >
+                    <span className="text-[11.0px] text-muted-foreground" style={{ letterSpacing: '-0.039em' }}>{text.master}</span>
+                    <RiEyeLine className="eye-icon-glow size-[10px] shrink-0 text-muted-foreground" />
+                  </button>
+                  <p className="hidden text-[11.0px] text-muted-foreground sm:block" style={{ letterSpacing: '-0.039em' }}>{text.master}</p>
+                </div>
+                <div className="relative rounded-md border border-border/60 bg-card px-2.5 py-2 pr-[86px] sm:pr-[112px]">
+                  <div className="absolute right-2.5 inset-y-0 my-auto flex h-[19.85px] items-center gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        onOpenImagePreview(
+                          language === "pl" ? "/images/dyplom-inz-pl.jpg" : "/images/dyplom-inz-eng.jpg",
+                          `${computerEngineeringLabel} ${text.bachelor} diploma`
+                        )
+                      }
+                      onPointerEnter={() =>
+                        preloadPreviewImage(language === "pl" ? "/images/dyplom-inz-pl.jpg" : "/images/dyplom-inz-eng.jpg")
+                      }
+                      onFocus={() =>
+                        preloadPreviewImage(language === "pl" ? "/images/dyplom-inz-pl.jpg" : "/images/dyplom-inz-eng.jpg")
+                      }
+                      onTouchStart={() =>
+                        preloadPreviewImage(language === "pl" ? "/images/dyplom-inz-pl.jpg" : "/images/dyplom-inz-eng.jpg")
+                      }
+                      aria-label={`${text.previewPrefix} ${computerEngineeringLabel} diploma`}
+                      className="hidden h-[19.5px] w-[21.5px] shrink-0 items-center justify-center rounded-full border border-border/60 bg-card text-muted-foreground transition-colors sm:inline-flex sm:h-5 sm:w-6 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[var(--dev-accent)] active:text-[var(--dev-accent)]"
+                    >
+                      <Eye className="size-3.5" />
+                    </button>
+                    <p
+                      className="inline-flex h-[19.85px] items-center justify-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 text-[9.5px] font-semibold leading-none tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)] w-[74px] text-center"
                       style={{ fontFamily: 'Montserrat, MontserratCustom, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
                     >
                       <span className="year-pill-label">2021 - 2025</span>
                     </p>
-       
-                  <p className="text-[11.6px] text-foreground" style={{ letterSpacing: '-0.054em', marginBottom: '1.3px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
+                  </div>
+                  <p className="text-[11.45px] text-foreground" style={{ letterSpacing: '-0.055em', marginBottom: '2.4px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
                     {computerEngineeringLabel}
                   </p>
-                  <p className="text-[11.0px] text-muted-foreground" style={{ letterSpacing: '-0.039em' }}>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      onOpenImagePreview(
+                        language === "pl" ? "/images/dyplom-inz-pl.jpg" : "/images/dyplom-inz-eng.jpg",
+                        `${computerEngineeringLabel} ${text.bachelor} diploma`
+                      )
+                    }
+                    onPointerEnter={() =>
+                      preloadPreviewImage(language === "pl" ? "/images/dyplom-inz-pl.jpg" : "/images/dyplom-inz-eng.jpg")
+                    }
+                    onFocus={() =>
+                      preloadPreviewImage(language === "pl" ? "/images/dyplom-inz-pl.jpg" : "/images/dyplom-inz-eng.jpg")
+                    }
+                    onTouchStart={() =>
+                      preloadPreviewImage(language === "pl" ? "/images/dyplom-inz-pl.jpg" : "/images/dyplom-inz-eng.jpg")
+                    }
+                    aria-label={`${text.previewPrefix} ${computerEngineeringLabel} diploma`}
+                    className="inline-flex items-center gap-1.5 text-left sm:hidden"
+                  >
+                    <span className="text-[11.0px] text-muted-foreground" style={{ letterSpacing: '-0.039em' }}>{text.bachelor}</span>
+                    <RiEyeLine className="eye-icon-glow size-[10px] shrink-0 text-muted-foreground" />
+                  </button>
+                  <p className="hidden text-[11.0px] text-muted-foreground sm:block" style={{ letterSpacing: '-0.039em' }}>
                     {text.bachelor}
                   </p>
                 </div>
-                <div className="relative rounded-md border border-border/60 bg-card px-2.5 py-2 pr-24">
-                  <p
-                    className="absolute right-2.5 inset-y-0 my-auto inline-flex h-[19.85px] items-center justify-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 text-[9.5px] font-semibold leading-none tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)] w-[74px] text-center"
-                    style={{ fontFamily: 'Montserrat, MontserratCustom, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
-                  >
-                    <span className="year-pill-label">2025 - 2026</span>
-                  </p>
-                  <p className="text-[11.6px] text-foreground" style={{ letterSpacing: '-0.054em', marginBottom: '1.3px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
-                    {appliedComputerScienceLabel}
-                  </p>
-                  <p className="text-[11.0px] text-muted-foreground" style={{ letterSpacing: '-0.039em' }}>{text.master}</p>
-                </div>
               </div>
+            </div>
+
+            <div className="relative rounded-lg border border-border/70 bg-card/42 px-2.5 py-2 pr-24">
+              <p
+                className="absolute right-[22px] inset-y-0 my-auto inline-flex h-[19.85px] items-center justify-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 text-[9.5px] font-semibold leading-none tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)] w-[74px] text-center"
+                style={{ fontFamily: 'Montserrat, MontserratCustom, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
+              >
+                <span className="year-pill-label">2018 - 2021</span>
+              </p>
+              <p className="text-[11.45px] text-foreground" style={{ letterSpacing: '-0.055em', marginBottom: '2.4px', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
+                <span className="sm:hidden">{highSchoolName.short}</span>
+                <span className="hidden sm:inline">{highSchoolName.long}</span>
+              </p>
+              <p className="text-[10.95px] text-muted-foreground" style={{ letterSpacing: '-0.039em' }}>
+                <span className="sm:hidden">{text.schoolFocusShort}</span>
+                <span className="hidden sm:inline">{text.schoolFocus}</span>
+              </p>
             </div>
           </div>
           </div>
