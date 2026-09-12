@@ -316,7 +316,7 @@ export function TabAbout({ language, onOpenImagePreview, includeMusic = false }:
                   </linearGradient>
                 </defs>
                 <path d="M9 18V5l10-2v13h-2V5.6l-6 1.2V18H9Z" />
-                <circle cx="7.5" cy="18" r="3" />
+                <circle cx="8" cy="18" r="3" />
                 <circle cx="16" cy="16" r="3" />
               </svg>
             </div>
@@ -331,7 +331,7 @@ export function TabAbout({ language, onOpenImagePreview, includeMusic = false }:
                   fontVariationSettings: "'wght' 510",
                 }}
               >
-                Music
+                {language === "pl" ? "Muzyka" : "Music"}
               </span>
               <span
                 className="text-[11.43px] text-muted-foreground"
