@@ -14,7 +14,7 @@ type ImagePreviewProps = {
 export default function ImagePreview({ image, dialogLabel, closeLabel, onClose }: ImagePreviewProps) {
   const [isZoomed, setIsZoomed] = useState(false)
   const closeRef = useRef<HTMLButtonElement>(null)
-  const isTripifyMap = image.src.includes("tripify-map")
+  const isTripifyMap = image.src.includes("tripify-map3")
   const isDiploma = image.src.includes("dyplom")
 
   useEffect(() => {

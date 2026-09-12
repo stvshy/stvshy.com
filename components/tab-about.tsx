@@ -285,7 +285,7 @@ export function TabAbout({ language, onOpenImagePreview, includeMusic = false }:
       <div className="grid grid-cols-2 gap-3">
         <button
           type="button"
-          onClick={() => onOpenImagePreview("/images/tripify-map.jpg", "Tripify map")}
+          onClick={() => onOpenImagePreview("/images/tripify-map3.webp", "Tripify map")}
           className={`group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-[background-color,border-color,color,box-shadow] duration-300 ${
             includeMusic
               ? compactAboutHoverClass
