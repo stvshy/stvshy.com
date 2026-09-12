@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react"
 import { BsChevronCompactDown, BsChevronCompactUp } from "react-icons/bs"
-import { ChevronDown, ChevronRight, Music2 } from "lucide-react"
+import { ChevronRight, Music2 } from "lucide-react"
 import { hyphenateSync as hyphenateEn } from "hyphen/en"
 import { hyphenateSync as hyphenatePl } from "hyphen/pl"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
@@ -150,9 +150,16 @@ export function TabAbout({ language, onOpenImagePreview, includeMusic = false }:
     }
   }, [language, text.paragraph1, text.paragraph2, text.paragraph3, text.paragraph4])
 
+  const compactAboutHoverClass = includeMusic
+    ? "[@media(hover:hover)_and_(pointer:fine)]:hover:border-[#b817e4]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[#b817e4]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(184,23,228,0.18)] active:border-[#b817e4]/45 active:bg-[#b817e4]/10 active:shadow-[0_0_20px_rgba(184,23,228,0.18)]"
+    : ""
+
   return (
     <div className="flex flex-col gap-4">
-      <div className="rounded-xl border border-border bg-card px-5 pt-3.5 pb-5 backdrop-blur-xl" lang={language}>
+      <div
+        className={`rounded-xl border border-border bg-card px-5 pt-3.5 pb-5 backdrop-blur-xl transition-[background-color,border-color,color,box-shadow] duration-300 ${compactAboutHoverClass}`}
+        lang={language}
+      >
         <p
           className="text-[12px] leading-relaxed text-muted-foreground text-justify [hyphens:auto] [-webkit-hyphens:auto] [-ms-hyphens:auto]"
           style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial', fontFeatureSettings: '"ss01"' }}
@@ -215,7 +222,11 @@ export function TabAbout({ language, onOpenImagePreview, includeMusic = false }:
         <button
           type="button"
           onClick={() => onOpenImagePreview("/images/tripify-map.jpg", "Tripify map")}
-          className="group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-[background-color,border-color,color,box-shadow] duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-foreground/30 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-foreground/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(240,240,240,0.08)] active:border-foreground/30 active:bg-foreground/10 active:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
+          className={`group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-[background-color,border-color,color,box-shadow] duration-300 ${
+            includeMusic
+              ? compactAboutHoverClass
+              : "[@media(hover:hover)_and_(pointer:fine)]:hover:border-foreground/30 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-foreground/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(240,240,240,0.08)] active:border-foreground/30 active:bg-foreground/10 active:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
+          }`}
           aria-label={text.mapPreviewLabel}
         >
           <ChevronRight className="absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground transition-transform [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-0.5 [@media(hover:hover)_and_(pointer:fine)]:group-hover:text-foreground group-active:translate-x-0.5 group-active:text-foreground" />
@@ -235,7 +246,11 @@ export function TabAbout({ language, onOpenImagePreview, includeMusic = false }:
           href="https://www.fragrantica.pl/uzytkownicy/34655"
           target="_blank"
           rel="noopener noreferrer"
-          className="group relative rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl transition-[background-color,border-color,color,box-shadow] duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-foreground/30 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-foreground/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(240,240,240,0.08)] active:border-foreground/30 active:bg-foreground/10 active:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
+          className={`group relative rounded-xl border border-border bg-card px-4 py-4 backdrop-blur-xl transition-[background-color,border-color,color,box-shadow] duration-300 ${
+            includeMusic
+              ? compactAboutHoverClass
+              : "[@media(hover:hover)_and_(pointer:fine)]:hover:border-foreground/30 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-foreground/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(240,240,240,0.08)] active:border-foreground/30 active:bg-foreground/10 active:shadow-[0_0_20px_rgba(240,240,240,0.08)]"
+          }`}
           aria-label={text.fragranticaLabel}
         >
           <ChevronRight className="absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground transition-transform [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-0.5 [@media(hover:hover)_and_(pointer:fine)]:group-hover:text-foreground group-active:translate-x-0.5 group-active:text-foreground" />
@@ -264,34 +279,64 @@ export function TabAbout({ language, onOpenImagePreview, includeMusic = false }:
             type="button"
             onClick={() => setIsMusicOpen((previous) => !previous)}
             aria-expanded={isMusicOpen}
-            className={`group flex w-full items-center gap-4 px-5 py-3 text-left transition-[background-color,border-color,color,box-shadow] duration-300 ${
+            className={`group relative flex h-16 w-full items-center gap-4 overflow-hidden px-5 py-3 text-left transition-[background-color,border-color,color,box-shadow] duration-300 ${
               isMusicOpen
                 ? "rounded-t-xl [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[#b817e4]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(184,23,228,0.18)] active:bg-[#b817e4]/10 active:shadow-[0_0_20px_rgba(184,23,228,0.18)]"
                 : "rounded-xl"
             }`}
           >
-            <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-[#b817e4]/10 text-[#b817e4] transition-colors [@media(hover:hover)_and_(pointer:fine)]:group-hover:bg-[#b817e4]/20 group-active:bg-[#b817e4]/20">
-              <Music2 className="size-5" />
+            <div
+              className="relative z-10 flex size-10 shrink-0 items-center justify-center rounded-lg bg-clip-padding opacity-5 transition-colors [@media(hover:hover)_and_(pointer:fine)]:brightness-110 group-active:brightness-110"
+              style={{
+                backgroundImage: "linear-gradient(to right, var(--dev-accent) 0%, #8b60e8 40%, #8b60e8 60%, #b817e4 100%)",
+                backgroundColor: "rgb(184 23 228 / 0.1)",
+              }}
+            >
+              <Music2
+                className="size-[21px] bg-clip-text text-transparent"
+                style={{
+                  backgroundImage: "linear-gradient(to right, var(--dev-accent) 0%, #8b60e8 40%, #8b60e8 60%, #b817e4 100%)",
+                }}
+              />
             </div>
-            <div className="flex flex-col gap-0.5">
+            <div className="relative z-10 flex min-w-0 flex-col gap-0.5">
               <span
-                className="text-[13px] font-semibold text-foreground"
-                style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
+                className="text-[12.58px] text-foreground"
+                style={{
+                  fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
+                  letterSpacing: '-0.02em',
+                  marginBottom: '0.1px',
+                  fontWeight: 510,
+                  fontVariationSettings: "'wght' 510",
+                }}
               >
                 Music
               </span>
               <span
-                className="text-[11px] text-muted-foreground"
-                style={{ fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}
+                className="text-[11.43px] text-muted-foreground"
+                style={{
+                  fontFamily: 'Monorale, Raleway, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
+                  letterSpacing: '-0.01em',
+                }}
               >
                 {language === "pl" ? "Sprawdź moje utwory" : "Check out my tracks"}
               </span>
             </div>
-            <ChevronDown
-              className={`ml-auto size-[18px] text-muted-foreground transition-transform ${
-                isMusicOpen ? "rotate-180" : ""
-              }`}
-            />
+            <div className="pointer-events-none absolute right-[53px] top-1/2 flex h-13 -translate-y-[33.5px] items-end gap-[4px] opacity-7 transition-opacity duration-300 group-hover:opacity-25">
+              {[8, 19, 16, 25, 39, 52, 31, 46, 66, 49, 35, 57, 76, 61, 43, 29, 51, 37, 26, 18, 26, 9, 14].map((height, index) => (
+                <span
+                  key={index}
+                  className="w-[3px] rounded-full"
+                  style={{
+                    height: `${height}%`,
+                    backgroundImage: "linear-gradient(to right, var(--dev-accent) 0%, #8b60e8 40%, #8b60e8 60%, #b817e4 100%)",
+                  }}
+                />
+              ))}
+            </div>
+            <span className="relative z-10 ml-auto flex size-8 shrink-0 items-center justify-center text-foreground">
+              <ChevronRight className={`size-4 transition-transform duration-300 ${isMusicOpen ? "rotate-90" : ""}`} />
+            </span>
           </button>
           {isMusicOpen && (
             <div className="border-t border-border px-5 py-4">
