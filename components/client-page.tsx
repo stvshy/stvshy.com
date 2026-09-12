@@ -114,7 +114,9 @@ const updateUrl = (tab: string, lang: string) => {
   }, [language])
 
   const contactHoverClassName =
-    activeTab === "dev"
+    compactDevMode && activeTab === "about"
+      ? "[@media(hover:hover)_and_(pointer:fine)]:hover:border-[#b817e4]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[#b817e4]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[#b817e4] [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(184,23,228,0.18)] active:border-[#b817e4]/45 active:bg-[#b817e4]/10 active:text-[#b817e4] active:shadow-[0_0_20px_rgba(184,23,228,0.18)]"
+    : activeTab === "dev"
       ? "[@media(hover:hover)_and_(pointer:fine)]:hover:border-[var(--dev-accent)]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[var(--dev-accent)]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[var(--dev-accent)] [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)] active:border-[var(--dev-accent)]/45 active:bg-[var(--dev-accent)]/10 active:text-[var(--dev-accent)] active:shadow-[0_0_20px_rgba(var(--dev-accent-rgb),0.18)]"
       : activeTab === "music"
         ? "[@media(hover:hover)_and_(pointer:fine)]:hover:border-[#b817e4]/45 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[#b817e4]/10 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[#b817e4] [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_0_20px_rgba(184,23,228,0.18)] active:border-[#b817e4]/45 active:bg-[#b817e4]/10 active:text-[#b817e4] active:shadow-[0_0_20px_rgba(184,23,228,0.18)]"
@@ -152,20 +154,45 @@ const updateUrl = (tab: string, lang: string) => {
                 height={16}
                 className="mr-1 size-4"
               />
-              {compactDevMode ? "Developement" : text.tabs.dev}
+              {compactDevMode
+                ? language === "pl"
+                  ? "Programowanie"
+                  : "Development"
+                : text.tabs.dev}
             </TabsTrigger>
             <TabsTrigger
               value="about"
               className="text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-foreground/10 data-[state=active]:text-foreground data-[state=active]:shadow-none [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:bg-background/10 [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:border-border [@media(hover:hover)_and_(pointer:fine)]:data-[state=inactive]:hover:text-muted-foreground/70 data-[state=inactive]:active:bg-background/10 data-[state=inactive]:active:border-border data-[state=inactive]:active:text-muted-foreground/70"
             >
-              <Image
-                src="/images/about-icon5.png"
-                alt="About icon"
-                width={16}
-                height={16}
-                className="mr-1 size-4"
-              />
-              {compactDevMode ? "About me" : text.tabs.about}
+              {compactDevMode ? (
+                <span
+                  aria-hidden="true"
+                  className="mr-1 inline-block size-4 bg-gradient-to-r from-[#8b60e8] to-[#b817e4]"
+                  style={{
+                    maskImage: "url('/images/about-icon5.png')",
+                    maskRepeat: "no-repeat",
+                    maskPosition: "center",
+                    maskSize: "contain",
+                    WebkitMaskImage: "url('/images/about-icon5.png')",
+                    WebkitMaskRepeat: "no-repeat",
+                    WebkitMaskPosition: "center",
+                    WebkitMaskSize: "contain",
+                  }}
+                />
+              ) : (
+                <Image
+                  src="/images/about-icon5.png"
+                  alt="About icon"
+                  width={16}
+                  height={16}
+                  className="mr-1 size-4"
+                />
+              )}
+              {compactDevMode
+                ? language === "pl"
+                  ? "Zainteresowania"
+                  : "Beyond Code"
+                : text.tabs.about}
             </TabsTrigger>
             {!compactDevMode && <TabsTrigger
               value="music"
