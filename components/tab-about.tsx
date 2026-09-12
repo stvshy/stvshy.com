@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react"
 import { BsChevronCompactDown, BsChevronCompactUp } from "react-icons/bs"
-import { ChevronRight, Music2 } from "lucide-react"
+import { ChevronRight } from "lucide-react"
 import { hyphenateSync as hyphenateEn } from "hyphen/en"
 import { hyphenateSync as hyphenatePl } from "hyphen/pl"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
@@ -157,7 +157,7 @@ export function TabAbout({ language, onOpenImagePreview, includeMusic = false }:
   return (
     <div className="flex flex-col gap-4">
       <div
-        className={`rounded-xl border border-border bg-card px-5 pt-3.5 pb-5 backdrop-blur-xl transition-[background-color,border-color,color,box-shadow] duration-300 ${compactAboutHoverClass}`}
+        className="rounded-xl border border-border bg-card px-5 pt-3.5 pb-5 backdrop-blur-xl"
         lang={language}
       >
         <p
@@ -286,18 +286,39 @@ export function TabAbout({ language, onOpenImagePreview, includeMusic = false }:
             }`}
           >
             <div
-              className="relative z-10 flex size-10 shrink-0 items-center justify-center rounded-lg bg-clip-padding opacity-5 transition-colors [@media(hover:hover)_and_(pointer:fine)]:brightness-110 group-active:brightness-110"
-              style={{
-                backgroundImage: "linear-gradient(to right, var(--dev-accent) 0%, #8b60e8 40%, #8b60e8 60%, #b817e4 100%)",
-                backgroundColor: "rgb(184 23 228 / 0.1)",
-              }}
+              className="relative z-10 flex size-10 shrink-0 items-center justify-center rounded-lg transition-colors [@media(hover:hover)_and_(pointer:fine)]:brightness-110 group-active:brightness-110"
             >
-              <Music2
-                className="size-[21px] bg-clip-text text-transparent"
+              <span
+                className="absolute inset-0 rounded-lg opacity-5"
+                aria-hidden="true"
                 style={{
-                  backgroundImage: "linear-gradient(to right, var(--dev-accent) 0%, #8b60e8 40%, #8b60e8 60%, #b817e4 100%)",
+                  backgroundImage: "linear-gradient(to right, #b817e4 0%, #8b60e8 40%, #8b60e8 60%, var(--dev-accent) 100%)",
                 }}
               />
+              <svg
+                className="relative z-10 size-[23px] opacity-100"
+                viewBox="0 0 24 24"
+                fill="url(#music-icon-gradient)"
+                aria-hidden="true"
+              >
+                <defs>
+                  <linearGradient
+                    id="music-icon-gradient"
+                    gradientUnits="userSpaceOnUse"
+                    x1="4"
+                    y1="0"
+                    x2="20"
+                    y2="0"
+                  >
+                    <stop offset="0%" stopColor="#b817e4" />
+                    <stop offset="50%" stopColor="#8b60e8" />
+                    <stop offset="100%" stopColor="#05daff" />
+                  </linearGradient>
+                </defs>
+                <path d="M9 18V5l10-2v13h-2V5.6l-6 1.2V18H9Z" />
+                <circle cx="7.5" cy="18" r="3" />
+                <circle cx="16" cy="16" r="3" />
+              </svg>
             </div>
             <div className="relative z-10 flex min-w-0 flex-col gap-0.5">
               <span
