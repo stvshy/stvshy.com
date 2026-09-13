@@ -5,29 +5,37 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-const preloadedImageSrcs = new Set<string>()
+const preloadedImages = new Map<string, Promise<void>>()
 
-// Kicks off the fastest possible fetch+decode for a full-res image so it's
-// already cached by the time the preview modal opens (called on hover/focus/
-// pointerdown, i.e. before the click that actually opens the modal).
+// Kicks off fetch+decode for a full-res image so it's already cached/decoded
+// by the time the preview modal opens (called once a section revealing it opens).
 export function preloadImage(src: string) {
-  if (typeof window === 'undefined' || preloadedImageSrcs.has(src)) return
-  preloadedImageSrcs.add(src)
+  if (typeof window === 'undefined') return Promise.resolve()
 
-  const link = document.createElement('link')
-  link.rel = 'preload'
-  link.as = 'image'
-  link.href = src
-  link.fetchPriority = 'high'
-  document.head.appendChild(link)
+  const existing = preloadedImages.get(src)
+  if (existing) return existing
 
-  const image = new window.Image()
-  image.decoding = 'async'
-  image.fetchPriority = 'high'
-  image.src = src
-  image.decode?.().catch(() => {})
+  const promise = new Promise<void>((resolve) => {
+    const img = new window.Image()
+    img.decoding = 'async'
+    img.fetchPriority = 'high'
+
+    img.onload = () => {
+      if (img.decode) {
+        img.decode().catch(() => {}).finally(resolve)
+      } else {
+        resolve()
+      }
+    }
+
+    img.onerror = () => resolve()
+    img.src = src
+  })
+
+  preloadedImages.set(src, promise)
+  return promise
 }
 
 export function isImagePreloaded(src: string) {
-  return preloadedImageSrcs.has(src)
+  return preloadedImages.has(src)
 }

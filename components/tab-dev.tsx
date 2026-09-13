@@ -286,10 +286,6 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
     }, STACK_PRESS_DURATION_MS)
   }
 
-  // Delegates to the shared preload helper (link rel=preload + decoded Image()),
-  // so the full-size preview is already cached/decoded by the time the modal opens.
-  const preloadPreviewImage = preloadImage
-
   // Section is opening = strong signal the diplomas are about to be viewed, so
   // start fetching them now instead of waiting for a hover/touch on the eye icon.
   useEffect(() => {
@@ -695,16 +691,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                           `${appliedComputerScienceLabel} ${text.master} diploma`
                         )
                       }
-                      onPointerEnter={() =>
-                        preloadPreviewImage(language === "pl" ? "/images/dyplom-mgr-pl.jpg" : "/images/dyplom-mgr-eng.jpg")
-                      }
-                      onFocus={() =>
-                        preloadPreviewImage(language === "pl" ? "/images/dyplom-mgr-pl.jpg" : "/images/dyplom-mgr-eng.jpg")
-                      }
-                      onTouchStart={() => {
-                        triggerPreviewPress("master-desktop")
-                        preloadPreviewImage(language === "pl" ? "/images/dyplom-mgr-pl.jpg" : "/images/dyplom-mgr-eng.jpg")
-                      }}
+                      onTouchStart={() => triggerPreviewPress("master-desktop")}
                       aria-label={`${text.previewPrefix} ${appliedComputerScienceLabel} diploma`}
                       className={`hidden h-[19.5px] w-[21.5px] shrink-0 items-center justify-center rounded-full border border-border/60 bg-card text-muted-foreground transition-all duration-150 sm:inline-flex sm:h-5 sm:w-6 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[var(--dev-accent)] active:text-[var(--dev-accent)] active:scale-90 ${
                         pressedPreviewKey === "master-desktop"
@@ -732,16 +719,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                         `${appliedComputerScienceLabel} ${text.master} diploma`
                       )
                     }
-                    onPointerEnter={() =>
-                      preloadPreviewImage(language === "pl" ? "/images/dyplom-mgr-pl.jpg" : "/images/dyplom-mgr-eng.jpg")
-                    }
-                    onFocus={() =>
-                      preloadPreviewImage(language === "pl" ? "/images/dyplom-mgr-pl.jpg" : "/images/dyplom-mgr-eng.jpg")
-                    }
-                    onTouchStart={() => {
-                      triggerPreviewPress("master-mobile")
-                      preloadPreviewImage(language === "pl" ? "/images/dyplom-mgr-pl.jpg" : "/images/dyplom-mgr-eng.jpg")
-                    }}
+                    onTouchStart={() => triggerPreviewPress("master-mobile")}
                     aria-label={`${text.previewPrefix} ${appliedComputerScienceLabel} diploma`}
                     className={`inline-flex items-center gap-1.5 rounded-md text-left transition-transform duration-150 sm:hidden ${
                       pressedPreviewKey === "master-mobile" ? "scale-95" : ""
@@ -772,16 +750,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                           `${computerEngineeringLabel} ${text.bachelor} diploma`
                         )
                       }
-                      onPointerEnter={() =>
-                        preloadPreviewImage(language === "pl" ? "/images/dyplom-inz-pl.jpg" : "/images/dyplom-inz-eng.jpg")
-                      }
-                      onFocus={() =>
-                        preloadPreviewImage(language === "pl" ? "/images/dyplom-inz-pl.jpg" : "/images/dyplom-inz-eng.jpg")
-                      }
-                      onTouchStart={() => {
-                        triggerPreviewPress("bachelor-desktop")
-                        preloadPreviewImage(language === "pl" ? "/images/dyplom-inz-pl.jpg" : "/images/dyplom-inz-eng.jpg")
-                      }}
+                      onTouchStart={() => triggerPreviewPress("bachelor-desktop")}
                       aria-label={`${text.previewPrefix} ${computerEngineeringLabel} diploma`}
                       className={`hidden h-[19.5px] w-[21.5px] shrink-0 items-center justify-center rounded-full border border-border/60 bg-card text-muted-foreground transition-all duration-150 sm:inline-flex sm:h-5 sm:w-6 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[var(--dev-accent)] active:text-[var(--dev-accent)] active:scale-90 ${
                         pressedPreviewKey === "bachelor-desktop"
@@ -809,16 +778,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                         `${computerEngineeringLabel} ${text.bachelor} diploma`
                       )
                     }
-                    onPointerEnter={() =>
-                      preloadPreviewImage(language === "pl" ? "/images/dyplom-inz-pl.jpg" : "/images/dyplom-inz-eng.jpg")
-                    }
-                    onFocus={() =>
-                      preloadPreviewImage(language === "pl" ? "/images/dyplom-inz-pl.jpg" : "/images/dyplom-inz-eng.jpg")
-                    }
-                    onTouchStart={() => {
-                      triggerPreviewPress("bachelor-mobile")
-                      preloadPreviewImage(language === "pl" ? "/images/dyplom-inz-pl.jpg" : "/images/dyplom-inz-eng.jpg")
-                    }}
+                    onTouchStart={() => triggerPreviewPress("bachelor-mobile")}
                     aria-label={`${text.previewPrefix} ${computerEngineeringLabel} diploma`}
                     className={`inline-flex items-center gap-1.5 rounded-md text-left transition-transform duration-150 sm:hidden ${
                       pressedPreviewKey === "bachelor-mobile" ? "scale-95" : ""
@@ -925,12 +885,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                     onClick={() =>
                       onOpenImagePreview(certificate.image, `${certificate.title} preview`)
                     }
-                    onPointerEnter={() => preloadPreviewImage(certificate.image)}
-                    onFocus={() => preloadPreviewImage(certificate.image)}
-                    onTouchStart={() => {
-                      triggerPreviewPress(certificate.title)
-                      preloadPreviewImage(certificate.image)
-                    }}
+                    onTouchStart={() => triggerPreviewPress(certificate.title)}
                     aria-label={`${text.previewPrefix} ${certificate.title}`}
                     className={`relative group inline-flex h-7.5 w-11 overflow-hidden rounded-md border border-border/70 transition-transform duration-150 ${
                       pressedPreviewKey === certificate.title ? "scale-95" : ""
