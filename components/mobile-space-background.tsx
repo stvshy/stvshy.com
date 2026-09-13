@@ -15,7 +15,7 @@ export function MobileSpaceBackground() {
         fill
         priority
         sizes="100vw"
-        className="object-cover object-center select-none opacity-50"
+        className="object-cover object-center select-none opacity-40"
         draggable={false}
       />
     </div>
