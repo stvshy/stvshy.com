@@ -290,6 +290,14 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
   // so the full-size preview is already cached/decoded by the time the modal opens.
   const preloadPreviewImage = preloadImage
 
+  // Section is opening = strong signal the diplomas are about to be viewed, so
+  // start fetching them now instead of waiting for a hover/touch on the eye icon.
+  useEffect(() => {
+    if (!isYearsOpen) return
+    preloadImage(language === "pl" ? "/images/dyplom-mgr-pl.jpg" : "/images/dyplom-mgr-eng.jpg")
+    preloadImage(language === "pl" ? "/images/dyplom-inz-pl.jpg" : "/images/dyplom-inz-eng.jpg")
+  }, [isYearsOpen, language])
+
   const stackSvgIconByLabel: Record<
     string,
     { src: string; renderAsMask: boolean; className?: string }
@@ -458,6 +466,12 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
       logo: SiCisco,
     },
   ]
+
+  // Section is opening = strong signal the certificates are about to be viewed.
+  useEffect(() => {
+    if (!isCertificatesOpen) return
+    certificates.forEach((certificate) => preloadImage(certificate.image))
+  }, [isCertificatesOpen])
 
   const localizedLinks = links.map((link) => {
     const descriptionMap = {
