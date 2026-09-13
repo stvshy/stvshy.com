@@ -37,6 +37,7 @@ const pageText = {
     footer: "© 2026 stvshy. All rights reserved.",
     previewDialogLabel: "Image preview",
     previewCloseLabel: "Close image preview",
+    previewResetZoomLabel: "Reset zoom",
     switchLanguageLabel: "Switch language to Polish",
   },
   pl: {
@@ -51,6 +52,7 @@ const pageText = {
     footer: "© 2026 stvshy. Wszelkie prawa zastrzeżone.",
     previewDialogLabel: "Podgląd obrazu",
     previewCloseLabel: "Zamknij podgląd obrazu",
+    previewResetZoomLabel: "Zresetuj przybliżenie",
     switchLanguageLabel: "Przełącz język na angielski",
   },
 } as const
@@ -104,6 +106,23 @@ const updateUrl = (tab: string, lang: string) => {
     return () => {
       if (langPressTimeoutRef.current !== null) window.clearTimeout(langPressTimeoutRef.current)
     }
+  }, [])
+
+  // Warm the image-preview chunk during idle time so it opens instantly on first tap
+  useEffect(() => {
+    const warm = () => {
+      import("@/components/image-preview")
+    }
+    const win = window as typeof window & {
+      requestIdleCallback?: (callback: () => void) => number
+      cancelIdleCallback?: (handle: number) => void
+    }
+    if (win.requestIdleCallback) {
+      const id = win.requestIdleCallback(warm)
+      return () => win.cancelIdleCallback?.(id)
+    }
+    const id = window.setTimeout(warm, 1200)
+    return () => window.clearTimeout(id)
   }, [])
 
 
@@ -326,6 +345,7 @@ const updateUrl = (tab: string, lang: string) => {
           image={previewImage}
           dialogLabel={text.previewDialogLabel}
           closeLabel={text.previewCloseLabel}
+          resetZoomLabel={text.previewResetZoomLabel}
           onClose={() => setPreviewImage(null)}
         />
       )}

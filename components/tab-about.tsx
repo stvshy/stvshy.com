@@ -7,6 +7,7 @@ import { hyphenateSync as hyphenateEn } from "hyphen/en"
 import { hyphenateSync as hyphenatePl } from "hyphen/pl"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { TabMusic } from "@/components/tab-music"
+import { preloadImage } from "@/lib/utils"
 
 type TabAboutProps = {
   language: "en" | "pl"
@@ -286,6 +287,9 @@ export function TabAbout({ language, onOpenImagePreview, includeMusic = false }:
         <button
           type="button"
           onClick={() => onOpenImagePreview("/images/tripify-map3.webp", "Tripify map")}
+          onPointerEnter={() => preloadImage("/images/tripify-map3.webp")}
+          onFocus={() => preloadImage("/images/tripify-map3.webp")}
+          onTouchStart={() => preloadImage("/images/tripify-map3.webp")}
           className={`group relative rounded-xl border border-border bg-card px-4 py-4 text-left backdrop-blur-xl transition-[background-color,border-color,color,box-shadow] duration-300 ${
             includeMusic
               ? compactAboutHoverClass

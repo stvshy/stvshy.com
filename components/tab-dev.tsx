@@ -69,6 +69,7 @@ import { DiVisualstudio } from "react-icons/di"
 import { GiKiwiBird } from "react-icons/gi"
 import { FaCode, FaJava, FaMicrochip } from "react-icons/fa6"
 import { FaCompass } from "react-icons/fa"
+import { preloadImage } from "@/lib/utils"
 
 const links = [
   {
@@ -215,10 +216,12 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
   const [isYearsPressed, setIsYearsPressed] = useState(false)
   const [isCertificatesPressed, setIsCertificatesPressed] = useState(false)
   const [isStackPressed, setIsStackPressed] = useState(false)
+  const [pressedPreviewKey, setPressedPreviewKey] = useState<string | null>(null)
   const yearsPressTimeoutRef = useRef<number | null>(null)
   const certificatesPressTimeoutRef = useRef<number | null>(null)
   const stackPressTimeoutRef = useRef<number | null>(null)
-  const preloadedPreviewsRef = useRef(new Set<string>())
+  const previewPressTimeoutRef = useRef<number | null>(null)
+  const PREVIEW_PRESS_DURATION_MS = 260
 
   const text = devText[language]
 
@@ -233,8 +236,22 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
       if (stackPressTimeoutRef.current !== null) {
         window.clearTimeout(stackPressTimeoutRef.current)
       }
+      if (previewPressTimeoutRef.current !== null) {
+        window.clearTimeout(previewPressTimeoutRef.current)
+      }
     }
   }, [])
+
+  const triggerPreviewPress = (key: string) => {
+    setPressedPreviewKey(key)
+    if (previewPressTimeoutRef.current !== null) {
+      window.clearTimeout(previewPressTimeoutRef.current)
+    }
+    previewPressTimeoutRef.current = window.setTimeout(() => {
+      setPressedPreviewKey(null)
+      previewPressTimeoutRef.current = null
+    }, PREVIEW_PRESS_DURATION_MS)
+  }
 
   const triggerYearsPress = () => {
     setIsYearsPressed(true)
@@ -269,13 +286,9 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
     }, STACK_PRESS_DURATION_MS)
   }
 
-  const preloadPreviewImage = (src: string) => {
-    if (preloadedPreviewsRef.current.has(src)) return
-    preloadedPreviewsRef.current.add(src)
-    const image = new window.Image()
-    image.decoding = "async"
-    image.src = src
-  }
+  // Delegates to the shared preload helper (link rel=preload + decoded Image()),
+  // so the full-size preview is already cached/decoded by the time the modal opens.
+  const preloadPreviewImage = preloadImage
 
   const stackSvgIconByLabel: Record<
     string,
@@ -674,13 +687,18 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                       onFocus={() =>
                         preloadPreviewImage(language === "pl" ? "/images/dyplom-mgr-pl.jpg" : "/images/dyplom-mgr-eng.jpg")
                       }
-                      onTouchStart={() =>
+                      onTouchStart={() => {
+                        triggerPreviewPress("master-desktop")
                         preloadPreviewImage(language === "pl" ? "/images/dyplom-mgr-pl.jpg" : "/images/dyplom-mgr-eng.jpg")
-                      }
+                      }}
                       aria-label={`${text.previewPrefix} ${appliedComputerScienceLabel} diploma`}
-                      className="hidden h-[19.5px] w-[21.5px] shrink-0 items-center justify-center rounded-full border border-border/60 bg-card text-muted-foreground transition-colors sm:inline-flex sm:h-5 sm:w-6 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[var(--dev-accent)] active:text-[var(--dev-accent)]"
+                      className={`hidden h-[19.5px] w-[21.5px] shrink-0 items-center justify-center rounded-full border border-border/60 bg-card text-muted-foreground transition-all duration-150 sm:inline-flex sm:h-5 sm:w-6 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[var(--dev-accent)] active:text-[var(--dev-accent)] active:scale-90 ${
+                        pressedPreviewKey === "master-desktop"
+                          ? "scale-90 border-[var(--dev-accent)]/60 bg-[var(--dev-accent)]/10 text-[var(--dev-accent)]"
+                          : ""
+                      }`}
                     >
-                      <Eye className="size-3.5" />
+                      <Eye className={`size-3.5 transition-transform duration-150 ${pressedPreviewKey === "master-desktop" ? "scale-90" : ""}`} />
                     </button>
                     <p
                       className="inline-flex h-[19.85px] items-center justify-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 text-[9.5px] font-semibold leading-none tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)] w-[74px] text-center"
@@ -706,14 +724,27 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                     onFocus={() =>
                       preloadPreviewImage(language === "pl" ? "/images/dyplom-mgr-pl.jpg" : "/images/dyplom-mgr-eng.jpg")
                     }
-                    onTouchStart={() =>
+                    onTouchStart={() => {
+                      triggerPreviewPress("master-mobile")
                       preloadPreviewImage(language === "pl" ? "/images/dyplom-mgr-pl.jpg" : "/images/dyplom-mgr-eng.jpg")
-                    }
+                    }}
                     aria-label={`${text.previewPrefix} ${appliedComputerScienceLabel} diploma`}
-                    className="inline-flex items-center gap-1.5 text-left sm:hidden"
+                    className={`inline-flex items-center gap-1.5 rounded-md text-left transition-transform duration-150 sm:hidden ${
+                      pressedPreviewKey === "master-mobile" ? "scale-95" : ""
+                    }`}
                   >
-                    <span className="text-[11.0px] text-muted-foreground" style={{ letterSpacing: '-0.039em' }}>{text.master}</span>
-                    <RiEyeLine className="eye-icon-glow size-[10px] shrink-0 text-muted-foreground" />
+                    <span
+                      className={`text-[11.0px] transition-colors duration-150 ${
+                        pressedPreviewKey === "master-mobile" ? "text-[var(--dev-accent)]" : "text-muted-foreground"
+                      }`}
+                    >
+                      {text.master}
+                    </span>
+                    <RiEyeLine
+                      className={`eye-icon-glow size-[10px] shrink-0 transition-colors duration-150 ${
+                        pressedPreviewKey === "master-mobile" ? "text-[var(--dev-accent)]" : "text-muted-foreground"
+                      }`}
+                    />
                   </button>
                   <p className="hidden text-[11.0px] text-muted-foreground sm:block" style={{ letterSpacing: '-0.039em' }}>{text.master}</p>
                 </div>
@@ -733,13 +764,18 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                       onFocus={() =>
                         preloadPreviewImage(language === "pl" ? "/images/dyplom-inz-pl.jpg" : "/images/dyplom-inz-eng.jpg")
                       }
-                      onTouchStart={() =>
+                      onTouchStart={() => {
+                        triggerPreviewPress("bachelor-desktop")
                         preloadPreviewImage(language === "pl" ? "/images/dyplom-inz-pl.jpg" : "/images/dyplom-inz-eng.jpg")
-                      }
+                      }}
                       aria-label={`${text.previewPrefix} ${computerEngineeringLabel} diploma`}
-                      className="hidden h-[19.5px] w-[21.5px] shrink-0 items-center justify-center rounded-full border border-border/60 bg-card text-muted-foreground transition-colors sm:inline-flex sm:h-5 sm:w-6 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[var(--dev-accent)] active:text-[var(--dev-accent)]"
+                      className={`hidden h-[19.5px] w-[21.5px] shrink-0 items-center justify-center rounded-full border border-border/60 bg-card text-muted-foreground transition-all duration-150 sm:inline-flex sm:h-5 sm:w-6 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[var(--dev-accent)] active:text-[var(--dev-accent)] active:scale-90 ${
+                        pressedPreviewKey === "bachelor-desktop"
+                          ? "scale-90 border-[var(--dev-accent)]/60 bg-[var(--dev-accent)]/10 text-[var(--dev-accent)]"
+                          : ""
+                      }`}
                     >
-                      <Eye className="size-3.5" />
+                      <Eye className={`size-3.5 transition-transform duration-150 ${pressedPreviewKey === "bachelor-desktop" ? "scale-90" : ""}`} />
                     </button>
                     <p
                       className="inline-flex h-[19.85px] items-center justify-center rounded-full border border-[var(--dev-accent)]/35 bg-[var(--dev-accent)]/15 text-[9.5px] font-semibold leading-none tracking-wide text-[var(--dev-accent)] shadow-[0_0_12px_rgba(var(--dev-accent-rgb),0.16)] w-[74px] text-center"
@@ -765,14 +801,27 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                     onFocus={() =>
                       preloadPreviewImage(language === "pl" ? "/images/dyplom-inz-pl.jpg" : "/images/dyplom-inz-eng.jpg")
                     }
-                    onTouchStart={() =>
+                    onTouchStart={() => {
+                      triggerPreviewPress("bachelor-mobile")
                       preloadPreviewImage(language === "pl" ? "/images/dyplom-inz-pl.jpg" : "/images/dyplom-inz-eng.jpg")
-                    }
+                    }}
                     aria-label={`${text.previewPrefix} ${computerEngineeringLabel} diploma`}
-                    className="inline-flex items-center gap-1.5 text-left sm:hidden"
+                    className={`inline-flex items-center gap-1.5 rounded-md text-left transition-transform duration-150 sm:hidden ${
+                      pressedPreviewKey === "bachelor-mobile" ? "scale-95" : ""
+                    }`}
                   >
-                    <span className="text-[11.0px] text-muted-foreground" style={{ letterSpacing: '-0.039em' }}>{text.bachelor}</span>
-                    <RiEyeLine className="eye-icon-glow size-[10px] shrink-0 text-muted-foreground" />
+                    <span
+                      className={`text-[11.0px] transition-colors duration-150 ${
+                        pressedPreviewKey === "bachelor-mobile" ? "text-[var(--dev-accent)]" : "text-muted-foreground"
+                      }`}
+                    >
+                      {text.bachelor}
+                    </span>
+                    <RiEyeLine
+                      className={`eye-icon-glow size-[10px] shrink-0 transition-colors duration-150 ${
+                        pressedPreviewKey === "bachelor-mobile" ? "text-[var(--dev-accent)]" : "text-muted-foreground"
+                      }`}
+                    />
                   </button>
                   <p className="hidden text-[11.0px] text-muted-foreground sm:block" style={{ letterSpacing: '-0.039em' }}>
                     {text.bachelor}
@@ -864,18 +913,29 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                     }
                     onPointerEnter={() => preloadPreviewImage(certificate.image)}
                     onFocus={() => preloadPreviewImage(certificate.image)}
-                    onTouchStart={() => preloadPreviewImage(certificate.image)}
+                    onTouchStart={() => {
+                      triggerPreviewPress(certificate.title)
+                      preloadPreviewImage(certificate.image)
+                    }}
                     aria-label={`${text.previewPrefix} ${certificate.title}`}
-                    className="relative group inline-flex h-7.5 w-11 overflow-hidden rounded-md border border-border/70"
+                    className={`relative group inline-flex h-7.5 w-11 overflow-hidden rounded-md border border-border/70 transition-transform duration-150 ${
+                      pressedPreviewKey === certificate.title ? "scale-95" : ""
+                    }`}
                   >
                     <Image
                       src={certificate.image}
                       alt={`${certificate.title} preview`}
                       width={48}
                       height={32}
-                      className="h-8 w-12 object-cover transition-[filter,opacity] duration-200 [@media(hover:hover)_and_(pointer:fine)]:group-hover:brightness-30 group-active:brightness-30"
+                      className={`h-8 w-12 object-cover transition-[filter,opacity] duration-200 [@media(hover:hover)_and_(pointer:fine)]:group-hover:brightness-30 group-active:brightness-30 ${
+                        pressedPreviewKey === certificate.title ? "brightness-30" : ""
+                      }`}
                     />
-                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 transition-opacity duration-200 [@media(hover:hover)_and_(pointer:fine)]:group-hover:opacity-100 group-active:opacity-100">
+                    <div
+                      className={`absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 transition-opacity duration-200 [@media(hover:hover)_and_(pointer:fine)]:group-hover:opacity-100 group-active:opacity-100 ${
+                        pressedPreviewKey === certificate.title ? "opacity-100" : ""
+                      }`}
+                    >
                       <Eye className="size-4 text-[var(--dev-accent)] drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]" />
                     </div>
                   </button>

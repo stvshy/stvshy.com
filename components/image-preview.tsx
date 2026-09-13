@@ -2,20 +2,42 @@
 
 import { useEffect, useRef, useState } from "react"
 import { X } from "lucide-react"
-import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch"
+import { BsChevronExpand } from "react-icons/bs"
+import { TransformComponent, TransformWrapper, type ReactZoomPanPinchContentRef } from "react-zoom-pan-pinch"
 
 type ImagePreviewProps = {
   image: { src: string; alt: string }
   dialogLabel: string
   closeLabel: string
+  resetZoomLabel: string
   onClose: () => void
 }
 
-export default function ImagePreview({ image, dialogLabel, closeLabel, onClose }: ImagePreviewProps) {
+const PRESS_RESET_MS = 260
+
+export default function ImagePreview({ image, dialogLabel, closeLabel, resetZoomLabel, onClose }: ImagePreviewProps) {
   const [isZoomed, setIsZoomed] = useState(false)
+  const [pressedControl, setPressedControl] = useState<"close" | "reset" | null>(null)
+  const [isImageReady, setIsImageReady] = useState(false)
   const closeRef = useRef<HTMLButtonElement>(null)
+  const transformRef = useRef<ReactZoomPanPinchContentRef>(null)
+  const pressTimeoutRef = useRef<number | null>(null)
   const isTripifyMap = image.src.includes("tripify-map3")
   const isDiploma = image.src.includes("dyplom")
+
+  const triggerPress = (control: "close" | "reset") => {
+    setPressedControl(control)
+    if (pressTimeoutRef.current !== null) window.clearTimeout(pressTimeoutRef.current)
+    pressTimeoutRef.current = window.setTimeout(() => {
+      setPressedControl(null)
+      pressTimeoutRef.current = null
+    }, PRESS_RESET_MS)
+  }
+
+  const handleResetZoom = (event: React.MouseEvent) => {
+    event.stopPropagation()
+    transformRef.current?.resetTransform(280, "easeOut")
+  }
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow
@@ -25,6 +47,7 @@ export default function ImagePreview({ image, dialogLabel, closeLabel, onClose }
     return () => {
       document.body.style.overflow = previousOverflow
       if (previousFocus instanceof HTMLElement) previousFocus.focus({ preventScroll: true })
+      if (pressTimeoutRef.current !== null) window.clearTimeout(pressTimeoutRef.current)
     }
   }, [])
 
@@ -45,6 +68,7 @@ export default function ImagePreview({ image, dialogLabel, closeLabel, onClose }
       style={{ touchAction: "none" }}
     >
       <TransformWrapper
+        ref={transformRef}
         minScale={1}
         maxScale={5}
         centerOnInit
@@ -70,7 +94,10 @@ export default function ImagePreview({ image, dialogLabel, closeLabel, onClose }
               loading="eager"
               fetchPriority="high"
               decoding="async"
-              className={`w-auto max-w-[calc(100vw-2rem)] rounded-xl object-contain ${
+              onLoad={() => setIsImageReady(true)}
+              className={`w-auto max-w-[calc(100vw-2rem)] rounded-xl object-contain transition-opacity duration-150 ${
+                isImageReady ? "opacity-100" : "opacity-0"
+              } ${
                 isDiploma
                   ? "max-h-[94dvh] md:max-h-[96dvh]"
                   : isTripifyMap
@@ -82,24 +109,49 @@ export default function ImagePreview({ image, dialogLabel, closeLabel, onClose }
             <button
               ref={closeRef}
               type="button"
+              onTouchStart={() => triggerPress("close")}
               onClick={onClose}
               aria-label={closeLabel}
-              className="preview-close-btn absolute right-2 top-2 z-10 inline-flex size-8 items-center justify-center rounded-full border border-border/70 bg-background/80 text-foreground transition-colors hover:bg-background"
+              className={`preview-close-btn absolute right-2 top-2 z-10 inline-flex size-8 items-center justify-center rounded-full border border-border/70 bg-background/80 text-foreground transition-all duration-150 hover:bg-background hover:scale-95 active:scale-90 ${
+                isZoomed ? "max-md:hidden" : ""
+              } ${pressedControl === "close" ? "scale-90 border-[var(--dev-accent,#8b60e8)]/60 bg-background" : ""}`}
             >
-              <X className="size-4" />
+              <X className={`size-4 transition-transform duration-150 ${pressedControl === "close" ? "scale-90" : ""}`} />
             </button>
           </div>
         </TransformComponent>
       </TransformWrapper>
       {isZoomed && (
-        <button
-          type="button"
-          onClick={onClose}
-          aria-label={closeLabel}
-          className="preview-close-btn fixed bottom-5 left-1/2 z-10 inline-flex size-10 -translate-x-1/2 items-center justify-center rounded-full border border-border/70 bg-background/90 text-foreground shadow-lg transition-colors hover:bg-background md:hidden"
+        <div
+          className="fixed bottom-5 left-1/2 z-10 flex -translate-x-1/2 items-center gap-3 md:hidden"
+          onClick={(event) => event.stopPropagation()}
         >
-          <X className="size-5" />
-        </button>
+          <button
+            type="button"
+            onTouchStart={() => triggerPress("reset")}
+            onClick={handleResetZoom}
+            aria-label={resetZoomLabel}
+            className={`preview-close-btn inline-flex size-10 items-center justify-center rounded-full border border-border/70 bg-background/90 text-foreground shadow-lg transition-all duration-150 hover:bg-background active:scale-90 ${
+              pressedControl === "reset" ? "scale-90 border-[var(--dev-accent,#8b60e8)]/60 bg-background" : ""
+            }`}
+          >
+            <BsChevronExpand className={`size-5 rotate-45 transition-transform duration-150 ${pressedControl === "reset" ? "scale-90" : ""}`} />
+          </button>
+          <button
+            type="button"
+            onTouchStart={() => triggerPress("close")}
+            onClick={(event) => {
+              event.stopPropagation()
+              onClose()
+            }}
+            aria-label={closeLabel}
+            className={`preview-close-btn inline-flex size-10 items-center justify-center rounded-full border border-border/70 bg-background/90 text-foreground shadow-lg transition-all duration-150 hover:bg-background active:scale-90 ${
+              pressedControl === "close" ? "scale-90 border-[var(--dev-accent,#8b60e8)]/60 bg-background" : ""
+            }`}
+          >
+            <X className={`size-5 transition-transform duration-150 ${pressedControl === "close" ? "scale-90" : ""}`} />
+          </button>
+        </div>
       )}
     </div>
   )
