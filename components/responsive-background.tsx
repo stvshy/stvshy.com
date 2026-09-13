@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react"
 import dynamic from "next/dynamic"
 
-const MeshGradient = dynamic(
-  () => import("@/components/mesh-gradient").then((module) => module.MeshGradient),
+const MobileSpaceBackground = dynamic(
+  () => import("@/components/mobile-space-background").then((module) => module.MobileSpaceBackground),
   { ssr: false }
 )
 
@@ -25,5 +25,5 @@ export function ResponsiveBackground() {
   }, [])
 
   if (isDesktop === null) return null
-  return isDesktop ? <DesktopSpaceBackground /> : <MeshGradient />
+  return isDesktop ? <DesktopSpaceBackground /> : <MobileSpaceBackground />
 }
