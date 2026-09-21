@@ -415,7 +415,7 @@ export function TabAbout({ language, onOpenImagePreview, includeMusic = false }:
               </span>
             </div>
             <div
-              className={`pointer-events-none absolute right-[53px] top-1/2 flex h-13 -translate-y-[33.5px] items-end gap-[4px] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+              className={`pointer-events-none absolute ${language === "pl" ? "right-[44.9px]" : "right-[47.9px]"} top-1/2 flex h-13 -translate-y-[33.5px] items-end gap-[4px] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                 isMusicOpen
                   ? "translate-x-8 opacity-0"
                   : "translate-x-0 opacity-7 group-hover:opacity-25"
