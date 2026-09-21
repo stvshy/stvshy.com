@@ -95,7 +95,7 @@ export default function ImagePreview({ image, dialogLabel, closeLabel, resetZoom
               fetchPriority="high"
               decoding="async"
               onLoad={() => setIsImageReady(true)}
-              className={`w-auto max-w-[calc(100vw-2rem)] rounded-xl object-contain transition-opacity duration-150 ${
+              className={`w-auto max-w-[calc(100vw-0.75rem)] rounded-xl object-contain transition-opacity duration-150 md:max-w-[calc(100vw-2rem)] ${
                 isImageReady ? "opacity-100" : "opacity-0"
               } ${
                 isDiploma
