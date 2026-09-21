@@ -415,7 +415,7 @@ export function TabAbout({ language, onOpenImagePreview, includeMusic = false }:
               </span>
             </div>
             <div
-              className={`pointer-events-none absolute ${language === "pl" ? "right-[44.9px]" : "right-[47.9px]"} top-1/2 flex h-13 -translate-y-[33.5px] items-end gap-[clamp(2.5px,calc(-6px+2.5vw),5px)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] max-[399px]:h-11 max-[399px]:-translate-y-[25.5px] sm:gap-[4px] ${
+              className={`pointer-events-none absolute ${language === "pl" ? "right-[44.9px] max-[374px]:right-[40.9px]" : "right-[47.9px]"} top-1/2 flex h-13 -translate-y-[33.5px] items-end gap-[clamp(2.5px,calc(-6px+2.5vw),5px)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] max-[399px]:h-11 max-[399px]:-translate-y-[25.5px] sm:gap-[4px] ${
                 isMusicOpen
                   ? "translate-x-8 opacity-0"
                   : "translate-x-0 opacity-7 group-hover:opacity-25"
@@ -424,7 +424,7 @@ export function TabAbout({ language, onOpenImagePreview, includeMusic = false }:
               {[8, 19, 16, 25, 39, 52, 31, 46, 66, 49, 35, 57, 76, 61, 43, 29, 51, 37, 26, 18, 26, 9, 14].map((height, index) => (
                 <span
                   key={index}
-                  className={`w-[clamp(1.5px,calc(-3px+1.25vw),2.5px)] origin-bottom rounded-full transition-all duration-500 sm:w-[3px] ${index >= 17 ? "max-[399px]:hidden" : ""} ${index >= 20 ? "max-sm:hidden" : ""}`}
+                  className={`w-[clamp(1.5px,calc(-3px+1.25vw),2.5px)] origin-bottom rounded-full transition-all duration-500 sm:w-[3px] ${index < 2 ? "max-[374px]:hidden" : ""} ${index >= 19 ? "max-[399px]:hidden" : ""} ${index >= 20 ? "max-sm:hidden" : ""}`}
                   style={{
                     height: `${height}%`,
                     backgroundImage: "linear-gradient(to right, var(--dev-accent) 0%, #8b60e8 40%, #8b60e8 60%, #b817e4 100%)",
