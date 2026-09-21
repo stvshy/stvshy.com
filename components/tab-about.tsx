@@ -439,7 +439,7 @@ export function TabAbout({ language, onOpenImagePreview, includeMusic = false }:
           </button>
           {isMusicOpen && (
             <div className="border-t border-border px-5 py-4">
-              <TabMusic language={language} />
+              <TabMusic language={language} isDevEmbedded />
             </div>
           )}
         </div>

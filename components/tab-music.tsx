@@ -77,6 +77,7 @@ const links = [
 
 type TabMusicProps = {
   language: "en" | "pl"
+  isDevEmbedded?: boolean
 }
 
 const musicText = {
@@ -114,7 +115,7 @@ const musicText = {
   },
 } as const
 
-export function TabMusic({ language }: TabMusicProps) {
+export function TabMusic({ language, isDevEmbedded = false }: TabMusicProps) {
   const MORE_PRESS_DURATION_MS = 1200
   const [isMoreOpen, setIsMoreOpen] = useState(false)
   const [isMorePressed, setIsMorePressed] = useState(false)
@@ -142,7 +143,7 @@ export function TabMusic({ language }: TabMusicProps) {
 
   const localizedLinks = links.map((link) => {
     const descriptionMap = {
-      Fantasia: text.links.fantasia,
+      Fantasia: isDevEmbedded && language === "pl" ? "Posłuchaj ostatniego utworu" : text.links.fantasia,
       Spotify: text.links.spotify,
       "Apple Music": text.links.appleMusic,
       "YouTube Music": text.links.youtubeMusic,
