@@ -142,6 +142,7 @@ const devText = {
       linkedin: "Profile & networking",
       travelAssistant: "AI trip planning assistant",
       travelRecommender: "Personalized destination ranking",
+      travelRecommenderCompact: "Personalized destination ranking",
       evilChat: "Toxic & offensive AI chat",
       hollowDepths: "Game for desktop web",
       renovationSystem: "Workflow management platform",
@@ -176,6 +177,7 @@ const devText = {
       linkedin: "Profil i networking",
       travelAssistant: "AI asystent do planowania podróży",
       travelRecommender: "Spersonalizowany ranking destynacji",
+      travelRecommenderCompact: "Podróże dopasowane do ciebie",
       evilChat: "Toksyczny i obraźliwy czat AI",
       hollowDepths: "Gra przeglądarkowa na komputery",
       renovationSystem: "Platforma do zarządzania procesem",
@@ -548,7 +550,14 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
               }`}
               style={{ letterSpacing: '-0.01em' }}
             >
-              {link.description}
+              {link.label === "Travel Recommender" && language === "pl" ? (
+                <>
+                  <span className="max-[374px]:hidden">{link.description}</span>
+                  <span className="hidden max-[374px]:inline">Podróże dopasowane do ciebie</span>
+                </>
+              ) : (
+                link.description
+              )}
             </span>
           </div>
           {link.blocked ? (
