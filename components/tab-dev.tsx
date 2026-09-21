@@ -728,7 +728,9 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                         `${appliedComputerScienceLabel} ${text.master} diploma`
                       )
                     }
-                    onTouchStart={() => triggerPreviewPress("master-mobile")}
+                    onTouchStart={() => setPressedPreviewKey("master-mobile")}
+                    onTouchEnd={() => setPressedPreviewKey(null)}
+                    onTouchCancel={() => setPressedPreviewKey(null)}
                     aria-label={`${text.previewPrefix} ${appliedComputerScienceLabel} diploma`}
                     className={`flex items-center gap-1.5 rounded-md text-left transition-transform duration-150 sm:hidden ${
                       pressedPreviewKey === "master-mobile" ? "scale-95" : ""
@@ -787,7 +789,9 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                         `${computerEngineeringLabel} ${text.bachelor} diploma`
                       )
                     }
-                    onTouchStart={() => triggerPreviewPress("bachelor-mobile")}
+                    onTouchStart={() => setPressedPreviewKey("bachelor-mobile")}
+                    onTouchEnd={() => setPressedPreviewKey(null)}
+                    onTouchCancel={() => setPressedPreviewKey(null)}
                     aria-label={`${text.previewPrefix} ${computerEngineeringLabel} diploma`}
                     className={`flex items-center gap-1.5 rounded-md text-left transition-transform duration-150 sm:hidden ${
                       pressedPreviewKey === "bachelor-mobile" ? "scale-95" : ""
