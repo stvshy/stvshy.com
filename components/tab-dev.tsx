@@ -717,7 +717,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                       <span className="year-pill-label">2025 - 2026</span>
                     </p>
                   </div>
-                  <p className="mb-[4px] text-[11.6px] text-foreground sm:mb-[1.3px]" style={{ letterSpacing: '-0.054em', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
+                  <p className="mb-[3.5px] text-[11.6px] text-foreground sm:mb-[1.3px]" style={{ letterSpacing: '-0.054em', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
                     {appliedComputerScienceLabel}
                   </p>
                   <button
@@ -778,7 +778,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
                       <span className="year-pill-label">2021 - 2025</span>
                     </p>
                   </div>
-                  <p className="mb-[4px] text-[11.45px] text-foreground sm:mb-[2.4px]" style={{ letterSpacing: '-0.055em', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
+                  <p className="mb-[3.5px] text-[11.45px] text-foreground sm:mb-[2.4px]" style={{ letterSpacing: '-0.055em', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
                     {computerEngineeringLabel}
                   </p>
                   <button
@@ -824,7 +824,7 @@ export function TabDev({ language, onOpenImagePreview }: TabDevProps) {
               >
                 <span className="year-pill-label">2018 - 2021</span>
               </p>
-              <p className="mb-[4px] text-[11.45px] text-foreground sm:mb-[2.4px]" style={{ letterSpacing: '-0.055em', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
+              <p className="mb-[3.5px] text-[11.45px] text-foreground sm:mb-[2.4px]" style={{ letterSpacing: '-0.055em', fontWeight: 510, fontVariationSettings: "'wght' 510", fontFamily: 'Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial' }}>
                 <span className="sm:hidden">{highSchoolName.short}</span>
                 <span className="hidden sm:inline">{highSchoolName.long}</span>
               </p>
